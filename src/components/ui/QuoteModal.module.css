@@ -1,0 +1,116 @@
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modalContent {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
+.closeBtn:hover {
+    color: #000;
+}
+
+.leadForm {
+    padding: 40px;
+}
+
+.leadForm h3 {
+    color: #333;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: var(--font-heading, serif);
+}
+
+.leadForm p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+}
+
+.inputGroup input, .inputGroup select {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f8f9fa;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.inputGroup input:focus, .inputGroup select:focus {
+    outline: none;
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    background: #fff;
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 18px;
+    background: #fcb318;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(252, 179, 24, 0.4);
+    background: #e09f14;
+}
+
+.submitBtn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.successMessage {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+}

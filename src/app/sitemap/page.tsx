@@ -1,0 +1,58 @@
+import { Metadata } from 'next';
+import Link from "next/link";
+
+export const metadata: Metadata = {
+    title: 'Sitemap | Pride Kitchen Caterers & Events',
+    description: 'Navigate all pages, services, locations, and articles on the Pride Kitchen Caterers & Events (PKC Events) official website.',
+    alternates: {
+        canonical: 'https://pkcevents.com/sitemap'
+    },
+    openGraph: {
+        title: 'Sitemap | Pride Kitchen Caterers & Events',
+        description: 'Navigate all pages, services, locations, and articles on the Pride Kitchen Caterers & Events (PKC Events) official website.',
+        url: 'https://pkcevents.com/sitemap',
+        images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'Pride Kitchen Logo' }],
+        type: 'website'
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Sitemap | Pride Kitchen Caterers & Events',
+        description: 'Navigate all pages, services, locations, and articles on the Pride Kitchen Caterers & Events (PKC Events) official website.',
+        images: ['https://pkcevents.com/logo.png']
+    }
+};
+
+export default function SitemapPage() {
+    const links = [
+        { name: "Home", href: "/" },
+        { name: "About Us", href: "/about" },
+        { name: "Global Catering", href: "/services/catering" },
+        { name: "Venue Planning", href: "/services/venue" },
+        { name: "Event Decoration", href: "/services/decoration" },
+        { name: "Cinematic Photography", href: "/services/photography" },
+        { name: "Bridal Makeup", href: "/services/makeup" },
+        { name: "Entertainment Zone", href: "/services/entertainment" },
+        { name: "Luxury Cars", href: "/services/cars" },
+        { name: "Our Gallery", href: "/gallery" },
+        { name: "Our Locations", href: "/locations" },
+        { name: "Insights Blog", href: "/blog" },
+        { name: "Contact Us", href: "/contact" },
+        { name: "Privacy Policy", href: "/legal/privacy" },
+        { name: "Terms & Conditions", href: "/legal/terms" },
+    ];
+
+    return (
+        <div className="container section-padding" style={{ paddingTop: '150px' }}>
+            <h1 className="heading-md">Sitemap</h1>
+            <ul style={{ marginTop: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px' }}>
+                {links.map(link => (
+                    <li key={link.href}>
+                        <Link href={link.href} style={{ color: 'var(--primary)', fontWeight: '600' }}>
+                            {link.name}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}

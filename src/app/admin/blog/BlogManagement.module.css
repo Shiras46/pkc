@@ -1,0 +1,104 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--primary);
+    color: black;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.addBtn:hover {
+    background: #e5a216;
+}
+
+.tableWrapper {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.table td {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+.table th {
+    background: #fafafa;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.published {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.draft {
+    background: #F5F5F5;
+    color: #616161;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+.viewBtn,
+.editBtn,
+.deleteBtn {
+    color: #777;
+    transition: var(--transition);
+}
+
+.viewBtn:hover {
+    color: #1976D2;
+}
+
+.editBtn:hover {
+    color: #F57C00;
+}
+
+.deleteBtn:hover {
+    color: #D32F2F;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+}

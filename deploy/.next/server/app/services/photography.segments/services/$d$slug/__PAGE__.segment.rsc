@@ -1,0 +1,7 @@
+1:"$Sreact.fragment"
+2:I[31220,["/_next/static/chunks/7770ccbdfc2b9704.js","/_next/static/chunks/cae2f47c66219e05.js","/_next/static/chunks/62601d8f41d4a1de.js","/_next/static/chunks/8a9d42f42ddd88a5.js","/_next/static/chunks/da1d861ae3586832.js","/_next/static/chunks/5497a158b969d5c3.js"],"default"]
+3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/7340adf74ff47ec0.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+:HL["/_next/static/chunks/ad86252518bb6ca5.css","style"]
+0:{"buildId":"pti96RXbk6SiXPMG-8xPK","rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://pkcevents.com\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Services\",\"item\":\"https://pkcevents.com/services\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Photography & Video\",\"item\":\"https://pkcevents.com/services/photography\"}]}"}}],["$","$L2",null,{"slug":"photography"}]],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/ad86252518bb6ca5.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/da1d861ae3586832.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/5497a158b969d5c3.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null

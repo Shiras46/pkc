@@ -1,0 +1,57 @@
+.cta {
+    position: relative;
+    padding: 120px 0;
+    background: #000;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url('/image/hero2.webp');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+}
+
+.content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.content h2 {
+    font-size: 3rem;
+    font-family: var(--font-heading, serif);
+    margin-bottom: 20px;
+}
+
+.content p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+.actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .content h2 {
+        font-size: 2.2rem;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

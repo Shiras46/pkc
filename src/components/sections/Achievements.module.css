@@ -1,0 +1,91 @@
+.achievements {
+    padding: 80px 0;
+    background: #fff;
+    border-top: 1px solid #eee;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-family: var(--font-heading, serif);
+    color: #111;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--primary, #D4AF37);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.card {
+    text-align: center;
+    padding: 30px;
+}
+
+.icon {
+    color: var(--primary, #D4AF37);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    font-family: var(--font-heading, serif);
+    margin-bottom: 15px;
+}
+
+.year {
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.org {
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.quoteWrapper {
+    margin-top: 60px;
+    text-align: center;
+    padding: 30px;
+    background: #fafafa;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary, #D4AF37);
+}
+
+.quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}

@@ -1,0 +1,219 @@
+.section {
+    position: relative;
+    background-color: #ffffff;
+    overflow: hidden;
+    padding-bottom: 100px;
+}
+
+.intro {
+    text-align: center;
+    padding: 120px 20px 80px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.introSubtitle {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--primary, #D4AF37);
+    margin-bottom: 1rem;
+    display: block;
+    font-weight: 700;
+}
+
+.introTitle {
+    font-family: var(--font-heading, serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.1;
+    color: #1a1a1a;
+}
+
+/* Service Row Layout */
+.serviceRow {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 85vh;
+    /* Immersive height */
+    position: relative;
+}
+
+.imageCol {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+    /* Mask logic handled by wrapper inside usually, or clip-path on this */
+}
+
+.imageWrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    clip-path: inset(100% 0 0 0);
+    /* Initial hidden state for wipe up */
+    will-change: clip-path;
+}
+
+.serviceImage {
+    object-fit: cover;
+    width: 100%;
+    height: 120%;
+    /* Extra height for parallax */
+    transform: translateY(-10%);
+    /* Center the extra height */
+    will-change: transform;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.contentCol {
+    position: relative;
+    width: 100%;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    background: white;
+}
+
+/* Content Typography */
+.serviceNum {
+    font-family: var(--font-heading, serif);
+    font-size: 5rem;
+    line-height: 1;
+    color: #f0f0f0;
+    /* Very subtle */
+    font-weight: 700;
+    margin-bottom: -20px;
+    z-index: -1;
+    position: relative;
+}
+
+.serviceTitle {
+    font-family: var(--font-heading, serif);
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+    line-height: 1.1;
+}
+
+.serviceDesc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 32px;
+    max-width: 500px;
+}
+
+.linkBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: #1a1a1a;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e0e0e0;
+    width: fit-content;
+    transition: all 0.3s ease;
+}
+
+.linkBtn:hover {
+    color: var(--primary, #D4AF37);
+    border-color: var(--primary, #D4AF37);
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.linkBtn:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+    .serviceRow {
+        flex-direction: row;
+        align-items: center;
+        min-height: 90vh;
+        gap: 0;
+    }
+
+    .imageCol {
+        width: 60%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+
+    .contentCol {
+        width: 40%;
+        padding: 80px 60px;
+        background: transparent;
+        /* Content floats over adjacent whitespace */
+        pointer-events: none;
+        /* Let clicks pass if needed, but link needs pointer-events auto */
+    }
+
+    .contentColInner {
+        pointer-events: auto;
+    }
+
+    /* Alternating Layouts */
+    .serviceRow:nth-child(odd) {
+        justify-content: flex-end;
+    }
+
+    .serviceRow:nth-child(odd) .imageCol {
+        left: 0;
+        right: auto;
+    }
+
+    .serviceRow:nth-child(odd) .contentCol {
+        padding-left: 80px;
+        /* Space from image */
+    }
+
+    .serviceRow:nth-child(even) {
+        justify-content: flex-start;
+    }
+
+    .serviceRow:nth-child(even) .imageCol {
+        right: 0;
+        left: auto;
+    }
+
+    .serviceRow:nth-child(even) .contentCol {
+        padding-right: 80px;
+        /* Space from image */
+        align-items: flex-end;
+        /* Right align text? Maybe keep left for readability */
+        text-align: right;
+    }
+
+    .serviceRow:nth-child(even) .linkBtn {
+        align-self: flex-end;
+    }
+
+    /* Text size bump */
+    .serviceTitle {
+        font-size: 3.5rem;
+    }
+
+    .serviceNum {
+        font-size: 8rem;
+    }
+}

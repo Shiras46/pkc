@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/locations/layout,_N_T_/locations/kochi/layout,_N_T_/locations/kochi/page,_N_T_/locations/kochi"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/locations/kochi/__PAGE__",
+    "/locations/kochi",
+    "/locations",
+    "/_index",
+    "/_head"
+  ]
+}

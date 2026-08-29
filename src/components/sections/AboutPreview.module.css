@@ -1,0 +1,148 @@
+.section {
+    position: relative;
+    background: #fdfaf5;
+    padding: 160px 0;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+.grid {
+    display: flex;
+    align-items: center;
+    gap: 120px;
+}
+
+.contentSide {
+    flex: 1;
+    position: relative;
+    padding-right: 20px;
+}
+
+.decoPattern {
+    position: absolute;
+    top: -80px;
+    left: -120px;
+    width: 300px;
+    height: 300px;
+    background-image: radial-gradient(circle, #D4AF37 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.08;
+    z-index: 0;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    color: #222;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.labelLine {
+    width: 50px;
+    height: 1px;
+    background: var(--primary);
+}
+
+.heading {
+    font-size: clamp(3.2rem, 8vw, 5rem);
+    line-height: 1.05;
+    color: #1a1a1a;
+    font-weight: 700;
+    font-family: var(--font-heading, serif);
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+}
+
+.storyText {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.storyHighlight {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #111;
+    line-height: 1.4;
+    margin-bottom: 50px;
+    font-style: italic;
+    border-left: 3px solid var(--primary);
+    padding: 10px 0 10px 35px;
+    background: rgba(252, 179, 24, 0.03);
+    border-radius: 0 20px 20px 0;
+}
+
+.visualSide {
+    flex: 1.2;
+    height: 800px;
+    position: relative;
+    clip-path: inset(100% 0 0 0);
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.08);
+}
+
+.image {
+    object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+    .grid {
+        gap: 60px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .section {
+        padding: 100px 0;
+    }
+
+    .grid {
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .contentSide {
+        padding-right: 0;
+    }
+
+    .visualSide {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        clip-path: inset(0 0 0 0) !important;
+    }
+
+    .heading {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .heading {
+        font-size: 2.5rem;
+    }
+
+    .storyText {
+        font-size: 1.1rem;
+    }
+
+    .storyHighlight {
+        font-size: 1.2rem;
+        padding-left: 20px;
+    }
+}

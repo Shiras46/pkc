@@ -1,0 +1,148 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f4f7f6;
+}
+
+.sidebar {
+    width: 260px;
+    background: white;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    position: fixed;
+    height: 100vh;
+    transition: width 0.3s ease;
+    z-index: 100;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+    padding: 30px 10px;
+}
+
+.toggleBtn {
+    position: absolute;
+    top: 30px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+    color: #666;
+    transition: var(--transition);
+}
+
+.toggleBtn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 50px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.logo span {
+    color: var(--primary);
+    font-weight: 400;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    color: #555;
+    font-weight: 600;
+    transition: var(--transition);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar.collapsed .navItem {
+    justify-content: center;
+    padding: 12px;
+}
+
+.navItem:hover,
+.active {
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    color: #ff4d4d;
+    font-weight: 600;
+    margin-top: auto;
+    transition: var(--transition);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar.collapsed .logout {
+    justify-content: center;
+    padding: 12px;
+}
+
+.logout:hover {
+    background: #fff0f0;
+}
+
+.main {
+    flex: 1;
+    margin-left: 260px;
+    padding: 40px;
+    transition: margin-left 0.3s ease;
+}
+
+.mainCollapsed {
+    margin-left: 80px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+        padding: 30px 10px;
+    }
+
+    .toggleBtn {
+        display: none;
+    }
+
+    .navItem span,
+    .logout span,
+    .logo span {
+        display: none;
+    }
+
+    .main {
+        margin-left: 80px;
+    }
+}

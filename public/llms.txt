@@ -1,0 +1,37 @@
+# PKC Events
+
+> Professional event management and catering services for weddings, corporate events, engagements, birthdays, and special occasions.
+
+## Website
+https://pkcevents.com/
+
+## Main Pages
+- Home: https://pkcevents.com/
+- About: https://pkcevents.com/about
+- Services: https://pkcevents.com/services
+- Gallery: https://pkcevents.com/gallery
+- Blog: https://pkcevents.com/blog
+- Locations: https://pkcevents.com/locations
+- Contact: https://pkcevents.com/contact
+
+## Services
+- Catering Services: https://pkcevents.com/services/catering
+- Event Venue Services: https://pkcevents.com/services/venue
+- Event Decoration Services: https://pkcevents.com/services/decoration
+- Photography Services: https://pkcevents.com/services/photography
+- Bridal & Event Makeup Services: https://pkcevents.com/services/makeup
+- Luxury & Wedding Car Services: https://pkcevents.com/services/cars
+
+## Business Summary
+PKC Events provides complete event management solutions, including catering, venue arrangements, decoration, photography, makeup, and luxury vehicle services. The company specializes in wedding events, corporate functions, engagement ceremonies, birthday celebrations, and customized event planning.
+
+## Target Locations
+- Kerala, India
+- Malappuram
+- Kozhikode
+- Kochi
+- Thrissur
+- Palakkad
+
+## Contact
+Website: https://pkcevents.com/contact

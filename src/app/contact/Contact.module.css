@@ -1,0 +1,133 @@
+.wrapper {
+    padding-top: var(--header-height);
+}
+
+.header {
+    background: var(--accent);
+    padding: 100px 0;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-top: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.infoList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.infoItem {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.iconBox {
+    width: 50px;
+    height: 50px;
+    background: var(--accent);
+    color: var(--primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.infoItem h4 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.infoItem p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.whatsappBox {
+    background: #25D366;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.whatsappLink {
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.formSection {
+    display: flex;
+    justify-content: center;
+}
+
+.formCard {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-hover);
+    width: 100%;
+    border: 1px solid #EEE;
+}
+
+.formCard h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+}
+
+.inputGroup label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.inputGroup input,
+.inputGroup select,
+.inputGroup textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #DDD;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+}
+
+.inputGroup textarea {
+    height: 120px;
+    resize: none;
+}
+
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}

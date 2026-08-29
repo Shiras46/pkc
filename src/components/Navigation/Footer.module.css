@@ -1,0 +1,125 @@
+.footer {
+    background: var(--foreground);
+    color: white;
+    padding: 100px 0 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 50px;
+    margin-bottom: 80px;
+}
+
+.logo {
+    font-family: var(--font-brand);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    letter-spacing: 0.01em;
+    font-weight: 400;
+    line-height: 1.1;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.logo :global(.brand-name) {
+    color: var(--primary);
+}
+
+.description {
+    color: #999;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.socials {
+    display: flex;
+    gap: 15px;
+}
+
+.socials a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.socials a:hover {
+    background: var(--primary);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.linksCol h3,
+.contactCol h3 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+
+.linksCol ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.linksCol a {
+    color: #999;
+}
+
+.linksCol a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+.contactItem {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    color: #999;
+}
+
+.bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.bottomLinks {
+    display: flex;
+    gap: 25px;
+}
+
+.bottomLinks a:hover {
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .bottomLinks {
+        justify-content: center;
+    }
+}

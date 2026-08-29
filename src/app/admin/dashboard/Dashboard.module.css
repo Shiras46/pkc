@@ -1,0 +1,70 @@
+.container {
+    max-width: 1200px;
+}
+
+.title {
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.iconBox {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.card p {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.recentActivity h2 {
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+.actionGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.actionBtn {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.actionBtn:hover {
+    border-color: var(--primary);
+    background: var(--accent);
+}

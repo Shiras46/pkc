@@ -1,0 +1,63 @@
+{
+  "blogs": [
+    {
+      "id": "1",
+      "title": "Choosing the Perfect Menu for Your Winter Wedding",
+      "slug": "perfect-winter-wedding-menu",
+      "category": "Catering & Menu Guides",
+      "content": "A detailed guide on selecting the best cuisine for a luxury winter wedding...",
+      "image": "/image/services/catering.webp",
+      "author": "PKC Editorial",
+      "date": "2026-01-05",
+      "published": true
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@pkcevents.com",
+      "password": "admin"
+    }
+  ],
+  "enquiries": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "+91 9876543210",
+      "service": "Wedding Planning",
+      "message": "Interested in full package.",
+      "date": "2026-01-09",
+      "status": "New"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "phone": "+91 9988776655",
+      "service": "Catering",
+      "message": "Quote for 500 pax.",
+      "date": "2026-01-08",
+      "status": "Contacted"
+    },
+    {
+      "id": "1768029673765",
+      "name": "sanjay",
+      "email": "sanj@gamil.com",
+      "phone": "",
+      "service": "Wedding",
+      "message": "hai bro cotect a wedding",
+      "date": "2026-01-10",
+      "status": "New"
+    },
+    {
+      "id": "1768031031439",
+      "name": "shafi",
+      "email": "shafi@gamil.com",
+      "phone": "+918891202725",
+      "service": "Corporate Event",
+      "message": "bro sent party",
+      "date": "2026-01-10",
+      "status": "New"
+    }
+  ]
+}

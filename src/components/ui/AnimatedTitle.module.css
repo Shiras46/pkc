@@ -1,0 +1,45 @@
+.titleWrapper {
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; - Removed to allow flex alignment in parent */
+    max-width: 100%;
+}
+
+.line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2em 0.5em;
+    /* Row gap, column gap */
+    width: 100%;
+    margin-bottom: 0.5em;
+}
+
+/* Alignment variants */
+.alignCenter .line {
+    justify-content: center;
+}
+
+.alignLeft .line {
+    justify-content: flex-start;
+}
+
+.alignRight .line {
+    justify-content: flex-end;
+}
+
+/* 3D Word Wrapper */
+.word {
+    transform-style: preserve-3d;
+    display: inline-block;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+/* Typography Helpers - Inherited but can be forced */
+.textWhite {
+    color: #ffffff;
+}
+
+.black {
+    color: #000000;
+}

@@ -1,0 +1,55 @@
+.settingsPage {
+    padding: 0;
+    max-width: 800px;
+}
+
+.section {
+    background: white;
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.inputGroup label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.inputGroup input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.saveBtn {
+    background: var(--primary);
+    color: black;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.saveBtn:hover {
+    background: #e5a216;
+}

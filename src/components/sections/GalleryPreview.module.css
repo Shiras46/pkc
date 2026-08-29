@@ -1,0 +1,137 @@
+.gallerySection {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0;
+    background: #f7f5f0;
+}
+
+.header {
+    width: min(720px, calc(100% - 40px));
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.eyebrow {
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.title {
+    margin-top: 20px;
+    color: #fcb318;
+    font-family: var(--font-heading, serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.08;
+}
+
+.galleryWall {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    overflow: hidden;
+    padding: 4px 0;
+}
+
+.galleryRow {
+    display: flex;
+    flex-shrink: 0;
+    gap: 10px;
+    width: max-content;
+    will-change: transform;
+}
+
+.galleryRow:nth-child(odd) {
+    margin-left: -5vw;
+}
+
+.galleryItem {
+    position: relative;
+    width: clamp(240px, 24vw, 360px);
+    aspect-ratio: 16 / 9;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 3px solid #fff;
+    border-radius: 8px;
+    background: #ddd;
+    box-shadow: 0 5px 18px rgba(24, 20, 14, 0.09);
+}
+
+.image {
+    object-fit: cover;
+    transition: transform 0.55s ease, filter 0.55s ease;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.68), transparent 58%);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    opacity: 0;
+    text-transform: uppercase;
+    transition: opacity 0.35s ease;
+}
+
+.galleryItem:hover .image {
+    transform: scale(1.06);
+    filter: saturate(1.08);
+}
+
+.galleryItem:hover .overlay {
+    opacity: 1;
+}
+
+.footer {
+    margin-top: 48px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .gallerySection {
+        padding: 68px 0;
+    }
+
+    .header {
+        margin-bottom: 34px;
+    }
+
+    .galleryWall,
+    .galleryRow {
+        gap: 7px;
+    }
+
+    .galleryItem {
+        width: 210px;
+        border-width: 2px;
+        border-radius: 6px;
+    }
+
+    .overlay {
+        padding: 10px;
+        font-size: 0.62rem;
+        opacity: 1;
+    }
+
+    .footer {
+        margin-top: 36px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .galleryRow {
+        transform: none !important;
+    }
+
+    .image {
+        transition: none;
+    }
+}

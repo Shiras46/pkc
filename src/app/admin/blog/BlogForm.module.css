@@ -1,0 +1,65 @@
+.formContainer {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    max-width: 900px;
+}
+
+.title {
+    margin-bottom: 30px;
+}
+
+.inputGroup {
+    margin-bottom: 25px;
+}
+
+.inputGroup label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.inputGroup input,
+.inputGroup select,
+.inputGroup textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #DDD;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+}
+
+.inputGroup textarea {
+    height: 300px;
+    line-height: 1.6;
+}
+
+.checkboxGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.checkboxGroup input {
+    width: 20px;
+    height: 20px;
+}
+
+.submitBtn {
+    background: var(--primary);
+    color: black;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submitBtn:hover {
+    background: #e5a216;
+}
