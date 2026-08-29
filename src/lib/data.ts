@@ -18,28 +18,28 @@ export const servicesData = [
         name: "Venue Management",
         desc: "Spaces that Whisper Stories. We go far beyond simple logistics to bring your vision to life from the initial layout to the subtle nuances of decor and flow, ensuring perfection in every detail.",
         href: "/services/venue",
-        image: "/image/services/Whisper Stories.webp"
+        image: "/image/services/venue banner.webp"
     },
     {
         id: "decoration",
         name: "Event Decoration",
         desc: "Imprints of Happiness Shared. Our artistic design team paints their magic in weaving a breathtaking canvas for celebrating your events, making it an imprint of happiness for a lifetime.",
         href: "/services/decoration",
-        image: "/image/services/Decoration event.webp"
+        image: "/image/services/decoration.webp"
     },
     {
         id: "photography",
         name: "Photography & Video",
         desc: "Every Frame Tells A Unique Story of Joy. Our visual storytellers capture those little glances in a cinematic style, allowing your future generations to relive those special moments.",
         href: "/services/photography",
-        image: "/image/services/Every Frame.webp"
+        image: "/image/services/Cinematic Videography.webp"
     },
     {
         id: "makeup",
         name: "Make-up Services",
         desc: "Enhancing the Royalness in You. We provide the expert touch needed for you to meet the royalty within, enhancing your natural features while expressing your unique style.",
         href: "/services/makeup",
-        image: "/image/services/ROYAL ESSENCE.webp"
+        image: "/image/services/makeup banner.webp"
     },
     {
         id: "entertainment",
@@ -53,7 +53,7 @@ export const servicesData = [
         name: "Premium Cars",
         desc: "An Entry That Defines You. We offer a pool of elite premium cars from the timeless elegance of vintage classics to the sleek sophistication of modern luxury sedans for your grand entry.",
         href: "/services/cars",
-        image: "/image/services/Premium Cars/MOJO-216.webp"
+        image: "/image/services/Premium Cars/LUXURY WEDDING CARS.webp"
     },
 ];
 export const blogsData = [
@@ -77,17 +77,6 @@ export const blogsData = [
         image: "/image/services/catering.webp",
         date: "2026-01-15",
         author: "Chef Arjun",
-        published: true
-    },
-    {
-        id: "blog-3",
-        title: "Choosing the Right Venue for Corporate Galas",
-        slug: "corporate-gala-venues",
-        category: "Wedding Planning Tips",
-        content: "A comprehensive guide on what to look for when selecting a high-profile venue for your next corporate event in Kochi.",
-        image: "/image/services/venue.webp",
-        date: "2026-01-10",
-        author: "Prakash K.",
         published: true
     }
 ];

@@ -34,27 +34,30 @@ async function dbConnect() {
     // Since we assign to cached, typescript knows it's not undefined below, but for safety:
     if (!cached) return null;
 
-   if (cached.conn) {
-    return cached.conn;
-}
+    if (cached.conn) {
+        return cached.conn;
+    }
 
 
     if (!cached.promise) {
         const opts = {
             bufferCommands: false,
+            serverSelectionTimeoutMS: 1500,
         };
 
-cached.promise = mongoose.connect(MONGODB_URI as string, opts).then((mongoose) => {
-    return mongoose;
-});
-
+        cached.promise = mongoose.connect(MONGODB_URI as string, opts).then((mongoose) => {
+            return mongoose;
+        }).catch(e => {
+            cached.promise = null;
+            return null as any;
+        });
     }
 
     try {
         cached.conn = await cached.promise;
     } catch (e) {
         cached.promise = null;
-        throw e;
+        return null;
     }
 
     return cached.conn;

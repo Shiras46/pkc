@@ -13,7 +13,7 @@ const experienceItems = [
     },
     {
         icon: <Trophy aria-hidden="true" />,
-        title: "1L+",
+        title: "99k+",
         description: "Events Successfully Managed"
     },
     {
@@ -49,7 +49,7 @@ function Counter({ value, duration = 1500 }: { value: string; duration?: number 
                     const animate = (timestamp: number) => {
                         if (!startTime) startTime = timestamp;
                         const progress = Math.min((timestamp - startTime) / duration, 1);
-                        
+
                         // easeOutExpo for premium feeling
                         const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
                         const currentVal = Math.floor(easeProgress * targetNumber);

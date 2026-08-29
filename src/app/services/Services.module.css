@@ -1,5 +1,6 @@
 .mainWrapper {
-    background-color: #FAFAFA; /* Light luxury base */
+    background-color: #FAFAFA;
+    /* Light luxury base */
     color: #333;
     font-family: var(--font-body), sans-serif;
     overflow-x: hidden;
@@ -123,7 +124,8 @@
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.primaryLink:hover, .primaryLink:active {
+.primaryLink:hover,
+.primaryLink:active {
     background: #fcb318;
     color: white;
     transform: translateY(-5px);
@@ -182,9 +184,17 @@
     z-index: 10 !important;
 }
 
-.avatar:nth-child(1) { z-index: 1; }
-.avatar:nth-child(2) { z-index: 2; }
-.avatar:nth-child(3) { z-index: 3; }
+.avatar:nth-child(1) {
+    z-index: 1;
+}
+
+.avatar:nth-child(2) {
+    z-index: 2;
+}
+
+.avatar:nth-child(3) {
+    z-index: 3;
+}
 
 .reviewContent {
     display: flex;
@@ -240,20 +250,21 @@
         width: 100%;
         text-align: center;
     }
-    
+
     .avatar {
         width: 44px;
         height: 44px;
         border-width: 2px;
         margin-right: -14px;
     }
-    
+
     .ratingText {
         font-size: 1.3rem;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .videoContainer,
     .overlay,
     .contentContainer {
@@ -276,14 +287,14 @@
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 12px;
     padding: 40px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 30px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 .featItem {
@@ -435,9 +446,11 @@
     .achGrid {
         grid-template-columns: 1fr;
     }
+
     .achievementsSection {
         padding: 60px 0;
     }
+
     .achievementsTitle {
         font-size: 2rem;
     }
@@ -491,7 +504,7 @@
 
 .serviceCard {
     background: #FAFAFA;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 12px;
     overflow: hidden;
     text-decoration: none;
@@ -503,7 +516,7 @@
 .serviceCard:hover {
     transform: translateY(-10px);
     border-color: rgba(212, 175, 55, 0.3);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 .cardImageWrapper {
@@ -525,7 +538,7 @@
 .cardGradient {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.7) 100%);
+    background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.7) 100%);
     z-index: 2;
 }
 
@@ -536,7 +549,7 @@
     width: 50px;
     height: 50px;
     background: #FFFFFF;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(252, 179, 24, 0.2);
     border-radius: 50%;
     display: flex;
@@ -590,7 +603,7 @@
 ----------------------------------- */
 .whySection {
     padding: 120px 5%;
-    background: #FAFAFA;
+    background: #fdf4e3;
 }
 
 .bentoGrid {
@@ -603,16 +616,24 @@
 }
 
 @media (max-width: 1024px) {
-    .bentoGrid { grid-template-columns: repeat(2, 1fr); }
-    .bentoCard { grid-column: span 1 !important; }
+    .bentoGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bentoCard {
+        grid-column: span 1 !important;
+    }
 }
+
 @media (max-width: 600px) {
-    .bentoGrid { grid-template-columns: 1fr; }
+    .bentoGrid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .bentoCard {
     background: #FFFFFF;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 20px;
     padding: 40px;
     position: relative;
@@ -630,7 +651,10 @@
 
 .bentoGlow {
     position: absolute;
-    top: 0; left: 0; right: 0; height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
     background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
     pointer-events: none;
 }
@@ -725,7 +749,8 @@
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.ctaPrimaryLink:hover, .ctaPrimaryLink:active {
+.ctaPrimaryLink:hover,
+.ctaPrimaryLink:active {
     background: #fcb318;
     color: white;
     transform: translateY(-5px);
@@ -761,6 +786,7 @@
         align-items: center;
         gap: 1.5rem;
     }
+
     .ctaPrimaryLink,
     .ctaSecondaryLink {
         width: 100%;
@@ -815,6 +841,7 @@
     .dropdownContainer {
         width: 100%;
     }
+
     .heroDropdown {
         width: 100%;
         position: relative;

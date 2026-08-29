@@ -31,10 +31,11 @@ export const dynamic = 'force-dynamic';
 export default async function BlogListingPage() {
   let rawBlogs: any[] = [];
   try {
-    await dbConnect();
+    const db = await dbConnect();
+    if (!db) throw new Error("No DB connection");
     rawBlogs = await Blog.find({ published: true }).sort({ date: -1 }).lean() as any[];
   } catch (error) {
-    console.error("Failed to connect to database or fetch blogs, falling back to static data:", error);
+    console.warn("Failed to connect to database or fetch blogs, falling back to static data.");
   }
 
   if (!rawBlogs || rawBlogs.length === 0) {

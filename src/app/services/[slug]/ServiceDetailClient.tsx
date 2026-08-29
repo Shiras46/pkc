@@ -295,7 +295,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Kerala groom styling with standard Mundu and wedding attire"
             },
             {
-                image: "/image/services/Elevate Your Beauty_ Professional Makeup Services at Kuts & Make Salon.jpg.webp", icon: <Sparkles color="#fcb318" />,
+                image: "/image/services/Pre-wedding Makeup.webp", icon: <Sparkles color="#fcb318" />,
                 title: "Pre-wedding Makeup", desc: "The bliss before the wedding is something to cherish forever and that exactly happens with pre-wedding shoots. Your look should highlight the radiance and elegance of your love story and our make-up artists excel in creating camera-ready, versatile make-up which enhances your natural glow. Be it a sun-drenched outdoor session or a cinematic evening shoot, we craft personalized looks defining your unique style reflecting the preciousness in you.",
                 alt: "Professional cameras and tools for pre-wedding makeup and photoshoots"
             }

@@ -15,9 +15,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   let post = null;
   try {
-    await dbConnect();
+    const db = await dbConnect();
+    if (!db) throw new Error("No DB connection");
     post = await Blog.findOne({ slug }).lean() as any;
-  } catch (e) {}
+  } catch (e) { }
 
   if (!post) {
     const { blogsData } = await import('@/lib/data');
@@ -59,9 +60,10 @@ export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   let post = null;
   try {
-    await dbConnect();
+    const db = await dbConnect();
+    if (!db) throw new Error("No DB connection");
     post = await Blog.findOne({ slug }).lean() as any;
-  } catch (e) {}
+  } catch (e) { }
 
   if (!post) {
     const { blogsData } = await import('@/lib/data');
@@ -102,55 +104,55 @@ export default async function BlogPostPage({ params }: Props) {
       />
       <article className={styles.container}>
         <div className={styles.backLink}>
-            <Link href="/blog">
-                <ArrowLeft size={16} />
-                <span>Back to Blog</span>
-            </Link>
+          <Link href="/blog">
+            <ArrowLeft size={16} />
+            <span>Back to Blog</span>
+          </Link>
         </div>
 
         <header className={styles.header}>
           <h1 className={styles.title}>{post.title}</h1>
           <div className={styles.meta}>
             <div className={styles.metaItem}>
-                <User size={14} />
-                <span>{post.author || 'PKC Admin'}</span>
+              <User size={14} />
+              <span>{post.author || 'PKC Admin'}</span>
             </div>
             <div className={styles.metaItem}>
-                <Calendar size={14} />
-                <span>{post.date ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }) : '6/23/2026'}</span>
+              <Calendar size={14} />
+              <span>{post.date ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }) : '6/23/2026'}</span>
             </div>
             <div className={styles.metaItem}>
-                <Tag size={14} />
-                <span>{post.category || 'Wedding Planning Tips'}</span>
+              <Tag size={14} />
+              <span>{post.category || 'Wedding Planning Tips'}</span>
             </div>
           </div>
         </header>
 
         <div className={styles.imageWrapper}>
-            <Image
-                src={post.image || '/image/about.webp'}
-                alt={post.title}
-                fill
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                style={{ objectFit: 'cover' }}
-                priority
-            />
+          <Image
+            src={post.image || '/image/about.webp'}
+            alt={post.title}
+            fill
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            style={{ objectFit: 'cover' }}
+            priority
+          />
         </div>
 
         <div className={styles.content}>
-            {post.content ? (
-                <div dangerouslySetInnerHTML={{ __html: post.content }} />
-            ) : (
-                <p>hai</p>
-            )}
+          {post.content ? (
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          ) : (
+            <p>hai</p>
+          )}
         </div>
 
         <div className={styles.ctaCard}>
-            <h2>Planning your own big day?</h2>
-            <p>Let PRIDE KITCHEN CATERERS &amp; EVENTS handle the details while you enjoy the magic.</p>
-            <Link href="/contact" className="btn btn-primary" style={{ marginTop: '10px' }}>
-                GET A FREE CONSULTATION
-            </Link>
+          <h2>Planning your own big day?</h2>
+          <p>Let PRIDE KITCHEN CATERERS &amp; EVENTS handle the details while you enjoy the magic.</p>
+          <Link href="/contact" className="btn btn-primary" style={{ marginTop: '10px' }}>
+            GET A FREE CONSULTATION
+          </Link>
         </div>
       </article>
     </main>

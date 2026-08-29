@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import styles from "./Services.module.css";
 import QuoteModal from "@/components/ui/QuoteModal";
+import ServiceCards from "@/components/sections/ServiceCards";
 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -91,20 +92,6 @@ export default function ServicesClient() {
             });
         });
 
-        // Service Cards Reveal
-        gsap.fromTo(".service-card",
-            { y: 60, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                stagger: 0.15,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: ".services-grid",
-                    start: "top 80%"
-                }
-            }
-        );
 
         // Bento Grid Reveal
         gsap.fromTo(".bento-item",
@@ -136,15 +123,6 @@ export default function ServicesClient() {
 
     }, { scope: mainRef, dependencies: [] });
 
-    const services = [
-        { id: "cars", title: "Luxury Cars", img: "/image/services/Premium Cars/MOJO-216.webp", alt: "Classic vintage premium vehicle displaying an elegant wedding transportation service", icon: <Car />, desc: "Premium vehicles for a grand and elegant entrance." },
-        { id: "catering", title: "Premium Catering", img: "/image/services/premium cat.webp", alt: "Elegant wedding catering setup with decorated dining area", icon: <Utensils />, desc: "Authentic flavours and exquisite culinary experiences." },
-        { id: "decoration", title: "Venue Decoration", img: "/image/services/Decoration event.webp", alt: "Elegant outdoor wedding table decoration", icon: <Paintbrush />, desc: "Stunning themes and breathtaking floral arrangements." },
-        { id: "entertainment", title: "Entertainment", img: "/image/services/entertainment.webp", alt: "Live entertainment performance at a wedding event", icon: <Music />, desc: "Live music, DJs, and engaging performances." },
-        { id: "makeup", title: "Bridal Makeup", img: "/image/services/ROYAL ESSENCE.webp", alt: "Professional bridal makeup and traditional hairstyle", icon: <Sparkles />, desc: "Professional artists for a flawless, radiant look." },
-        { id: "photography", title: "Photography", img: "/image/services/Every Frame.webp", alt: "Wedding couple photography in a natural outdoor setting", icon: <Camera />, desc: "Capturing your precious moments with cinematic brilliance." },
-        { id: "venue", title: "Venue Selection", img: "/image/services/Whisper Stories.webp", alt: "Elegant wedding venue interior with decorative lighting", icon: <Home />, desc: "Finding the perfect luxurious location for your event." }
-    ];
 
     const features = [
         { title: "Premium Quality", icon: <Star size={24} /> },
@@ -206,30 +184,7 @@ export default function ServicesClient() {
             </section>
 
             {/* SERVICES SHOWCASE */}
-            <section className={styles.showcaseSection}>
-                <div className={styles.sectionHeader}>
-                    <span className={styles.sectionTag}>WHAT WE DO</span>
-                    <h2><span style={{ color: '#000000' }}>Our Signature</span> Services</h2>
-                    <div className={styles.goldLine}></div>
-                </div>
-
-                <div className={`services-grid ${styles.servicesGrid}`}>
-                    {services.map((srv, idx) => (
-                        <Link href={`/services/${srv.id}`} key={idx} className={`service-card ${styles.serviceCard}`}>
-                            <div className={styles.cardImageWrapper}>
-                                <Image src={srv.img} alt={srv.alt || `${srv.title} services by Pride Kitchen Caterers & Events`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw" className={styles.cardImg} />
-                                <div className={styles.cardGradient}></div>
-                                <div className={styles.cardBadge}>{srv.icon}</div>
-                            </div>
-                            <div className={styles.cardContent}>
-                                <h3>{srv.title}</h3>
-                                <p>{srv.desc}</p>
-                                <span className={styles.cardLink}>Explore <ChevronRight size={16} /></span>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </section>
+            <ServiceCards />
 
             {/* WHY CHOOSE US BENTO GRID */}
             <section className={styles.whySection}>
