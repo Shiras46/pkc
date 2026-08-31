@@ -285,7 +285,7 @@ const serviceSpecificData: Record<string, any> = {
         ],
         subServices: [
             {
-                image: "/image/services/Kerala Bridal Makeup Guide_ Techniques, Trends, and Costs for 2026.webp", icon: <Sparkles color="#fcb318" />,
+                image: "/image/services/bridal Makeup.webp", icon: <Sparkles color="#fcb318" />,
                 title: "Bridal Makeup", desc: "Growing up, every woman dreams of her wedding day and the way she flaunts on her special day. The princess in her would be preparing herself to unleash the royal queen in her. As a premier provider for bridal makeup in Kerala, we truly understand this precious dream and treat every bride with precision and care. Consider us the fairy godmother to your inner Cinderella, enchanting you with an unforgettable, radiant grace the moment you walk down the aisle.",
                 alt: "Traditional Kerala bridal makeup showing beautiful jewelry and flowers"
             },

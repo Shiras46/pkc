@@ -39,7 +39,7 @@ export const servicesData = [
         name: "Make-up Services",
         desc: "Enhancing the Royalness in You. We provide the expert touch needed for you to meet the royalty within, enhancing your natural features while expressing your unique style.",
         href: "/services/makeup",
-        image: "/image/services/makeup banner.webp"
+        image: "/image/services/bridal Makeup.webp"
     },
     {
         id: "entertainment",
