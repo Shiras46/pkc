@@ -181,7 +181,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Fascinating stage and fresh floral decoration for Kerala wedding ceremony"
             },
             {
-                image: "/image/services/Lighting & Ambience Design.webp", icon: <Sparkles color="#fcb318" />,
+                image: "/image/services/lighting-ambience-design.webp", icon: <Sparkles color="#fcb318" />,
                 title: "Lighting & Ambience Design", desc: "The soul of any event lies in the harmony of its ambience and lighting. Creating an ambience highlighting the emotions is an essential element of any event. We masterfully design the lights to create the perfect mood for your precious moments. By layering different layers, tones, textures and colours, we transform your special day to a magical dreamy affair.",
                 alt: "Elegant lighting and premium ambience setup for dinner reception"
             }
@@ -238,7 +238,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Professional videographer filming a wedding ceremony with modern camera gear"
             },
             {
-                image: "/image/services/Event Highlights & Reels.webp", icon: <Camera color="#fcb318" />,
+                image: "/image/services/event-highlights-reels.webp", icon: <Camera color="#fcb318" />,
                 title: "Event Highlights & Reels", desc: "The best moments are often the short-lived and irreplaceable ones. Such moments deserve to be visualized beautifully and shared instantly. Our expert team specializes in crafting instagramable reels and high-energy highlights that artfully capture all the vibrant spirit of your event into a sharable story. Transforming your wedding story into a digital imprint of happiness.",
                 alt: "A fast-paced video highlight/reel capture of wedding guest expressions and celebrations"
             }
@@ -342,12 +342,12 @@ const serviceSpecificData: Record<string, any> = {
         ],
         subServices: [
             {
-                image: "/image/services/Live Music & Bands.webp", icon: <Music color="#fcb318" />,
+                image: "/image/services/live-music-bands.webp", icon: <Music color="#fcb318" />,
                 title: "Live Music & Bands", desc: "Music touches the soul on a deeper level and to experience it in live is something truly magical. It’s one of the most sought-after welcome gifts you can arrange for your beloved guests. We arrange and bring the finest talents to make your celebrations a heavenly experience. Be it the classical fusion ensemble, a live unplugged band, or the high-energy performance of a grand musical troupe, we curate a musical experience transforming your venue into a haven of pure harmony.",
                 alt: "Live band musicians performing on stage with musical instruments at a wedding reception"
             },
             {
-                image: "/image/services/DJ & Sound Systems (1).webp", icon: <Music color="#fcb318" />,
+                image: "/image/services/dj-sound-systems.webp", icon: <Music color="#fcb318" />,
                 title: "DJ & Sound Systems", desc: "Ignite the night with a rhythm of vibrant music that resonates through every guest. Our team helps you to transform your event into an energetic retreat of music paired with world-class DJs and high-fidelity sound systems. With us backing you up, you turn on the fire on the dance floor with a vibration that stirs the spirit of everyone present.",
                 alt: "Professional DJ mixer and sound systems with bright ambient club lighting"
             },
