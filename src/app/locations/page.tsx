@@ -3,22 +3,22 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import styles from "./Locations.module.css";
 
 export const metadata: Metadata = {
-    title: 'Our Locations | Thrissur & Kochi | Pride Kitchen Caterers & Events',
-    description: "Find our offices in Thrissur and Kochi. PKC Events provides premium wedding planning and luxury catering services across Thrissur, Kochi, Ernakulam, and all of Kerala.",
+    title: 'Event Management Services in Thrissur & Kochi | PKC Events',
+    description: "Explore event management, catering, wedding and celebration services from Pride Kitchen Caterers & Events in Thrissur, Kochi and across Kerala.",
     alternates: {
         canonical: 'https://pkcevents.com/locations'
     },
     openGraph: {
-        title: 'Our Locations | Thrissur & Kochi | Pride Kitchen Caterers & Events',
-        description: "Find our offices in Thrissur and Kochi. PKC Events provides premium wedding planning and luxury catering services across Thrissur, Kochi, Ernakulam, and all of Kerala.",
+        title: 'Event Management Services in Thrissur & Kochi | PKC Events',
+        description: "Explore event management, catering, wedding and celebration services from Pride Kitchen Caterers & Events in Thrissur, Kochi and across Kerala.",
         url: 'https://pkcevents.com/locations',
         images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'Pride Kitchen Logo' }],
         type: 'website'
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Our Locations | Thrissur & Kochi | Pride Kitchen Caterers & Events',
-        description: "Find our offices in Thrissur and Kochi. PKC Events provides premium wedding planning and luxury catering services across Thrissur, Kochi, Ernakulam, and all of Kerala.",
+        title: 'Event Management Services in Thrissur & Kochi | PKC Events',
+        description: "Explore event management, catering, wedding and celebration services from Pride Kitchen Caterers & Events in Thrissur, Kochi and across Kerala.",
         images: ['https://pkcevents.com/logo.png']
     }
 };

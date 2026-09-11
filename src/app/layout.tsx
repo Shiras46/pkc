@@ -21,10 +21,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
     title: {
-        default: "Pride Kitchen Caterers & Events | Luxury Wedding & Event Management Kerala",
-        template: "%s | Pride Kitchen Caterers & Events"
+        default: "Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events",
+        template: "%s"
     },
-    description: "Experience the pinnacle of luxury with Pride Kitchen Caterers & Events. We specialize in end-to-end wedding planning, premium catering, decoration, and more across Kerala.",
+    description: "Luxury wedding & event management in Thrissur and Kochi since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
     keywords: "Wedding planner Kerala, Luxury events Thrissur, Premium catering Kochi, Event management Kerala",
     icons: {
         icon: [
@@ -73,6 +73,9 @@ export const metadata: Metadata = {
             'max-image-preview': 'large',
             'max-snippet': -1,
         },
+    },
+    verification: {
+        google: "txfdkJKoc7DP069rHZmErWVNzW0dhyvXLy5PkELZpfE",
     },
 };
 

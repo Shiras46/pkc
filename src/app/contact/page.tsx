@@ -2,22 +2,22 @@ import { Metadata } from 'next';
 import ContactClient from './ContactClient';
 
 export const metadata: Metadata = {
-    title: 'Contact Us | Pride Kitchen Caterers & Events',
-    description: "Get in touch with PKC Events for your next luxury celebration in Kerala. Reach out to our Thrissur or Kochi offices for quotes, custom menus, and bookings.",
+    title: 'Contact Pride Kitchen Caterers & Events | Thrissur & Kochi',
+    description: "Contact Pride Kitchen Caterers & Events for wedding catering, event management, venues, decoration and other services in Thrissur, Kochi and Kerala.",
     alternates: {
         canonical: 'https://pkcevents.com/contact'
     },
     openGraph: {
-        title: 'Contact Us | Pride Kitchen Caterers & Events',
-        description: "Get in touch with PKC Events for your next luxury celebration in Kerala. Reach out to our Thrissur or Kochi offices for quotes, custom menus, and bookings.",
+        title: 'Contact Pride Kitchen Caterers & Events | Thrissur & Kochi',
+        description: "Contact Pride Kitchen Caterers & Events for wedding catering, event management, venues, decoration and other services in Thrissur, Kochi and Kerala.",
         url: 'https://pkcevents.com/contact',
         images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'Pride Kitchen Logo' }],
         type: 'website'
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Contact Us | Pride Kitchen Caterers & Events',
-        description: "Get in touch with PKC Events for your next luxury celebration in Kerala. Reach out to our Thrissur or Kochi offices for quotes, custom menus, and bookings.",
+        title: 'Contact Pride Kitchen Caterers & Events | Thrissur & Kochi',
+        description: "Contact Pride Kitchen Caterers & Events for wedding catering, event management, venues, decoration and other services in Thrissur, Kochi and Kerala.",
         images: ['https://pkcevents.com/logo.png']
     }
 };

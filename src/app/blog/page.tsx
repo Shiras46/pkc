@@ -6,22 +6,22 @@ import Blog from '@/models/Blog';
 import styles from './Blog.module.css';
 
 export const metadata: Metadata = {
-  title: 'PKC Events Blog | Wedding Planning & Event Insights Kerala',
-  description: 'Read the latest articles from PKC Events. Get expert tips, luxury wedding decor trends, menu curation guides, and event planning inspiration in Kerala.',
+  title: 'Wedding & Event Planning Blog | PKC Events Kerala',
+  description: 'Discover wedding planning tips, catering ideas, event trends and celebration inspiration from Pride Kitchen Caterers & Events in Kerala.',
   alternates: {
     canonical: 'https://pkcevents.com/blog'
   },
   openGraph: {
-    title: 'PKC Events Blog | Wedding Planning & Event Insights Kerala',
-    description: 'Read the latest articles from PKC Events. Get expert tips, luxury wedding decor trends, menu curation guides, and event planning inspiration in Kerala.',
+    title: 'Wedding & Event Planning Blog | PKC Events Kerala',
+    description: 'Discover wedding planning tips, catering ideas, event trends and celebration inspiration from Pride Kitchen Caterers & Events in Kerala.',
     url: 'https://pkcevents.com/blog',
     images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'PKC Events Blog' }],
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PKC Events Blog | Wedding Planning & Event Insights Kerala',
-    description: 'Read the latest articles from PKC Events. Get expert tips, luxury wedding decor trends, menu curation guides, and event planning inspiration in Kerala.',
+    title: 'Wedding & Event Planning Blog | PKC Events Kerala',
+    description: 'Discover wedding planning tips, catering ideas, event trends and celebration inspiration from Pride Kitchen Caterers & Events in Kerala.',
     images: ['https://pkcevents.com/logo.png']
   }
 };

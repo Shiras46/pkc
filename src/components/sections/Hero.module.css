@@ -117,9 +117,42 @@
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.7;
-    margin-bottom: 4rem;
+    margin-bottom: 1.25rem;
     max-width: 600px;
     font-weight: 300;
+}
+
+.heroConsultationBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fcb318;
+    color: #000000;
+    font-family: var(--font-poppins), var(--font-sans), sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 18px 40px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    width: fit-content;
+    box-shadow: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.heroConsultationBtn:hover {
+    background-color: #e5a216;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(252, 179, 24, 0.35);
+}
+
+.heroConsultationBtn:active {
+    transform: translateY(0);
 }
 
 .btnGroup {
@@ -413,6 +446,19 @@
     }
     .ratingText {
         font-size: 1.3rem;
+    }
+    .heroConsultationBtn {
+        font-size: 0.85rem;
+        padding: 14px 28px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 420px) {
+    .heroConsultationBtn {
+        font-size: 0.78rem;
+        padding: 12px 20px;
+        letter-spacing: 0.8px;
     }
 }
 

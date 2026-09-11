@@ -3,13 +3,13 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
     title: 'Sitemap | Pride Kitchen Caterers & Events',
-    description: 'Navigate all pages, services, locations, and articles on the Pride Kitchen Caterers & Events (PKC Events) official website.',
+    description: "Browse the sitemap of Pride Kitchen Caterers & Events to easily find information about services, events, locations, blogs and contact details.",
     alternates: {
         canonical: 'https://pkcevents.com/sitemap'
     },
     openGraph: {
         title: 'Sitemap | Pride Kitchen Caterers & Events',
-        description: 'Navigate all pages, services, locations, and articles on the Pride Kitchen Caterers & Events (PKC Events) official website.',
+        description: "Browse the sitemap of Pride Kitchen Caterers & Events to easily find information about services, events, locations, blogs and contact details.",
         url: 'https://pkcevents.com/sitemap',
         images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'Pride Kitchen Logo' }],
         type: 'website'
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'Sitemap | Pride Kitchen Caterers & Events',
-        description: 'Navigate all pages, services, locations, and articles on the Pride Kitchen Caterers & Events (PKC Events) official website.',
+        description: "Browse the sitemap of Pride Kitchen Caterers & Events to easily find information about services, events, locations, blogs and contact details.",
         images: ['https://pkcevents.com/logo.png']
     }
 };

@@ -3,13 +3,13 @@ import BrandName from "@/components/ui/BrandName";
 
 export const metadata: Metadata = {
     title: 'Privacy Policy | Pride Kitchen Caterers & Events',
-    description: 'Read the privacy policy of Pride Kitchen Caterers & Events to understand how we collect, use, protect, and handle your personal details.',
+    description: 'Read the privacy policy of Pride Kitchen Caterers & Events to understand how website information and user data are collected and handled.',
     alternates: {
         canonical: 'https://pkcevents.com/legal/privacy'
     },
     openGraph: {
         title: 'Privacy Policy | Pride Kitchen Caterers & Events',
-        description: 'Read the privacy policy of Pride Kitchen Caterers & Events to understand how we collect, use, protect, and handle your personal details.',
+        description: 'Read the privacy policy of Pride Kitchen Caterers & Events to understand how website information and user data are collected and handled.',
         url: 'https://pkcevents.com/legal/privacy',
         images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'Pride Kitchen Logo' }],
         type: 'website'
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'Privacy Policy | Pride Kitchen Caterers & Events',
-        description: 'Read the privacy policy of Pride Kitchen Caterers & Events to understand how we collect, use, protect, and handle your personal details.',
+        description: 'Read the privacy policy of Pride Kitchen Caterers & Events to understand how website information and user data are collected and handled.',
         images: ['https://pkcevents.com/logo.png']
     }
 };

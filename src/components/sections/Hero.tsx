@@ -9,7 +9,8 @@ import Link from "next/link";
 import Image from "next/image";
 import BrandName from "@/components/ui/BrandName";
 import styles from "./Hero.module.css";
-import { trackEvent } from "@/lib/tracking";
+import { trackEvent, trackContactClick } from "@/lib/tracking";
+import QuoteModal from "@/components/ui/QuoteModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,7 @@ export default function Hero() {
     const backgroundRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -101,6 +103,18 @@ export default function Hero() {
                                 Your Celebrations, Our Premium Touch
                             </p>
                         </div>
+                        <div className="hero-reveal">
+                            <button
+                                className={styles.heroConsultationBtn}
+                                onClick={() => {
+                                    trackContactClick('quote', 'hero');
+                                    setIsQuoteModalOpen(true);
+                                }}
+                                aria-label="Book Your Consultation"
+                            >
+                                BOOK YOUR CONSULTATION
+                            </button>
+                        </div>
                         <div className={`hero-reveal ${styles.googleReview}`}>
                             <div className={styles.avatarGroup}>
                                 <div className={styles.avatar}>
@@ -146,6 +160,7 @@ export default function Hero() {
 
                 </div>
             </div>
+            <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
         </section>
     );
 }

@@ -3,13 +3,13 @@ import BrandName from "@/components/ui/BrandName";
 
 export const metadata: Metadata = {
     title: 'Terms & Conditions | Pride Kitchen Caterers & Events',
-    description: 'Review the terms and conditions for booking and working with Pride Kitchen Caterers & Events (PKC Events) for luxury weddings and catering in Kerala.',
+    description: "Review the terms and conditions governing the use of the Pride Kitchen Caterers & Events website and its services.",
     alternates: {
         canonical: 'https://pkcevents.com/legal/terms'
     },
     openGraph: {
         title: 'Terms & Conditions | Pride Kitchen Caterers & Events',
-        description: 'Review the terms and conditions for booking and working with Pride Kitchen Caterers & Events (PKC Events) for luxury weddings and catering in Kerala.',
+        description: "Review the terms and conditions governing the use of the Pride Kitchen Caterers & Events website and its services.",
         url: 'https://pkcevents.com/legal/terms',
         images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'Pride Kitchen Logo' }],
         type: 'website'
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'Terms & Conditions | Pride Kitchen Caterers & Events',
-        description: 'Review the terms and conditions for booking and working with Pride Kitchen Caterers & Events (PKC Events) for luxury weddings and catering in Kerala.',
+        description: "Review the terms and conditions governing the use of the Pride Kitchen Caterers & Events website and its services.",
         images: ['https://pkcevents.com/logo.png']
     }
 };

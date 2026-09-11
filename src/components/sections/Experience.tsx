@@ -13,12 +13,12 @@ const experienceItems = [
     },
     {
         icon: <Trophy aria-hidden="true" />,
-        title: "99k+",
+        title: "2.5k+",
         description: "Events Successfully Managed"
     },
     {
         icon: <HeartHandshake aria-hidden="true" />,
-        title: "10L+",
+        title: "2.5k+",
         description: "Happy Clients"
     },
     {

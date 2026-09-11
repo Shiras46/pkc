@@ -1,0 +1,9 @@
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3005
+- Network:       http://192.168.29.40:3005
+- Environments: .env.local
+
+✓ Starting...
+⨯ Unable to acquire lock at D:\pkc\.next\dev\lock, is another instance of next dev running?
+  Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h

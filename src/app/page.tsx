@@ -14,22 +14,22 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import VideoReviews from "@/components/sections/VideoReviews";
 
 export const metadata: Metadata = {
-    title: 'Pride Kitchen Caterers & Events | Luxury Wedding & Event Management Kerala',
-    description: "Experience the pinnacle of luxury with Pride Kitchen Caterers & Events. We specialize in end-to-end wedding planning, premium catering, decoration, and more across Kerala.",
+    title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',
+    description: "Luxury wedding & event management in Thrissur and Kochi since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
     alternates: {
         canonical: 'https://pkcevents.com'
     },
     openGraph: {
-        title: 'Pride Kitchen Caterers & Events | Luxury Wedding & Event Management Kerala',
-        description: "Experience the pinnacle of luxury with Pride Kitchen Caterers & Events. We specialize in end-to-end wedding planning, premium catering, decoration, and more across Kerala.",
+        title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',
+        description: "Luxury wedding & event management in Thrissur and Kochi since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
         url: 'https://pkcevents.com',
         images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'Pride Kitchen Logo' }],
         type: 'website'
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Pride Kitchen Caterers & Events | Luxury Wedding & Event Management Kerala',
-        description: "Experience the pinnacle of luxury with Pride Kitchen Caterers & Events. We specialize in end-to-end wedding planning, premium catering, decoration, and more across Kerala.",
+        title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',
+        description: "Luxury wedding & event management in Thrissur and Kochi since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
         images: ['https://pkcevents.com/logo.png']
     }
 };
