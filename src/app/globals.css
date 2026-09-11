@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Marcellus&family=Maven+Pro:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
   --primary: #FCB318;
@@ -8,9 +8,10 @@
   --border: #EEEEEE;
   --accent: #FDF4E3;
 
-  --font-heading: 'Playfair Display', serif;
+  --font-heading: 'Marcellus', serif;
   --font-body: 'Poppins', sans-serif;
-  --font-brand: 'VeggieBurger', 'Veggie Burger', var(--font-heading);
+  --font-content: 'Maven Pro', var(--font-maven-pro, sans-serif);
+  --font-brand: 'VeggieBurger', 'Veggie Burger', cursive, sans-serif;
 
   --header-height: 80px;
   --container-width: 1400px;
@@ -72,13 +73,27 @@ body {
   overflow-x: hidden;
 }
 
+/* Paragraph and body content typography */
+p,
+.body-content,
+.content-text {
+  font-family: 'Maven Pro', var(--font-maven-pro), sans-serif;
+}
+
+/* Preserve existing font for subheadings and subtitles */
+.subtitle,
+[class*="subtitle"],
+[class*="subheading"] {
+  font-family: var(--font-body);
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), 'Marcellus', serif;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -100,11 +115,24 @@ img {
   display: block;
 }
 
+button,
+.btn,
+input,
+textarea,
+select,
+label,
+nav,
+nav a,
+header,
+header a,
+footer a {
+  font-family: var(--font-body);
+}
+
 button {
   cursor: pointer;
   border: none;
   background: none;
-  font-family: inherit;
 }
 
 .brand-name {

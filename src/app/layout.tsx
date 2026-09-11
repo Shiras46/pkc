@@ -5,12 +5,14 @@ import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import QuotePopup from "@/components/ui/QuotePopup";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import Script from "next/script";
-import { Playfair_Display, Jost, Poppins } from "next/font/google";
+import { Marcellus, Jost, Poppins, Maven_Pro, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
+const marcellus = Marcellus({ subsets: ["latin"], weight: "400", variable: "--font-heading" });
 const jost = Jost({ subsets: ["latin"], variable: "--font-sans" });
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins" });
+const mavenPro = Maven_Pro({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"], variable: "--font-maven-pro" });
+const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700", "800"], variable: "--font-dm-sans" });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pkcevents.com';
 
@@ -239,7 +241,7 @@ export default function RootLayout({
     const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
 
     return (
-        <html lang="en" className={`${playfair.variable} ${jost.variable} ${poppins.variable}`}>
+        <html lang="en" className={`${marcellus.variable} ${jost.variable} ${poppins.variable} ${mavenPro.variable} ${dmSans.variable}`}>
             <head>
                 {/* Google Analytics */}
                 <Script

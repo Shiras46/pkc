@@ -35,6 +35,8 @@ export default function SitemapPage() {
         { name: "Luxury Cars", href: "/services/cars" },
         { name: "Our Gallery", href: "/gallery" },
         { name: "Our Locations", href: "/locations" },
+        { name: "Event Management Thrissur", href: "/event-management-thrissur/" },
+        { name: "Event Management Kochi", href: "/event-management-kochi/" },
         { name: "Insights Blog", href: "/blog" },
         { name: "Contact Us", href: "/contact" },
         { name: "Privacy Policy", href: "/legal/privacy" },

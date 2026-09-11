@@ -106,8 +106,8 @@ export default function ThrissurLocationPage() {
             </a>
             <br />
             <strong>Email:</strong>{" "}
-            <a href="mailto:tsr@pkcevents.com" className="hover:underline">
-              tsr@pkcevents.com
+            <a href="mailto:pridekitchencaterers@gmail.com" className="hover:underline">
+              pridekitchencaterers@gmail.com
             </a>
           </p>
         </div>

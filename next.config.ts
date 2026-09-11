@@ -5,6 +5,7 @@ const s3Hostname = process.env.AWS_BUCKET_NAME && process.env.AWS_REGION
   : null;
 
 const nextConfig: NextConfig = {
+  skipTrailingSlashRedirect: true,
   output: 'standalone',
   images: {
     remotePatterns: [
