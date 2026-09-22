@@ -27,10 +27,23 @@ export default function QuotePopup() {
         setStatus("submitting");
         
         try {
+            // 1. Open WhatsApp immediately with quote request details
+            const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918138002333";
+            const message = `*New Quote Request*\n\nName: ${formData.name}\nPhone: ${formData.phone}\nService Required: ${formData.service}\n\nSubmitted from Website Quote Popup`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+
+            // 2. Save enquiry to MongoDB Database (Admin Dashboard)
             await fetch("/api/enquiries", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                    name: formData.name,
+                    phone: formData.phone,
+                    service: formData.service,
+                    message: "Submitted from Website Quote Popup"
+                })
             });
             
             trackEvent('form_submit', { form_type: 'popup_quote' });

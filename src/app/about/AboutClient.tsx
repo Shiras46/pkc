@@ -117,6 +117,10 @@ export default function AboutClient() {
 
             <section className={styles.missionVisionSection}>
                 <div className={styles.container}>
+                    <motion.div className={styles.sectionHeader} {...reveal}>
+                        <span className={styles.eyebrow} style={{ color: '#000' }}>Our Purpose</span>
+                        <h2 style={{ color: '#fcb318' }}><span style={{ color: '#000000' }}>Our Mission &amp;</span> Vision</h2>
+                    </motion.div>
                     <div className={styles.missionVisionGrid}>
                         <motion.div 
                             className={styles.mvCard}

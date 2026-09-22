@@ -23,18 +23,22 @@ const experienceItems = [
     },
     {
         icon: <ShieldCheck aria-hidden="true" />,
-        title: "5★",
+        title: "4.9★",
         description: "Customer Rating"
     }
 ];
 
 function Counter({ value, duration = 1500 }: { value: string; duration?: number }) {
-    // Extract the number and suffix (e.g. "18+", "1L+", "10L+", "5★")
+    // Extract the number and suffix (e.g. "18+", "2.5k+", "4.9★")
     const match = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
     const targetNumber = match ? parseFloat(match[1]) : 0;
     const suffix = match ? match[2] : "";
+    const decimalPlaces = match && match[1].includes(".") ? match[1].split(".")[1].length : 0;
 
-    const [count, setCount] = useState(targetNumber);
+    const [count, setCount] = useState<string | number>(() => {
+        if (!match) return value;
+        return decimalPlaces > 0 ? targetNumber.toFixed(decimalPlaces) : targetNumber;
+    });
     const elementRef = useRef<HTMLSpanElement>(null);
     const hasAnimated = useRef(false);
 
@@ -43,7 +47,7 @@ function Counter({ value, duration = 1500 }: { value: string; duration?: number 
             ([entry]) => {
                 if (entry && entry.isIntersecting && !hasAnimated.current) {
                     hasAnimated.current = true;
-                    setCount(0);
+                    setCount(decimalPlaces > 0 ? (0).toFixed(decimalPlaces) : 0);
                     let startTime: number | null = null;
 
                     const animate = (timestamp: number) => {
@@ -52,14 +56,17 @@ function Counter({ value, duration = 1500 }: { value: string; duration?: number 
 
                         // easeOutExpo for premium feeling
                         const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-                        const currentVal = Math.floor(easeProgress * targetNumber);
-
-                        setCount(currentVal);
+                        const currentVal = easeProgress * targetNumber;
 
                         if (progress < 1) {
+                            if (decimalPlaces > 0) {
+                                setCount(currentVal.toFixed(decimalPlaces));
+                            } else {
+                                setCount(Math.floor(currentVal));
+                            }
                             requestAnimationFrame(animate);
                         } else {
-                            setCount(targetNumber);
+                            setCount(decimalPlaces > 0 ? targetNumber.toFixed(decimalPlaces) : targetNumber);
                         }
                     };
 
@@ -74,7 +81,7 @@ function Counter({ value, duration = 1500 }: { value: string; duration?: number 
         }
 
         return () => observer.disconnect();
-    }, [targetNumber, duration]);
+    }, [targetNumber, duration, decimalPlaces]);
 
     return (
         <span ref={elementRef} className={styles.counterWrapper}>

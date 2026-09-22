@@ -51,6 +51,7 @@
     flex-shrink: 0;
 }
 
+.infoItem h3,
 .infoItem h4 {
     margin-bottom: 5px;
     font-size: 1.1rem;
@@ -69,6 +70,12 @@
     display: flex;
     gap: 20px;
     align-items: center;
+}
+
+.whatsappBox h3,
+.whatsappBox h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
 }
 
 .whatsappLink {
@@ -92,6 +99,7 @@
     border: 1px solid #EEE;
 }
 
+.formCard h2,
 .formCard h3 {
     font-family: var(--font-heading);
     font-size: 2rem;

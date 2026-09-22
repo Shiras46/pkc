@@ -8,10 +8,12 @@ const EnquirySchema = new Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: false,
+        default: '',
     },
     phone: {
         type: String,
+        default: '',
     },
     service: {
         type: String,
@@ -19,6 +21,7 @@ const EnquirySchema = new Schema({
     },
     message: {
         type: String,
+        default: '',
     },
     date: {
         type: String, // String format YYYY-MM-DD
@@ -38,6 +41,10 @@ EnquirySchema.virtual('id').get(function () {
 EnquirySchema.set('toJSON', {
     virtuals: true,
 });
+
+if (models.Enquiry) {
+    delete (models as any).Enquiry;
+}
 
 const Enquiry = models.Enquiry || model('Enquiry', EnquirySchema);
 

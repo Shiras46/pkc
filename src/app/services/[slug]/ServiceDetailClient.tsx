@@ -710,6 +710,7 @@ export default function ServiceDetailClient({ slug }: { slug: string }) {
             <section className={styles.whySection}>
                 <div className={styles.sectionHeader}>
                     <span className={styles.sectionTag}>WHY CHOOSE US</span>
+                    <h2><span style={{ color: '#000000' }}>Why</span> Choose Us</h2>
                 </div>
 
 
@@ -724,7 +725,7 @@ export default function ServiceDetailClient({ slug }: { slug: string }) {
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
                         >
                             <div className={styles.whyIcon}>{item.icon}</div>
-                            <h4>{item.title}</h4>
+                            <h3>{item.title}</h3>
                             <p>{item.desc}</p>
                         </motion.div>
                     ))}

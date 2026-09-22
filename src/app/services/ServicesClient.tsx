@@ -203,7 +203,7 @@ export default function ServicesClient() {
                         >
                             <div className={styles.bentoGlow}></div>
                             <div className={styles.bentoContent}>
-                                <h4>{item.title}</h4>
+                                <h3>{item.title}</h3>
                                 <p>{item.desc}</p>
                             </div>
                         </div>

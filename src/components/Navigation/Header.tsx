@@ -27,7 +27,7 @@ const navLinks = [
         ]
     },
     { name: "Gallery", href: "/gallery" },
-    { name: "Locations", href: "/locations" },
+    // { name: "Locations", href: "/locations" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
 ];

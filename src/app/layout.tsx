@@ -5,13 +5,18 @@ import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import QuotePopup from "@/components/ui/QuotePopup";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import Script from "next/script";
-import { Marcellus, Jost, Poppins, Maven_Pro, DM_Sans } from "next/font/google";
+import { Playfair_Display, Jost, Poppins, Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const marcellus = Marcellus({ subsets: ["latin"], weight: "400", variable: "--font-heading" });
+const playfair = Playfair_Display({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    variable: "--font-heading",
+    display: "swap",
+});
 const jost = Jost({ subsets: ["latin"], variable: "--font-sans" });
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins" });
-const mavenPro = Maven_Pro({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"], variable: "--font-maven-pro" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700", "800"], variable: "--font-dm-sans" });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pkcevents.com';
@@ -87,14 +92,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     // Structured Data for LocalBusiness / Catering
-    const organizationSchema = {
+    const cateringSchema = {
         "@context": "https://schema.org",
         "@type": "Catering",
         "@id": "https://pkcevents.com/#organization",
         "name": "Pride Kitchen Caterers & Events",
         "url": "https://pkcevents.com/",
-        "logo": "https://pkcevents.com/logo.png",
-        "image": "https://pkcevents.com/logo.png",
+        "logo": "https://pkcevents.com/_next/image?url=%2Flogo.png&w=128&q=75",
+        "image": "https://pkcevents.com/_next/image?url=%2Flogo.png&w=128&q=75",
         "telephone": "+91 81380 02333",
         "email": "hello@pkcevents.com",
         "alternateName": "PKC Events",
@@ -236,12 +241,90 @@ export default function RootLayout({
                 }
             ]
         }
-    };    const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TQ2PGZVM';
+    };
+
+    // Structured Data for Organization
+    const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://pkcevents.com/#organization",
+        "name": "Pride Kitchen Caterers & Events",
+        "alternateName": "PKC Events",
+        "url": "https://pkcevents.com/",
+        "logo": "https://pkcevents.com/_next/image?url=%2Flogo.png&w=128&q=75",
+        "image": "https://pkcevents.com/_next/image?url=%2Flogo.png&w=128&q=75",
+        "description": "Pride Kitchen Caterers & Events is a leading catering and event management company based in Thrissur, Kerala, offering catering, wedding planning, corporate event management, venue booking, decoration, photography, makeup, and luxury car services across Kerala.",
+        "foundingDate": "2008-04-11",
+        "founder": {
+            "@type": "Person",
+            "name": "Mukesh E B"
+        },
+        "email": "hello@pkcevents.com",
+        "telephone": "+91-81380-02333",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Arammel Arcade, nr. Mannuthy - Madakkathara Road, Sree Lakshmi Nagar, Mannuthy",
+            "addressLocality": "Thrissur",
+            "addressRegion": "Kerala",
+            "postalCode": "680651",
+            "addressCountry": "IN"
+        },
+        "location": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 10.530011189090093,
+                "longitude": 76.2517505
+            }
+        },
+        "areaServed": [
+            {
+                "@type": "City",
+                "name": "Thrissur"
+            },
+            {
+                "@type": "City",
+                "name": "Kochi"
+            },
+            {
+                "@type": "State",
+                "name": "Kerala"
+            }
+        ],
+        "sameAs": [
+            "https://www.facebook.com/profile.php?id=61579925427896",
+            "https://www.instagram.com/pkceventscaterers",
+            "https://www.youtube.com/@pridekitchencaterersevents"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-81380-02333",
+            "email": "hello@pkcevents.com",
+            "contactType": "Customer Support",
+            "availableLanguage": [
+                "English",
+                "Malayalam"
+            ]
+        },
+        "knowsAbout": [
+            "Catering Services",
+            "Wedding Catering",
+            "Corporate Catering",
+            "Event Planning",
+            "Venue Booking",
+            "Event Decoration",
+            "Photography",
+            "Bridal Makeup",
+            "Luxury Car Rental"
+        ]
+    };
+
+    const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TQ2PGZVM';
     const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-ZRG45NV821';
     const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
 
     return (
-        <html lang="en" className={`${marcellus.variable} ${jost.variable} ${poppins.variable} ${mavenPro.variable} ${dmSans.variable}`}>
+        <html lang="en" className={`${playfair.variable} ${jost.variable} ${poppins.variable} ${inter.variable} ${dmSans.variable}`}>
             <head>
                 {/* Google Analytics */}
                 <Script
@@ -291,6 +374,12 @@ export default function RootLayout({
                         `}
                     </Script>
                 )}
+
+                {/* JSON-LD Catering / LocalBusiness Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(cateringSchema) }}
+                />
 
                 {/* JSON-LD Organization Schema */}
                 <script

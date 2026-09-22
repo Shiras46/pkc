@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Marcellus&family=Maven+Pro:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
   --primary: #FCB318;
@@ -8,9 +8,9 @@
   --border: #EEEEEE;
   --accent: #FDF4E3;
 
-  --font-heading: 'Marcellus', serif;
+  --font-heading: 'Playfair Display', serif;
   --font-body: 'Poppins', sans-serif;
-  --font-content: 'Maven Pro', var(--font-maven-pro, sans-serif);
+  --font-content: 'Inter', var(--font-inter, sans-serif);
   --font-brand: 'VeggieBurger', 'Veggie Burger', cursive, sans-serif;
 
   --header-height: 80px;
@@ -76,14 +76,22 @@ body {
 /* Paragraph and body content typography */
 p,
 .body-content,
-.content-text {
-  font-family: 'Maven Pro', var(--font-maven-pro), sans-serif;
+.content-text,
+[class*="description"],
+[class*="content"] p,
+[class*="card"] p,
+[class*="about"] p,
+[class*="contact"] p,
+[class*="faq"] p,
+[class*="service"] p {
+  font-family: 'Inter', var(--font-inter), sans-serif;
 }
 
-/* Preserve existing font for subheadings and subtitles */
-.subtitle,
-[class*="subtitle"],
-[class*="subheading"] {
+/* Preserve existing font for subtitle paragraph/span elements */
+p.subtitle,
+span.subtitle,
+p[class*="subtitle"],
+span[class*="subtitle"] {
   font-family: var(--font-body);
 }
 
@@ -92,8 +100,13 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  font-family: var(--font-heading), 'Marcellus', serif;
+h6,
+.heading-xl,
+.heading-lg,
+.heading-md,
+.heading-sm,
+.hero-heading {
+  font-family: var(--font-heading), 'Playfair Display', serif !important;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -442,4 +455,15 @@ button {
 @media (max-width: 768px) {
   .mb-16 { margin-bottom: 2rem; }
   .max-w-3xl { max-width: 100%; }
+}
+
+/* Hide Elfsight Watermark / Free Badge Link only */
+a[href*="elfsight.com/google-reviews-widget"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
 }

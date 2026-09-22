@@ -21,6 +21,14 @@ export default function ContactClient() {
         setStatus("submitting");
 
         try {
+            // 1. Open WhatsApp immediately with enquiry details
+            const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918138002333";
+            const message = `*New Contact Enquiry*\n\nName: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email || 'N/A'}\nEvent Type: ${formData.service}\nMessage: ${formData.message || 'N/A'}\n\nSubmitted from Website Contact Form`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+
+            // 2. Save enquiry to MongoDB Database (Admin Dashboard)
             const res = await fetch("/api/enquiries", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -61,7 +69,7 @@ export default function ContactClient() {
                                 <div className={styles.infoItem}>
                                     <div className={styles.iconBox}><Phone size={24} aria-hidden="true" /></div>
                                     <div>
-                                        <h4>Phone</h4>
+                                        <h3>Phone</h3>
                                         <a href="tel:+918138002333" onClick={() => trackContactClick('phone', 'contact_page')} style={{ color: 'inherit', textDecoration: 'none' }}>
                                             +91 81380 02333
                                         </a>
@@ -71,7 +79,7 @@ export default function ContactClient() {
                                 <div className={styles.infoItem}>
                                     <div className={styles.iconBox}><Mail size={24} aria-hidden="true" /></div>
                                     <div>
-                                        <h4>Email</h4>
+                                        <h3>Email</h3>
                                         <a href="mailto:pridekitchencaterers@gmail.com" onClick={() => trackContactClick('email', 'contact_page')} style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}>
                                             pridekitchencaterers@gmail.com
                                         </a>
@@ -81,11 +89,11 @@ export default function ContactClient() {
                                 <div className={styles.infoItem}>
                                     <div className={styles.iconBox}><MapPin size={24} aria-hidden="true" /></div>
                                     <div>
-                                        <h4>Visit Us</h4>
+                                        <h3>Visit Us</h3>
                                         <a 
                                             href="https://maps.app.goo.gl/a39cG6zMdG82upn96" 
                                             target="_blank" 
-                                            rel="noopener noreferrer"
+                                            rel="noopener noreferrer" 
                                             style={{ color: 'inherit', textDecoration: 'none' }}
                                             onClick={() => trackEvent('contact_click', { method: 'map', location: 'contact_page' })}
                                         >
@@ -99,7 +107,7 @@ export default function ContactClient() {
                                 <div className={styles.infoItem}>
                                     <div className={styles.iconBox}><Clock size={24} aria-hidden="true" /></div>
                                     <div>
-                                        <h4>Business Hours</h4>
+                                        <h3>Business Hours</h3>
                                         <p>Mon - Sat: 9:00 AM - 7:00 PM</p>
                                         <p>Sun: By Appointment</p>
                                     </div>
@@ -109,7 +117,7 @@ export default function ContactClient() {
                             <div className={styles.whatsappBox}>
                                 <MessageCircle size={30} aria-hidden="true" />
                                 <div>
-                                    <h4>Quick Support</h4>
+                                    <h3>Quick Support</h3>
                                     <p>Chat with our event experts on WhatsApp for instant replies.</p>
                                     <a href="https://wa.me/918138002333" onClick={() => trackContactClick('whatsapp', 'contact_page')} className={styles.whatsappLink}>Chat Now</a>
                                 </div>
@@ -118,7 +126,7 @@ export default function ContactClient() {
 
                         <div className={styles.formSection}>
                             <div className={styles.formCard}>
-                                <h3 style={{ color: '#fcb318' }}>Get a Quote</h3>
+                                <h2 style={{ color: '#fcb318' }}>Get a Quote</h2>
                                 <form onSubmit={handleSubmit}>
                                     <div className={styles.inputGroup}>
                                         <label htmlFor="contact-name">Your Name</label>

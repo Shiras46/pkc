@@ -530,6 +530,7 @@
     color: #fcb318 !important;
 }
 
+.whyItem h3,
 .whyItem h4 {
     color: #1a1a1a;
     font-family: var(--font-heading, serif);

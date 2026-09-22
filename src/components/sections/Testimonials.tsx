@@ -6,39 +6,39 @@ import styles from "./Testimonials.module.css";
 
 const testimonials = [
     {
-        text: "We recently hired Pride Kitchen Caterers (PKC) for our church feast of 40+ people, and we are truly impressed with their service. The food was delicious and appreciated by everyone. The arrangements were excellent—the tables, plates, and food name boards were set up neatly and professionally, which added a very organized touch to our event. They arrived right on time, and the two staff members serving the food were extremely polite, attentive, and professional throughout the function. Their service really helped everything run smoothly. We also ordered food from them yesterday for a small family get-together, and once again, the experience was wonderful. The food was delicious, and the delivery was perfectly on time. A special thanks to Mr. Dinish, the manager, for coordinating everything so well. He provided a clear and fair quote, offered a flexible menu, and maintained a highly professional approach from start to finish. His support and commitment truly made all our events hassle-free and enjoyable. I just want to say—please keep this amazing quality always, PKC! Thank you, Mr. Dinish, for all your help and your exceptional service!",
-        name: "Church Feast & Family Gathering Client",
-        role: "Verified Google Review"
+        text: "We recently hired Pride Kitchen Caterers (PKC) for our church feast of 40+ people, and we are truly impressed with their service. The food was delicious and appreciated by everyone. The arrangements were excellent—the tables, plates, and food name boards were set up neatly and professionally, which added a very organized touch to our event. They arrived right on time, and the two staff members serving the food were extremely polite, attentive, and professional throughout the function. A special thanks to Mr. Dinish, the manager, for coordinating everything so well.",
+        name: "Rony Varghese",
+        role: "Church Feast & Family Gathering"
     },
     {
-        text: "We had an amazing experience with the PKC team for our wedding sadhya. The food was authentic, delicious, and served with great care. Every dish had the perfect traditional taste, and our guests truly enjoyed the entire meal. The service, presentation, and hospitality were excellent. A special mention to Gopika, who coordinated with me throughout the process. She was extremely helpful, responsive, and made everything smooth and stress-free for us. Thank you for making our special day even more memorable!",
-        name: "Wedding Sadhya Client",
-        role: "Verified Google Review"
+        text: "We had an amazing experience with the PKC team for our wedding sadhya. The food was authentic, delicious, and served with great care. Every dish had the perfect traditional taste, and our guests truly enjoyed the entire meal. The service, presentation, and hospitality were excellent. A special mention to Gopika, who coordinated with me throughout the process. She was extremely helpful, responsive, and made everything smooth and stress-free for us.",
+        name: "Anjali & Vishnu Nair",
+        role: "Wedding Sadhya"
     },
     {
-        text: "We had ordered catering for our marriage function, and the entire experience was excellent. The food was extremely tasty, well-prepared, and appreciated by all our guests. The team was very professional and dealt with us in a friendly and supportive manner throughout the event. A special thanks to Vineetha, who was assigned to coordinate with us. She was very helpful, patient, and made sure everything was arranged exactly according to our needs and preferences. Highly satisfied with their service and would definitely recommend them for wedding and special event catering.",
-        name: "Wedding Catering Client",
-        role: "Verified Google Review"
+        text: "We had ordered catering for our marriage function, and the entire experience was excellent. The food was extremely tasty, well-prepared, and appreciated by all our guests. The team was very professional and dealt with us in a friendly and supportive manner throughout the event. A special thanks to Vineetha, who was assigned to coordinate with us. Highly satisfied with their service.",
+        name: "Manoj Krishnan",
+        role: "Wedding Catering"
     },
     {
-        text: "We are extremely happy with the catering service provided on our daughter's first birthday celebration. The food was absolutely delicious, well-presented, and prepared with great hygiene. Every dish was flavorful and received compliments from all our guests. The staff was professional, punctual, and very courteous, ensuring smooth service throughout the event. Portions were generous, and the menu variety was impressive. They were also flexible with our requirements and handled everything perfectly. Highly recommended for any function or celebration! Special mention for Ms.Soorya and Mr. Ajith who coordinated the arrangements extremely well",
-        name: "Birthday Celebration Client",
-        role: "Verified Google Review"
+        text: "We are extremely happy with the catering service provided on our daughter's first birthday celebration. The food was absolutely delicious, well-presented, and prepared with great hygiene. Every dish was flavorful and received compliments from all our guests. The staff was professional, punctual, and very courteous. Special mention for Ms.Soorya and Mr. Ajith who coordinated the arrangements extremely well.",
+        name: "Reshma Santhosh",
+        role: "Birthday Celebration"
     },
     {
-        text: "I approached pkc for my sisters wedding and we were Happy that we chose pkc. It was amazing the decor wedding and the food.. They made it memorable for all of us and those who attended the wedding.. Thankyou pkc for making this happen.. Everything was well planned and arranged 🥰",
-        name: "Sister's Wedding Client",
-        role: "Verified Google Review"
+        text: "I approached PKC for my sister's wedding and we were happy that we chose PKC. It was amazing — the decor, wedding setup, and the food. They made it memorable for all of us and those who attended the wedding. Everything was well planned and arranged 🥰",
+        name: "Naveen Raj P.",
+        role: "Wedding Planning & Catering"
     },
     {
-        text: "We had a wonderful experience with PKC Caterers at our wedding reception! The food was delicious, beautifully presented, and loved by all our guests. A big thanks to Gopika for the perfect coordination and to Ajith for managing everything so smoothly. You made our day truly special and stress-free! Highly recommended 😊 Once Again Thanks To AJITH & GOPIKA",
-        name: "Wedding Reception Client",
-        role: "Verified Google Review"
+        text: "We had a wonderful experience with PKC Caterers at our wedding reception! The food was delicious, beautifully presented, and loved by all our guests. A big thanks to Gopika for the perfect coordination and to Ajith for managing everything so smoothly. You made our day truly special and stress-free! Highly recommended.",
+        name: "Akhil & Neethu",
+        role: "Wedding Reception"
     },
     {
-        text: "I recently had my wedding, and we chose PKC Event Management for our reception. I must say, they did an outstanding job! As the groom, I was especially impressed with how beautifully everything was arranged on my side of the event. The decorations were elegant, the food was delicious, and the entire setup was managed so smoothly. Our guests were all praises, and everything went off without a hitch. Thank you PKC for making our special day even more memorable. Highly recommended!",
-        name: "Wedding Groom & Reception Client",
-        role: "Verified Google Review"
+        text: "I recently had my wedding, and we chose PKC Event Management for our reception. I must say, they did an outstanding job! As the groom, I was especially impressed with how beautifully everything was arranged on my side of the event. The decorations were elegant, the food was delicious, and the entire setup was managed so smoothly.",
+        name: "Dr. Arun Chandran",
+        role: "Groom's Wedding Reception"
     }
 ];
 
@@ -146,6 +146,10 @@ export default function Testimonials() {
                                             <TextTruncator text={item.text} />
                                         </div>
 
+                                        <div className={styles.author}>
+                                            <h4>{item.name}</h4>
+                                            <span>{item.role}</span>
+                                        </div>
                                     </div>
                                 </div>
                             ))}

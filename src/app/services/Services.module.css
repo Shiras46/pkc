@@ -664,6 +664,7 @@
     z-index: 2;
 }
 
+.bentoContent h3,
 .bentoContent h4 {
     font-size: 1.3rem;
     color: #111;

@@ -13,6 +13,6 @@ export async function GET() {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
     await dbConnect();
-    const enquiries = await Enquiry.find({}).sort({ date: -1 });
+    const enquiries = await Enquiry.find({}).sort({ _id: -1 });
     return NextResponse.json(enquiries);
 }

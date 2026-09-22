@@ -20,12 +20,29 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
         setStatus("submitting");
         
         try {
+            // 1. Open WhatsApp immediately to avoid popup blockers
             const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918138002333";
             const message = `*New Consultation Request*\n\nName: ${formData.name}\nPhone: ${formData.phone}\nService Required: ${formData.eventType}\n\nSubmitted from Website`;
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
             
             window.open(whatsappUrl, '_blank');
+
+            // 2. Concurrently save enquiry to backend (Admin Panel)
+            try {
+                await fetch("/api/enquiries", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        phone: formData.phone,
+                        service: formData.eventType,
+                        message: "Submitted from Website Quote Modal"
+                    })
+                });
+            } catch (apiError) {
+                console.error("Failed to save enquiry to backend:", apiError);
+            }
 
             trackEvent('form_submit', { form_type: 'modal_lead' });
             setStatus("success");
@@ -35,6 +52,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 onClose();
             }, 3000);
         } catch (error) {
+            console.error("Form submit error:", error);
             setStatus("idle");
         }
     };
