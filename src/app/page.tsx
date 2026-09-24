@@ -6,6 +6,7 @@ import ServiceCards from "@/components/sections/ServiceCards";
 import Awards from "@/components/sections/Awards";
 import Certifications from "@/components/sections/Certifications";
 import Testimonials from "@/components/sections/Testimonials";
+import GoogleReviews from "@/components/GoogleReviews";
 import GalleryPreview from "@/components/sections/GalleryPreview";
 import LeadershipTeam from "@/components/sections/LeadershipTeam";
 import BlogPreview from "@/components/sections/BlogPreview";
@@ -38,6 +39,7 @@ export default function Home() {
     return (
         <>
             <Hero />
+            <GoogleReviews />
             <Experience />
             <AboutPreview />
             <ServiceCards />

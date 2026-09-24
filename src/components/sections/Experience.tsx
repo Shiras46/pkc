@@ -29,7 +29,6 @@ const experienceItems = [
 ];
 
 function Counter({ value, duration = 1500 }: { value: string; duration?: number }) {
-    // Extract the number and suffix (e.g. "18+", "2.5k+", "4.9★")
     const match = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
     const targetNumber = match ? parseFloat(match[1]) : 0;
     const suffix = match ? match[2] : "";
@@ -53,8 +52,6 @@ function Counter({ value, duration = 1500 }: { value: string; duration?: number 
                     const animate = (timestamp: number) => {
                         if (!startTime) startTime = timestamp;
                         const progress = Math.min((timestamp - startTime) / duration, 1);
-
-                        // easeOutExpo for premium feeling
                         const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
                         const currentVal = easeProgress * targetNumber;
 
@@ -95,27 +92,15 @@ export default function Experience() {
     return (
         <section className={styles.experience}>
             <div className="container">
-                <div className={styles.header}>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className={styles.title}>EXPERIENCE & <span style={{ color: '#fcb318' }}>ACHIEVEMENTS</span></h2>
-                        <p className={styles.subtitle}>A Legacy of Excellence Since 2008</p>
-                    </motion.div>
-                </div>
-
                 <div className={styles.grid}>
                     {experienceItems.map((item, index) => (
                         <motion.div
                             key={index}
                             className={styles.card}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 25 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            transition={{ duration: 0.5, delay: index * 0.08 }}
                         >
                             <div className={styles.iconWrapper}>{item.icon}</div>
                             <h3 className={styles.cardTitle}>
