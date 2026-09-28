@@ -6,7 +6,7 @@ import { trackContactClick } from "@/lib/tracking";
 
 export default function WhatsAppButton() {
     const whatsappNumber = "918138002333";
-    const message = encodeURIComponent("Hi Pride Kitchen Caterers & Events, I'd like to enquire about your luxury event services.");
+    const message = encodeURIComponent("Hi Pride Kitchen Caterers & Events, I'd like to enquire about your event services.");
 
     return (
         <motion.a
