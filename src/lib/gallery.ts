@@ -5,12 +5,14 @@ export const galleryCategories = [
     "Events & Celebrations",
 ] as const;
 
-export type GalleryCategory = Exclude<(typeof galleryCategories)[number], "All">;
+export type GalleryCategory = string;
 
 export type GalleryItem = {
-    id: number;
-    category: GalleryCategory;
+    id?: number | string;
+    _id?: string;
+    category: string;
     src: string;
+    alt?: string;
 };
 
 export const galleryItems: GalleryItem[] = [

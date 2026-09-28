@@ -17,13 +17,14 @@ export async function PUT(request: Request, context: { params: Promise<{ id: str
     await dbConnect();
     const data = await request.json();
     
-    // Simple parsing to guess platform if not provided and videoUrl changed
     let platform = data.platform;
     if (!platform && data.videoUrl) {
         if (data.videoUrl.includes('instagram.com')) {
             platform = 'instagram';
+        } else if (data.videoUrl.includes('youtube.com') || data.videoUrl.includes('youtu.be')) {
+            platform = 'youtube';
         } else {
-            platform = 'youtube'; // default to youtube
+            platform = 'custom';
         }
     }
 

@@ -89,8 +89,8 @@ export default function AdminDashboard() {
                 <h2>Actions</h2>
                 <div className={styles.actionGrid}>
                     <Link href="/admin/blog/new" className={styles.actionBtn}>Create New Post</Link>
+                    <Link href="/admin/gallery" className={styles.actionBtn}>Manage Gallery</Link>
                     <Link href="/admin/enquiries" className={styles.actionBtn}>Manage Enquiries</Link>
-                    <Link href="#" className={styles.actionBtn} style={{ opacity: 0.5, cursor: 'not-allowed' }}>View Site Analytics (Soon)</Link>
                 </div>
             </div>
         </div>

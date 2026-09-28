@@ -135,7 +135,7 @@ export default function GoogleReviews() {
 
   const handleScroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = direction === "left" ? -380 : 380;
+      const scrollAmount = direction === "left" ? -316 : 316;
       scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };

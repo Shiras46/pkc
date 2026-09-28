@@ -1,16 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { galleryCategories, galleryItems } from "@/lib/gallery";
+import { galleryCategories, galleryItems as staticGalleryItems, GalleryItem } from "@/lib/gallery";
 import styles from "./Gallery.module.css";
 
 export default function GalleryClient() {
     const [activeTab, setActiveTab] = useState("All");
+    const [items, setItems] = useState<GalleryItem[]>(staticGalleryItems);
+
+    useEffect(() => {
+        async function loadGallery() {
+            try {
+                const res = await fetch("/api/gallery");
+                if (res.ok) {
+                    const data = await res.json();
+                    if (Array.isArray(data) && data.length > 0) {
+                        setItems(data);
+                    }
+                }
+            } catch (err) {
+                console.error("Failed to fetch gallery:", err);
+            }
+        }
+        loadGallery();
+    }, []);
+
+    // Dynamic list of categories combined with standard options
+    const availableCategories = Array.from(
+        new Set(["All", ...galleryCategories.filter(c => c !== "All"), ...items.map(i => i.category)])
+    );
 
     const filteredItems = activeTab === "All"
-        ? galleryItems
-        : galleryItems.filter(item => item.category === activeTab);
+        ? items
+        : items.filter(item => item.category === activeTab);
 
     return (
         <div className={styles.wrapper}>
@@ -24,7 +47,7 @@ export default function GalleryClient() {
             <section className="section-padding">
                 <div className="container">
                     <div className={styles.tabs}>
-                        {galleryCategories.map(cat => (
+                        {availableCategories.map(cat => (
                             <button
                                 key={cat}
                                 className={`${styles.tab} ${activeTab === cat ? styles.activeTab : ""}`}
@@ -36,9 +59,16 @@ export default function GalleryClient() {
                     </div>
 
                     <div className={styles.masonry}>
-                        {filteredItems.map(item => (
-                            <div key={item.id} className={styles.item}>
-                                <Image src={item.src} alt={`${item.category} setup managed by Pride Kitchen Caterers & Events in Kerala`} width={600} height={400} className={styles.image} />
+                        {filteredItems.map((item, index) => (
+                            <div key={item.id || item._id || index} className={styles.item}>
+                                <Image
+                                    src={item.src}
+                                    alt={item.alt || `${item.category} setup managed by Pride Kitchen Caterers & Events in Kerala`}
+                                    width={600}
+                                    height={400}
+                                    className={styles.image}
+                                    unoptimized={item.src.startsWith('/uploads/') || item.src.includes('s3.amazonaws.com')}
+                                />
                                 <div className={styles.overlay}>
                                     <span>{item.category}</span>
                                 </div>

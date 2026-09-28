@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, FileText, Settings, LogOut, ChevronLeft, ChevronRight, MessageSquare, Video } from "lucide-react";
+import { LayoutDashboard, FileText, Settings, LogOut, ChevronLeft, ChevronRight, MessageSquare, Video, Image as ImageIcon } from "lucide-react";
 import styles from "./AdminLayout.module.css";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -22,6 +22,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const menuItems = [
         { name: "Dashboard", href: "/admin/dashboard", icon: <LayoutDashboard size={20} /> },
         { name: "Blog Posts", href: "/admin/blog", icon: <FileText size={20} /> },
+        { name: "Gallery", href: "/admin/gallery", icon: <ImageIcon size={20} /> },
         { name: "Enquiries", href: "/admin/enquiries", icon: <MessageSquare size={20} /> },
         { name: "Video Reviews", href: "/admin/videos", icon: <Video size={20} /> },
         { name: "Settings", href: "/admin/settings", icon: <Settings size={20} /> },

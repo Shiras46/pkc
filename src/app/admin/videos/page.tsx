@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Youtube, Instagram, CheckCircle, XCircle } from "lucide-react";
+import { Plus, Trash2, Youtube, Instagram, CheckCircle, XCircle, Sparkles, Video as VideoIcon, Upload } from "lucide-react";
 
 export default function AdminVideos() {
     const [videos, setVideos] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [title, setTitle] = useState("");
     const [newVideoUrl, setNewVideoUrl] = useState("");
+    const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
+    const [thumbnailPreview, setThumbnailPreview] = useState<string>("");
     const [submitting, setSubmitting] = useState(false);
 
     const fetchVideos = async () => {
@@ -27,20 +30,52 @@ export default function AdminVideos() {
         fetchVideos();
     }, []);
 
+    const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const selected = e.target.files[0];
+            setThumbnailFile(selected);
+            setThumbnailPreview(URL.createObjectURL(selected));
+        }
+    };
+
     const handleAddVideo = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!newVideoUrl.trim()) return;
 
         setSubmitting(true);
+        let uploadedThumbnailUrl = "";
+
         try {
+            // Upload custom video cover thumbnail image if selected (converts to WebP)
+            if (thumbnailFile) {
+                const formData = new FormData();
+                formData.set("file", thumbnailFile);
+
+                const uploadRes = await fetch("/api/upload", {
+                    method: "POST",
+                    body: formData,
+                });
+                const uploadJson = await uploadRes.json();
+                if (uploadRes.ok) {
+                    uploadedThumbnailUrl = uploadJson.url;
+                }
+            }
+
             const res = await fetch("/api/admin/videos", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ videoUrl: newVideoUrl }),
+                body: JSON.stringify({
+                    title: title.trim(),
+                    videoUrl: newVideoUrl.trim(),
+                    thumbnailUrl: uploadedThumbnailUrl,
+                }),
             });
 
             if (res.ok) {
+                setTitle("");
                 setNewVideoUrl("");
+                setThumbnailFile(null);
+                setThumbnailPreview("");
                 fetchVideos();
             }
         } catch (error) {
@@ -83,39 +118,90 @@ export default function AdminVideos() {
     };
 
     return (
-        <div style={{ padding: "30px" }}>
-            <h1 style={{ fontSize: "2rem", marginBottom: "30px", fontFamily: "var(--font-heading)" }}>Manage Video Reviews</h1>
+        <div style={{ padding: "30px", maxWidth: "1200px", margin: "0 auto" }}>
+            <h1 style={{ fontSize: "2rem", marginBottom: "10px", fontFamily: "var(--font-heading)" }}>Manage Video Reviews</h1>
+            <p style={{ color: "#666", marginBottom: "30px" }}>
+                Add video links, custom titles, and exact cover thumbnail images (auto-converted to WebP format).
+            </p>
 
             <div style={{ background: "#fff", padding: "25px", borderRadius: "15px", boxShadow: "0 2px 10px rgba(0,0,0,0.05)", marginBottom: "40px" }}>
-                <h2 style={{ fontSize: "1.2rem", marginBottom: "15px" }}>Add New Video</h2>
-                <form onSubmit={handleAddVideo} style={{ display: "flex", gap: "15px" }}>
-                    <input
-                        type="url"
-                        placeholder="Paste YouTube or Instagram link here..."
-                        value={newVideoUrl}
-                        onChange={(e) => setNewVideoUrl(e.target.value)}
-                        required
-                        style={{ flex: 1, padding: "12px 20px", borderRadius: "8px", border: "1px solid #ddd", fontSize: "1rem" }}
-                    />
-                    <button
-                        type="submit"
-                        disabled={submitting}
-                        style={{
-                            background: "var(--primary)",
-                            color: "#fff",
-                            border: "none",
-                            padding: "0 25px",
-                            borderRadius: "8px",
-                            cursor: submitting ? "not-allowed" : "pointer",
-                            fontWeight: "600",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "8px"
-                        }}
-                    >
-                        <Plus size={18} />
-                        {submitting ? "Adding..." : "Add Video"}
-                    </button>
+                <h2 style={{ fontSize: "1.2rem", marginBottom: "15px", display: "flex", alignItems: "center", gap: "8px" }}>
+                    <Plus size={20} /> Add New Video &amp; Exact Thumbnail
+                </h2>
+                <form onSubmit={handleAddVideo} style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "15px" }}>
+                        <div>
+                            <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "600", marginBottom: "5px" }}>
+                                Video Title *
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="e.g. Varun & Sanya Reception Setup"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                required
+                                style={{ width: "100%", padding: "12px 16px", borderRadius: "8px", border: "1px solid #ddd", fontSize: "0.95rem" }}
+                            />
+                        </div>
+
+                        <div>
+                            <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "600", marginBottom: "5px" }}>
+                                Video URL (YouTube Shorts or Instagram Reel) *
+                            </label>
+                            <input
+                                type="url"
+                                placeholder="https://www.instagram.com/reel/..."
+                                value={newVideoUrl}
+                                onChange={(e) => setNewVideoUrl(e.target.value)}
+                                required
+                                style={{ width: "100%", padding: "12px 16px", borderRadius: "8px", border: "1px solid #ddd", fontSize: "0.95rem" }}
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style={{ display: "block", fontSize: "0.85rem", fontWeight: "600", marginBottom: "5px" }}>
+                            Upload Exact Video Cover Image (Optional - Auto-converts to WebP)
+                        </label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleThumbnailChange}
+                            style={{ padding: "8px", borderRadius: "8px", border: "1px solid #ddd", width: "100%", background: "#fff" }}
+                        />
+                        {thumbnailPreview && (
+                            <div style={{ marginTop: "10px" }}>
+                                <img src={thumbnailPreview} alt="Cover Preview" style={{ width: "100px", height: "150px", objectFit: "cover", borderRadius: "8px", border: "2px solid #fcb318" }} />
+                            </div>
+                        )}
+                    </div>
+
+                    <p style={{ fontSize: "0.85rem", color: "#6b7280" }}>
+                        <Sparkles size={14} style={{ display: "inline", marginRight: "4px" }} />
+                        When an image is uploaded, it automatically converts to WebP format and displays as the exact video thumbnail on your site.
+                    </p>
+
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <button
+                            type="submit"
+                            disabled={submitting}
+                            style={{
+                                background: "#fcb318",
+                                color: "#000",
+                                border: "none",
+                                padding: "12px 28px",
+                                borderRadius: "8px",
+                                cursor: submitting ? "not-allowed" : "pointer",
+                                fontWeight: "600",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "8px"
+                            }}
+                        >
+                            <Plus size={18} />
+                            {submitting ? "Processing & Adding..." : "Add Video"}
+                        </button>
+                    </div>
                 </form>
             </div>
 
@@ -136,7 +222,9 @@ export default function AdminVideos() {
                             boxShadow: "0 2px 8px rgba(0,0,0,0.03)"
                         }}>
                             <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                                {video.platform === 'instagram' ? (
+                                {video.thumbnailUrl ? (
+                                    <img src={video.thumbnailUrl} alt={video.title} style={{ width: "50px", height: "70px", objectFit: "cover", borderRadius: "6px" }} />
+                                ) : video.platform === 'instagram' ? (
                                     <div style={{ background: "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)", color: "white", padding: "10px", borderRadius: "8px" }}>
                                         <Instagram size={20} />
                                     </div>
@@ -146,10 +234,11 @@ export default function AdminVideos() {
                                     </div>
                                 )}
                                 <div>
-                                    <a href={video.videoUrl} target="_blank" rel="noreferrer" style={{ color: "#333", fontWeight: "500", textDecoration: "underline" }}>
+                                    <h4 style={{ margin: "0 0 4px 0", fontSize: "1rem" }}>{video.title || "Untitled Video"}</h4>
+                                    <a href={video.videoUrl} target="_blank" rel="noreferrer" style={{ color: "#333", fontSize: "0.85rem", textDecoration: "underline" }}>
                                         {video.videoUrl}
                                     </a>
-                                    <p style={{ fontSize: "0.85rem", color: "#888", marginTop: "5px" }}>
+                                    <p style={{ fontSize: "0.8rem", color: "#888", marginTop: "4px" }}>
                                         Added on {new Date(video.createdAt).toLocaleDateString()}
                                     </p>
                                 </div>

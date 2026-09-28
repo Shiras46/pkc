@@ -5,7 +5,6 @@ import AboutPreview from "@/components/sections/AboutPreview";
 import ServiceCards from "@/components/sections/ServiceCards";
 import Awards from "@/components/sections/Awards";
 import Certifications from "@/components/sections/Certifications";
-import Testimonials from "@/components/sections/Testimonials";
 import GoogleReviews from "@/components/GoogleReviews";
 import GalleryPreview from "@/components/sections/GalleryPreview";
 import LeadershipTeam from "@/components/sections/LeadershipTeam";
@@ -46,11 +45,10 @@ export default function Home() {
             <FinalCTA />
             <Awards />
             <Certifications />
-            <Testimonials />
-            <VideoReviews />
             <GalleryPreview />
             <LeadershipTeam />
             <FAQ />
+            <VideoReviews />
             <BlogPreview />
         </>
     );

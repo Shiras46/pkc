@@ -26,19 +26,23 @@ export async function POST(request: Request) {
     await dbConnect();
     const data = await request.json();
     
-    // Simple parsing to guess platform if not provided
+    // Auto-detect platform if not explicitly provided
     let platform = data.platform;
     if (!platform && data.videoUrl) {
         if (data.videoUrl.includes('instagram.com')) {
             platform = 'instagram';
+        } else if (data.videoUrl.includes('youtube.com') || data.videoUrl.includes('youtu.be')) {
+            platform = 'youtube';
         } else {
-            platform = 'youtube'; // default to youtube
+            platform = 'custom';
         }
     }
 
     const newVideo = await VideoReview.create({
+        title: data.title || '',
         videoUrl: data.videoUrl,
-        platform: platform,
+        thumbnailUrl: data.thumbnailUrl || '',
+        platform: platform || 'youtube',
         isActive: data.isActive !== undefined ? data.isActive : true
     });
 
