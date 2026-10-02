@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function EventManagementThrissurPage() {
     return (
         <div className="container section-padding" style={{ paddingTop: '150px', paddingBottom: '80px', minHeight: '60vh' }}>
-            <h1 className="heading-md">Event Management in Thrissur</h1>
+            <h1 className="heading-md">Event Management in Thrissur for Weddings and Corporate Events</h1>
             <div style={{ marginTop: '30px', lineHeight: '1.8', color: '#555', maxWidth: '800px' }}>
                 <p>
                     Pride Kitchen Caterers &amp; Events provides professional event management services in Thrissur for weddings, celebrations, corporate events and special occasions.

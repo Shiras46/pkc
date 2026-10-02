@@ -58,7 +58,7 @@ export default function ThrissurLocationPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <h1 className="text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Event Management Services in Thrissur</h1>
+      <h1 className="text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Event Management in Thrissur for Weddings and Corporate Events</h1>
       <div className="grid md:grid-cols-2 gap-8" style={{ marginTop: '40px' }}>
         <div>
           <p className="mb-4" style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#555' }}>

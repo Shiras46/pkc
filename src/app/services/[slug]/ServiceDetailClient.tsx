@@ -21,7 +21,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const serviceSpecificData: Record<string, any> = {
     catering: {
-        headline: "Catering Service",
+        headline: "Wedding and Event Catering Services\nin Thrissur",
         subheadline: "",
         useHalfHero: true,
         useStaggeredLayout: true,
@@ -86,7 +86,7 @@ const serviceSpecificData: Record<string, any> = {
         ]
     },
     venue: {
-        headline: "Venue Planning &\nManagement\u00a0service",
+        headline: "Wedding Venue and Management\nin Thrissur",
         subheadline: "",
         heroImage: "/image/services/venue banner.webp",
         heroAlt: "Grand conventions center and wedding hall banquet setup for luxury events in Kerala",
@@ -143,7 +143,7 @@ const serviceSpecificData: Record<string, any> = {
         ]
     },
     decoration: {
-        headline: "Event\nDecoration\u00a0Services",
+        headline: "Wedding and Event Decoration\nin Thrissur",
         subheadline: "",
         heroImage: "/image/services/decoration.webp",
         heroAlt: "Breathtaking wedding entrance and stage decoration in Thrissur by Pride Kitchen Caterers",
@@ -195,7 +195,7 @@ const serviceSpecificData: Record<string, any> = {
         ]
     },
     photography: {
-        headline: "Photography & Videography",
+        headline: "Wedding Photography and Videography\nin Thrissur",
         subheadline: "",
         heroImage: "/image/services/photography.webp",
         heroAlt: "Professional event photography service by PKC Events in Thrissur",
@@ -252,7 +252,7 @@ const serviceSpecificData: Record<string, any> = {
         ]
     },
     makeup: {
-        headline: "Make-up Services",
+        headline: "Bridal Makeup\nin Thrissur",
         subheadline: "",
         heroImage: "/image/services/makeup banner.webp",
         heroAlt: "Premium bridal makeup styling and skin care by Pride Kitchen Caterers",
@@ -309,7 +309,7 @@ const serviceSpecificData: Record<string, any> = {
         ]
     },
     entertainment: {
-        headline: "Entertainment Services",
+        headline: "Wedding and Event Entertainment\nin Thrissur",
         subheadline: "",
         heroImage: "/image/services/entire tainment banner.jpg",
         heroAlt: "Vibrant live musical band concert with colorful stage lights and drums at wedding party banner",
@@ -366,7 +366,7 @@ const serviceSpecificData: Record<string, any> = {
         ]
     },
     cars: {
-        headline: "Wedding\nPremium Cars",
+        headline: "Wedding Car Rental in Thrissur:\nLuxury and Vintage Cars",
         subheadline: "",
         heroImage: "/image/services/Premium Cars/HERO IMAGE.webp",
         heroAlt: "Sleek and polished premium wedding cars fleet for grand entry in Kerala",

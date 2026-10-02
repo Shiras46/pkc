@@ -5,11 +5,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
-import BrandName from "@/components/ui/BrandName";
 import styles from "./Hero.module.css";
-import { trackEvent, trackContactClick } from "@/lib/tracking";
+import { trackContactClick } from "@/lib/tracking";
 import QuoteModal from "@/components/ui/QuoteModal";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -94,8 +92,8 @@ export default function Hero() {
 
                         <div className="hero-reveal">
                             <h1 className={styles.heading}>
-                                Crafting exceptional moments<br />
-                                <span className={styles.goldTextNormal}>with the elegance of tradition</span>
+                                Event Management in Thrissur<br />
+                                <span className={styles.goldTextNormal}>for Weddings and Corporate Events</span>
                             </h1>
                         </div>
                         <div className="hero-reveal">

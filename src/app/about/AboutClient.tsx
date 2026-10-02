@@ -66,7 +66,7 @@ export default function AboutClient() {
                     transition={{ duration: 0.9 }}
                 >
                     <span className={styles.eyebrow}>About Us</span>
-                    <h1>Transcending celebrations into <span style={{ color: '#fcb318' }}>timeless treasures.</span></h1>
+                    <h1>About Pride Kitchen Caters & Events, <span style={{ color: '#fcb318' }}>Thrissur</span></h1>
                     <p>Trusted catering and event experiences from the cultural heart of Kerala.</p>
                 </motion.div>
             </header>
