@@ -1,16 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackEvent } from "@/lib/tracking";
 
 export default function QuotePopup() {
+    const pathname = usePathname();
+    const isAdmin = pathname?.startsWith("/admin");
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({ name: "", phone: "", service: "Wedding Catering" });
     const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
 
     useEffect(() => {
+        if (isAdmin) return;
         // Optional: Auto-trigger popup after 30 seconds
         const timer = setTimeout(() => {
             if (!sessionStorage.getItem("popupSeen")) {
@@ -58,6 +62,8 @@ export default function QuotePopup() {
             setStatus("idle");
         }
     };
+
+    if (isAdmin) return null;
 
     return (
         <AnimatePresence>

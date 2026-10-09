@@ -1,10 +1,15 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import styles from "./WhatsAppButton.module.css";
 import { motion } from "framer-motion";
 import { trackContactClick } from "@/lib/tracking";
 
 export default function WhatsAppButton() {
+    const pathname = usePathname();
+    const isAdmin = pathname?.startsWith("/admin");
+    if (isAdmin) return null;
+
     const whatsappNumber = "918138002333";
     const message = encodeURIComponent("Hi Pride Kitchen Caterers & Events, I'd like to enquire about your event services.");
 

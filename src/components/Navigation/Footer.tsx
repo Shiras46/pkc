@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Facebook, Instagram, Twitter, MapPin, Phone, Mail, Youtube, Linkedin } from "lucide-react";
 import { FaPinterest } from "react-icons/fa";
 import BrandName from "@/components/ui/BrandName";
@@ -9,6 +10,10 @@ import Image from "next/image";
 import { trackContactClick, trackEvent } from "@/lib/tracking";
 
 export default function Footer() {
+    const pathname = usePathname();
+    const isAdmin = pathname?.startsWith("/admin");
+    if (isAdmin) return null;
+
     return (
         <footer className={styles.footer}>
             <div className="container">
