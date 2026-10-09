@@ -10,6 +10,17 @@
     margin-bottom: 30px;
 }
 
+.sectionHeader {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #888888;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #EEEEEE;
+    text-transform: uppercase;
+}
+
 .inputGroup {
     margin-bottom: 25px;
 }

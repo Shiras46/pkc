@@ -36,6 +36,14 @@ const BlogSchema = new Schema({
         type: Boolean,
         default: true,
     },
+    metaTitle: {
+        type: String,
+        default: '',
+    },
+    metaDescription: {
+        type: String,
+        default: '',
+    },
 }, { timestamps: true });
 
 // Add virtual 'id' if needed to transform _id to id

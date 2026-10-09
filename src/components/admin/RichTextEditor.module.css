@@ -1,0 +1,189 @@
+.editorContainer {
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #F8F9FA;
+    border-bottom: 1px solid #E0E0E0;
+    flex-wrap: wrap;
+}
+
+.formatSelect {
+    padding: 6px 10px;
+    border: 1px solid #D0D0D0;
+    border-radius: 6px;
+    background: #FFFFFF;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #333333;
+    outline: none;
+    cursor: pointer;
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background: #E0E0E0;
+    margin: 0 4px;
+}
+
+.toolBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 10px;
+    border: 1px solid #D0D0D0;
+    border-radius: 6px;
+    background: #FFFFFF;
+    color: #333333;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toolBtn:hover {
+    background: #FCB318;
+    color: #000000;
+    border-color: #FCB318;
+}
+
+.activeTabBtn {
+    background: #111111 !important;
+    color: #FFFFFF !important;
+    border-color: #111111 !important;
+}
+
+.linkBtn {
+    background: #FFF8E7;
+    border-color: #FCB318;
+    color: #B88000;
+}
+
+.linkBtn:hover {
+    background: #FCB318;
+    color: #000000;
+}
+
+.textarea {
+    width: 100%;
+    min-height: 280px;
+    padding: 14px;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #222222;
+    resize: vertical;
+}
+
+.previewBox {
+    padding: 20px;
+    min-height: 280px;
+    background: #FAFAFA;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #333333;
+}
+
+.previewBox a {
+    color: #FCB318;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* Modal styles for link insertion */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modalContent {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 24px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modalTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #111111;
+}
+
+.modalField {
+    margin-bottom: 16px;
+}
+
+.modalField label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555555;
+    margin-bottom: 6px;
+}
+
+.modalField input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #DDD;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.modalField input:focus {
+    border-color: #FCB318;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancelBtn {
+    padding: 8px 16px;
+    border: 1px solid #CCC;
+    background: #FFF;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.insertBtn {
+    padding: 8px 18px;
+    border: none;
+    background: #FCB318;
+    color: #000;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.insertBtn:hover {
+    background: #e5a216;
+}
