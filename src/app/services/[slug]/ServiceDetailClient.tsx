@@ -492,7 +492,7 @@ const serviceSpecificData: Record<string, any> = {
     "destination-wedding": {
         headline: "Destination Wedding in Thrissur",
         subheadline: "",
-        heroImage: "/image/services/beach-backwater-weddings.webp",
+        heroImage: "/image/services/destination-banner.webp",
         heroAlt: "Scenic open-air luxury beachfront and backwater destination wedding setup in Thrissur, Kerala by Pride Kitchen Caterers & Events",
         useHalfHero: true,
         useStaggeredLayout: true,
@@ -500,7 +500,7 @@ const serviceSpecificData: Record<string, any> = {
             tag: "DESTINATION WEDDING IN THRISSUR",
             title: "Your love story, celebrated where\n[Kerala is at its most beautiful]",
             desc: "A destination wedding is more than a change of venue. It is a journey your families take together, where every meal becomes a memory of the place. Pride Kitchen Caterers & Events brings the warmth of Kerala hospitality to beaches, backwaters, hill stations and heritage homes across the state. As trusted destination wedding caterers in Thrissur, Kerala, we plan, cook and serve with the same care, whether your guests number fifty or a thousand. From the first welcome drink to the farewell breakfast, we make your celebration feel effortless, wherever you choose to say 'I do'.",
-            image: "/image/services/beach-backwater-weddings.webp",
+            image: "/image/services/destination-wedding-intro.webp",
             alt: "Scenic destination wedding celebration setup in Kerala by Pride Kitchen Caterers & Events"
         },
         floatingCard: {
