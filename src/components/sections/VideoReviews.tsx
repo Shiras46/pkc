@@ -59,10 +59,12 @@ export default function VideoReviews() {
     };
 
     const getVideoThumbnail = (video: VideoItem) => {
-        // Priority 1: Exact custom uploaded thumbnail
-        if (video.thumbnailUrl) return video.thumbnailUrl;
-        
-        if (!video || !video.videoUrl) return '';
+        // Priority 1: Exact custom uploaded thumbnail (WebP/JPG/PNG)
+        if (video.thumbnailUrl && video.thumbnailUrl.trim()) {
+            return video.thumbnailUrl.trim();
+        }
+
+        if (!video || !video.videoUrl) return '/image/services/Beach & Backwater Weddings.webp';
         const rawUrl = video.videoUrl.trim();
 
         // Priority 2: YouTube real video thumbnail
@@ -80,20 +82,8 @@ export default function VideoReviews() {
             }
         }
 
-        // Priority 3: Instagram real cover thumbnail
-        if (rawUrl.includes('instagram.com') || rawUrl.includes('instagr.am')) {
-            let code = '';
-            if (rawUrl.includes('/reel/')) {
-                code = rawUrl.split('/reel/')[1].split('/')[0].split('?')[0];
-            } else if (rawUrl.includes('/p/')) {
-                code = rawUrl.split('/p/')[1].split('/')[0].split('?')[0];
-            }
-            if (code) {
-                return `https://www.instagram.com/p/${code}/media/?size=l`;
-            }
-        }
-
-        return '';
+        // Priority 3: Instagram / Custom videos fallback cover (ensures video cards never appear pitch black)
+        return '/image/services/Beach & Backwater Weddings.webp';
     };
 
     const handlePlayClick = (videoId: string) => {
