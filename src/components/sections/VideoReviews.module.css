@@ -169,10 +169,10 @@
 .instaIframe,
 .instaEmbedClean {
     position: absolute !important;
-    top: -54px !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: calc(100% + 160px) !important;
+    top: -48px !important;
+    left: -12.5% !important;
+    width: 125% !important;
+    height: 145% !important;
     border: none !important;
     border-radius: 16px !important;
     overflow: hidden !important;
