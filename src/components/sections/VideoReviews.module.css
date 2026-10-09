@@ -169,10 +169,10 @@
 .instaIframe,
 .instaEmbedClean {
     position: absolute !important;
-    top: -48px !important;
-    left: -12.5% !important;
-    width: 125% !important;
-    height: 145% !important;
+    top: -42px !important;
+    left: -15% !important;
+    width: 130% !important;
+    height: 165% !important;
     border: none !important;
     border-radius: 16px !important;
     overflow: hidden !important;
@@ -186,6 +186,37 @@
     display: none !important;
     width: 0 !important;
     height: 0 !important;
+}
+
+.cardHeaderOverlayAbsolute {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.bottomLabelAbsolute {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.bottomLabelAbsolute span {
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 12px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .closeBtn {

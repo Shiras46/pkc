@@ -122,6 +122,22 @@ export default function VideoReviews() {
                                         allowFullScreen
                                         className={styles.instaEmbedClean}
                                     ></iframe>
+
+                                    {/* Top Profile Header Overlay inside Card */}
+                                    <div className={styles.cardHeaderOverlayAbsolute}>
+                                        <div className={styles.avatarWrapper}>
+                                            <img src="/logo.png" alt="PKC Logo" className={styles.avatarImg} />
+                                        </div>
+                                        <div className={styles.metaText}>
+                                            <h3 className={styles.videoTitle}>{displayTitle}</h3>
+                                            <p className={styles.brandName}>Pride Kitchen Caterers &amp; Events</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Bottom Label */}
+                                    <div className={styles.bottomLabelAbsolute}>
+                                        <span>Reels</span>
+                                    </div>
                                 </div>
                             );
                         }
