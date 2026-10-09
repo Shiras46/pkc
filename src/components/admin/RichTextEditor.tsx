@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { Link as LinkIcon, Bold, Italic, List, ListOrdered, Quote, Eye, Edit3, Image as ImageIcon } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Link as LinkIcon, Bold, Italic, Underline, List, ListOrdered, Quote, Eye, Code, Image as ImageIcon } from "lucide-react";
 import styles from "./RichTextEditor.module.css";
 
 interface RichTextEditorProps {
@@ -10,51 +10,60 @@ interface RichTextEditorProps {
 }
 
 export default function RichTextEditor({ value, onChange }: RichTextEditorProps) {
-    const textareaRef = useRef<HTMLTextAreaElement>(null);
-    const [viewMode, setViewMode] = useState<"edit" | "preview">("edit");
+    const editorRef = useRef<HTMLDivElement>(null);
+    const savedRangeRef = useRef<Range | null>(null);
+    const [viewMode, setViewMode] = useState<"visual" | "html">("visual");
     const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
     const [linkUrl, setLinkUrl] = useState("");
     const [linkText, setLinkText] = useState("");
 
-    const getSelection = () => {
-        const el = textareaRef.current;
-        if (!el) return { start: 0, end: 0, selected: "" };
-        const start = el.selectionStart;
-        const end = el.selectionEnd;
-        const selected = value.substring(start, end);
-        return { start, end, selected };
-    };
-
-    const wrapSelection = (prefix: string, suffix: string, defaultText = "text") => {
-        const { start, end, selected } = getSelection();
-        const textToWrap = selected || defaultText;
-        const newValue = value.substring(0, start) + prefix + textToWrap + suffix + value.substring(end);
-        onChange(newValue);
-
-        setTimeout(() => {
-            if (textareaRef.current) {
-                textareaRef.current.focus();
-                textareaRef.current.setSelectionRange(
-                    start + prefix.length,
-                    start + prefix.length + textToWrap.length
-                );
+    // Initialize content inside visual editor on load
+    useEffect(() => {
+        if (editorRef.current && viewMode === "visual") {
+            if (editorRef.current.innerHTML !== value) {
+                editorRef.current.innerHTML = value || "";
             }
-        }, 0);
-    };
+        }
+    }, [value, viewMode]);
 
-    const handleFormatChange = (format: string) => {
-        if (format === "p") {
-            wrapSelection("<p>", "</p>", "Paragraph text");
-        } else if (format === "h2") {
-            wrapSelection("<h2>", "</h2>", "Heading Title");
-        } else if (format === "h3") {
-            wrapSelection("<h3>", "</h3>", "Subheading Title");
+    const handleInput = () => {
+        if (editorRef.current) {
+            onChange(editorRef.current.innerHTML);
         }
     };
 
+    const execCommand = (command: string, valueArgument: string = "") => {
+        if (editorRef.current) {
+            editorRef.current.focus();
+        }
+        document.execCommand(command, false, valueArgument);
+        handleInput();
+    };
+
+    const saveSelection = () => {
+        const sel = window.getSelection();
+        if (sel && sel.rangeCount > 0) {
+            savedRangeRef.current = sel.getRangeAt(0).cloneRange();
+        }
+    };
+
+    const restoreSelection = () => {
+        const sel = window.getSelection();
+        if (sel && savedRangeRef.current) {
+            sel.removeAllRanges();
+            sel.addRange(savedRangeRef.current);
+        }
+    };
+
+    const handleFormatBlock = (tag: string) => {
+        execCommand("formatBlock", `<${tag}>`);
+    };
+
     const handleOpenLinkModal = () => {
-        const { selected } = getSelection();
-        setLinkText(selected || "");
+        saveSelection();
+        const sel = window.getSelection();
+        const text = sel ? sel.toString() : "";
+        setLinkText(text);
         setLinkUrl("");
         setIsLinkModalOpen(true);
     };
@@ -67,23 +76,48 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
             ? linkUrl
             : `https://${linkUrl}`;
 
-        const textToDisplay = linkText || formattedUrl;
-        const linkHtml = `<a href="${formattedUrl}" target="_blank" rel="noopener noreferrer">${textToDisplay}</a>`;
+        if (editorRef.current) {
+            editorRef.current.focus();
+        }
 
-        const { start, end } = getSelection();
-        const newValue = value.substring(0, start) + linkHtml + value.substring(end);
-        onChange(newValue);
+        restoreSelection();
+
+        const sel = window.getSelection();
+        if (sel && sel.rangeCount > 0) {
+            const range = sel.getRangeAt(0);
+            const anchor = document.createElement("a");
+            anchor.href = formattedUrl;
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
+            anchor.textContent = linkText || range.toString() || formattedUrl;
+
+            range.deleteContents();
+            range.insertNode(anchor);
+            
+            // Move cursor after link
+            range.setStartAfter(anchor);
+            range.setEndAfter(anchor);
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else {
+            execCommand("createLink", formattedUrl);
+        }
+
+        handleInput();
         setIsLinkModalOpen(false);
     };
 
     const handleInsertImage = () => {
         const url = prompt("Enter Image URL:");
         if (!url) return;
-        const alt = prompt("Enter Image Alt Text (Description):") || "Blog Image";
+        const alt = prompt("Enter Image Description (Alt Text):") || "Blog Image";
+        
+        if (editorRef.current) {
+            editorRef.current.focus();
+        }
+        
         const imgHtml = `<p><img src="${url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px;" /></p>`;
-        const { start, end } = getSelection();
-        const newValue = value.substring(0, start) + imgHtml + value.substring(end);
-        onChange(newValue);
+        execCommand("insertHTML", imgHtml);
     };
 
     return (
@@ -95,22 +129,22 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
                     defaultValue=""
                     onChange={(e) => {
                         if (e.target.value) {
-                            handleFormatChange(e.target.value);
+                            handleFormatBlock(e.target.value);
                             e.target.value = "";
                         }
                     }}
                 >
-                    <option value="" disabled>Format Paragraph...</option>
-                    <option value="p">Paragraph (&lt;p&gt;)</option>
-                    <option value="h2">Heading 2 (&lt;h2&gt;)</option>
-                    <option value="h3">Heading 3 (&lt;h3&gt;)</option>
+                    <option value="" disabled>Format Text Style...</option>
+                    <option value="p">Normal Paragraph</option>
+                    <option value="h2">Heading 2 (Large)</option>
+                    <option value="h3">Heading 3 (Medium)</option>
                 </select>
 
                 <button
                     type="button"
                     className={styles.toolBtn}
-                    onClick={() => wrapSelection("<strong>", "</strong>", "Bold text")}
-                    title="Bold"
+                    onClick={() => execCommand("bold")}
+                    title="Bold text"
                 >
                     <Bold size={16} />
                 </button>
@@ -118,10 +152,19 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
                 <button
                     type="button"
                     className={styles.toolBtn}
-                    onClick={() => wrapSelection("<em>", "</em>", "Italic text")}
-                    title="Italic"
+                    onClick={() => execCommand("italic")}
+                    title="Italic text"
                 >
                     <Italic size={16} />
+                </button>
+
+                <button
+                    type="button"
+                    className={styles.toolBtn}
+                    onClick={() => execCommand("underline")}
+                    title="Underline text"
+                >
+                    <Underline size={16} />
                 </button>
 
                 <div className={styles.divider} />
@@ -129,7 +172,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
                 <button
                     type="button"
                     className={styles.toolBtn}
-                    onClick={() => wrapSelection("<ul>\n  <li>", "</li>\n</ul>", "List item")}
+                    onClick={() => execCommand("insertUnorderedList")}
                     title="Bullet List"
                 >
                     <List size={16} />
@@ -138,7 +181,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
                 <button
                     type="button"
                     className={styles.toolBtn}
-                    onClick={() => wrapSelection("<ol>\n  <li>", "</li>\n</ol>", "Numbered item")}
+                    onClick={() => execCommand("insertOrderedList")}
                     title="Numbered List"
                 >
                     <ListOrdered size={16} />
@@ -147,8 +190,8 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
                 <button
                     type="button"
                     className={styles.toolBtn}
-                    onClick={() => wrapSelection("<blockquote>", "</blockquote>", "Quote text")}
-                    title="Blockquote"
+                    onClick={() => handleFormatBlock("blockquote")}
+                    title="Quote"
                 >
                     <Quote size={16} />
                 </button>
@@ -179,35 +222,37 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
 
                 <button
                     type="button"
-                    className={`${styles.toolBtn} ${viewMode === "edit" ? styles.activeTabBtn : ""}`}
-                    onClick={() => setViewMode("edit")}
+                    className={`${styles.toolBtn} ${viewMode === "visual" ? styles.activeTabBtn : ""}`}
+                    onClick={() => setViewMode("visual")}
                 >
-                    <Edit3 size={14} /> Edit
+                    <Eye size={14} /> Visual Editor
                 </button>
 
                 <button
                     type="button"
-                    className={`${styles.toolBtn} ${viewMode === "preview" ? styles.activeTabBtn : ""}`}
-                    onClick={() => setViewMode("preview")}
+                    className={`${styles.toolBtn} ${viewMode === "html" ? styles.activeTabBtn : ""}`}
+                    onClick={() => setViewMode("html")}
                 >
-                    <Eye size={14} /> Preview
+                    <Code size={14} /> HTML Code
                 </button>
             </div>
 
-            {/* EDITOR OR PREVIEW */}
-            {viewMode === "edit" ? (
+            {/* VISUAL WYSIWYG OR RAW HTML */}
+            {viewMode === "visual" ? (
+                <div
+                    ref={editorRef}
+                    className={styles.visualArea}
+                    contentEditable
+                    onInput={handleInput}
+                    onBlur={handleInput}
+                    suppressContentEditableWarning
+                />
+            ) : (
                 <textarea
-                    ref={textareaRef}
                     className={styles.textarea}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
-                    placeholder="Write your blog post content here... You can use the formatting tools above or write HTML tags."
-                    required
-                />
-            ) : (
-                <div
-                    className={styles.previewBox}
-                    dangerouslySetInnerHTML={{ __html: value || "<p style='color: #888;'>Nothing to preview yet.</p>" }}
+                    placeholder="HTML Source Code..."
                 />
             )}
 
@@ -215,13 +260,13 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
             {isLinkModalOpen && (
                 <div className={styles.modalOverlay} onClick={() => setIsLinkModalOpen(false)}>
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <h3 className={styles.modalTitle}>Insert Link</h3>
+                        <h3 className={styles.modalTitle}>Insert Hyperlink</h3>
                         <form onSubmit={handleInsertLink}>
                             <div className={styles.modalField}>
-                                <label>Link URL (Address)*</label>
+                                <label>Link URL (Web Address)*</label>
                                 <input
                                     type="text"
-                                    placeholder="https://example.com or /services/catering"
+                                    placeholder="e.g. https://pkcevents.com/services/catering"
                                     value={linkUrl}
                                     onChange={(e) => setLinkUrl(e.target.value)}
                                     required
@@ -230,10 +275,10 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
                             </div>
 
                             <div className={styles.modalField}>
-                                <label>Link Text to Display</label>
+                                <label>Link Text (Display Label)</label>
                                 <input
                                     type="text"
-                                    placeholder="Click here to learn more"
+                                    placeholder="e.g. Explore Catering Services"
                                     value={linkText}
                                     onChange={(e) => setLinkText(e.target.value)}
                                 />
