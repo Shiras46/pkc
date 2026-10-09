@@ -492,16 +492,16 @@ const serviceSpecificData: Record<string, any> = {
     "destination-wedding": {
         headline: "Destination Wedding in Thrissur",
         subheadline: "",
-        heroImage: "/image/services/Whisper Stories.webp",
-        heroAlt: "Destination wedding in Thrissur setup by Pride Kitchen Caterers & Events",
+        heroImage: "/image/services/Beach & Backwater Weddings.webp",
+        heroAlt: "Scenic open-air luxury beachfront and backwater destination wedding setup in Thrissur, Kerala by Pride Kitchen Caterers & Events",
         useHalfHero: true,
         useStaggeredLayout: true,
         intro: {
             tag: "DESTINATION WEDDING IN THRISSUR",
             title: "Your love story, celebrated where\n[Kerala is at its most beautiful]",
             desc: "A destination wedding is more than a change of venue. It is a journey your families take together, where every meal becomes a memory of the place. Pride Kitchen Caterers & Events brings the warmth of Kerala hospitality to beaches, backwaters, hill stations and heritage homes across the state. As trusted destination wedding caterers in Thrissur, Kerala, we plan, cook and serve with the same care, whether your guests number fifty or a thousand. From the first welcome drink to the farewell breakfast, we make your celebration feel effortless, wherever you choose to say 'I do'.",
-            image: "/image/services/Whisper Stories.webp",
-            alt: "Scenic destination wedding celebration setup in Kerala by Pride Kitchen Caterers"
+            image: "/image/services/Beach & Backwater Weddings.webp",
+            alt: "Scenic destination wedding celebration setup in Kerala by Pride Kitchen Caterers & Events"
         },
         floatingCard: {
             title: "Destination Wedding Specialists",
@@ -523,29 +523,29 @@ const serviceSpecificData: Record<string, any> = {
         ],
         subServices: [
             {
-                image: "/image/services/Venue Selection.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/Beach & Backwater Weddings.webp", icon: <Plane color="#fcb318" />,
                 title: "Beach & Backwater Weddings", desc: "The sound of the waves, the calm of the backwaters and a feast laid out under the open sky. We design menus that suit the setting, from fresh coastal seafood and Kerala-style grills to light continental bites for a sunset reception. Our team handles on-site kitchens, food safety and service flow, so the beauty of the venue is all your guests have to think about.",
-                alt: "Beach and backwater destination wedding feast setup in Kerala"
+                alt: "Beach and backwater destination wedding catering and open-air feast setup in Kerala by Pride Kitchen Caterers"
             },
             {
                 image: "/image/services/venue banner.webp", icon: <Plane color="#fcb318" />,
                 title: "Hill Station & Resort Weddings", desc: "A wedding in the misty hills of Munnar, Wayanad or Vagamon calls for food that comforts as much as it delights. We create warm, hearty spreads with traditional Kerala dishes, North Indian favourites and global delicacies, served fresh at your resort or estate. Every detail is coordinated with the venue team, so your celebration runs smoothly from the first course to the last.",
-                alt: "Hill station resort destination wedding feast setup"
+                alt: "Misty hill station resort destination wedding reception feast setup"
             },
             {
-                image: "/image/services/catering.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/Heritage Home & Temple Town Weddings.jpg", icon: <Plane color="#fcb318" />,
                 title: "Heritage Home & Temple Town Weddings", desc: "Some weddings belong to tradition, set in an ancestral tharavad, a heritage property or the temple towns of Thrissur and Guruvayur. Here, we honour custom with an authentic Kerala traditional sadhya on banana leaf, prepared with district-specific recipes and served the way it has always been. As specialists in luxury wedding catering in Thrissur, we bring heritage to the table with grace and precision.",
-                alt: "Traditional Kerala banana leaf sadhya at heritage temple town wedding"
+                alt: "Authentic Kerala banana leaf sadhya served at a heritage home and temple town wedding in Thrissur"
             },
             {
-                image: "/image/services/decoration.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/Pre-Wedding & Multi-Day Celebrations.webp", icon: <Plane color="#fcb318" />,
                 title: "Pre-Wedding & Multi-Day Celebrations", desc: "A destination wedding is rarely a single day. From welcome dinners and Mehendi lunches to Haldi brunches, Sangeet nights and farewell breakfasts, we curate a different menu for every event. Each day gets its own theme, flavour and presentation, so your guests experience something new at every gathering.",
-                alt: "Pre-wedding multi-day celebration decor and dining"
+                alt: "Luxury pre-wedding and multi-day destination celebration dining setup including Mehendi, Sangeet and Haldi catering"
             },
             {
                 image: "/image/services/On-site Coordination.webp", icon: <Plane color="#fcb318" />,
                 title: "Complete Planning & Guest Hospitality", desc: "Hosting guests in a new place takes more than good food. We work with you on menu planning, venue coordination, live counters, décor-matched presentation and dietary needs for every guest, including vegetarian, Jain and allergy-friendly options. With Pride Kitchen managing the dining experience end to end, you are free to be present for every moment of your celebration.",
-                alt: "Complete wedding planning and guest hospitality service in Thrissur"
+                alt: "Complete wedding planning, on-site kitchen management and guest hospitality service in Thrissur by PKC Events"
             }
         ],
         whyChooseUs: [
