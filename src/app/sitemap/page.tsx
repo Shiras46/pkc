@@ -33,6 +33,8 @@ export default function SitemapPage() {
         { name: "Bridal Makeup", href: "/services/makeup" },
         { name: "Entertainment Zone", href: "/services/entertainment" },
         { name: "Luxury Cars", href: "/services/cars" },
+        { name: "Corporate Event", href: "/services/corporate-event" },
+        { name: "Destination Wedding", href: "/services/destination-wedding" },
         { name: "Our Gallery", href: "/gallery" },
         { name: "Our Locations", href: "/locations" },
         { name: "Event Management Thrissur", href: "/event-management-thrissur/" },

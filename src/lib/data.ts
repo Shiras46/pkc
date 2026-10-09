@@ -55,6 +55,20 @@ export const servicesData = [
         href: "/services/cars",
         image: "/image/services/Premium Cars/LUXURY WEDDING CARS.webp"
     },
+    {
+        id: "corporate-event",
+        name: "Corporate Event",
+        desc: "Professional events, served with precision and warmth. We plan and cater business events, conferences, launches, and celebrations that are punctual, polished, and memorable.",
+        href: "/services/corporate-event",
+        image: "/image/services/ARUN8992.JPG.webp"
+    },
+    {
+        id: "destination-wedding",
+        name: "Destination Wedding",
+        desc: "Your love story, celebrated where Kerala is at its most beautiful. Bringing Kerala hospitality to beaches, backwaters, hill stations, and heritage homes across the state.",
+        href: "/services/destination-wedding",
+        image: "/image/services/Whisper Stories.webp"
+    },
 ];
 export const blogsData = [
     {

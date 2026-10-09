@@ -16,6 +16,8 @@ export async function GET() {
         '/services/makeup',
         '/services/photography',
         '/services/venue',
+        '/services/corporate-event',
+        '/services/destination-wedding',
         '/gallery',
         '/locations',
         '/locations/kochi',

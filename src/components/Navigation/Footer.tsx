@@ -42,6 +42,8 @@ export default function Footer() {
                             <li><Link href="/services/makeup">Bridal Makeup</Link></li>
                             <li><Link href="/services/photography">Photography</Link></li>
                             <li><Link href="/services/venue">Venue Selection</Link></li>
+                            <li><Link href="/services/corporate-event">Corporate Event</Link></li>
+                            <li><Link href="/services/destination-wedding">Destination Wedding</Link></li>
                         </ul>
                     </div>
 

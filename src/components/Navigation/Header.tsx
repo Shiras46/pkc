@@ -23,7 +23,9 @@ const navLinks = [
             { name: "Photography & Video", href: "/services/photography" },
             { name: "Make-up Services", href: "/services/makeup" },
             { name: "Entertainment", href: "/services/entertainment" },
-            { name: "Premium Cars", href: "/services/cars" }
+            { name: "Premium Cars", href: "/services/cars" },
+            { name: "Corporate Event", href: "/services/corporate-event" },
+            { name: "Destination Wedding", href: "/services/destination-wedding" }
         ]
     },
     { name: "Gallery", href: "/gallery" },

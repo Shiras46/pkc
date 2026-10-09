@@ -6,7 +6,7 @@ import Image from "next/image";
 import {
     ChevronRight, Download, ChefHat, Leaf, Utensils, ShieldCheck, Users,
     CheckCircle, Users2, Calendar, Star, Clock, Palette, Award, Sparkles, MapPin, DownloadCloud, Phone, PhoneCall, ChevronDown,
-    Camera, Music, Car
+    Camera, Music, Car, Briefcase, Plane
 } from "lucide-react";
 import styles from "./ServiceDetail.module.css";
 import { useEffect, useState, useRef } from "react";
@@ -420,6 +420,140 @@ const serviceSpecificData: Record<string, any> = {
             { icon: <Clock size={32} color="#fcb318" />, title: "Punctuality", desc: "Arriving early to ensure perfect timeline execution." },
             { icon: <ShieldCheck size={32} color="#fcb318" />, title: "Safe & Insured", desc: "Fully serviced, clean, safe, and certified premium vehicles." },
             { icon: <Sparkles size={32} color="#fcb318" />, title: "Grand Presence", desc: "Stunning photo-ready look for entrance snapshots." }
+        ]
+    },
+    "corporate-event": {
+        headline: "Corporate Event in Thrissur",
+        subheadline: "",
+        heroImage: "/image/services/ARUN8992.JPG.webp",
+        heroAlt: "Corporate event stage and conference gala banquet setup by Pride Kitchen Caterers in Thrissur",
+        useHalfHero: true,
+        useStaggeredLayout: true,
+        intro: {
+            tag: "CORPORATE EVENT IN THRISSUR",
+            title: "Professional events, served with\n[precision and warmth]",
+            desc: "Every corporate gathering speaks for your brand, from the welcome at the door to the last cup of coffee. Pride Kitchen Caterers & Events plans and caters business events that are punctual, polished and memorable. As a leading name in corporate event catering in Thrissur and across Kerala, we combine disciplined service with a menu that reflects your company's standards. Whether it is a quiet board meeting or a grand annual celebration, we make sure your guests leave impressed.",
+            image: "/image/services/ARUN8992.JPG.webp",
+            alt: "Professional corporate event setup and executive dining in Thrissur by PKC Events"
+        },
+        floatingCard: {
+            title: "Corporate Specialists",
+            desc: "Punctual, polished and memorable corporate catering in Thrissur.",
+            icon: <Briefcase size={32} color="#fcb318" />
+        },
+        features: [
+            { icon: <Briefcase />, title: "EXECUTIVE SERVICE", desc: "Disciplined Service Reflecting Corporate Standards" },
+            { icon: <Clock />, title: "PUNCTUAL EXECUTION", desc: "Strict Timeline Compliance For Smooth Business Flow" },
+            { icon: <Utensils />, title: "MULTI-CUISINE MENUS", desc: "Kerala, North Indian, Arabic & Global Dishes" },
+            { icon: <ShieldCheck />, title: "HYGIENE & SAFETY", desc: "FSSAI & ISO Certified Quality Standards" },
+            { icon: <Users />, title: "TURNKEY MANAGEMENT", desc: "Setup, Timed Service & Complete Clean-up" }
+        ],
+        stats: [
+            { icon: <Users2 size={28} />, number: "5000+", label: "Happy Clients" },
+            { icon: <Award size={28} />, number: "10+", label: "Years of Excellence" },
+            { icon: <Calendar size={28} />, number: "5000+", label: "Events Completed" },
+            { icon: <Star size={28} />, number: "100%", label: "Client Satisfaction" }
+        ],
+        subServices: [
+            {
+                image: "/image/services/ARUN8992.JPG.webp", icon: <Briefcase color="#fcb318" />,
+                title: "Conferences & Seminars", desc: "Long sessions need food that keeps minds sharp and energy high. We plan timed tea breaks, working lunches and networking dinners that run to your agenda, never against it. Light, balanced menus and quick, organised service keep your delegates focused on what matters.",
+                alt: "Conferences and seminars catering setup by Pride Kitchen Caterers"
+            },
+            {
+                image: "/image/services/lighting-ambience-design.webp", icon: <Briefcase color="#fcb318" />,
+                title: "Product Launches & Brand Events", desc: "A launch is your moment in the spotlight, and the food should match the occasion. We create stylish canapés, mocktail bars and theme-led menus that complement your brand identity. Elegant presentation and attentive service help turn your launch into an experience guests talk about.",
+                alt: "Product launch and brand activation event setup in Thrissur"
+            },
+            {
+                image: "/image/services/buffet.webp", icon: <Briefcase color="#fcb318" />,
+                title: "Annual Days & Award Nights", desc: "Celebrating your people deserves a feast worthy of the occasion. From grand buffets with Kerala, North Indian, Arabic and continental spreads to plated dinners for your leadership table, we cater for every scale. Live counters and dessert stations add energy to the evening and bring teams together.",
+                alt: "Annual day corporate gala dinner buffet in Thrissur"
+            },
+            {
+                image: "/image/services/On-site Coordination.webp", icon: <Briefcase color="#fcb318" />,
+                title: "Team Outings & Family Days", desc: "Offsites, team-building retreats and employee family days call for relaxed, crowd-pleasing food. We serve hearty meals, snack stations and kid-friendly options at resorts, campuses or outdoor venues. Our team manages setup, service and clean-up, so your staff can simply enjoy the day.",
+                alt: "Corporate team outing and family day event catering"
+            },
+            {
+                image: "/image/services/catering.webp", icon: <Briefcase color="#fcb318" />,
+                title: "Festive Office Celebrations", desc: "Onam, Christmas, Diwali and Eid bring offices together like nothing else. We bring the festive spirit to your workplace with a traditional Kerala sadhya on banana leaf for Onam, festive cakes and treats for Christmas, or a celebration menu for any occasion. Every festival is served with authenticity, hygiene and the warmth your team deserves.",
+                alt: "Festive office celebration and Kerala traditional sadhya setup"
+            }
+        ],
+        whyChooseUs: [
+            { icon: <Palette size={32} color="#fcb318" />, title: "Brand Alignment", desc: "Custom theme-led menus and setups matching your company identity." },
+            { icon: <Award size={32} color="#fcb318" />, title: "Disciplined Service", desc: "Polished professionalism and attentive service at every scale." },
+            { icon: <Clock size={32} color="#fcb318" />, title: "Strict Punctuality", desc: "Timed breaks and lunches that run strictly according to your business agenda." },
+            { icon: <ShieldCheck size={32} color="#fcb318" />, title: "Certified Hygiene", desc: "Highest benchmarks of food safety and quality assurance." },
+            { icon: <Sparkles size={32} color="#fcb318" />, title: "End-to-End Handling", desc: "Complete management of menu, setup, service, and post-event cleanup." }
+        ]
+    },
+    "destination-wedding": {
+        headline: "Destination Wedding in Thrissur",
+        subheadline: "",
+        heroImage: "/image/services/Whisper Stories.webp",
+        heroAlt: "Destination wedding in Thrissur setup by Pride Kitchen Caterers & Events",
+        useHalfHero: true,
+        useStaggeredLayout: true,
+        intro: {
+            tag: "DESTINATION WEDDING IN THRISSUR",
+            title: "Your love story, celebrated where\n[Kerala is at its most beautiful]",
+            desc: "A destination wedding is more than a change of venue. It is a journey your families take together, where every meal becomes a memory of the place. Pride Kitchen Caterers & Events brings the warmth of Kerala hospitality to beaches, backwaters, hill stations and heritage homes across the state. As trusted destination wedding caterers in Thrissur, Kerala, we plan, cook and serve with the same care, whether your guests number fifty or a thousand. From the first welcome drink to the farewell breakfast, we make your celebration feel effortless, wherever you choose to say 'I do'.",
+            image: "/image/services/Whisper Stories.webp",
+            alt: "Scenic destination wedding celebration setup in Kerala by Pride Kitchen Caterers"
+        },
+        floatingCard: {
+            title: "Destination Wedding Specialists",
+            desc: "Kerala hospitality across beaches, backwaters, hill stations & heritage homes.",
+            icon: <Plane size={32} color="#fcb318" />
+        },
+        features: [
+            { icon: <Plane />, title: "KERALA HOSPITALITY", desc: "Serving Beaches, Backwaters, Hill Stations & Heritage Homes" },
+            { icon: <Users />, title: "ANY EVENT SCALE", desc: "Catering & Planning for 50 to 1000+ Guests" },
+            { icon: <Utensils />, title: "MULTI-DAY MENUS", desc: "Curated Unique Menus For Every Function" },
+            { icon: <ShieldCheck />, title: "ON-SITE KITCHENS", desc: "Flawless Setup, Food Safety & Service Flow" },
+            { icon: <Award />, title: "END-TO-END CARE", desc: "From Welcome Drinks to Farewell Breakfast" }
+        ],
+        stats: [
+            { icon: <Users2 size={28} />, number: "5000+", label: "Happy Clients" },
+            { icon: <Award size={28} />, number: "10+", label: "Years of Excellence" },
+            { icon: <Calendar size={28} />, number: "5000+", label: "Events Completed" },
+            { icon: <Star size={28} />, number: "100%", label: "Client Satisfaction" }
+        ],
+        subServices: [
+            {
+                image: "/image/services/Venue Selection.webp", icon: <Plane color="#fcb318" />,
+                title: "Beach & Backwater Weddings", desc: "The sound of the waves, the calm of the backwaters and a feast laid out under the open sky. We design menus that suit the setting, from fresh coastal seafood and Kerala-style grills to light continental bites for a sunset reception. Our team handles on-site kitchens, food safety and service flow, so the beauty of the venue is all your guests have to think about.",
+                alt: "Beach and backwater destination wedding feast setup in Kerala"
+            },
+            {
+                image: "/image/services/venue banner.webp", icon: <Plane color="#fcb318" />,
+                title: "Hill Station & Resort Weddings", desc: "A wedding in the misty hills of Munnar, Wayanad or Vagamon calls for food that comforts as much as it delights. We create warm, hearty spreads with traditional Kerala dishes, North Indian favourites and global delicacies, served fresh at your resort or estate. Every detail is coordinated with the venue team, so your celebration runs smoothly from the first course to the last.",
+                alt: "Hill station resort destination wedding feast setup"
+            },
+            {
+                image: "/image/services/catering.webp", icon: <Plane color="#fcb318" />,
+                title: "Heritage Home & Temple Town Weddings", desc: "Some weddings belong to tradition, set in an ancestral tharavad, a heritage property or the temple towns of Thrissur and Guruvayur. Here, we honour custom with an authentic Kerala traditional sadhya on banana leaf, prepared with district-specific recipes and served the way it has always been. As specialists in luxury wedding catering in Thrissur, we bring heritage to the table with grace and precision.",
+                alt: "Traditional Kerala banana leaf sadhya at heritage temple town wedding"
+            },
+            {
+                image: "/image/services/decoration.webp", icon: <Plane color="#fcb318" />,
+                title: "Pre-Wedding & Multi-Day Celebrations", desc: "A destination wedding is rarely a single day. From welcome dinners and Mehendi lunches to Haldi brunches, Sangeet nights and farewell breakfasts, we curate a different menu for every event. Each day gets its own theme, flavour and presentation, so your guests experience something new at every gathering.",
+                alt: "Pre-wedding multi-day celebration decor and dining"
+            },
+            {
+                image: "/image/services/On-site Coordination.webp", icon: <Plane color="#fcb318" />,
+                title: "Complete Planning & Guest Hospitality", desc: "Hosting guests in a new place takes more than good food. We work with you on menu planning, venue coordination, live counters, décor-matched presentation and dietary needs for every guest, including vegetarian, Jain and allergy-friendly options. With Pride Kitchen managing the dining experience end to end, you are free to be present for every moment of your celebration.",
+                alt: "Complete wedding planning and guest hospitality service in Thrissur"
+            }
+        ],
+        whyChooseUs: [
+            { icon: <Palette size={32} color="#fcb318" />, title: "Setting-Suited Menus", desc: "Customized menus designed to complement beach, backwater, hill station, or heritage settings." },
+            { icon: <Award size={32} color="#fcb318" />, title: "Heritage Precision", desc: "Authentic Kerala sadhya on banana leaf with district-specific traditional recipes." },
+            { icon: <Clock size={32} color="#fcb318" />, title: "Multi-Day Flavour Variety", desc: "Distinct theme, flavour, and presentation for every single function." },
+            { icon: <ShieldCheck size={32} color="#fcb318" />, title: "Inclusive Dietary Care", desc: "Dedicated options for vegetarian, Jain, and allergy-friendly guest requirements." },
+            { icon: <Sparkles size={32} color="#fcb318" />, title: "End-to-End Hospitality", desc: "On-site kitchen management, food safety, and seamless service flow." }
         ]
     }
 };

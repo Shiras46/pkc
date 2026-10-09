@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Utensils, Home, Paintbrush, Camera, Sparkles, Music, Car, ChevronRight } from "lucide-react";
+import { Utensils, Home, Paintbrush, Camera, Sparkles, Music, Car, Briefcase, Plane, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./ServiceCards.module.css";
@@ -14,7 +14,9 @@ const iconConfig: Record<string, { icon: React.ReactNode }> = {
     photography: { icon: <Camera size={20} color="#fcb318" aria-hidden="true" /> },
     makeup: { icon: <Sparkles size={20} color="#fcb318" aria-hidden="true" /> },
     entertainment: { icon: <Music size={20} color="#fcb318" aria-hidden="true" /> },
-    cars: { icon: <Car size={20} color="#fcb318" aria-hidden="true" /> }
+    cars: { icon: <Car size={20} color="#fcb318" aria-hidden="true" /> },
+    "corporate-event": { icon: <Briefcase size={20} color="#fcb318" aria-hidden="true" /> },
+    "destination-wedding": { icon: <Plane size={20} color="#fcb318" aria-hidden="true" /> }
 };
 
 export default function ServiceCards() {
