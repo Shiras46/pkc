@@ -13,7 +13,6 @@ interface VideoItem {
     isActive?: boolean;
 }
 
-
 export default function VideoReviews() {
     const [videos, setVideos] = useState<VideoItem[]>([]);
     const [activePlayingId, setActivePlayingId] = useState<string | null>(null);
@@ -64,7 +63,7 @@ export default function VideoReviews() {
             return video.thumbnailUrl.trim();
         }
 
-        if (!video || !video.videoUrl) return '/image/services/Beach & Backwater Weddings.webp';
+        if (!video || !video.videoUrl) return '';
         const rawUrl = video.videoUrl.trim();
 
         // Priority 2: YouTube real video thumbnail
@@ -82,8 +81,7 @@ export default function VideoReviews() {
             }
         }
 
-        // Priority 3: Instagram / Custom videos fallback cover (ensures video cards never appear pitch black)
-        return '/image/services/Beach & Backwater Weddings.webp';
+        return '';
     };
 
     const handlePlayClick = (videoId: string) => {
@@ -95,8 +93,6 @@ export default function VideoReviews() {
     return (
         <section className={styles.section}>
             <div className="container">
-
-
                 {/* Shorts / Video Cards Grid */}
                 <div className={styles.grid}>
                     {videos.slice(0, 4).map((video, index) => {
@@ -104,7 +100,8 @@ export default function VideoReviews() {
                         const isPlaying = activePlayingId === videoId;
                         const embedUrl = getEmbedUrl(video);
                         const thumbUrl = getVideoThumbnail(video);
-                        const isInstagram = video.videoUrl.includes('instagram.com') || video.platform === 'instagram';
+                        const isInstagram = video.videoUrl.includes('instagram.com') || video.videoUrl.includes('instagr.am') || video.platform === 'instagram';
+                        const hasCustomThumb = !!(video.thumbnailUrl && video.thumbnailUrl.trim());
                         
                         const displayTitle = video.title || [
                             "Another Happy Couple, Another Beautiful Story",
@@ -113,10 +110,27 @@ export default function VideoReviews() {
                             "Destination Wedding Setup"
                         ][index % 4];
 
+                        // If it's an Instagram Reel with no custom uploaded thumbnail:
+                        // Render Instagram's clean embed directly so Instagram automatically loads the Reel's exact cover photo, creator, and play controls!
+                        if (isInstagram && !hasCustomThumb) {
+                            return (
+                                <div key={videoId} className={styles.card}>
+                                    <iframe
+                                        src={embedUrl}
+                                        title={displayTitle}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen
+                                        className={styles.instaEmbedClean}
+                                    ></iframe>
+                                </div>
+                            );
+                        }
+
+                        // For YouTube Shorts OR Instagram Reels with custom uploaded WebP cover:
                         return (
                             <div key={videoId} className={styles.card}>
                                 {isPlaying ? (
-                                    <div className={`${styles.playerContainer} ${isInstagram ? styles.instaContainer : ''}`}>
+                                    <div className={styles.playerContainer}>
                                         <iframe
                                             src={embedUrl}
                                             title={displayTitle}
@@ -155,7 +169,7 @@ export default function VideoReviews() {
                                             </div>
                                         </div>
 
-                                        {/* Red Shorts Play Icon Overlay in Center */}
+                                        {/* Play Icon Overlay in Center */}
                                         <div className={styles.playButtonOverlay}>
                                             <div className={styles.redPlayIcon}>
                                                 {isInstagram ? (
