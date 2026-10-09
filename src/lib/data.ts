@@ -67,7 +67,7 @@ export const servicesData = [
         name: "Destination Wedding",
         desc: "Your love story, celebrated where Kerala is at its most beautiful. Bringing Kerala hospitality to beaches, backwaters, hill stations, and heritage homes across the state.",
         href: "/services/destination-wedding",
-        image: "/image/services/Beach & Backwater Weddings.webp"
+        image: "/image/services/beach-backwater-weddings.webp"
     },
 ];
 export const blogsData = [
