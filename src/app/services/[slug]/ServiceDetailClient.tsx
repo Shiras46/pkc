@@ -528,7 +528,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Beach and backwater destination wedding catering and open-air feast setup in Kerala by Pride Kitchen Caterers"
             },
             {
-                image: "/image/services/venue banner.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/venue-banner.webp", icon: <Plane color="#fcb318" />,
                 title: "Hill Station & Resort Weddings", desc: "A wedding in the misty hills of Munnar, Wayanad or Vagamon calls for food that comforts as much as it delights. We create warm, hearty spreads with traditional Kerala dishes, North Indian favourites and global delicacies, served fresh at your resort or estate. Every detail is coordinated with the venue team, so your celebration runs smoothly from the first course to the last.",
                 alt: "Misty hill station resort destination wedding reception feast setup"
             },
@@ -543,7 +543,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Luxury pre-wedding and multi-day destination celebration dining setup including Mehendi, Sangeet and Haldi catering"
             },
             {
-                image: "/image/services/On-site Coordination.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/onsite-coordination.webp", icon: <Plane color="#fcb318" />,
                 title: "Complete Planning & Guest Hospitality", desc: "Hosting guests in a new place takes more than good food. We work with you on menu planning, venue coordination, live counters, décor-matched presentation and dietary needs for every guest, including vegetarian, Jain and allergy-friendly options. With Pride Kitchen managing the dining experience end to end, you are free to be present for every moment of your celebration.",
                 alt: "Complete wedding planning, on-site kitchen management and guest hospitality service in Thrissur by PKC Events"
             }
