@@ -326,6 +326,11 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${playfair.variable} ${jost.variable} ${poppins.variable} ${inter.variable} ${dmSans.variable}`}>
             <head>
+                <link rel="preconnect" href="https://www.googletagmanager.com" />
+                <link rel="preconnect" href="https://www.google-analytics.com" />
+                <link rel="dns-prefetch" href="https://clarity.ms" />
+                <link rel="preload" href="/image/hero1.webp" as="image" type="image/webp" fetchPriority="high" />
+
                 {/* Google Analytics */}
                 <Script
                     strategy="lazyOnload"

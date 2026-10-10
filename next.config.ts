@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', 'gsap'],
   },
+  turbopack: {},
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
