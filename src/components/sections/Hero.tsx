@@ -13,10 +13,10 @@ import QuoteModal from "@/components/ui/QuoteModal";
 gsap.registerPlugin(ScrollTrigger);
 
 const heroImages = [
-    "/image/hero1.jpg",
+    "/image/hero1.webp",
     "/image/hero2.webp",
     "/image/HERO3.webp",
-    "/image/hero4.png"
+    "/image/hero4.webp"
 ];
 
 export default function Hero() {
