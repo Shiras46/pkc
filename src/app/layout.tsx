@@ -329,7 +329,6 @@ export default function RootLayout({
                 <link rel="preconnect" href="https://www.googletagmanager.com" />
                 <link rel="preconnect" href="https://www.google-analytics.com" />
                 <link rel="dns-prefetch" href="https://clarity.ms" />
-                <link rel="preload" href="/image/hero1.webp" as="image" type="image/webp" fetchPriority="high" />
 
                 {/* Google Analytics */}
                 <Script
