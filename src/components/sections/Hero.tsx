@@ -46,7 +46,9 @@ export default function Hero() {
             delay: 0.2
         });
 
-        if (!reduceMotion) {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        if (!reduceMotion && !isMobile) {
             gsap.to(backgroundRef.current, {
                 yPercent: 10,
                 ease: "none",

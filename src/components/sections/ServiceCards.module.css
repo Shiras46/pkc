@@ -80,6 +80,14 @@
     border-color: rgba(252, 179, 24, 0.3);
 }
 
+@media (max-width: 768px) {
+    .card {
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        transition: none;
+    }
+}
+
 /* Top Half */
 .cardTop {
     width: 100%;
