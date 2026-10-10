@@ -5,9 +5,12 @@ import Image from "next/image";
 import { galleryCategories, galleryItems as staticGalleryItems, GalleryItem } from "@/lib/gallery";
 import styles from "./Gallery.module.css";
 
+const INITIAL_VISIBLE_COUNT = 12;
+
 export default function GalleryClient() {
     const [activeTab, setActiveTab] = useState("All");
     const [items, setItems] = useState<GalleryItem[]>(staticGalleryItems);
+    const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
 
     useEffect(() => {
         async function loadGallery() {
@@ -35,11 +38,20 @@ export default function GalleryClient() {
         ? items
         : items.filter(item => item.category === activeTab);
 
+    const displayedItems = filteredItems.slice(0, visibleCount);
+
+    const handleTabChange = (cat: string) => {
+        setActiveTab(cat);
+        setVisibleCount(INITIAL_VISIBLE_COUNT);
+    };
+
     return (
         <div className={styles.wrapper}>
             <header className={styles.header}>
                 <div className="container">
-                    <h1 className="heading-xl text-center" style={{ color: '#fcb318' }}><span style={{ color: '#000000' }}>Our</span> Gallery</h1>
+                    <h1 className="heading-xl text-center" style={{ color: '#fcb318' }}>
+                        <span style={{ color: '#000000' }}>Our</span> Gallery
+                    </h1>
                     <p className={styles.subtitle}>A Visual Journey Through Our Most Memorable Events</p>
                 </div>
             </header>
@@ -51,7 +63,7 @@ export default function GalleryClient() {
                             <button
                                 key={cat}
                                 className={`${styles.tab} ${activeTab === cat ? styles.activeTab : ""}`}
-                                onClick={() => setActiveTab(cat)}
+                                onClick={() => handleTabChange(cat)}
                             >
                                 {cat}
                             </button>
@@ -59,7 +71,7 @@ export default function GalleryClient() {
                     </div>
 
                     <div className={styles.masonry}>
-                        {filteredItems.map((item, index) => (
+                        {displayedItems.map((item, index) => (
                             <div key={item.id || item._id || index} className={styles.item}>
                                 <Image
                                     src={item.src}
@@ -67,6 +79,9 @@ export default function GalleryClient() {
                                     width={600}
                                     height={400}
                                     className={styles.image}
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                                    loading={index < 4 ? "eager" : "lazy"}
+                                    priority={index < 2}
                                     unoptimized={item.src.startsWith('/uploads/') || item.src.includes('s3.amazonaws.com')}
                                 />
                                 <div className={styles.overlay}>
@@ -75,6 +90,17 @@ export default function GalleryClient() {
                             </div>
                         ))}
                     </div>
+
+                    {visibleCount < filteredItems.length && (
+                        <div style={{ textAlign: "center", marginTop: "40px" }}>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => setVisibleCount(prev => prev + 12)}
+                            >
+                                LOAD MORE PHOTOS
+                            </button>
+                        </div>
+                    )}
                 </div>
             </section>
         </div>

@@ -122,6 +122,7 @@
 }
 
 .cardTitle {
+    font-family: var(--font-heading, serif);
     font-size: 1.45rem;
     color: #1d1d1f;
     font-weight: 600;

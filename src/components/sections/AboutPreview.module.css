@@ -54,9 +54,9 @@
 
 .heading {
     font-size: clamp(3.2rem, 8vw, 5rem);
-    line-height: 1.05;
+    line-height: 1.15;
     color: #1a1a1a;
-    font-weight: 700;
+    font-weight: 400;
     font-family: var(--font-heading, serif);
     margin-bottom: 40px;
     letter-spacing: -0.02em;

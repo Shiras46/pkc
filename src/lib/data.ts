@@ -18,7 +18,7 @@ export const servicesData = [
         name: "Venue Management",
         desc: "Spaces that Whisper Stories. We go far beyond simple logistics to bring your vision to life from the initial layout to the subtle nuances of decor and flow, ensuring perfection in every detail.",
         href: "/services/venue",
-        image: "/image/services/venue banner.webp"
+        image: "/image/services/venue-banner.webp"
     },
     {
         id: "decoration",
@@ -32,7 +32,7 @@ export const servicesData = [
         name: "Photography & Video",
         desc: "Every Frame Tells A Unique Story of Joy. Our visual storytellers capture those little glances in a cinematic style, allowing your future generations to relive those special moments.",
         href: "/services/photography",
-        image: "/image/services/Cinematic Videography.webp"
+        image: "/image/services/cinematic-videography.webp"
     },
     {
         id: "makeup",

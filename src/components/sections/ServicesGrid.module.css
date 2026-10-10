@@ -113,7 +113,7 @@
 
 .title {
     font-size: 1.75rem;
-    font-weight: 700;
+    font-weight: 400;
     color: #1a1a1a;
     font-family: var(--font-heading, serif);
 }

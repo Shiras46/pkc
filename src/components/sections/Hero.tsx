@@ -76,8 +76,9 @@ export default function Hero() {
                             src={heroImages[currentIndex]}
                             alt="Luxury wedding and event celebration with elegant catering and premium event management in Kerala"
                             fill
-                            sizes="100vw"
-                            priority
+                            sizes="(max-width: 768px) 100vw, 100vw"
+                            priority={currentIndex === 0}
+                            loading={currentIndex === 0 ? "eager" : "lazy"}
                             style={{ objectFit: 'cover', objectPosition: 'center 78%' }}
                         />
                     </motion.div>

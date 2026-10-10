@@ -88,7 +88,7 @@ const serviceSpecificData: Record<string, any> = {
     venue: {
         headline: "Wedding Venue and Management\nin Thrissur",
         subheadline: "",
-        heroImage: "/image/services/venue banner.webp",
+        heroImage: "/image/services/venue-banner.webp",
         heroAlt: "Grand conventions center and wedding hall banquet setup for luxury events in Kerala",
         useHalfHero: true,
         useStaggeredLayout: true,
@@ -228,12 +228,12 @@ const serviceSpecificData: Record<string, any> = {
         ],
         subServices: [
             {
-                image: "/image/services/Wedding Photography.webp", icon: <Camera color="#fcb318" />,
+                image: "/image/services/wedding-photography.webp", icon: <Camera color="#fcb318" />,
                 title: "Wedding Photography", desc: "A wedding is the beginning of a lifetime of togetherness. A union which needs to be framed and treasured forever. Every glance, excitement, fun and the pure depth of emotions tells a distinctive story, which deserves to be framed. Our photographers are specialized in capturing those unique beautiful instants, transforming them into a timeless visual heirloom. We don’t just deliver photographs, but a portal to revisit the magic of your wedding day, year after year.",
                 alt: "Candid wedding couple portrait photography with natural outdoor background in Kerala"
             },
             {
-                image: "/image/services/Cinematic Videography.webp", icon: <Camera color="#fcb318" />,
+                image: "/image/services/cinematic-videography.webp", icon: <Camera color="#fcb318" />,
                 title: "Cinematic Videography", desc: "Your wedding story deserves the magic of an eternal cinema. Recording the whole rituals alone won’t bring the magic it deserves. As experts in event videography in Kerala, we produce films that capture the true essence of your wedding day, weaving a revisit to the memory lane of your most special day for a lifetime. Our creative filmmakers with their artistic and professional expertise create a high-definition masterpiece out of your wedding day.",
                 alt: "Professional videographer filming a wedding ceremony with modern camera gear"
             },
@@ -262,7 +262,7 @@ const serviceSpecificData: Record<string, any> = {
             tag: "ROYAL ESSENCE",
             title: "Enhancing the\n[Royalness in You]",
             desc: "Beauty lies in the eyes of the beholder and we turn every sight into a fairytale. The true essence of makeup is not to change, but to uplift your authentic self by enhancing your natural features while expressing your unique style. At Pride Kitchen Caterers & Events, we provide the expert touch needed for you to meet the royalty within.",
-            image: "/image/services/ROYAL ESSENCE.webp",
+            image: "/image/services/royal-essence.webp",
             alt: "Exquisite traditional Kerala bridal makeup with fine jewelry and crown, reflecting the royal essence"
         },
         floatingCard: {
@@ -352,7 +352,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Professional DJ mixer and sound systems with bright ambient club lighting"
             },
             {
-                image: "/image/services/Cultural Performances.webp", icon: <Music color="#fcb318" />,
+                image: "/image/services/cultural-performances.webp", icon: <Music color="#fcb318" />,
                 title: "Cultural Performances", desc: "The beauty of traditional heritage is reflected in our cultural artforms. Blending those reflections through a beautiful presentation is like bringing a soul to your event. From the prestigious Chenda Melam to the different classical dance forms, we curate authentic cultural performances creating a royal charm and a spiritual depth that truly touches the soul",
                 alt: "Traditional Kerala temple art performance and cultural dancers at an event reception"
             }

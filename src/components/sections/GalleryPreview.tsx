@@ -8,9 +8,9 @@ import { galleryItems } from "@/lib/gallery";
 import styles from "./GalleryPreview.module.css";
 
 const galleryRows = [
-    galleryItems.slice(0, 10),
-    galleryItems.slice(10, 20),
-    galleryItems.slice(19, 29),
+    galleryItems.slice(0, 5),
+    galleryItems.slice(5, 10),
+    galleryItems.slice(10, 15),
 ];
 
 export default function GalleryPreview() {
@@ -56,7 +56,8 @@ export default function GalleryPreview() {
                                     src={item.src}
                                     alt={`${item.category} gallery photo showcasing premium catering, luxury weddings, event management, and memorable celebrations by Pride Kitchen Caterers & Events in Kerala`}
                                     fill
-                                    sizes="(max-width: 768px) 210px, 320px"
+                                    sizes="(max-width: 768px) 180px, 280px"
+                                    loading="lazy"
                                     className={styles.image}
                                 />
                                 <div className={styles.overlay}>

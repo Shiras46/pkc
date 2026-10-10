@@ -14,10 +14,10 @@ const playfair = Playfair_Display({
     variable: "--font-heading",
     display: "swap",
 });
-const jost = Jost({ subsets: ["latin"], variable: "--font-sans" });
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins" });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700", "800"], variable: "--font-dm-sans" });
+const jost = Jost({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins", display: "swap" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700", "800"], variable: "--font-dm-sans", display: "swap" });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pkcevents.com';
 
@@ -328,12 +328,12 @@ export default function RootLayout({
             <head>
                 {/* Google Analytics */}
                 <Script
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
                 />
                 <Script
                     id="google-analytics"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 >
                     {`
                         window.dataLayer = window.dataLayer || [];
@@ -348,7 +348,7 @@ export default function RootLayout({
                 {/* Google Tag Manager */}
                 <Script
                     id="gtm-script"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                 >
                     {`
                         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -363,7 +363,7 @@ export default function RootLayout({
                 {clarityId && clarityId !== "CLARITY_ID" && (
                     <Script
                         id="microsoft-clarity"
-                        strategy="afterInteractive"
+                        strategy="lazyOnload"
                     >
                         {`
                             (function(c,l,a,r,i,t,y){

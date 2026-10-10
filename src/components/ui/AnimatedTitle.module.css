@@ -1,8 +1,8 @@
 .titleWrapper {
     display: flex;
     flex-direction: column;
-    /* width: 100%; - Removed to allow flex alignment in parent */
     max-width: 100%;
+    font-family: var(--font-heading, serif);
 }
 
 .line {

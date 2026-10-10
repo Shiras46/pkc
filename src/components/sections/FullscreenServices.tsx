@@ -35,7 +35,7 @@ const services = [
         id: "04",
         title: "Venue Decoration",
         desc: "Spaces transformed into timeless masterpieces.\n\nElegant floral arrangements, luxurious stage designs, and immersive decor concepts designed exclusively for your celebration.",
-        image: "/image/services/Decoration event.webp",
+        image: "/image/services/decoration.webp",
         alt: "Elegant outdoor wedding table decoration",
         link: "/services/decoration"
     },

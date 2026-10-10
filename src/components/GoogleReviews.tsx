@@ -211,6 +211,7 @@ export default function GoogleReviews() {
                       <img
                         src={review.authorPhoto}
                         alt={review.authorName}
+                        loading="lazy"
                         className={styles.avatarImg}
                       />
                     ) : (

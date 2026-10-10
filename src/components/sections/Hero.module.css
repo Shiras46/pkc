@@ -375,6 +375,7 @@
 }
 
 .leadForm h3 {
+    font-family: var(--font-heading, serif);
     color: #333;
     font-size: 1.8rem;
     margin-top: 0;
