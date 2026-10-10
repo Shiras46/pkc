@@ -1,17 +1,19 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Hero from "@/components/sections/Hero";
-import Experience from "@/components/sections/Experience";
-import AboutPreview from "@/components/sections/AboutPreview";
-import ServiceCards from "@/components/sections/ServiceCards";
-import Awards from "@/components/sections/Awards";
-import Certifications from "@/components/sections/Certifications";
-import GoogleReviews from "@/components/GoogleReviews";
-import GalleryPreview from "@/components/sections/GalleryPreview";
-import LeadershipTeam from "@/components/sections/LeadershipTeam";
-import BlogPreview from "@/components/sections/BlogPreview";
-import FAQ from "@/components/sections/FAQ";
-import FinalCTA from "@/components/sections/FinalCTA";
-import VideoReviews from "@/components/sections/VideoReviews";
+
+const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"));
+const Experience = dynamic(() => import("@/components/sections/Experience"));
+const AboutPreview = dynamic(() => import("@/components/sections/AboutPreview"));
+const ServiceCards = dynamic(() => import("@/components/sections/ServiceCards"));
+const FinalCTA = dynamic(() => import("@/components/sections/FinalCTA"));
+const Awards = dynamic(() => import("@/components/sections/Awards"));
+const Certifications = dynamic(() => import("@/components/sections/Certifications"));
+const GalleryPreview = dynamic(() => import("@/components/sections/GalleryPreview"));
+const LeadershipTeam = dynamic(() => import("@/components/sections/LeadershipTeam"));
+const FAQ = dynamic(() => import("@/components/sections/FAQ"));
+const VideoReviews = dynamic(() => import("@/components/sections/VideoReviews"));
+const BlogPreview = dynamic(() => import("@/components/sections/BlogPreview"));
 
 export const metadata: Metadata = {
     title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',

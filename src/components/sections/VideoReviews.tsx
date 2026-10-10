@@ -110,39 +110,7 @@ export default function VideoReviews() {
                             "Destination Wedding Setup"
                         ][index % 4];
 
-                        // If it's an Instagram Reel with no custom uploaded thumbnail:
-                        // Render Instagram's clean embed directly so Instagram automatically loads the Reel's exact cover photo, creator, and play controls!
-                        if (isInstagram && !hasCustomThumb) {
-                            return (
-                                <div key={videoId} className={styles.card}>
-                                    <iframe
-                                        src={embedUrl}
-                                        title={displayTitle}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowFullScreen
-                                        className={styles.instaEmbedClean}
-                                    ></iframe>
-
-                                    {/* Top Profile Header Overlay inside Card */}
-                                    <div className={styles.cardHeaderOverlayAbsolute}>
-                                        <div className={styles.avatarWrapper}>
-                                            <img src="/logo.png" alt="PKC Logo" className={styles.avatarImg} />
-                                        </div>
-                                        <div className={styles.metaText}>
-                                            <h3 className={styles.videoTitle}>{displayTitle}</h3>
-                                            <p className={styles.brandName}>Pride Kitchen Caterers &amp; Events</p>
-                                        </div>
-                                    </div>
-
-                                    {/* Bottom Label */}
-                                    <div className={styles.bottomLabelAbsolute}>
-                                        <span>Reels</span>
-                                    </div>
-                                </div>
-                            );
-                        }
-
-                        // For YouTube Shorts OR Instagram Reels with custom uploaded WebP cover:
+                        // All cards render thumbnail facade initially; iframe loads ONLY when user clicks play
                         return (
                             <div key={videoId} className={styles.card}>
                                 {isPlaying ? (

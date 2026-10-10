@@ -93,7 +93,7 @@ export default function Hero() {
 
                         <div className="hero-reveal">
                             <h1 className={styles.heading}>
-                                Event Management in Thrissur<br />
+                                Event Management in Thrissur <br />
                                 <span className={styles.goldTextNormal}>for Weddings and Corporate Events</span>
                             </h1>
                         </div>
