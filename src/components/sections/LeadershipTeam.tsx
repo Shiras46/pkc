@@ -7,7 +7,7 @@ export default function LeadershipTeam() {
             <div className="container">
                 <div className={styles.header}>
                     <h2><span style={{ color: '#000000' }}>Faces Behind the</span> Brand</h2>
-                    <p>Meet the visionaries behind Kerala's most trusted luxury event management company.</p>
+                    <p>Meet the visionaries behind Kerala&apos;s most trusted luxury event management company.</p>
                 </div>
                 <div className={styles.grid}>
                     <div className={styles.memberCard}>
@@ -16,7 +16,7 @@ export default function LeadershipTeam() {
                         </div>
                         <span className={styles.role}>Managing Director</span>
                         <h3>Rijo George</h3>
-                        <p className={styles.description}>Rijo guides the strategic growth and operational excellence of the organisation, ensuring every project reflects the company's standards of quality, reliability, and attentive service.</p>
+                        <p className={styles.description}>Rijo guides the strategic growth and operational excellence of the organisation, ensuring every project reflects the company&apos;s standards of quality, reliability, and attentive service.</p>
                     </div>
                     <div className={styles.memberCard}>
                         <div className={styles.imageWrapper}>

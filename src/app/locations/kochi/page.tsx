@@ -44,11 +44,6 @@ export default function KochiLocationPage() {
       ],
       opens: '09:00',
       closes: '21:00',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '184'
     }
   };
 

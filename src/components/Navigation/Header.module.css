@@ -54,7 +54,7 @@
 }
 
 .logoTitle {
-    font-family: 'VeggieBurger', cursive;
+    font-family: var(--font-brand);
     color: var(--primary, #FCB318);
     font-size: 1.8rem;
     font-weight: 400;
@@ -312,7 +312,7 @@
 
     .mobileBrandName {
         display: block;
-        font-family: 'VeggieBurger', cursive;
+        font-family: var(--font-brand);
         color: var(--primary, #FCB318);
         font-size: clamp(0.95rem, 3.8vw, 1.3rem);
         font-weight: 700;

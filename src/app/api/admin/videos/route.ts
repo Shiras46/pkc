@@ -3,9 +3,11 @@ import dbConnect from '@/lib/mongodb';
 import VideoReview from '@/models/VideoReview';
 import { cookies } from 'next/headers';
 import { getDB, saveDB } from '@/lib/dbHelper';
+import { verifySessionToken } from '@/lib/auth';
 
 async function checkAuth() {
-    const session = (await cookies()).get('admin_session');
+    const sessionCookie = (await cookies()).get('admin_session')?.value;
+    const session = await verifySessionToken(sessionCookie);
     return !!session;
 }
 
@@ -81,4 +83,3 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Failed to create video' }, { status: 500 });
     }
 }
-

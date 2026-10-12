@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import styles from "./GoogleReviews.module.css";
 
 interface GoogleReviewItem {
@@ -102,20 +103,42 @@ export default function GoogleReviews() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let active = true;
+
     async function loadReviews() {
       try {
         const response = await fetch("/api/google-reviews");
-        if (response.ok) {
+        if (response.ok && active) {
           const result = await response.json();
           setData(result);
         }
       } catch (error) {
         console.error("Google Reviews fetch error:", error);
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     }
-    loadReviews();
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const idleId = (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
+        () => {
+          loadReviews();
+        },
+        { timeout: 3000 }
+      );
+      return () => {
+        active = false;
+        (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId);
+      };
+    } else {
+      const timer = setTimeout(() => {
+        loadReviews();
+      }, 1500);
+      return () => {
+        active = false;
+        clearTimeout(timer);
+      };
+    }
   }, []);
 
   const overallRating = data?.rating || 4.9;
@@ -208,10 +231,12 @@ export default function GoogleReviews() {
                   {/* Author Header */}
                   <div className={styles.cardHeader}>
                     {review.authorPhoto ? (
-                      <img
+                      <Image
                         src={review.authorPhoto}
                         alt={review.authorName}
-                        loading="lazy"
+                        width={40}
+                        height={40}
+                        unoptimized
                         className={styles.avatarImg}
                       />
                     ) : (

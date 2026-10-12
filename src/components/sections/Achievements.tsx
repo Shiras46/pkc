@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, Star, Trophy, ThumbsUp } from "lucide-react";
+import { Award, Star, Trophy } from "lucide-react";
 import styles from "./Achievements.module.css";
 
 const items = [
@@ -37,7 +37,7 @@ export default function Achievements() {
                 </div>
                 <div className={styles.quoteWrapper}>
                     <p className={styles.quote}>
-                        "Our awards reflect the trust of our clients and our dedication to delivering unforgettable experiences."
+                        &ldquo;Our awards reflect the trust of our clients and our dedication to delivering unforgettable experiences.&rdquo;
                     </p>
                 </div>
             </div>

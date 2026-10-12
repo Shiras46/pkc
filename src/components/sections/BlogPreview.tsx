@@ -3,24 +3,34 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Image as ImageIcon } from "lucide-react";
 import { Blog } from "@/lib/types";
 import { blogsData } from "@/lib/data";
 import styles from "./BlogPreview.module.css";
 
-export default function BlogPreview() {
-    const [blogs, setBlogs] = useState<Blog[]>(blogsData as Blog[]);
+interface BlogPreviewProps {
+    initialBlogs?: Blog[];
+}
+
+export default function BlogPreview({ initialBlogs }: BlogPreviewProps) {
+    const [blogs, setBlogs] = useState<Blog[]>(() => {
+        if (initialBlogs && initialBlogs.length > 0) {
+            return initialBlogs.slice(0, 3);
+        }
+        return (blogsData as Blog[]).slice(0, 3);
+    });
 
     useEffect(() => {
-        fetch("/api/admin/blogs")
+        if (initialBlogs && initialBlogs.length > 0) return;
+
+        fetch("/api/blogs")
             .then(res => res.json())
             .then(data => {
                 if (Array.isArray(data) && data.length > 0) {
-                    setBlogs(data.filter((b: Blog) => b.published).slice(0, 3));
+                    setBlogs(data.filter((b: Blog) => b.published !== false).slice(0, 3));
                 }
             })
             .catch(() => { });
-    }, []);
+    }, [initialBlogs]);
 
     return (
         <section className={styles.section}>
@@ -38,14 +48,14 @@ export default function BlogPreview() {
                 <div className={styles.grid}>
                     {blogs.map((blog) => (
                         <Link
-                            key={blog.id}
+                            key={blog.id || blog._id || blog.slug}
                             href={`/blog/${blog.slug}`}
                             className={styles.card}
                         >
                             <div className={styles.imageWrapper}>
                                 <Image
                                     src={blog.image || '/image/about.webp'}
-                                    alt={`${blog.title} - ${blog.category || "Wedding Planning"} article by Pride Kitchen Caterers & Events (PKC Events) featuring premium wedding planning, luxury catering, and event management insights in Kerala`}
+                                    alt={`${blog.title} - ${blog.category || "Wedding Planning"} article by Pride Kitchen Caterers & Events (PKC Events)`}
                                     fill
                                     sizes="(max-width: 768px) 100vw, 33vw"
                                 />

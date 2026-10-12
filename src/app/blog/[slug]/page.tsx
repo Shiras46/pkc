@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, User, Calendar, Tag } from 'lucide-react';
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
+import { Blog as BlogType } from '@/lib/types';
 import styles from './BlogPost.module.css';
 
 type Props = {
@@ -13,16 +14,18 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  let post = null;
+  let post: BlogType | null = null;
   try {
     const db = await dbConnect();
     if (!db) throw new Error("No DB connection");
-    post = await Blog.findOne({ slug }).lean() as any;
-  } catch (e) { }
+    post = (await Blog.findOne({ slug }).lean()) as unknown as BlogType;
+  } catch {
+    // Fallback to static data
+  }
 
   if (!post) {
     const { blogsData } = await import('@/lib/data');
-    post = blogsData.find(b => b.slug === slug);
+    post = (blogsData.find(b => b.slug === slug) as unknown as BlogType) || null;
   }
 
   if (!post) {
@@ -58,16 +61,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  let post = null;
+  let post: BlogType | null = null;
   try {
     const db = await dbConnect();
     if (!db) throw new Error("No DB connection");
-    post = await Blog.findOne({ slug }).lean() as any;
-  } catch (e) { }
+    post = (await Blog.findOne({ slug }).lean()) as unknown as BlogType;
+  } catch {
+    // Fallback to static data
+  }
 
   if (!post) {
     const { blogsData } = await import('@/lib/data');
-    post = blogsData.find(b => b.slug === slug);
+    post = (blogsData.find(b => b.slug === slug) as unknown as BlogType) || null;
   }
 
   if (!post) {

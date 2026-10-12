@@ -21,7 +21,7 @@ export default function FinalCTA() {
                         viewport={{ once: true }}
                     >
                         <h2 className="heading-lg">Ready to Create Magic?</h2>
-                        <p>Contact us today for a bespoke consultation and let's craft an event that will be remembered for generations.</p>
+                        <p>Contact us today for a bespoke consultation and let&apos;s craft an event that will be remembered for generations.</p>
                         <div className={styles.actions}>
                             <button 
                                 className="btn btn-primary"

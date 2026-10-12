@@ -1,5 +1,4 @@
-
-import mongoose, { Schema, model, models } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
 const EnquirySchema = new Schema({
     name: {
@@ -13,25 +12,35 @@ const EnquirySchema = new Schema({
     },
     phone: {
         type: String,
-        default: '',
-    },
-    service: {
-        type: String,
         required: true,
+    },
+    eventType: {
+        type: String,
+        required: false,
+        default: 'General',
+    },
+    eventDate: {
+        type: String,
+        required: false,
+    },
+    guestCount: {
+        type: Number,
+        required: false,
     },
     message: {
         type: String,
-        default: '',
-    },
-    date: {
-        type: String, // String format YYYY-MM-DD
-        default: () => new Date().toISOString().split('T')[0],
+        required: false,
     },
     status: {
         type: String,
-        default: 'New',
+        enum: ['new', 'contacted', 'confirmed', 'cancelled'],
+        default: 'new',
     },
-}, { timestamps: true });
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+});
 
 // Add virtual 'id' to map _id to id
 EnquirySchema.virtual('id').get(function () {
@@ -41,10 +50,6 @@ EnquirySchema.virtual('id').get(function () {
 EnquirySchema.set('toJSON', {
     virtuals: true,
 });
-
-if (models.Enquiry) {
-    delete (models as any).Enquiry;
-}
 
 const Enquiry = models.Enquiry || model('Enquiry', EnquirySchema);
 

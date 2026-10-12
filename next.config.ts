@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', 'gsap'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', 'gsap', 'react-icons'],
   },
   turbopack: {},
   images: {

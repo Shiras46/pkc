@@ -4,18 +4,17 @@ import { servicesData } from "@/lib/data";
 import Link from "next/link";
 import Image from "next/image";
 import {
-    ChevronRight, Download, ChefHat, Leaf, Utensils, ShieldCheck, Users,
-    CheckCircle, Users2, Calendar, Star, Clock, Palette, Award, Sparkles, MapPin, DownloadCloud, Phone, PhoneCall, ChevronDown,
+    ChevronRight, ChefHat, Leaf, Utensils, ShieldCheck, Users,
+    CheckCircle, Users2, Calendar, Star, Clock, Palette, Award, Sparkles, MapPin, Phone, PhoneCall,
     Camera, Music, Car, Briefcase, Plane
 } from "lucide-react";
 import styles from "./ServiceDetail.module.css";
 import { useEffect, useState, useRef } from "react";
 import QuoteModal from "@/components/ui/QuoteModal";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import BrandName from "@/components/ui/BrandName";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -879,9 +878,9 @@ export default function ServiceDetailClient({ slug }: { slug: string }) {
                         <Image src={service.image} alt={`${service.name} CTA background`} fill sizes="(max-width: 900px) 100vw, 50vw" className={styles.ctaImg} />
                     </div>
                     <div className={styles.ctaContentPart}>
-                        <span className={styles.ctaTag}>LET'S CREATE SOMETHING EXCEPTIONAL</span>
+                        <span className={styles.ctaTag}>LET&apos;S CREATE SOMETHING EXCEPTIONAL</span>
                         <h2><span style={{ color: '#ffffff' }}>Ready to Create Something</span><br />Extraordinary?</h2>
-                        <p>Let's design a menu that makes your event absolutely unforgettable.</p>
+                        <p>Let&apos;s design a menu that makes your event absolutely unforgettable.</p>
 
                         <div className={styles.ctaButtons}>
                             <button className={styles.ctaPrimaryBtn} onClick={() => setIsQuoteOpen(true)}>

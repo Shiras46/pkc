@@ -84,27 +84,30 @@
     line-height: 1;
     display: flex;
     justify-content: center;
+    font-family: var(--font-poppins), 'Poppins', sans-serif !important;
 }
 
 .counterWrapper {
     display: inline-flex;
     align-items: baseline;
     justify-content: center;
-    font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+    font-family: var(--font-poppins), 'Poppins', sans-serif !important;
     font-size: clamp(2.2rem, 5.5vw, 3rem);
     font-weight: 700;
     line-height: 1;
 }
 
 .counterNumber {
+    font-family: var(--font-poppins), 'Poppins', sans-serif !important;
     font-size: inherit;
-    font-weight: inherit;
+    font-weight: 700;
     line-height: inherit;
 }
 
 .counterSuffix {
+    font-family: var(--font-poppins), 'Poppins', sans-serif !important;
     font-size: inherit;
-    font-weight: inherit;
+    font-weight: 700;
     line-height: inherit;
     margin-left: 2px;
     color: #ffffff;

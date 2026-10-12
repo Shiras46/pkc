@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./AboutPreview.module.css";
-import AnimatedTitle from "@/components/ui/AnimatedTitle";
 import BrandName from "@/components/ui/BrandName";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -92,7 +91,7 @@ export default function About() {
                         </div>
 
                         <div className={`${styles.storyHighlight} about-content-fade`}>
-                            "We don't just plan, execute and deliver - we craft your moments woven into a lifetime of memories."
+                            &ldquo;We don&apos;t just plan, execute and deliver - we craft your moments woven into a lifetime of memories.&rdquo;
                         </div>
 
                         <div className="about-content-fade">

@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,7 +18,7 @@ export default function ServicesCinematic() {
     useGSAP(() => {
         const rows = gsap.utils.toArray<HTMLElement>(`.${styles.serviceRow}`);
 
-        rows.forEach((row, index) => {
+        rows.forEach((row) => {
             // Scoped selectors
             const imageWrapper = row.querySelector(`.${styles.imageWrapper}`);
             const image = row.querySelector(`.${styles.serviceImage}`);

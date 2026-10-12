@@ -11,6 +11,9 @@ import { trackContactClick } from "@/lib/tracking";
 import QuoteModal from "@/components/ui/QuoteModal";
 
 gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+    ScrollTrigger.config({ ignoreMobileResize: true });
+}
 
 const heroImages = [
     "/image/hero1.webp",
@@ -35,20 +38,21 @@ export default function Hero() {
 
     useGSAP(() => {
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const tl = gsap.timeline();
-
-        tl.from(".hero-reveal", {
-            y: 50,
-            opacity: 0,
-            stagger: 0.2,
-            duration: 1.2,
-            ease: "expo.out",
-            delay: 0.2
-        });
-
         const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
+        // On mobile or reduced motion, prevent delaying LCP render
         if (!reduceMotion && !isMobile) {
+            const tl = gsap.timeline();
+
+            tl.from(".hero-reveal", {
+                y: 50,
+                opacity: 0,
+                stagger: 0.2,
+                duration: 1.2,
+                ease: "expo.out",
+                delay: 0.2
+            });
+
             gsap.to(backgroundRef.current, {
                 yPercent: 10,
                 ease: "none",
@@ -80,7 +84,9 @@ export default function Hero() {
                             fill
                             sizes="(max-width: 768px) 100vw, 100vw"
                             priority={currentIndex === 0}
+                            quality={currentIndex === 0 ? 70 : 75}
                             loading={currentIndex === 0 ? "eager" : "lazy"}
+                            fetchPriority={currentIndex === 0 ? "high" : "auto"}
                             style={{ objectFit: 'cover', objectPosition: 'center 78%' }}
                         />
                     </motion.div>

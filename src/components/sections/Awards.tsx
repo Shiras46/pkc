@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -191,7 +191,7 @@ export default function Awards() {
                                             height={award.height}
                                             sizes="(max-width: 1024px) 100vw, 45vw"
                                             className={`${styles.image} ${award.containImage ? styles.containImage : ""}`}
-                                            priority={index < 2}
+                                            loading="lazy"
                                             style={award.imageStyle}
                                         />
                                     </div>

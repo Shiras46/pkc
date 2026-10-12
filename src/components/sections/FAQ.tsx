@@ -81,44 +81,59 @@ export default function FAQ() {
                 </div>
 
                 <div className={styles.accordion}>
-                    {faqs.map((faq, index) => (
-                        <motion.div
-                            key={index}
-                            className={`${styles.item} ${activeIndex === index ? styles.active : ""}`}
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: index * 0.1 }}
-                        >
-                            <button
-                                className={styles.question}
-                                onClick={() => toggleAccordion(index)}
-                                aria-expanded={activeIndex === index}
+                    {faqs.map((faq, index) => {
+                        const isOpen = activeIndex === index;
+                        return (
+                            <motion.div
+                                key={index}
+                                className={`${styles.item} ${isOpen ? styles.active : ""}`}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: index * 0.1 }}
                             >
-                                <span>{faq.question === "Why choose Pride Kitchen Caterers & Events?" ? <>Why choose <BrandName />?</> : faq.question}</span>
-                                <ChevronDown
-                                    aria-hidden="true"
-                                    className={`${styles.icon} ${activeIndex === index ? styles.iconActive : ""}`}
-                                />
-                            </button>
-                            <AnimatePresence>
-                                {activeIndex === index && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                                    >
-                                        <div className={styles.answer}>
-                                            {faq.answer.split('\n').map((line, i) => (
-                                                <p key={i}>{renderAnswerLine(line)}</p>
-                                            ))}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
-                    ))}
+                                <button
+                                    className={styles.question}
+                                    onClick={() => toggleAccordion(index)}
+                                    aria-expanded={isOpen}
+                                >
+                                    <span>{faq.question === "Why choose Pride Kitchen Caterers & Events?" ? <>Why choose <BrandName />?</> : faq.question}</span>
+                                    <ChevronDown
+                                        aria-hidden="true"
+                                        className={`${styles.icon} ${isOpen ? styles.iconActive : ""}`}
+                                    />
+                                </button>
+                                
+                                <div className={isOpen ? styles.answerOpen : styles.answerClosed}>
+                                    <AnimatePresence initial={false}>
+                                        {isOpen && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                            >
+                                                <div className={styles.answer}>
+                                                    {faq.answer.split('\n').map((line, i) => (
+                                                        <p key={i}>{renderAnswerLine(line)}</p>
+                                                    ))}
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                    {!isOpen && (
+                                        <noscript>
+                                            <div className={styles.answer}>
+                                                {faq.answer.split('\n').map((line, i) => (
+                                                    <p key={i}>{renderAnswerLine(line)}</p>
+                                                ))}
+                                            </div>
+                                        </noscript>
+                                    )}
+                                </div>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

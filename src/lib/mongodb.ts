@@ -1,13 +1,6 @@
-
 import mongoose from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI;
-
-if (!MONGODB_URI) {
-    throw new Error(
-        'Please define the MONGODB_URI environment variable inside .env.local'
-    );
-}
 
 /**
  * Global is used here to maintain a cached connection across hot reloads
@@ -16,47 +9,51 @@ if (!MONGODB_URI) {
  */
 interface MongooseCache {
     conn: typeof mongoose | null;
-    promise: Promise<typeof mongoose> | null;
+    promise: Promise<typeof mongoose | null> | null;
 }
 
 declare global {
     // eslint-disable-next-line no-var
-    var mongoose: MongooseCache | undefined;
+    var mongooseCache: MongooseCache | undefined;
 }
 
-let cached = global.mongoose;
+let cached = global.mongooseCache;
 
 if (!cached) {
-    cached = global.mongoose = { conn: null, promise: null };
+    cached = global.mongooseCache = { conn: null, promise: null };
 }
 
-async function dbConnect() {
-    // Since we assign to cached, typescript knows it's not undefined below, but for safety:
+async function dbConnect(): Promise<typeof mongoose | null> {
+    if (!MONGODB_URI) {
+        return null;
+    }
+
     if (!cached) return null;
 
     if (cached.conn) {
         return cached.conn;
     }
 
-
     if (!cached.promise) {
         const opts = {
             bufferCommands: false,
-            serverSelectionTimeoutMS: 1500,
+            serverSelectionTimeoutMS: 2000,
         };
 
-        cached.promise = mongoose.connect(MONGODB_URI as string, opts).then((mongoose) => {
-            return mongoose;
-        }).catch(e => {
-            cached.promise = null;
-            return null as any;
-        });
+        cached.promise = mongoose
+            .connect(MONGODB_URI, opts)
+            .then((m) => m)
+            .catch((err) => {
+                console.error('MongoDB connection error:', err);
+                if (cached) cached.promise = null;
+                return null;
+            });
     }
 
     try {
         cached.conn = await cached.promise;
-    } catch (e) {
-        cached.promise = null;
+    } catch {
+        if (cached) cached.promise = null;
         return null;
     }
 

@@ -1,16 +1,22 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
-import User from "@/models/User";
+import { cookies } from "next/headers";
+import { verifySessionToken } from "@/lib/auth";
 
 export async function GET() {
-  try {
-    await dbConnect();
-    const count = await User.countDocuments();
+  if (process.env.NODE_ENV === "production") {
+    const sessionCookie = (await cookies()).get("admin_session")?.value;
+    const session = await verifySessionToken(sessionCookie);
+    if (!session) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+  }
 
+  try {
+    const conn = await dbConnect();
     return NextResponse.json({
-      success: true,
-      message: "MongoDB connected successfully",
-      usersCount: count,
+      success: !!conn,
+      message: conn ? "MongoDB connected successfully" : "MongoDB connection failed",
     });
   } catch (error) {
     console.error(error);

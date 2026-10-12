@@ -2,25 +2,22 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
-import crypto from "crypto";
+import { createSessionToken } from "@/lib/auth";
 
 export async function POST(req: Request) {
   try {
     await dbConnect();
 
-    // Auto-seed/reset default admin to ensure the code-defined credentials always work
-    const defaultEmail = "admin@pkcevents.com";
-    const defaultPassword = "PkcAdminSecure2026!";
-    const adminExists = await User.findOne({ email: defaultEmail });
-    const hashedPassword = await bcrypt.hash(defaultPassword, 10);
-    if (!adminExists) {
+    // Auto-seed default admin only if no users exist in the database yet
+    const defaultEmail = process.env.ADMIN_DEFAULT_EMAIL || "admin@pkcevents.com";
+    const defaultPassword = process.env.ADMIN_DEFAULT_PASSWORD || "PkcAdminSecure2026!";
+    const adminCount = await User.countDocuments();
+    if (adminCount === 0) {
+      const hashedPassword = await bcrypt.hash(defaultPassword, 10);
       await User.create({
         email: defaultEmail,
         password: hashedPassword,
       });
-    } else {
-      // If user exists, force reset/update password using updateOne to avoid Mongoose tracking issues
-      await User.updateOne({ email: defaultEmail }, { password: hashedPassword });
     }
 
     const body = await req.json();
@@ -37,9 +34,8 @@ export async function POST(req: Request) {
     const user = await User.findOne({ email });
 
     if (!user) {
-      console.error("Login failed: User not found for email:", email);
       return NextResponse.json(
-        { success: false, message: "User not found" },
+        { success: false, message: "Invalid email or password" },
         { status: 401 }
       );
     }
@@ -47,20 +43,21 @@ export async function POST(req: Request) {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      console.error("Login failed: Invalid password for email:", email);
       return NextResponse.json(
-        { success: false, message: "Invalid password" },
+        { success: false, message: "Invalid email or password" },
         { status: 401 }
       );
     }
 
-    // ✅ Create response
+    // Generate cryptographically signed session token
+    const token = await createSessionToken(user.email);
+
     const response = NextResponse.json({ success: true });
 
-    // ✅ Set cookie via response (NO TypeScript error)
-    response.cookies.set("admin_session", crypto.randomUUID(), {
+    response.cookies.set("admin_session", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       maxAge: 60 * 60 * 24, // 1 day
       path: "/",
     });

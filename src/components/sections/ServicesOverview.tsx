@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Utensils, Home, Paintbrush, Camera, Sparkles, Music, Car } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";

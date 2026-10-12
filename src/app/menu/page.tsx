@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function MenuPage() {
   const pdfUrl =
     "https://pkcevents-storage.s3.us-east-1.amazonaws.com/menucard/wedding-menu.pdf";
@@ -25,12 +27,12 @@ export default function MenuPage() {
           boxShadow: "0 25px 80px rgba(0,0,0,.08)",
         }}
       >
-        <img
+        <Image
           src="/logo.png"
           alt="PKC Events"
+          width={110}
+          height={110}
           style={{
-            width: "110px",
-            height: "110px",
             objectFit: "contain",
             margin: "0 auto 25px",
           }}

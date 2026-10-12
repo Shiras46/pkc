@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
+import { Blog as BlogType } from '@/lib/types';
 import styles from './Blog.module.css';
 
 export const metadata: Metadata = {
@@ -29,12 +30,12 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function BlogListingPage() {
-  let rawBlogs: any[] = [];
+  let rawBlogs: BlogType[] = [];
   try {
     const db = await dbConnect();
     if (!db) throw new Error("No DB connection");
-    rawBlogs = await Blog.find({ published: true }).sort({ date: -1 }).lean() as any[];
-  } catch (error) {
+    rawBlogs = (await Blog.find({ published: true }).sort({ date: -1 }).lean()) as unknown as BlogType[];
+  } catch {
     console.warn("Failed to connect to database or fetch blogs, falling back to static data.");
   }
 
@@ -81,7 +82,7 @@ export default async function BlogListingPage() {
                   </div>
                   <div className={styles.meta}>
                     <div className={styles.sourceLogo}>
-                      <Image src={post.image} alt="icon" fill sizes="40px" style={{ objectFit: 'cover' }} />
+                      <Image src={post.image} alt={`${post.category} thumbnail`} fill sizes="40px" style={{ objectFit: 'cover' }} />
                     </div>
                     <span className={styles.category}>{post.category}</span>
                     <span className={styles.dot}>•</span>

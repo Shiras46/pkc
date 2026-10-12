@@ -12,6 +12,10 @@ import BlogPreview from "@/components/sections/BlogPreview";
 import FAQ from "@/components/sections/FAQ";
 import FinalCTA from "@/components/sections/FinalCTA";
 import VideoReviews from "@/components/sections/VideoReviews";
+import dbConnect from '@/lib/mongodb';
+import Blog from '@/models/Blog';
+import { blogsData } from '@/lib/data';
+import { Blog as BlogType } from '@/lib/types';
 
 export const metadata: Metadata = {
     title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',
@@ -34,7 +38,30 @@ export const metadata: Metadata = {
     }
 };
 
-export default function Home() {
+async function getFeaturedBlogs(): Promise<BlogType[]> {
+    try {
+        const db = await dbConnect();
+        if (db) {
+            const blogs = await Blog.find({ published: true })
+                .sort({ date: -1 })
+                .limit(3)
+                .lean();
+            if (blogs && blogs.length > 0) {
+                return blogs.map((b: { _id?: { toString: () => string }; id?: string; slug: string; title: string; category: string; content: string; image: string; date: string }) => ({
+                    ...b,
+                    id: b._id ? b._id.toString() : b.id || b.slug,
+                })) as unknown as BlogType[];
+            }
+        }
+    } catch {
+        // Fallback gracefully to static data
+    }
+    return (blogsData as BlogType[]).slice(0, 3);
+}
+
+export default async function Home() {
+    const featuredBlogs = await getFeaturedBlogs();
+
     return (
         <>
             <Hero />
@@ -49,7 +76,7 @@ export default function Home() {
             <LeadershipTeam />
             <FAQ />
             <VideoReviews />
-            <BlogPreview />
+            <BlogPreview initialBlogs={featuredBlogs} />
         </>
     );
 }

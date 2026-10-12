@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Facebook, Instagram, Twitter, MapPin, Phone, Mail, Youtube, Linkedin } from "lucide-react";
+import { Facebook, Instagram, MapPin, Phone, Mail, Youtube, Linkedin } from "lucide-react";
 import { FaPinterest } from "react-icons/fa";
 import BrandName from "@/components/ui/BrandName";
 import styles from "./Footer.module.css";

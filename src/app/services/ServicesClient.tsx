@@ -1,143 +1,91 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import {
-    ChevronRight, Star, Users, Clock, ShieldCheck, Sparkles,
-    Award, CalendarCheck, Heart, MapPin, Briefcase, Camera, Music, Gift, Plane,
-    Car, Utensils, Paintbrush, Home, Trophy, HeartHandshake, ChevronDown
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import styles from "./Services.module.css";
 import QuoteModal from "@/components/ui/QuoteModal";
 import ServiceCards from "@/components/sections/ServiceCards";
 
-import { motion, AnimatePresence } from "framer-motion";
-
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function ServicesClient() {
+    const [isQuoteOpen, setIsQuoteOpen] = useState(false);
     const mainRef = useRef<HTMLDivElement>(null);
     const sectionRef = useRef<HTMLDivElement>(null);
     const backgroundRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
-    const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
     useGSAP(() => {
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const tl = gsap.timeline();
+
+        // --- 1. HERO ANIMATION ---
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
         tl.from(".hero-reveal", {
-            y: 50,
+            y: 40,
             opacity: 0,
-            stagger: 0.2,
-            duration: 1.2,
-            ease: "expo.out",
-            delay: 0.2
+            duration: 1,
+            stagger: 0.15,
+            clearProps: "all"
         });
 
-        if (!reduceMotion) {
+        if (!reduceMotion && backgroundRef.current && sectionRef.current) {
             gsap.to(backgroundRef.current, {
-                yPercent: 10,
+                yPercent: 20,
                 ease: "none",
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: "top top",
                     end: "bottom top",
-                    scrub: true,
+                    scrub: true
                 }
             });
         }
-    }, { scope: sectionRef, dependencies: [] });
 
-    useGSAP(() => {
-
-        // Features Strip Reveal
-        gsap.fromTo(".feature-item",
-            { y: 40, opacity: 0 },
+        // --- 2. BENTO GRID REVEAL ---
+        gsap.fromTo(".bento-item",
+            {
+                y: 50,
+                opacity: 0
+            },
             {
                 y: 0,
                 opacity: 1,
-                stagger: 0.1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: ".features-strip",
-                    start: "top 80%",
-                }
-            }
-        );
-
-        // Counters
-        const counters = document.querySelectorAll(".counter-val");
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute("data-target") || "0");
-            gsap.to(counter, {
-                innerHTML: target,
-                duration: 2,
-                snap: { innerHTML: 1 },
+                duration: 0.8,
+                stagger: 0.15,
                 ease: "power2.out",
                 scrollTrigger: {
-                    trigger: ".achievements-section",
+                    trigger: `.${styles.whySection}`,
                     start: "top 75%",
-                },
-                onUpdate: function () {
-                    const el = counter as HTMLElement;
-                    if (target > 1000) el.innerHTML = Math.ceil(this.targets()[0].innerHTML) + "+";
-                    else if (target === 100) el.innerHTML = Math.ceil(this.targets()[0].innerHTML) + "%";
-                    else el.innerHTML = Math.ceil(this.targets()[0].innerHTML) + "+";
-                }
-            });
-        });
-
-
-        // Bento Grid Reveal
-        gsap.fromTo(".bento-item",
-            { scale: 0.95, y: 30, opacity: 0 },
-            {
-                scale: 1,
-                y: 0,
-                opacity: 1,
-                stagger: 0.1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: ".bento-grid",
-                    start: "top 75%"
+                    toggleActions: "play none none none"
                 }
             }
         );
 
-        // CTA Parallax
+        // --- 3. CTA SECTION REVEAL ---
         gsap.fromTo(".cta-content",
-            { y: 50, opacity: 0 },
             {
-                y: 0, opacity: 1, duration: 1, ease: "power3.out",
+                y: 40,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.9,
+                ease: "power3.out",
                 scrollTrigger: {
-                    trigger: ".cta-section",
-                    start: "top 80%"
+                    trigger: `.${styles.ctaSection}`,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
                 }
             }
         );
 
     }, { scope: mainRef, dependencies: [] });
-
-
-    const features = [
-        { title: "Premium Quality", icon: <Star size={24} /> },
-        { title: "Expert Team", icon: <Users size={24} /> },
-        { title: "On-Time Delivery", icon: <Clock size={24} /> },
-        { title: "Reliable Service", icon: <ShieldCheck size={24} /> },
-        { title: "Attention To Detail", icon: <Sparkles size={24} /> }
-    ];
-
-    const achievements = [
-        { target: 5000, label: "Events Delivered", icon: <Trophy aria-hidden="true" /> },
-        { target: 10, label: "Years Experience", icon: <Clock aria-hidden="true" /> },
-        { target: 100, label: "Client Satisfaction", icon: <HeartHandshake aria-hidden="true" /> },
-        { target: 24, label: "24/7 Support", icon: <ShieldCheck aria-hidden="true" />, isHours: true }
-    ];
 
     const bentoItems = [
         { title: "Industry Expertise", desc: "Over a decade of orchestrating elite events with precision.", colSpan: 2 },
@@ -212,15 +160,21 @@ export default function ServicesClient() {
             </section>
 
             {/* CTA SECTION */}
-            <section className={`cta-section ${styles.ctaSection}`}>
+            <section className={styles.ctaSection}>
                 <div className={styles.ctaBackground}>
-                    <Image src="/image/services/catering.webp" alt="Catering services contact background" fill sizes="100vw" className={styles.ctaBgImg} />
+                    <Image
+                        src="/image/services/luxury-wedding-caterers.webp"
+                        alt="Pride Kitchen Caterers Kerala wedding feast setup"
+                        fill
+                        sizes="100vw"
+                        style={{ objectFit: 'cover' }}
+                    />
                     <div className={styles.ctaOverlay}></div>
                 </div>
 
                 <div className={`cta-content ${styles.ctaContent}`}>
                     <h2>Ready To Create Something Extraordinary?</h2>
-                    <p>Let's transform your vision into an unforgettable experience.</p>
+                    <p>Let&apos;s transform your vision into an unforgettable experience.</p>
                     <div className={styles.ctaActions}>
                         <button className={styles.ctaPrimaryLink} onClick={() => setIsQuoteOpen(true)}>
                             Schedule Consultation <ChevronRight size={18} />

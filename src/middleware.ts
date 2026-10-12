@@ -1,26 +1,39 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { verifySessionToken } from "@/lib/auth";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const session = request.cookies.get("admin_session");
+  const sessionCookie = request.cookies.get("admin_session")?.value;
+  const session = await verifySessionToken(sessionCookie);
 
-  // ✅ Allow login page always
+  // Allow login page, or redirect to dashboard if already logged in
   if (pathname === "/admin/login") {
+    if (session) {
+      return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+    }
     return NextResponse.next();
   }
 
-  // ✅ Protect admin routes
-  if (!session && pathname.startsWith("/admin")) {
-    return NextResponse.redirect(
-      new URL("/admin/login", request.url)
-    );
+  // Protect admin API routes
+  if (pathname.startsWith("/api/admin")) {
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    return NextResponse.next();
   }
 
-  // ✅ IMPORTANT: allow request to continue
+  // Protect admin pages
+  if (pathname.startsWith("/admin")) {
+    if (!session) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
+    }
+    return NextResponse.next();
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/api/admin/:path*"],
 };

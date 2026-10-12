@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { FileCheck, Shield, Award, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { FileCheck, Shield, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import styles from "./Certifications.module.css";
 

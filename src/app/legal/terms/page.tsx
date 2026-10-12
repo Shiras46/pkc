@@ -28,7 +28,7 @@ export default function TermsPage() {
             <h1 className="heading-md">Terms & Conditions</h1>
             <div style={{ marginTop: '40px', lineHeight: '1.8', color: '#666' }}>
                 <p>By accessing the website at pkcevents.com, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.</p>
-                <p style={{ marginTop: '20px' }}>The materials on <BrandName />'s website are provided on an 'as is' basis. <BrandName /> makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability.</p>
+                <p style={{ marginTop: '20px' }}>The materials on <BrandName />&apos;s website are provided on an &apos;as is&apos; basis. <BrandName /> makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability.</p>
             </div>
         </div>
     );

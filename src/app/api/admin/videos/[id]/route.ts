@@ -3,9 +3,11 @@ import dbConnect from '@/lib/mongodb';
 import VideoReview from '@/models/VideoReview';
 import { cookies } from 'next/headers';
 import { getDB, saveDB } from '@/lib/dbHelper';
+import { verifySessionToken } from '@/lib/auth';
 
 async function checkAuth() {
-    const session = (await cookies()).get('admin_session');
+    const sessionCookie = (await cookies()).get('admin_session')?.value;
+    const session = await verifySessionToken(sessionCookie);
     return !!session;
 }
 
@@ -42,7 +44,7 @@ export async function PUT(request: Request, context: { params: Promise<{ id: str
         } else {
             const db = getDB();
             if (!db.videoReviews) db.videoReviews = [];
-            const index = db.videoReviews.findIndex((v: any) => v._id === id || v.id === id);
+            const index = db.videoReviews.findIndex((v: { _id?: string; id?: string }) => v._id === id || v.id === id);
             if (index === -1) {
                 return NextResponse.json({ error: 'Video not found' }, { status: 404 });
             }
@@ -73,7 +75,7 @@ export async function DELETE(request: Request, context: { params: Promise<{ id: 
         } else {
             const db = getDB();
             if (!db.videoReviews) db.videoReviews = [];
-            db.videoReviews = db.videoReviews.filter((v: any) => v._id !== id && v.id !== id);
+            db.videoReviews = db.videoReviews.filter((v: { _id?: string; id?: string }) => v._id !== id && v.id !== id);
             saveDB(db);
             return NextResponse.json({ success: true });
         }
@@ -82,4 +84,3 @@ export async function DELETE(request: Request, context: { params: Promise<{ id: 
         return NextResponse.json({ error: 'Failed to delete video' }, { status: 500 });
     }
 }
-

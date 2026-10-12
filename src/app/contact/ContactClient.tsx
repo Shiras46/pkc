@@ -52,7 +52,7 @@ export default function ContactClient() {
             <header className={styles.header}>
                 <div className="container">
                     <h1 className="heading-xl text-center" style={{ color: '#fcb318' }}><span style={{ color: '#000000' }}>Contact</span> Us</h1>
-                    <p className={styles.subtitle}>Let's Start Planning Your Extraordinary Event</p>
+                    <p className={styles.subtitle}>Let&apos;s Start Planning Your Extraordinary Event</p>
                 </div>
             </header>
 

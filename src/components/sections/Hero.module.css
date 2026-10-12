@@ -127,7 +127,7 @@
     justify-content: center;
     background-color: #fcb318;
     color: #000000;
-    font-family: var(--font-poppins), var(--font-sans), sans-serif;
+    font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 700;
     line-height: 1;

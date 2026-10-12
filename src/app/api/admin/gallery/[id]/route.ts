@@ -3,9 +3,11 @@ import dbConnect from '@/lib/mongodb';
 import Gallery from '@/models/Gallery';
 import { cookies } from 'next/headers';
 import { getDB, saveDB } from '@/lib/dbHelper';
+import { verifySessionToken } from '@/lib/auth';
 
 async function checkAuth() {
-    const session = (await cookies()).get('admin_session');
+    const sessionCookie = (await cookies()).get('admin_session')?.value;
+    const session = await verifySessionToken(sessionCookie);
     return !!session;
 }
 
@@ -35,7 +37,7 @@ export async function PUT(
         } else {
             const db = getDB();
             if (!db.gallery) db.gallery = [];
-            const index = db.gallery.findIndex((item: any) => item.id === id || item._id === id);
+            const index = db.gallery.findIndex((item: { id?: string; _id?: string }) => item.id === id || item._id === id);
             if (index === -1) {
                 return NextResponse.json({ error: 'Item not found' }, { status: 404 });
             }
@@ -67,7 +69,7 @@ export async function DELETE(
         } else {
             const db = getDB();
             if (db.gallery) {
-                db.gallery = db.gallery.filter((item: any) => item.id !== id && item._id !== id);
+                db.gallery = db.gallery.filter((item: { id?: string; _id?: string }) => item.id !== id && item._id !== id);
                 saveDB(db);
             }
             return NextResponse.json({ success: true });

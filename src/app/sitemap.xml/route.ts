@@ -3,6 +3,11 @@ import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 import { blogsData } from '@/lib/data';
 
+interface SitemapBlogItem {
+    slug?: string;
+    date?: string | Date;
+}
+
 export async function GET() {
     const baseUrl = 'https://pkcevents.com';
     const staticPaths = [
@@ -22,6 +27,8 @@ export async function GET() {
         '/locations',
         '/locations/kochi',
         '/locations/thrissur',
+        '/event-management-thrissur',
+        '/event-management-kochi',
         '/blog',
         '/contact',
         '/legal/privacy',
@@ -30,10 +37,10 @@ export async function GET() {
     ];
 
     // Fetch dynamic blogs
-    let dbBlogs: any[] = [];
+    let dbBlogs: SitemapBlogItem[] = [];
     try {
         await dbConnect();
-        dbBlogs = await Blog.find({ published: true }).select('slug date').lean();
+        dbBlogs = await Blog.find({ published: true }).select('slug date').lean() as SitemapBlogItem[];
     } catch (e) {
         console.error('Error connecting to database for sitemap:', e);
     }
@@ -42,7 +49,7 @@ export async function GET() {
     const blogPaths: { loc: string; lastmod: string }[] = [];
 
     // Add DB blogs
-    dbBlogs.forEach((blog: any) => {
+    dbBlogs.forEach((blog) => {
         if (blog.slug) {
             blogSlugs.add(blog.slug);
             blogPaths.push({

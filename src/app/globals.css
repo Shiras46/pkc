@@ -6,10 +6,12 @@
   --border: #EEEEEE;
   --accent: #FDF4E3;
 
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Poppins', sans-serif;
-  --font-content: 'Inter', var(--font-inter, sans-serif);
-  --font-brand: 'VeggieBurger', 'Veggie Burger', cursive, sans-serif;
+  --font-heading: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-body: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-content: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-brand: var(--font-veggieburger), 'VeggieBurger', 'Veggie Burger', cursive, sans-serif;
+  --font-sans: var(--font-inter), 'Inter', sans-serif;
+  --font-poppins: var(--font-poppins-font), 'Poppins', sans-serif;
 
   --header-height: 80px;
   --container-width: 1400px;
@@ -18,36 +20,6 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.1);
-}
-
-@font-face {
-  font-family: 'VeggieBurger';
-  src:
-    local('VeggieBurger'),
-    local('Veggie Burger'),
-    url('/fonts/VeggiLig.otf') format('opentype');
-  font-weight: 300;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'VeggieBurger';
-  src:
-    local('VeggieBurger'),
-    local('Veggie Burger'),
-    url('/fonts/VeggiMed.otf') format('opentype');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'VeggieBurger';
-  src:
-    local('VeggieBurger'),
-    local('Veggie Burger'),
-    url('/fonts/VeggiBol.otf') format('opentype');
-  font-weight: 700;
-  font-display: swap;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -88,8 +60,11 @@ p,
 [class*="about"] p,
 [class*="contact"] p,
 [class*="faq"] p,
-[class*="service"] p {
-  font-family: 'Inter', var(--font-inter), sans-serif;
+[class*="service"] p,
+[class*="storyText"],
+[class*="storyText"] p,
+[class*="storyHighlight"] {
+  font-family: var(--font-body);
 }
 
 /* Preserve existing font for subtitle paragraph/span elements */
@@ -117,8 +92,8 @@ h6,
 [class*="titleWrapper"],
 [class*="heading"],
 [class*="Heading"],
-[class*="title"]:not(p.subtitle):not(span.subtitle):not([class*="subtitle"]):not([class*="Subtitle"]):not([class*="eyebrow"]):not([class*="brand"]):not([class*="logo"]),
-[class*="Title"]:not(p.subtitle):not(span.subtitle):not([class*="subtitle"]):not([class*="Subtitle"]):not([class*="eyebrow"]):not([class*="brand"]):not([class*="logo"]) {
+[class*="title"]:not(p.subtitle):not(span.subtitle):not([class*="subtitle"]):not([class*="Subtitle"]):not([class*="eyebrow"]):not([class*="brand"]):not([class*="logo"]):not([class*="counter"]):not([class*="cardTitle"]),
+[class*="Title"]:not(p.subtitle):not(span.subtitle):not([class*="subtitle"]):not([class*="Subtitle"]):not([class*="eyebrow"]):not([class*="brand"]):not([class*="logo"]):not([class*="counter"]):not([class*="cardTitle"]) {
   font-family: var(--font-heading), 'Playfair Display', serif !important;
   font-weight: 400 !important;
   line-height: 1.15;
@@ -286,160 +261,6 @@ button {
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
   border-radius: 10px;
-}
-
-/* Zentry Template Utilities */
-.mask-clip-path {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.special-font b {
-  font-family: 'Zentry', sans-serif;
-  /* Fallback if Zentry not loaded */
-  font-weight: 900;
-}
-
-.hero-heading {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: clamp(3rem, 10vw, 10rem);
-  line-height: 0.9;
-}
-
-.absolute-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Three Body Loader */
-.three-body {
-  --uib-size: 35px;
-  --uib-speed: 0.8s;
-  --uib-color: #5D3FD3;
-  position: relative;
-  display: inline-block;
-  height: var(--uib-size);
-  width: var(--uib-size);
-  animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
-}
-
-.three-body__dot {
-  position: absolute;
-  height: 100%;
-  width: 30%;
-}
-
-.three-body__dot:after {
-  content: '';
-  position: absolute;
-  height: 0%;
-  width: 100%;
-  padding-bottom: 100%;
-  background-color: var(--uib-color);
-  border-radius: 50%;
-}
-
-.three-body__dot:nth-child(1) {
-  bottom: 5%;
-  left: 0;
-  transform: rotate(60deg);
-  transform-origin: 50% 85%;
-}
-
-.three-body__dot:nth-child(1)::after {
-  bottom: 0;
-  left: 0;
-  animation: wobble1 var(--uib-speed) infinite ease-in-out;
-  animation-delay: calc(var(--uib-speed) * -0.3);
-}
-
-.three-body__dot:nth-child(2) {
-  bottom: 5%;
-  right: 0;
-  transform: rotate(-60deg);
-  transform-origin: 50% 85%;
-}
-
-.three-body__dot:nth-child(2)::after {
-  bottom: 0;
-  left: 0;
-  animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15) ease-in-out;
-}
-
-.three-body__dot:nth-child(3) {
-  bottom: -5%;
-  left: 0;
-  transform: translateX(116.666%);
-}
-
-.three-body__dot:nth-child(3)::after {
-  top: 0;
-  left: 0;
-  animation: wobble2 var(--uib-speed) infinite ease-in-out;
-}
-
-@keyframes spin78236 {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes wobble1 {
-
-  0%,
-  100% {
-    transform: translateY(0%) scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: translateY(-66%) scale(0.65);
-    opacity: 0.8;
-  }
-}
-
-@keyframes wobble2 {
-
-  0%,
-  100% {
-    transform: translateY(0%) scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: translateY(66%) scale(0.65);
-    opacity: 0.8;
-  }
-}
-
-/* Colors from Zentry */
-.bg-violet-50 {
-  background-color: #f5f3ff;
-}
-
-.bg-blue-75 {
-  background-color: #dfdff0;
-}
-
-.text-blue-75 {
-  color: #dfdff0;
-}
-
-.text-blue-100 {
-  color: #dbeafe;
 }
 
 /* Missing Utility Classes for Responsive Layouts */

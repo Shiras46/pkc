@@ -1,13 +1,14 @@
 export interface Blog {
     id: string;
+    _id?: string;
     title: string;
     slug: string;
-    category: "Wedding Planning Tips" | "Catering & Menu Guides" | "Event Trends";
+    category: string;
     content: string;
     image: string;
-    author: string;
+    author?: string;
     date: string;
-    published: boolean;
+    published?: boolean;
     metaTitle?: string;
     metaDescription?: string;
 }

@@ -6,18 +6,41 @@ import QuotePopup from "@/components/ui/QuotePopup";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import Script from "next/script";
 import { Playfair_Display, Jost, Poppins, Inter, DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
     style: ["normal", "italic"],
-    variable: "--font-heading",
+    variable: "--font-playfair",
     display: "swap",
 });
 const jost = Jost({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins", display: "swap" });
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins-font", display: "swap" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700", "800"], variable: "--font-dm-sans", display: "swap" });
+
+const veggieBurger = localFont({
+    src: [
+        {
+            path: "../../public/fonts/VeggiLig.otf",
+            weight: "300",
+            style: "normal",
+        },
+        {
+            path: "../../public/fonts/VeggiMed.otf",
+            weight: "400",
+            style: "normal",
+        },
+        {
+            path: "../../public/fonts/VeggiBol.otf",
+            weight: "700",
+            style: "normal",
+        },
+    ],
+    variable: "--font-veggieburger",
+    display: "swap",
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pkcevents.com';
 
@@ -324,7 +347,7 @@ export default function RootLayout({
     const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
 
     return (
-        <html lang="en" className={`${playfair.variable} ${jost.variable} ${poppins.variable} ${inter.variable} ${dmSans.variable}`}>
+        <html lang="en" className={`${playfair.variable} ${jost.variable} ${poppins.variable} ${inter.variable} ${dmSans.variable} ${veggieBurger.variable}`}>
             <head>
                 <link rel="preconnect" href="https://www.googletagmanager.com" />
                 <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -391,7 +414,7 @@ export default function RootLayout({
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
                 />
             </head>
-            <body>
+            <body className={inter.className}>
                 {/* GTM NoScript */}
                 <noscript>
                     <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from './VideoReviews.module.css';
 
 interface VideoItem {
@@ -18,18 +19,39 @@ export default function VideoReviews() {
     const [activePlayingId, setActivePlayingId] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch("/api/videos")
-            .then(res => res.json())
-            .then(data => {
-                if (Array.isArray(data) && data.length > 0) {
-                    setVideos(data);
-                } else {
-                    setVideos([]);
-                }
-            })
-            .catch(() => {
-                setVideos([]);
-            });
+        let active = true;
+
+        const loadVideos = () => {
+            fetch("/api/videos")
+                .then(res => res.json())
+                .then(data => {
+                    if (active && Array.isArray(data) && data.length > 0) {
+                        setVideos(data);
+                    } else if (active) {
+                        setVideos([]);
+                    }
+                })
+                .catch(() => {
+                    if (active) setVideos([]);
+                });
+        };
+
+        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+            const idleId = (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(
+                loadVideos,
+                { timeout: 4000 }
+            );
+            return () => {
+                active = false;
+                (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId);
+            };
+        } else {
+            const timer = setTimeout(loadVideos, 2000);
+            return () => {
+                active = false;
+                clearTimeout(timer);
+            };
+        }
     }, []);
 
     const getEmbedUrl = (video: VideoItem) => {
@@ -101,7 +123,6 @@ export default function VideoReviews() {
                         const embedUrl = getEmbedUrl(video);
                         const thumbUrl = getVideoThumbnail(video);
                         const isInstagram = video.videoUrl.includes('instagram.com') || video.videoUrl.includes('instagr.am') || video.platform === 'instagram';
-                        const hasCustomThumb = !!(video.thumbnailUrl && video.thumbnailUrl.trim());
                         
                         const displayTitle = video.title || [
                             "Another Happy Couple, Another Beautiful Story",
@@ -145,7 +166,7 @@ export default function VideoReviews() {
                                         {/* Top Header Overlay inside Card */}
                                         <div className={styles.cardHeaderOverlay}>
                                             <div className={styles.avatarWrapper}>
-                                                <img src="/logo.png" alt="PKC Logo" className={styles.avatarImg} />
+                                                <Image src="/logo.png" alt="PKC Logo" width={32} height={32} className={styles.avatarImg} />
                                             </div>
                                             <div className={styles.metaText}>
                                                 <h3 className={styles.videoTitle}>{displayTitle}</h3>

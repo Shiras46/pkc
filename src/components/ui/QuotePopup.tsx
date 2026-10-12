@@ -24,7 +24,7 @@ export default function QuotePopup() {
         }, 30000);
         
         return () => clearTimeout(timer);
-    }, []);
+    }, [isAdmin]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -58,7 +58,7 @@ export default function QuotePopup() {
                 setStatus("idle");
                 setFormData({ name: "", phone: "", service: "Wedding Catering" });
             }, 3000);
-        } catch (error) {
+        } catch {
             setStatus("idle");
         }
     };

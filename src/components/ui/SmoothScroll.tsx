@@ -1,20 +1,29 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useSyncExternalStore } from "react";
 import { ReactLenis } from "lenis/react";
 
+function subscribe(callback: () => void) {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    mql.addEventListener("change", callback);
+    return () => mql.removeEventListener("change", callback);
+}
+
+function getSnapshot() {
+    if (typeof window === "undefined") return false;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches || 'ontouchstart' in window;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    return isTouch || reduceMotion;
+}
+
+function getServerSnapshot() {
+    return false;
+}
+
 export default function SmoothScroll({ children }: { children: ReactNode }) {
-    const [isTouchDevice, setIsTouchDevice] = useState(false);
+    const isTouchOrReduced = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-    useEffect(() => {
-        const isTouch = window.matchMedia("(pointer: coarse)").matches || 'ontouchstart' in window;
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (isTouch || reduceMotion) {
-            setIsTouchDevice(true);
-        }
-    }, []);
-
-    if (isTouchDevice) {
+    if (isTouchOrReduced) {
         return <>{children}</>;
     }
 

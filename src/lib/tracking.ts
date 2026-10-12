@@ -1,10 +1,10 @@
 declare global {
     interface Window {
-        dataLayer: any[];
+        dataLayer: unknown[];
     }
 }
 
-export const trackEvent = (eventName: string, eventParams: Record<string, any> = {}) => {
+export const trackEvent = (eventName: string, eventParams: Record<string, unknown> = {}) => {
     if (typeof window !== "undefined" && window.dataLayer) {
         window.dataLayer.push({
             event: eventName,
