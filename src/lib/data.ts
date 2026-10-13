@@ -60,7 +60,7 @@ export const servicesData = [
         name: "Corporate Event",
         desc: "Professional events, served with precision and warmth. We plan and cater business events, conferences, launches, and celebrations that are punctual, polished, and memorable.",
         href: "/services/corporate-event",
-        image: "/image/services/ARUN8992.JPG.webp"
+        image: "/image/services/corprative event bg.webp"
     },
     {
         id: "destination-wedding",

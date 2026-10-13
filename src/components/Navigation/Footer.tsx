@@ -105,7 +105,18 @@ export default function Footer() {
                 </div>
 
                 <div className={styles.bottom}>
-                    <p>&copy; {new Date().getFullYear()} <BrandName />. All Rights Reserved.</p>
+                    <p className={styles.copyright}>&copy; {new Date().getFullYear()} <BrandName />. All Rights Reserved.</p>
+                    <p className={styles.developerCredit}>
+                        Designed and Developed by{" "}
+                        <a
+                            href="https://qubizon.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.developerLink}
+                        >
+                            Qubizon.com
+                        </a>
+                    </p>
                     <div className={styles.bottomLinks}>
                         <Link href="/legal/privacy">Privacy Policy</Link>
                         <Link href="/legal/terms">Terms & Conditions</Link>

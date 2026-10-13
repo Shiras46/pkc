@@ -59,7 +59,9 @@
     font-weight: 400;
     font-family: var(--font-heading, serif);
     margin-bottom: 40px;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.01em;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "clig" 0;
 }
 
 .storyText {

@@ -18,7 +18,7 @@
 
 .subtitle {
     font-size: 1.1rem;
-    color: var(--primary, #D4AF37);
+    color: #fcb318;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -35,7 +35,7 @@
 }
 
 .icon {
-    color: var(--primary, #D4AF37);
+    color: #fcb318;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -78,7 +78,7 @@
     padding: 30px;
     background: #fafafa;
     border-radius: 12px;
-    border-left: 4px solid var(--primary, #D4AF37);
+    border-left: 4px solid #fcb318;
 }
 
 .quote {

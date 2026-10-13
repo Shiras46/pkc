@@ -18,6 +18,51 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+// Helper to cleanly separate 'f' and 'l' (and 'f' and 'i') to prevent ligature collision in Playfair Display
+function formatSeparatedFL(text: string): React.ReactNode {
+    if (!text || typeof text !== "string") return text;
+    const clean = text.replace(/\u200C/g, "");
+    if (!clean.includes("fl") && !clean.includes("Fl") && !clean.includes("fi") && !clean.includes("Fi")) {
+        return clean;
+    }
+    const parts = clean.split(/(fl|Fl|fi|Fi)/g);
+    return parts.map((part, i) => {
+        if (part === "fl") {
+            return (
+                <span key={i} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+                    <span className={styles.sepF}>f</span>
+                    <span>l</span>
+                </span>
+            );
+        }
+        if (part === "Fl") {
+            return (
+                <span key={i} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+                    <span className={styles.sepF}>F</span>
+                    <span>l</span>
+                </span>
+            );
+        }
+        if (part === "fi") {
+            return (
+                <span key={i} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+                    <span style={{ display: "inline-block", marginRight: "0.04em" }}>f</span>
+                    <span>i</span>
+                </span>
+            );
+        }
+        if (part === "Fi") {
+            return (
+                <span key={i} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+                    <span style={{ display: "inline-block", marginRight: "0.04em" }}>F</span>
+                    <span>i</span>
+                </span>
+            );
+        }
+        return part;
+    });
+}
+
 const serviceSpecificData: Record<string, any> = {
     catering: {
         headline: "Wedding and Event Catering Services\nin Thrissur",
@@ -56,7 +101,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Authentic Kerala wedding feast and buffet catering setup by Pride Kitchen Caterers"
             },
             {
-                image: "/image/services/ARUN8992.JPG.webp", icon: <Utensils color="#fcb318" />,
+                image: "/image/services/Award.webp", icon: <Utensils color="#fcb318" />,
                 title: "Corporate Catering", desc: "In a corporate world, every detail carries weight and the food served on such events are no exception. It’s the true reflection of your company’s etiquette and standard. From high-stakes boardroom luncheon, a creative continental spread for a seminar to an expansive feast for an annual gala, we organize the perfect global cuisine that enhances your brand.",
                 alt: "Corporate catering buffet line setup for premium business events in Kerala"
             },
@@ -424,7 +469,7 @@ const serviceSpecificData: Record<string, any> = {
     "corporate-event": {
         headline: "Corporate Event in Thrissur",
         subheadline: "",
-        heroImage: "/image/services/ARUN8992.JPG.webp",
+        heroImage: "/image/services/corprative event bg.webp",
         heroAlt: "Corporate event stage and conference gala banquet setup by Pride Kitchen Caterers in Thrissur",
         useHalfHero: true,
         useStaggeredLayout: true,
@@ -432,8 +477,8 @@ const serviceSpecificData: Record<string, any> = {
             tag: "CORPORATE EVENT IN THRISSUR",
             title: "Professional events, served with\n[precision and warmth]",
             desc: "Every corporate gathering speaks for your brand, from the welcome at the door to the last cup of coffee. Pride Kitchen Caterers & Events plans and caters business events that are punctual, polished and memorable. As a leading name in corporate event catering in Thrissur and across Kerala, we combine disciplined service with a menu that reflects your company's standards. Whether it is a quiet board meeting or a grand annual celebration, we make sure your guests leave impressed.",
-            image: "/image/services/ARUN8992.JPG.webp",
-            alt: "Professional corporate event setup and executive dining in Thrissur by PKC Events"
+            image: "/image/services/Elegant Corporate Gala Ballroom.webp",
+            alt: "Elegant corporate gala ballroom setup in Thrissur by PKC Events"
         },
         floatingCard: {
             title: "Corporate Specialists",
@@ -455,27 +500,27 @@ const serviceSpecificData: Record<string, any> = {
         ],
         subServices: [
             {
-                image: "/image/services/ARUN8992.JPG.webp", icon: <Briefcase color="#fcb318" />,
+                image: "/image/services/confrence and seminari.webp", icon: <Briefcase color="#fcb318" />,
                 title: "Conferences & Seminars", desc: "Long sessions need food that keeps minds sharp and energy high. We plan timed tea breaks, working lunches and networking dinners that run to your agenda, never against it. Light, balanced menus and quick, organised service keep your delegates focused on what matters.",
                 alt: "Conferences and seminars catering setup by Pride Kitchen Caterers"
             },
             {
-                image: "/image/services/lighting-ambience-design.webp", icon: <Briefcase color="#fcb318" />,
+                image: "/image/services/product launch.webp", icon: <Briefcase color="#fcb318" />,
                 title: "Product Launches & Brand Events", desc: "A launch is your moment in the spotlight, and the food should match the occasion. We create stylish canapés, mocktail bars and theme-led menus that complement your brand identity. Elegant presentation and attentive service help turn your launch into an experience guests talk about.",
                 alt: "Product launch and brand activation event setup in Thrissur"
             },
             {
-                image: "/image/services/buffet.webp", icon: <Briefcase color="#fcb318" />,
+                image: "/image/services/Award.webp", icon: <Briefcase color="#fcb318" />,
                 title: "Annual Days & Award Nights", desc: "Celebrating your people deserves a feast worthy of the occasion. From grand buffets with Kerala, North Indian, Arabic and continental spreads to plated dinners for your leadership table, we cater for every scale. Live counters and dessert stations add energy to the evening and bring teams together.",
                 alt: "Annual day corporate gala dinner buffet in Thrissur"
             },
             {
-                image: "/image/services/On-site Coordination.webp", icon: <Briefcase color="#fcb318" />,
+                image: "/image/services/Team outing.webp", icon: <Briefcase color="#fcb318" />,
                 title: "Team Outings & Family Days", desc: "Offsites, team-building retreats and employee family days call for relaxed, crowd-pleasing food. We serve hearty meals, snack stations and kid-friendly options at resorts, campuses or outdoor venues. Our team manages setup, service and clean-up, so your staff can simply enjoy the day.",
                 alt: "Corporate team outing and family day event catering"
             },
             {
-                image: "/image/services/catering.webp", icon: <Briefcase color="#fcb318" />,
+                image: "/image/services/Festive office.webp", icon: <Briefcase color="#fcb318" />,
                 title: "Festive Office Celebrations", desc: "Onam, Christmas, Diwali and Eid bring offices together like nothing else. We bring the festive spirit to your workplace with a traditional Kerala sadhya on banana leaf for Onam, festive cakes and treats for Christmas, or a celebration menu for any occasion. Every festival is served with authenticity, hygiene and the warmth your team deserves.",
                 alt: "Festive office celebration and Kerala traditional sadhya setup"
             }
@@ -594,23 +639,14 @@ const defaultData = {
 };
 
 export default function ServiceDetailClient({ slug }: { slug: string }) {
-    const [service, setService] = useState<typeof servicesData[0] | null>(null);
-    const [loading, setLoading] = useState(true);
+    const service = servicesData.find(s => s.id === slug) || null;
     const [isQuoteOpen, setIsQuoteOpen] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
     const backgroundRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (slug) {
-            const found = servicesData.find(s => s.id === slug);
-            setService(found || null);
-            setLoading(false);
-        }
-    }, [slug]);
-
     useGSAP(() => {
-        if (loading || !service) return;
+        if (!service) return;
 
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const tl = gsap.timeline();
@@ -636,9 +672,8 @@ export default function ServiceDetailClient({ slug }: { slug: string }) {
                 }
             });
         }
-    }, { scope: sectionRef, dependencies: [loading, service] });
+    }, { scope: sectionRef, dependencies: [service] });
 
-    if (loading) return <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>Loading...</div>;
     if (!service) return <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>Service not found.</div>;
 
     const pageData = serviceSpecificData[slug] || defaultData;
@@ -675,7 +710,7 @@ export default function ServiceDetailClient({ slug }: { slug: string }) {
                                         if (headline.includes('\n')) {
                                             return headline.split('\n').map((line: string, i: number) => (
                                                 <span key={i} style={i === 1 ? { color: '#fcb318' } : undefined}>
-                                                    {line}
+                                                    {formatSeparatedFL(line)}
                                                     {i < headline.split('\n').length - 1 && <br />}
                                                 </span>
                                             ));
@@ -686,12 +721,12 @@ export default function ServiceDetailClient({ slug }: { slug: string }) {
                                             const lastWord = headline.substring(lastSpaceIndex + 1);
                                             return (
                                                 <span>
-                                                    {firstPart}{' '}
-                                                    <span style={{ color: '#fcb318' }}>{lastWord}</span>
+                                                    {formatSeparatedFL(firstPart)}{' '}
+                                                    <span style={{ color: '#fcb318' }}>{formatSeparatedFL(lastWord)}</span>
                                                 </span>
                                             );
                                         }
-                                        return <span>{headline}</span>;
+                                        return <span>{formatSeparatedFL(headline)}</span>;
                                     })()}
                                 </h1>
                             </div>
@@ -733,17 +768,17 @@ export default function ServiceDetailClient({ slug }: { slug: string }) {
                                             <span key={idx}>
                                                 {match ? (
                                                     <>
-                                                        {match[1]}
-                                                        <span style={{ color: '#fcb318' }}>{match[2]}</span>
-                                                        {match[3]}
+                                                        {formatSeparatedFL(match[1])}
+                                                        <span style={{ color: '#fcb318' }}>{formatSeparatedFL(match[2])}</span>
+                                                        {formatSeparatedFL(match[3])}
                                                     </>
-                                                ) : line}
+                                                ) : formatSeparatedFL(line)}
                                                 {idx < pageData.intro.title.split('\n').length - 1 && <br />}
                                             </span>
                                         );
                                     })}
                                 </h2>
-                                <p>{pageData.intro.desc}</p>
+                                <p>{formatSeparatedFL(pageData.intro.desc)}</p>
                                 <button className={styles.introButton} onClick={() => setIsQuoteOpen(true)}>
                                     BOOK A CONSULTATION <ChevronRight size={16} />
                                 </button>
@@ -799,7 +834,7 @@ export default function ServiceDetailClient({ slug }: { slug: string }) {
                                             />
                                         </div>
                                         <div className={styles.staggeredContent}>
-                                            <h3>{sub.title}</h3>
+                                            <h3>{formatSeparatedFL(sub.title)}</h3>
                                             <p>{sub.desc}</p>
                                             <button className={styles.staggeredButton} onClick={() => setIsQuoteOpen(true)}>
                                                 BOOK A CONSULTATION <ChevronRight size={14} />
@@ -827,7 +862,7 @@ export default function ServiceDetailClient({ slug }: { slug: string }) {
                                         </div>
                                     </div>
                                     <div className={styles.subCardContent}>
-                                        <h3>{sub.title}</h3>
+                                        <h3>{formatSeparatedFL(sub.title)}</h3>
                                         <p>{sub.desc}</p>
                                         <button className={styles.knowMoreBtn}>
                                             KNOW MORE <ChevronRight size={14} />

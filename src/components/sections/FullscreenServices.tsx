@@ -51,9 +51,9 @@ const services = [
         id: "06",
         title: "Corporate Events",
         desc: "Professional experiences with lasting impact.\n\nFrom conferences and product launches to gala dinners and annual celebrations, we deliver seamless corporate event experiences.",
-        image: "/image/services/Whisper Stories.webp",
-        alt: "Elegant wedding venue interior with decorative lighting",
-        link: "/services"
+        image: "/image/services/product launch.webp",
+        alt: "Corporate conference and product launch event management by PKC Events",
+        link: "/services/corporate-event"
     }
 ];
 

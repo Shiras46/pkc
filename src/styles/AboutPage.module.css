@@ -221,7 +221,7 @@
 }
 
 .statLine strong {
-    color: var(--primary, #d4af37);
+    color: #fcb318;
     font-family: var(--font-heading, serif);
     font-size: 3rem;
     font-weight: 400;
