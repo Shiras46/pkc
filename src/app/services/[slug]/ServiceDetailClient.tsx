@@ -467,16 +467,16 @@ const serviceSpecificData: Record<string, any> = {
         ]
     },
     "corporate-event": {
-        headline: "Corporate Event in Thrissur",
+        headline: "Corporate Event Planners\nin Thrissur",
         subheadline: "",
         heroImage: "/image/services/corprative event bg.webp",
-        heroAlt: "Corporate event stage and conference gala banquet setup by Pride Kitchen Caterers in Thrissur",
+        heroAlt: "Corporate event planners in Thrissur stage and conference gala banquet setup by Pride Kitchen Caterers",
         useHalfHero: true,
         useStaggeredLayout: true,
         intro: {
-            tag: "CORPORATE EVENT IN THRISSUR",
+            tag: "CORPORATE EVENT PLANNERS IN THRISSUR",
             title: "Professional events, served with\n[precision and warmth]",
-            desc: "Every corporate gathering speaks for your brand, from the welcome at the door to the last cup of coffee. Pride Kitchen Caterers & Events plans and caters business events that are punctual, polished and memorable. As a leading name in corporate event catering in Thrissur and across Kerala, we combine disciplined service with a menu that reflects your company's standards. Whether it is a quiet board meeting or a grand annual celebration, we make sure your guests leave impressed.",
+            desc: "Every corporate gathering speaks for your brand, from the welcome at the door to the last cup of coffee. Pride Kitchen Caterers & Events plans and caters business events that are punctual, polished and memorable. As leading corporate event planners and caterers in Thrissur and across Kerala, we combine disciplined service with a menu that reflects your company's standards. Whether it is a quiet board meeting or a grand annual celebration, we make sure your guests leave impressed.",
             image: "/image/services/Elegant Corporate Gala Ballroom.webp",
             alt: "Elegant corporate gala ballroom setup in Thrissur by PKC Events"
         },
@@ -534,16 +534,16 @@ const serviceSpecificData: Record<string, any> = {
         ]
     },
     "destination-wedding": {
-        headline: "Destination Wedding in Thrissur",
+        headline: "Destination Wedding Planners\nin Thrissur",
         subheadline: "",
         heroImage: "/image/services/destination-banner.webp",
-        heroAlt: "Scenic open-air luxury beachfront and backwater destination wedding setup in Thrissur, Kerala by Pride Kitchen Caterers & Events",
+        heroAlt: "Destination wedding planners in Thrissur luxury beachfront and backwater wedding setup by Pride Kitchen Caterers & Events",
         useHalfHero: true,
         useStaggeredLayout: true,
         intro: {
-            tag: "DESTINATION WEDDING IN THRISSUR",
+            tag: "DESTINATION WEDDING PLANNERS IN THRISSUR",
             title: "Your love story, celebrated where\n[Kerala is at its most beautiful]",
-            desc: "A destination wedding is more than a change of venue. It is a journey your families take together, where every meal becomes a memory of the place. Pride Kitchen Caterers & Events brings the warmth of Kerala hospitality to beaches, backwaters, hill stations and heritage homes across the state. As trusted destination wedding caterers in Thrissur, Kerala, we plan, cook and serve with the same care, whether your guests number fifty or a thousand. From the first welcome drink to the farewell breakfast, we make your celebration feel effortless, wherever you choose to say 'I do'.",
+            desc: "A destination wedding is more than a change of venue. It is a journey your families take together, where every meal becomes a memory of the place. Pride Kitchen Caterers & Events brings the warmth of Kerala hospitality to beaches, backwaters, hill stations and heritage homes across the state. As trusted destination wedding planners and caterers in Thrissur, Kerala, we plan, cook and serve with the same care, whether your guests number fifty or a thousand. From the first welcome drink to the farewell breakfast, we make your celebration feel effortless, wherever you choose to say 'I do'.",
             image: "/image/services/destination-wedding-intro.webp",
             alt: "Scenic destination wedding celebration setup in Kerala by Pride Kitchen Caterers & Events"
         },

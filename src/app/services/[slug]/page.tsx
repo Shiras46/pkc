@@ -42,12 +42,12 @@ const serviceSeoMetadata: Record<string, { title: string; description: string }>
         description: 'End-to-end venue selection and management for weddings and events in Thrissur, Kochi & Kerala, from layout planning to flawless execution.',
     },
     'corporate-event': {
-        title: 'Corporate Event Management & Catering in Thrissur & Kochi | PKC Events',
-        description: 'Professional corporate event planning, conferences, product launches, galas, and corporate catering in Thrissur & Kochi. Elevate your brand with PKC Events.',
+        title: 'Corporate Event Planners in Thrissur & Kochi | PKC Events',
+        description: 'Professional corporate event planners in Thrissur & Kochi. Expert planning for conferences, product launches, galas, and corporate catering. Elevate your brand with PKC Events.',
     },
     'destination-wedding': {
-        title: 'Destination Wedding Planners in Kerala | Pride Kitchen Caterers & Events',
-        description: 'Exquisite destination weddings in Kerala. Luxury venue selection, resort hospitality, theme decor, and authentic catering for your dream Kerala wedding.',
+        title: 'Destination Wedding Planners in Thrissur & Kerala | Pride Kitchen Caterers & Events',
+        description: 'Premier destination wedding planners in Thrissur & Kerala. Luxury venue selection, resort hospitality, theme decor, and authentic catering for your dream Kerala wedding.',
     },
 };
 
