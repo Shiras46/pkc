@@ -168,7 +168,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Luxurious open-air beachfront and scenic wedding venue layouts in Kerala"
             },
             {
-                image: "/image/services/On-site Coordination.webp", icon: <Users color="#fcb318" />,
+                image: "/image/services/onsite-coordination-v2.webp", icon: <Users color="#fcb318" />,
                 title: "On-site Coordination", desc: "Hosting is not just about arranging the event, it’s about being fully present to share in the joy. With us as your watchful guardians of your vision, you never have to miss a precious moment of your special day. Our on site-cordination team handles all the nuances behind the scenes, resolving all the complexities while you immerse yourself in the celebration.",
                 alt: "Professional event coordinator managing venue settings and guest services on-site"
             },
@@ -567,7 +567,7 @@ const serviceSpecificData: Record<string, any> = {
         ],
         subServices: [
             {
-                image: "/image/services/beach-backwater-weddings.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/beach-backwater-weddings-v2.webp", icon: <Plane color="#fcb318" />,
                 title: "Beach & Backwater Weddings", desc: "The sound of the waves, the calm of the backwaters and a feast laid out under the open sky. We design menus that suit the setting, from fresh coastal seafood and Kerala-style grills to light continental bites for a sunset reception. Our team handles on-site kitchens, food safety and service flow, so the beauty of the venue is all your guests have to think about.",
                 alt: "Beach and backwater destination wedding catering and open-air feast setup in Kerala by Pride Kitchen Caterers"
             },
@@ -577,17 +577,17 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Misty hill station resort destination wedding reception feast setup"
             },
             {
-                image: "/image/services/heritage-temple-town-weddings.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/heritage-temple-town-weddings-v2.webp", icon: <Plane color="#fcb318" />,
                 title: "Heritage Home & Temple Town Weddings", desc: "Some weddings belong to tradition, set in an ancestral tharavad, a heritage property or the temple towns of Thrissur and Guruvayur. Here, we honour custom with an authentic Kerala traditional sadhya on banana leaf, prepared with district-specific recipes and served the way it has always been. As specialists in luxury wedding catering in Thrissur, we bring heritage to the table with grace and precision.",
                 alt: "Authentic Kerala banana leaf sadhya served at a heritage home and temple town wedding in Thrissur"
             },
             {
-                image: "/image/services/pre-wedding-multi-day-celebrations.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/pre-wedding-multi-day-celebrations-v2.webp", icon: <Plane color="#fcb318" />,
                 title: "Pre-Wedding & Multi-Day Celebrations", desc: "A destination wedding is rarely a single day. From welcome dinners and Mehendi lunches to Haldi brunches, Sangeet nights and farewell breakfasts, we curate a different menu for every event. Each day gets its own theme, flavour and presentation, so your guests experience something new at every gathering.",
                 alt: "Luxury pre-wedding and multi-day destination celebration dining setup including Mehendi, Sangeet and Haldi catering"
             },
             {
-                image: "/image/services/onsite-coordination.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/onsite-coordination-v2.webp", icon: <Plane color="#fcb318" />,
                 title: "Complete Planning & Guest Hospitality", desc: "Hosting guests in a new place takes more than good food. We work with you on menu planning, venue coordination, live counters, décor-matched presentation and dietary needs for every guest, including vegetarian, Jain and allergy-friendly options. With Pride Kitchen managing the dining experience end to end, you are free to be present for every moment of your celebration.",
                 alt: "Complete wedding planning, on-site kitchen management and guest hospitality service in Thrissur by PKC Events"
             }
