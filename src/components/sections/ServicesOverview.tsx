@@ -1,6 +1,6 @@
 "use client";
 
-import { Utensils, Home, Paintbrush, Camera, Sparkles, Music, Car } from "lucide-react";
+import { Utensils, Home, Paintbrush, Camera, Sparkles, Music, Car, Briefcase, Plane } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./ServicesOverview.module.css";
@@ -15,6 +15,8 @@ const iconMap: Record<string, React.ReactNode> = {
     makeup: <Sparkles size={24} />,
     entertainment: <Music size={24} />,
     cars: <Car size={24} />,
+    "corporate-event": <Briefcase size={24} />,
+    "destination-wedding": <Plane size={24} />,
 };
 
 const services = servicesData.map(s => ({
