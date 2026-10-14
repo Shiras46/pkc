@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Blog } from "@/lib/types";
-import { blogsData } from "@/lib/data";
 import styles from "./BlogPreview.module.css";
 
 interface BlogPreviewProps {
@@ -12,12 +11,7 @@ interface BlogPreviewProps {
 }
 
 export default function BlogPreview({ initialBlogs }: BlogPreviewProps) {
-    const [blogs, setBlogs] = useState<Blog[]>(() => {
-        if (initialBlogs && initialBlogs.length > 0) {
-            return initialBlogs.slice(0, 3);
-        }
-        return (blogsData as Blog[]).slice(0, 3);
-    });
+    const [blogs, setBlogs] = useState<Blog[]>(initialBlogs || []);
 
     useEffect(() => {
         if (initialBlogs && initialBlogs.length > 0) return;
@@ -25,12 +19,16 @@ export default function BlogPreview({ initialBlogs }: BlogPreviewProps) {
         fetch("/api/blogs")
             .then(res => res.json())
             .then(data => {
-                if (Array.isArray(data) && data.length > 0) {
+                if (Array.isArray(data)) {
                     setBlogs(data.filter((b: Blog) => b.published !== false).slice(0, 3));
                 }
             })
             .catch(() => { });
     }, [initialBlogs]);
+
+    if (!blogs || blogs.length === 0) {
+        return null;
+    }
 
     return (
         <section className={styles.section}>

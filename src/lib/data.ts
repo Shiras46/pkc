@@ -70,27 +70,4 @@ export const servicesData = [
         image: "/image/services/beach-backwater-weddings-v2.webp"
     },
 ];
-export const blogsData = [
-    {
-        id: "blog-1",
-        title: "Top 10 Wedding Decor Trends for 2026",
-        slug: "wedding-decor-trends-2026",
-        category: "Event Trends",
-        content: "Discover the most breathtaking decor trends that are redefining luxury weddings this year, from sustainable florals to immersive digital backdrops.",
-        image: "/image/services/decoration.webp",
-        date: "2026-01-20",
-        author: "Meera Nair",
-        published: true
-    },
-    {
-        id: "blog-2",
-        title: "Curating the Perfect Fusion Menu",
-        slug: "perfect-fusion-menu",
-        category: "Catering & Menu Guides",
-        content: "How to perfectly blend traditional Kerala flavors with international gourmet cuisine for a menu that satisfies every palate.",
-        image: "/image/services/catering.webp",
-        date: "2026-01-15",
-        author: "Chef Arjun",
-        published: true
-    }
-];
+export const blogsData: any[] = [];

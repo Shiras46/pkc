@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 48px 24px;
-  background: var(--accent, #FDF4E3);
+  background: var(--accent, #fdfaf5);
   overflow: hidden;
 }
 

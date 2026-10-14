@@ -35,16 +35,11 @@ export default async function BlogListingPage() {
     const db = await dbConnect();
     if (!db) throw new Error("No DB connection");
     rawBlogs = (await Blog.find({ published: true }).sort({ date: -1 }).lean()) as unknown as BlogType[];
-  } catch {
-    console.warn("Failed to connect to database or fetch blogs, falling back to static data.");
+  } catch (error) {
+    console.error("Failed to connect to database or fetch blogs:", error);
   }
 
-  if (!rawBlogs || rawBlogs.length === 0) {
-    const { blogsData } = await import('@/lib/data');
-    rawBlogs = blogsData.filter(b => b.published);
-  }
-
-  const posts = rawBlogs.map(blog => ({
+  const posts = (rawBlogs || []).map(blog => ({
     id: blog._id ? blog._id.toString() : (blog.id || blog.slug),
     slug: blog.slug,
     title: blog.title,

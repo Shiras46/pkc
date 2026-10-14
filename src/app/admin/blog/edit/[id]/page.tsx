@@ -30,7 +30,7 @@ export default function EditBlogPost() {
         fetch("/api/admin/blogs")
             .then(res => res.json())
             .then(data => {
-                const found = data.find((b: Blog) => b.id === id);
+                const found = data.find((b: Blog) => b.id === id || (b as any)._id === id);
                 if (found) setFormData(found);
                 setLoading(false);
             })

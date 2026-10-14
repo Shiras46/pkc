@@ -19,13 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const db = await dbConnect();
     if (!db) throw new Error("No DB connection");
     post = (await Blog.findOne({ slug }).lean()) as unknown as BlogType;
-  } catch {
-    // Fallback to static data
-  }
-
-  if (!post) {
-    const { blogsData } = await import('@/lib/data');
-    post = (blogsData.find(b => b.slug === slug) as unknown as BlogType) || null;
+  } catch (error) {
+    console.error("Failed to fetch blog post metadata:", error);
   }
 
   if (!post) {
@@ -42,17 +37,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: desc,
     alternates: {
       canonical,
-    },
-    icons: {
-      icon: [
-        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-        { url: "/favicon.ico", sizes: "any" }
-      ],
-      shortcut: "/favicon.ico",
-      apple: [
-        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
-      ]
     },
     openGraph: {
       title: `${post.title} | PKC Events Blog`,
@@ -77,13 +61,8 @@ export default async function BlogPostPage({ params }: Props) {
     const db = await dbConnect();
     if (!db) throw new Error("No DB connection");
     post = (await Blog.findOne({ slug }).lean()) as unknown as BlogType;
-  } catch {
-    // Fallback to static data
-  }
-
-  if (!post) {
-    const { blogsData } = await import('@/lib/data');
-    post = (blogsData.find(b => b.slug === slug) as unknown as BlogType) || null;
+  } catch (error) {
+    console.error("Failed to fetch blog post:", error);
   }
 
   if (!post) {

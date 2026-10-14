@@ -4,7 +4,7 @@
   --foreground: #1A1A1A;
   --text-muted: #666666;
   --border: #EEEEEE;
-  --accent: #FDF4E3;
+  --accent: #fdfaf5;
 
   --font-heading: var(--font-playfair), 'Playfair Display', Georgia, serif;
   --font-body: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;

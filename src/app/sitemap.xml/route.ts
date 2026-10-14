@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
-import { blogsData } from '@/lib/data';
 
 interface SitemapBlogItem {
     slug?: string;
@@ -52,16 +51,6 @@ export async function GET() {
     dbBlogs.forEach((blog) => {
         if (blog.slug) {
             blogSlugs.add(blog.slug);
-            blogPaths.push({
-                loc: `/blog/${blog.slug}`,
-                lastmod: blog.date ? new Date(blog.date).toISOString() : new Date().toISOString()
-            });
-        }
-    });
-
-    // Fallback/add static blogs if not in DB
-    blogsData.forEach((blog) => {
-        if (blog.published && blog.slug && !blogSlugs.has(blog.slug)) {
             blogPaths.push({
                 loc: `/blog/${blog.slug}`,
                 lastmod: blog.date ? new Date(blog.date).toISOString() : new Date().toISOString()

@@ -14,7 +14,6 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import VideoReviews from "@/components/sections/VideoReviews";
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
-import { blogsData } from '@/lib/data';
 import { Blog as BlogType } from '@/lib/types';
 
 export const metadata: Metadata = {
@@ -63,10 +62,10 @@ async function getFeaturedBlogs(): Promise<BlogType[]> {
                 }));
             }
         }
-    } catch {
-        // Fallback gracefully to static data
+    } catch (error) {
+        console.error("Failed to fetch featured blogs from DB:", error);
     }
-    return (blogsData as BlogType[]).slice(0, 3);
+    return [];
 }
 
 export default async function Home() {

@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import { Utensils, Home, Paintbrush, Camera, Sparkles, Music, Car, Briefcase, Plane } from "lucide-react";
+import { Utensils, Home, Paintbrush, Camera, Sparkles, Music, Car } from "lucide-react";
 import { servicesData } from "@/lib/data";
 import styles from "./ServicesGrid.module.css";
 
@@ -23,8 +23,6 @@ const iconMap: Record<string, React.ReactNode> = {
     makeup: <Sparkles size={24} />,
     entertainment: <Music size={24} />,
     cars: <Car size={24} />,
-    "corporate-event": <Briefcase size={24} />,
-    "destination-wedding": <Plane size={24} />,
 };
 
 // Merge data with icons

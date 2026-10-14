@@ -2,112 +2,97 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const sourcePath = path.join(__dirname, '../public/logo.png');
+const sourcePath = path.join(__dirname, '../public/favicon-16x16.png');
 
-function toIco(images) {
+const targets = [
+    { name: 'favicon-16x16.png', size: 16 },
+    { name: 'favicon-32x32.png', size: 32 },
+    { name: 'apple-touch-icon.png', size: 180 },
+    { name: 'android-chrome-192x192.png', size: 192 },
+    { name: 'android-chrome-512x512.png', size: 512 }
+];
+
+// Helper to convert a PNG buffer to a standard 1-image ICO file format
+function toIco(pngBuffer, size) {
     const header = Buffer.alloc(6);
     header.writeUInt16LE(0, 0);     // Reserved
     header.writeUInt16LE(1, 2);     // Type 1 (ICO)
-    header.writeUInt16LE(images.length, 4); // Number of images
+    header.writeUInt16LE(1, 4);     // Number of images (1)
 
-    const dir = Buffer.alloc(16 * images.length);
-    let offset = 6 + (16 * images.length);
+    const dirEntry = Buffer.alloc(16);
+    dirEntry.writeUInt8(size, 0);   // Width
+    dirEntry.writeUInt8(size, 1);   // Height
+    dirEntry.writeUInt8(0, 2);      // Color count (0 for >= 256 colors)
+    dirEntry.writeUInt8(0, 3);      // Reserved
+    dirEntry.writeUInt16LE(1, 4);   // Color planes
+    dirEntry.writeUInt16LE(32, 6);  // Bits per pixel
+    dirEntry.writeUInt32LE(pngBuffer.length, 8); // PNG image data size
+    dirEntry.writeUInt32LE(22, 12); // Offset from start of file (6 header + 16 dir = 22)
 
-    images.forEach((img, idx) => {
-        const entryOffset = idx * 16;
-        dir.writeUInt8(img.size >= 256 ? 0 : img.size, entryOffset + 0);  // Width
-        dir.writeUInt8(img.size >= 256 ? 0 : img.size, entryOffset + 1);  // Height
-        dir.writeUInt8(0, entryOffset + 2);                               // Color count
-        dir.writeUInt8(0, entryOffset + 3);                               // Reserved
-        dir.writeUInt16LE(1, entryOffset + 4);                            // Color planes
-        dir.writeUInt16LE(32, entryOffset + 6);                           // Bits per pixel
-        dir.writeUInt32LE(img.buf.length, entryOffset + 8);               // Size
-        dir.writeUInt32LE(offset, entryOffset + 12);                      // Offset
-        offset += img.buf.length;
-    });
-
-    return Buffer.concat([header, dir, ...images.map(img => img.buf)]);
+    return Buffer.concat([header, dirEntry, pngBuffer]);
 }
 
 async function run() {
     try {
         if (!fs.existsSync(sourcePath)) {
-            console.error(`Source logo file not found at: ${sourcePath}`);
+            console.error(`Source favicon file not found at: ${sourcePath}`);
             return;
         }
 
-        console.log(`Loading master logo from: ${sourcePath}`);
-        // Trim transparent borders, add 5% padding around circular badge
-        const trimmedBuffer = await sharp(sourcePath).trim().toBuffer();
-        const trimmedMeta = await sharp(trimmedBuffer).metadata();
-        const maxDim = Math.max(trimmedMeta.width, trimmedMeta.height);
-        const padding = Math.round(maxDim * 0.05);
-        const paddedDim = maxDim + (padding * 2);
+        // Read the source image into memory buffer so we don't lock it or overwrite it before we are done
+        const sourceBuffer = fs.readFileSync(sourcePath);
+        console.log(`Successfully loaded source favicon (${sourceBuffer.length} bytes)`);
 
-        const squareBuffer = await sharp(trimmedBuffer)
-            .resize(maxDim, maxDim, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-            .extend({
-                top: padding,
-                bottom: padding,
-                left: padding,
-                right: padding,
+        const publicDir = path.join(__dirname, '../public');
+        const deployPublicDir = path.join(__dirname, '../deploy/public');
+
+        // 1. Generate PNG targets
+        for (const target of targets) {
+            const pngBuffer = await sharp(sourceBuffer)
+                .resize(target.size, target.size, {
+                    fit: 'contain',
+                    background: { r: 0, g: 0, b: 0, alpha: 0 } // transparent background
+                })
+                .png()
+                .toBuffer();
+
+            // Write to /public
+            const destPath = path.join(publicDir, target.name);
+            fs.writeFileSync(destPath, pngBuffer);
+            console.log(`Generated ${target.name} (${target.size}x${target.size}) in public/`);
+
+            // Write to /deploy/public if exists
+            if (fs.existsSync(deployPublicDir)) {
+                const deployDestPath = path.join(deployPublicDir, target.name);
+                fs.writeFileSync(deployDestPath, pngBuffer);
+                console.log(`Generated ${target.name} in deploy/public/`);
+            }
+        }
+
+        // 2. Generate favicon.ico (using 32x32 size)
+        const icoPngBuffer = await sharp(sourceBuffer)
+            .resize(32, 32, {
+                fit: 'contain',
                 background: { r: 0, g: 0, b: 0, alpha: 0 }
             })
             .png()
             .toBuffer();
 
-        const publicDir = path.join(__dirname, '../public');
-        const appDir = path.join(__dirname, '../src/app');
-        const deployPublicDir = path.join(__dirname, '../deploy/public');
+        const icoBuffer = toIco(icoPngBuffer, 32);
 
-        const targets = [
-            { name: 'favicon-16x16.png', size: 16, dirs: [publicDir, deployPublicDir] },
-            { name: 'favicon-32x32.png', size: 32, dirs: [publicDir, deployPublicDir] },
-            { name: 'apple-touch-icon.png', size: 180, dirs: [publicDir, deployPublicDir] },
-            { name: 'android-chrome-192x192.png', size: 192, dirs: [publicDir, deployPublicDir] },
-            { name: 'android-chrome-512x512.png', size: 512, dirs: [publicDir, deployPublicDir] },
-            { name: 'icon.png', size: 512, dirs: [appDir] },
-            { name: 'apple-icon.png', size: 180, dirs: [appDir] }
-        ];
+        // Write favicon.ico to /public
+        const icoDestPath = path.join(publicDir, 'favicon.ico');
+        fs.writeFileSync(icoDestPath, icoBuffer);
+        console.log(`Generated favicon.ico in public/`);
 
-        // 1. Generate PNG targets
-        for (const target of targets) {
-            const pngBuf = await sharp(squareBuffer)
-                .resize(target.size, target.size, {
-                    fit: 'contain',
-                    background: { r: 0, g: 0, b: 0, alpha: 0 }
-                })
-                .png()
-                .toBuffer();
-
-            for (const dir of target.dirs) {
-                if (fs.existsSync(dir)) {
-                    fs.writeFileSync(path.join(dir, target.name), pngBuf);
-                    console.log(`Generated ${target.name} (${target.size}x${target.size}) in ${path.relative(__dirname, dir)}/`);
-                }
-            }
+        // Write favicon.ico to /deploy/public if exists
+        if (fs.existsSync(deployPublicDir)) {
+            const deployIcoDestPath = path.join(deployPublicDir, 'favicon.ico');
+            fs.writeFileSync(deployIcoDestPath, icoBuffer);
+            console.log(`Generated favicon.ico in deploy/public/`);
         }
 
-        // 2. Generate multi-resolution favicon.ico (16, 32, 48)
-        const ico16 = await sharp(squareBuffer).resize(16, 16, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
-        const ico32 = await sharp(squareBuffer).resize(32, 32, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
-        const ico48 = await sharp(squareBuffer).resize(48, 48, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
-
-        const icoBuffer = toIco([
-            { size: 16, buf: ico16 },
-            { size: 32, buf: ico32 },
-            { size: 48, buf: ico48 }
-        ]);
-
-        const icoDirs = [publicDir, appDir, deployPublicDir];
-        for (const dir of icoDirs) {
-            if (fs.existsSync(dir)) {
-                fs.writeFileSync(path.join(dir, 'favicon.ico'), icoBuffer);
-                console.log(`Generated favicon.ico (16/32/48 multi-res) in ${path.relative(__dirname, dir)}/`);
-            }
-        }
-
-        console.log('All favicon and App Router icon assets generated successfully from high-res logo.png!');
+        console.log('All favicon assets generated and updated successfully!');
     } catch (error) {
         console.error('Error generating favicons:', error);
     }
