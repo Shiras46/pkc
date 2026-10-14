@@ -47,10 +47,20 @@ async function getFeaturedBlogs(): Promise<BlogType[]> {
                 .limit(3)
                 .lean();
             if (blogs && blogs.length > 0) {
-                return blogs.map((b: { _id?: { toString: () => string }; id?: string; slug: string; title: string; category: string; content: string; image: string; date: string }) => ({
-                    ...b,
-                    id: b._id ? b._id.toString() : b.id || b.slug,
-                })) as unknown as BlogType[];
+                return blogs.map((b: any) => ({
+                    id: b._id ? b._id.toString() : (b.id || b.slug),
+                    _id: b._id ? b._id.toString() : (b.id || b.slug),
+                    title: b.title || '',
+                    slug: b.slug || '',
+                    category: b.category || '',
+                    content: b.content || '',
+                    image: b.image || '',
+                    author: b.author || '',
+                    date: b.date ? (typeof b.date === 'string' ? b.date : new Date(b.date).toISOString()) : '',
+                    published: b.published ?? true,
+                    metaTitle: b.metaTitle || '',
+                    metaDescription: b.metaDescription || '',
+                }));
             }
         }
     } catch {
