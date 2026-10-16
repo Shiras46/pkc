@@ -47,36 +47,43 @@ export default function EditBlogPost() {
         e.preventDefault();
         setUploading(true);
 
-        let imageUrl = formData.image;
+        try {
+            let imageUrl = formData.image;
 
-        if (imageFile) {
-            const data = new FormData();
-            data.set('file', imageFile);
-            try {
+            if (imageFile) {
+                const data = new FormData();
+                data.set('file', imageFile);
                 const res = await fetch('/api/upload', { method: 'POST', body: data });
                 const json = await res.json();
                 if (!res.ok) throw new Error(json.error || 'Image upload failed');
                 imageUrl = json.url;
-            } catch (error) {
-                alert(error instanceof Error ? error.message : 'Image upload failed');
-                setUploading(false);
-                return;
+            } else if (imageUrl && imageUrl.trim()) {
+                const trimmed = imageUrl.trim();
+                const isValid = trimmed.startsWith('/') || trimmed.startsWith('http://') || trimmed.startsWith('https://');
+                if (!isValid) {
+                    alert('Please enter a valid Image URL (must start with https://, http://, or /) or upload an image file.');
+                    return;
+                }
+                imageUrl = trimmed;
             }
-        }
 
-        const res = await fetch(`/api/admin/blogs/${id}`, {
-            method: "PUT",
-            body: JSON.stringify({ ...formData, image: imageUrl }),
-            headers: { "Content-Type": "application/json" }
-        });
+            const res = await fetch(`/api/admin/blogs/${id}`, {
+                method: "PUT",
+                body: JSON.stringify({ ...formData, image: imageUrl }),
+                headers: { "Content-Type": "application/json" }
+            });
 
-        if (res.ok) {
-            router.push("/admin/blog");
-        } else {
-            const json = await res.json().catch(() => null);
-            alert(json?.error || 'Failed to update post');
+            if (res.ok) {
+                router.push("/admin/blog");
+            } else {
+                const json = await res.json().catch(() => null);
+                alert(json?.error || 'Failed to update post');
+            }
+        } catch (error) {
+            alert(error instanceof Error ? error.message : 'Image upload failed');
+        } finally {
+            setUploading(false);
         }
-        setUploading(false);
     };
 
     if (loading) return <div className="p-40">Loading blog data...</div>;

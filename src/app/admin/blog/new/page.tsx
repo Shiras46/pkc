@@ -38,13 +38,13 @@ export default function NewBlogPost() {
         e.preventDefault();
         setUploading(true);
 
-        let imageUrl = formData.image;
+        try {
+            let imageUrl = formData.image;
 
-        if (imageFile) {
-            const data = new FormData();
-            data.set('file', imageFile);
+            if (imageFile) {
+                const data = new FormData();
+                data.set('file', imageFile);
 
-            try {
                 const res = await fetch('/api/upload', {
                     method: 'POST',
                     body: data
@@ -52,27 +52,34 @@ export default function NewBlogPost() {
                 const json = await res.json();
                 if (!res.ok) throw new Error(json.error || 'Image upload failed');
                 imageUrl = json.url;
-            } catch (err) {
-                alert(err instanceof Error ? err.message : 'Image upload failed');
-                setUploading(false);
-                return;
+            } else if (imageUrl && imageUrl.trim()) {
+                const trimmed = imageUrl.trim();
+                const isValid = trimmed.startsWith('/') || trimmed.startsWith('http://') || trimmed.startsWith('https://');
+                if (!isValid) {
+                    alert('Please enter a valid Image URL (must start with https://, http://, or /) or upload an image file.');
+                    return;
+                }
+                imageUrl = trimmed;
             }
-        }
 
-        const res = await fetch("/api/admin/blogs", {
-            method: "POST",
-            body: JSON.stringify({ ...formData, image: imageUrl }),
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-        });
+            const res = await fetch("/api/admin/blogs", {
+                method: "POST",
+                body: JSON.stringify({ ...formData, image: imageUrl }),
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+            });
 
-        if (res.ok) {
-            router.push("/admin/blog");
-        } else {
-            const json = await res.json().catch(() => null);
-            alert(json?.error || 'Failed to create post');
+            if (res.ok) {
+                router.push("/admin/blog");
+            } else {
+                const json = await res.json().catch(() => null);
+                alert(json?.error || 'Failed to create post');
+            }
+        } catch (err) {
+            alert(err instanceof Error ? err.message : 'Image upload failed');
+        } finally {
+            setUploading(false);
         }
-        setUploading(false);
     };
 
     return (

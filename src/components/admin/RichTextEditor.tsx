@@ -107,21 +107,63 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
         setIsLinkModalOpen(false);
     };
 
-    const handleInsertImage = () => {
-        const url = prompt("Enter Image URL:");
-        if (!url) return;
-        const alt = prompt("Enter Image Description (Alt Text):") || "Blog Image";
-        
-        if (editorRef.current) {
-            editorRef.current.focus();
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleImageFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.set('file', file);
+
+        try {
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            const json = await res.json();
+            if (!res.ok) throw new Error(json.error || 'Upload failed');
+
+            const alt = prompt("Enter Image Description (Alt Text):") || "Blog Image";
+            if (editorRef.current) {
+                editorRef.current.focus();
+            }
+            const imgHtml = `<p><img src="${json.url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 16px 0;" /></p>`;
+            execCommand("insertHTML", imgHtml);
+        } catch (err) {
+            alert(err instanceof Error ? err.message : 'Image upload failed');
+        } finally {
+            if (fileInputRef.current) fileInputRef.current.value = "";
         }
-        
-        const imgHtml = `<p><img src="${url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px;" /></p>`;
-        execCommand("insertHTML", imgHtml);
+    };
+
+    const handleInsertImage = () => {
+        const choice = confirm("Click OK to upload an image file from your device (auto-converts to WebP & uploads to S3),\nor click Cancel to enter an image URL.");
+        if (choice) {
+            fileInputRef.current?.click();
+        } else {
+            const url = prompt("Enter Image URL:");
+            if (!url) return;
+            const alt = prompt("Enter Image Description (Alt Text):") || "Blog Image";
+            
+            if (editorRef.current) {
+                editorRef.current.focus();
+            }
+            
+            const imgHtml = `<p><img src="${url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 16px 0;" /></p>`;
+            execCommand("insertHTML", imgHtml);
+        }
     };
 
     return (
         <div className={styles.editorContainer}>
+            <input
+                type="file"
+                ref={fileInputRef}
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleImageFileChange}
+            />
             {/* TOOLBAR */}
             <div className={styles.toolbar}>
                 <select

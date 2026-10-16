@@ -6,6 +6,7 @@ import { ArrowLeft, User, Calendar, Tag } from 'lucide-react';
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 import { Blog as BlogType } from '@/lib/types';
+import { getValidImageUrl } from '@/lib/image';
 import styles from './BlogPost.module.css';
 
 type Props = {
@@ -31,6 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonical = `https://pkcevents.com/blog/${slug}`;
   const desc = post.content ? post.content.replace(/<[^>]*>/g, '').substring(0, 160) : '';
+  const validImageUrl = getValidImageUrl(post.image);
+  const fullImageUrl = validImageUrl.startsWith('http') ? validImageUrl : `https://pkcevents.com${validImageUrl}`;
 
   return {
     title: `${post.title} | PKC Events Blog`,
@@ -42,14 +45,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${post.title} | PKC Events Blog`,
       description: desc,
       url: canonical,
-      images: [post.image ? (post.image.startsWith('http') ? post.image : `https://pkcevents.com${post.image}`) : 'https://pkcevents.com/logo.png'],
+      images: [fullImageUrl],
       type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
       title: `${post.title} | PKC Events Blog`,
       description: desc,
-      images: [post.image ? (post.image.startsWith('http') ? post.image : `https://pkcevents.com${post.image}`) : 'https://pkcevents.com/logo.png'],
+      images: [fullImageUrl],
     }
   };
 }
@@ -125,7 +128,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className={styles.imageWrapper}>
           <Image
-            src={post.image || '/image/about.webp'}
+            src={getValidImageUrl(post.image)}
             alt={post.title}
             fill
             sizes="(max-width: 1200px) 100vw, 1200px"

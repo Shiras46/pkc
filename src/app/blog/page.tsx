@@ -4,6 +4,7 @@ import Link from 'next/link';
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 import { Blog as BlogType } from '@/lib/types';
+import { getValidImageUrl } from '@/lib/image';
 import styles from './Blog.module.css';
 
 export const metadata: Metadata = {
@@ -45,7 +46,7 @@ export default async function BlogListingPage() {
     title: blog.title,
     excerpt: blog.content ? blog.content.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : '',
     date: blog.date,
-    image: blog.image || '/image/about.webp',
+    image: getValidImageUrl(blog.image),
     category: blog.category || 'Event Planning'
   }));
 

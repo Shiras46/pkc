@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Blog } from "@/lib/types";
+import { getValidImageUrl } from "@/lib/image";
 import styles from "./BlogPreview.module.css";
 
 interface BlogPreviewProps {
@@ -52,7 +53,7 @@ export default function BlogPreview({ initialBlogs }: BlogPreviewProps) {
                         >
                             <div className={styles.imageWrapper}>
                                 <Image
-                                    src={blog.image || '/image/about.webp'}
+                                    src={getValidImageUrl(blog.image)}
                                     alt={`${blog.title} - ${blog.category || "Wedding Planning"} article by Pride Kitchen Caterers & Events (PKC Events)`}
                                     fill
                                     sizes="(max-width: 768px) 100vw, 33vw"
@@ -61,7 +62,7 @@ export default function BlogPreview({ initialBlogs }: BlogPreviewProps) {
                             <div className={styles.content}>
                                 <div className={styles.meta}>
                                     <div style={{ position: 'relative', width: '18px', height: '18px', borderRadius: '4px', overflow: 'hidden' }}>
-                                        <Image src={blog.image || '/image/about.webp'} alt={`${blog.category || "Wedding Planning"} category thumbnail for ${blog.title}`} fill sizes="18px" style={{ objectFit: 'cover' }} />
+                                        <Image src={getValidImageUrl(blog.image)} alt={`${blog.category || "Wedding Planning"} category thumbnail for ${blog.title}`} fill sizes="18px" style={{ objectFit: 'cover' }} />
                                     </div>
                                     <span>{blog.category ? blog.category.toUpperCase() : 'WEDDING PLANNING TIPS'}</span>
                                     <span className={styles.metaDot}>•</span>
