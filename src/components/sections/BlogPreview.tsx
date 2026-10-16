@@ -15,12 +15,15 @@ export default function BlogPreview({ initialBlogs }: BlogPreviewProps) {
     const [blogs, setBlogs] = useState<Blog[]>(initialBlogs || []);
 
     useEffect(() => {
-        if (initialBlogs && initialBlogs.length > 0) return;
+        if (initialBlogs && initialBlogs.length > 0) {
+            setBlogs(initialBlogs);
+        }
 
-        fetch("/api/blogs")
+        // Always query latest published blogs to guarantee real-time sync
+        fetch("/api/blogs", { cache: "no-store" })
             .then(res => res.json())
             .then(data => {
-                if (Array.isArray(data)) {
+                if (Array.isArray(data) && data.length > 0) {
                     setBlogs(data.filter((b: Blog) => b.published !== false).slice(0, 3));
                 }
             })

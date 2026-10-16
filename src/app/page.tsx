@@ -37,12 +37,15 @@ export const metadata: Metadata = {
     }
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 async function getFeaturedBlogs(): Promise<BlogType[]> {
     try {
         const db = await dbConnect();
         if (db) {
             const blogs = await Blog.find({ published: true })
-                .sort({ date: -1 })
+                .sort({ date: -1, createdAt: -1, _id: -1 })
                 .limit(3)
                 .lean();
             if (blogs && blogs.length > 0) {

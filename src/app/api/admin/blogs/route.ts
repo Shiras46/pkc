@@ -4,6 +4,9 @@ import Blog from '@/models/Blog';
 import { cookies } from 'next/headers';
 import { verifySessionToken } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 async function checkAuth() {
     const sessionCookie = (await cookies()).get('admin_session')?.value;
     const session = await verifySessionToken(sessionCookie);
@@ -16,8 +19,12 @@ export async function GET() {
     }
 
     await dbConnect();
-    const blogs = await Blog.find({}).sort({ date: -1 });
-    return NextResponse.json(blogs);
+    const blogs = await Blog.find({}).sort({ date: -1, createdAt: -1, _id: -1 });
+    return NextResponse.json(blogs, {
+        headers: {
+            'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+        },
+    });
 }
 
 export async function POST(request: Request) {

@@ -29,13 +29,14 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function BlogListingPage() {
   let rawBlogs: BlogType[] = [];
   try {
     const db = await dbConnect();
     if (!db) throw new Error("No DB connection");
-    rawBlogs = (await Blog.find({ published: true }).sort({ date: -1 }).lean()) as unknown as BlogType[];
+    rawBlogs = (await Blog.find({ published: true }).sort({ date: -1, createdAt: -1, _id: -1 }).lean()) as unknown as BlogType[];
   } catch (error) {
     console.error("Failed to connect to database or fetch blogs:", error);
   }
