@@ -145,9 +145,12 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
 
                 {/* ARTICLE HERO HEADER */}
                 <header className={styles.articleHeader}>
-                    <div className={styles.categoryBadge}>
-                        <Sparkles size={13} className={styles.badgeIcon} />
-                        <span>{post.category || "Wedding Planning Tips"}</span>
+                    <div className={styles.headerTopRow}>
+                        <div className={styles.brandTagline}>“Stories, Celebrations &amp; Culinary Artistry”</div>
+                        <div className={styles.categoryBadge}>
+                            <Sparkles size={13} className={styles.badgeIcon} />
+                            <span>{post.category || "Wedding Planning Tips"}</span>
+                        </div>
                     </div>
 
                     <h1 className={styles.articleTitle}>{post.title}</h1>
@@ -366,7 +369,9 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                         <div className={styles.relatedHeader}>
                             <div>
                                 <span className={styles.relatedEyebrow}>EXPLORE MORE INSPIRATION</span>
-                                <h2 className={styles.relatedTitle}>Related Guides &amp; Articles</h2>
+                                <h2 className={styles.relatedTitle}>
+                                    <span>“Our thoughts and experiences</span> handcrafted into words”
+                                </h2>
                             </div>
                             <Link href="/blog" className={styles.viewAllBtn}>
                                 <span>View All Posts</span>
