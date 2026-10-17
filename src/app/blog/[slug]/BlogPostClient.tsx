@@ -14,8 +14,7 @@ import {
     Mail,
     Sparkles,
     BookOpen,
-    ChevronRight,
-    Award
+    ChevronRight
 } from "lucide-react";
 import { Blog as BlogType } from "@/lib/types";
 import { getValidImageUrl } from "@/lib/image";
@@ -266,38 +265,6 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                             className={styles.proseContent}
                             dangerouslySetInnerHTML={{ __html: post.content || "<p>Article content coming soon.</p>" }}
                         />
-
-                        {/* AUTHOR BIO & TRUST CARD */}
-                        <div className={styles.authorBioCard}>
-                            <div className={styles.bioHeader}>
-                                <div className={styles.bioAvatarLarge}>
-                                    <Image
-                                        src="/logo.png"
-                                        alt="Pride Kitchen Caterers"
-                                        width={56}
-                                        height={56}
-                                    />
-                                </div>
-                                <div>
-                                    <div className={styles.bioTag}>ABOUT THE AUTHOR</div>
-                                    <h4 className={styles.bioName}>{post.author || "Pride Kitchen Caterers & Events"}</h4>
-                                    <div className={styles.bioSubtitle}>Kerala’s Premier Wedding &amp; Event Management Experts</div>
-                                </div>
-                            </div>
-                            <p className={styles.bioDescription}>
-                                Founded in 2008 in Thrissur, Pride Kitchen Caterers &amp; Events has crafted over 2,500+ luxury weddings, corporate summits, and cultural celebrations across Thrissur, Kochi, and all of Kerala. We combine authentic culinary mastery with end-to-end event production, bespoke stage decor, venue booking, and photography.
-                            </p>
-                            <div className={styles.bioBadges}>
-                                <div className={styles.bioBadgeItem}>
-                                    <Award size={15} color="#FCB318" />
-                                    <span>FSSAI &amp; ISO 9001:2015 Certified</span>
-                                </div>
-                                <div className={styles.bioBadgeItem}>
-                                    <Sparkles size={15} color="#FCB318" />
-                                    <span>16+ Years Experience</span>
-                                </div>
-                            </div>
-                        </div>
 
                         {/* BOTTOM CTA BANNER (EDITABLE VIA ADMIN PANEL) */}
                         {post.showCta !== false && (
