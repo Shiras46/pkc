@@ -12,7 +12,6 @@ import {
     MessageCircle,
     Phone,
     Mail,
-    Sparkles,
     BookOpen,
     ChevronRight
 } from "lucide-react";
@@ -174,14 +173,6 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
 
                 {/* ARTICLE HERO HEADER */}
                 <header className={styles.articleHeader}>
-                    <div className={styles.headerTopRow}>
-                        <div className={styles.brandTagline}>“Stories, Celebrations &amp; Culinary Artistry”</div>
-                        <div className={styles.categoryBadge}>
-                            <Sparkles size={13} className={styles.badgeIcon} />
-                            <span>{post.category || "Wedding Planning Tips"}</span>
-                        </div>
-                    </div>
-
                     <h1 className={styles.articleTitle}>{post.title}</h1>
 
                     {/* AUTHOR & METADATA BAR */}
