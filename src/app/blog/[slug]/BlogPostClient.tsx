@@ -64,11 +64,40 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
     useEffect(() => {
         if (!contentRef.current) return;
 
-        const headingNodes = contentRef.current.querySelectorAll("h2, h3");
+        // Query all candidate heading nodes (explicit headings & standalone bold paragraph titles)
+        const candidates = Array.from(contentRef.current.querySelectorAll("h2, h3, h4, h5, p, div"));
+        const potentialHeadingNodes: HTMLElement[] = [];
+
+        candidates.forEach((el) => {
+            const htmlEl = el as HTMLElement;
+            const tag = htmlEl.tagName.toLowerCase();
+
+            if (tag === "h2" || tag === "h3" || tag === "h4" || tag === "h5") {
+                potentialHeadingNodes.push(htmlEl);
+                return;
+            }
+
+            // Check if paragraph or div represents a section title (e.g. <p><strong>4. Ask About Customisation</strong></p>)
+            const text = htmlEl.textContent?.trim() || "";
+            if (text.length < 3 || text.length > 100) return;
+
+            const firstChild = htmlEl.firstElementChild;
+            const hasStrongOrB = htmlEl.querySelector("strong, b");
+            const isOnlyBold = firstChild && (firstChild.tagName.toLowerCase() === "strong" || firstChild.tagName.toLowerCase() === "b") && htmlEl.children.length === 1;
+            const isNumberedHeading = /^[0-9]+[\.\)]\s+/.test(text);
+            const isKeywordsHeading = /^(why|how|what|top|tips|best|key|conclusion|checklist|summary|benefits|factors|steps|guide)/i.test(text);
+
+            if (isOnlyBold || (hasStrongOrB && (isNumberedHeading || isKeywordsHeading))) {
+                htmlEl.classList.add(styles.promotedHeading);
+                potentialHeadingNodes.push(htmlEl);
+            }
+        });
+
         const items: TOCItem[] = [];
 
-        headingNodes.forEach((node, index) => {
-            const level = node.tagName.toLowerCase() === "h2" ? 2 : 3;
+        potentialHeadingNodes.forEach((node, index) => {
+            const tag = node.tagName.toLowerCase();
+            const level = tag === "h3" || tag === "h4" ? 3 : 2;
             const text = node.textContent?.trim() || "";
             if (!text) return;
 
@@ -81,7 +110,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
 
         setHeadings(items);
 
-        if (items.length === 0) return;
+        if (potentialHeadingNodes.length === 0) return;
 
         // Observe which section is active
         const observer = new IntersectionObserver(
@@ -95,7 +124,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
             { rootMargin: "-80px 0px -60% 0px" }
         );
 
-        headingNodes.forEach((node) => observer.observe(node));
+        potentialHeadingNodes.forEach((node) => observer.observe(node));
         return () => observer.disconnect();
     }, [post.content]);
 
@@ -227,8 +256,8 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                     </div>
                 </header>
 
-                {/* MAIN CONTENT + STICKY SIDEBAR GRID */}
-                <div className={styles.contentGrid}>
+                {/* MAIN CONTENT + STICKY SIDEBAR GRID (RESPONSIVE FULL-SCREEN LEVEL) */}
+                <div className={`${styles.contentGrid} ${headings.length <= 1 ? styles.contentGridFullWidth : ""}`}>
                     {/* ARTICLE BODY */}
                     <article className={styles.mainArticle}>
                         <div
@@ -358,6 +387,29 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                                     <MessageCircle size={16} />
                                     <span>WhatsApp Inquiry</span>
                                 </a>
+                            </div>
+
+                            {/* PKC TRUST CARD */}
+                            <div className={styles.sidebarTrustCard}>
+                                <div className={styles.sidebarTrustTitle}>Why PKC Events?</div>
+                                <ul className={styles.sidebarTrustList}>
+                                    <li>
+                                        <span className={styles.sidebarTrustBullet}>✦</span>
+                                        <span>FSSAI &amp; ISO 9001:2015 Certified Quality</span>
+                                    </li>
+                                    <li>
+                                        <span className={styles.sidebarTrustBullet}>✦</span>
+                                        <span>2,500+ Luxury Celebrations Across Kerala</span>
+                                    </li>
+                                    <li>
+                                        <span className={styles.sidebarTrustBullet}>✦</span>
+                                        <span>16+ Years Heritage in Thrissur &amp; Kochi</span>
+                                    </li>
+                                    <li>
+                                        <span className={styles.sidebarTrustBullet}>✦</span>
+                                        <span>100% In-House Master Chefs &amp; Event Crew</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </aside>
