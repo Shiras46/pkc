@@ -75,6 +75,14 @@ const BlogSchema = new Schema({
         type: String,
         default: 'https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering.',
     },
+    ctaPhone: {
+        type: String,
+        default: '+91 81380 02333',
+    },
+    ctaEmail: {
+        type: String,
+        default: 'pridekitchencaterers@gmail.com',
+    },
 }, { timestamps: true, strict: false });
 
 // Add virtual 'id' if needed to transform _id to id

@@ -19,4 +19,7 @@ export interface Blog {
     ctaButtonLink?: string;
     ctaSecondaryText?: string;
     ctaSecondaryLink?: string;
+    ctaPhone?: string;
+    ctaEmail?: string;
 }
+

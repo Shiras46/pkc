@@ -24,7 +24,9 @@ export default function NewBlogPost() {
         ctaButtonText: "Request Free Consultation",
         ctaButtonLink: "/contact",
         ctaSecondaryText: "Chat on WhatsApp",
-        ctaSecondaryLink: "https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering."
+        ctaSecondaryLink: "https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering.",
+        ctaPhone: "+91 81380 02333",
+        ctaEmail: "pridekitchencaterers@gmail.com"
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
@@ -272,9 +274,34 @@ export default function NewBlogPost() {
                                     type="text"
                                     value={formData.ctaSecondaryLink}
                                     onChange={(e) => setFormData({ ...formData, ctaSecondaryLink: e.target.value })}
-                                    placeholder="e.g. https://api.whatsapp.com/send?phone=..."
+                                    placeholder="e.g. https://api.whatsapp.com/send?phone=... or tel: or mailto:"
                                 />
                             </div>
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '15px' }}>
+                            <div className={styles.inputGroup}>
+                                <label>📞 Direct Call Number (Click to Dial)</label>
+                                <input
+                                    type="text"
+                                    value={formData.ctaPhone}
+                                    onChange={(e) => setFormData({ ...formData, ctaPhone: e.target.value })}
+                                    placeholder="e.g. +91 81380 02333"
+                                />
+                            </div>
+                            <div className={styles.inputGroup}>
+                                <label>📧 Direct Email Address (Click to Email)</label>
+                                <input
+                                    type="text"
+                                    value={formData.ctaEmail}
+                                    onChange={(e) => setFormData({ ...formData, ctaEmail: e.target.value })}
+                                    placeholder="e.g. pridekitchencaterers@gmail.com"
+                                />
+                            </div>
+                        </div>
+
+                        <div style={{ marginTop: '10px', fontSize: '0.85rem', color: '#666', background: 'rgba(252, 179, 24, 0.1)', padding: '10px 14px', borderRadius: '8px' }}>
+                            💡 <strong>Action Tip:</strong> To turn any button into a direct call, use <code>tel:+918138002333</code> as its URL. To turn any button into a direct email, use <code>mailto:pridekitchencaterers@gmail.com</code> as its URL.
                         </div>
                     </div>
                 )}

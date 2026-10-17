@@ -11,6 +11,7 @@ import {
     Copy,
     MessageCircle,
     Phone,
+    Mail,
     Sparkles,
     BookOpen,
     ChevronRight,
@@ -313,20 +314,104 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                                         {post.ctaDescription || "Whether it is an intimate engagement, a grand royal wedding, or an elegant corporate event, our master chefs and planners handle every detail seamlessly."}
                                     </p>
                                     <div className={styles.ctaActions}>
-                                        <Link href={post.ctaButtonLink || "/contact"} className={styles.ctaPrimaryBtn}>
-                                            <span>{post.ctaButtonText || "Request Free Consultation"}</span>
-                                            <ChevronRight size={16} />
-                                        </Link>
-                                        <a
-                                            href={post.ctaSecondaryLink || "https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering."}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={styles.ctaSecondaryBtn}
-                                        >
-                                            <MessageCircle size={16} />
-                                            <span>{post.ctaSecondaryText || "Chat on WhatsApp"}</span>
-                                        </a>
+                                        {(() => {
+                                            const primaryLink = post.ctaButtonLink || "/contact";
+                                            const primaryText = post.ctaButtonText || "Request Free Consultation";
+                                            const isPrimaryTel = primaryLink.startsWith("tel:");
+                                            const isPrimaryMail = primaryLink.startsWith("mailto:");
+                                            const isPrimaryExternal = primaryLink.startsWith("http://") || primaryLink.startsWith("https://");
+
+                                            if (isPrimaryTel || isPrimaryMail) {
+                                                return (
+                                                    <a href={primaryLink} className={styles.ctaPrimaryBtn}>
+                                                        {isPrimaryTel ? <Phone size={16} /> : <Mail size={16} />}
+                                                        <span>{primaryText}</span>
+                                                    </a>
+                                                );
+                                            }
+
+                                            if (isPrimaryExternal) {
+                                                return (
+                                                    <a href={primaryLink} target="_blank" rel="noopener noreferrer" className={styles.ctaPrimaryBtn}>
+                                                        <span>{primaryText}</span>
+                                                        <ChevronRight size={16} />
+                                                    </a>
+                                                );
+                                            }
+
+                                            return (
+                                                <Link href={primaryLink} className={styles.ctaPrimaryBtn}>
+                                                    <span>{primaryText}</span>
+                                                    <ChevronRight size={16} />
+                                                </Link>
+                                            );
+                                        })()}
+
+                                        {(() => {
+                                            const secondaryLink = post.ctaSecondaryLink || "https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering.";
+                                            const secondaryText = post.ctaSecondaryText || "Chat on WhatsApp";
+                                            const isSecTel = secondaryLink.startsWith("tel:");
+                                            const isSecMail = secondaryLink.startsWith("mailto:");
+
+                                            if (isSecTel) {
+                                                return (
+                                                    <a href={secondaryLink} className={styles.ctaSecondaryBtn}>
+                                                        <Phone size={16} />
+                                                        <span>{secondaryText}</span>
+                                                    </a>
+                                                );
+                                            }
+
+                                            if (isSecMail) {
+                                                return (
+                                                    <a href={secondaryLink} className={styles.ctaSecondaryBtn}>
+                                                        <Mail size={16} />
+                                                        <span>{secondaryText}</span>
+                                                    </a>
+                                                );
+                                            }
+
+                                            return (
+                                                <a
+                                                    href={secondaryLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={styles.ctaSecondaryBtn}
+                                                >
+                                                    <MessageCircle size={16} />
+                                                    <span>{secondaryText}</span>
+                                                </a>
+                                            );
+                                        })()}
                                     </div>
+
+                                    {(post.ctaPhone || post.ctaEmail) && (
+                                        <div className={styles.ctaDirectContact}>
+                                            {post.ctaPhone && (
+                                                <a
+                                                    href={`tel:${post.ctaPhone.replace(/[^\d+]/g, '')}`}
+                                                    className={styles.ctaDirectItem}
+                                                    title={`Call ${post.ctaPhone}`}
+                                                >
+                                                    <Phone size={14} className={styles.ctaDirectIcon} />
+                                                    <span>Call: <strong>{post.ctaPhone}</strong></span>
+                                                </a>
+                                            )}
+                                            {post.ctaPhone && post.ctaEmail && (
+                                                <span className={styles.ctaDirectDivider}>•</span>
+                                            )}
+                                            {post.ctaEmail && (
+                                                <a
+                                                    href={`mailto:${post.ctaEmail}`}
+                                                    className={styles.ctaDirectItem}
+                                                    title={`Email ${post.ctaEmail}`}
+                                                >
+                                                    <Mail size={14} className={styles.ctaDirectIcon} />
+                                                    <span>Email: <strong>{post.ctaEmail}</strong></span>
+                                                </a>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )}

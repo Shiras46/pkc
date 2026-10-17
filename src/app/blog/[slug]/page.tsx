@@ -107,6 +107,8 @@ export default async function BlogPostPage({ params }: Props) {
     ctaButtonLink: post.ctaButtonLink ?? '/contact',
     ctaSecondaryText: post.ctaSecondaryText ?? 'Chat on WhatsApp',
     ctaSecondaryLink: post.ctaSecondaryLink ?? 'https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering.',
+    ctaPhone: post.ctaPhone ?? '+91 81380 02333',
+    ctaEmail: post.ctaEmail ?? 'pridekitchencaterers@gmail.com',
   };
 
   const serializableRelated: BlogType[] = (relatedPosts || []).map((r: any) => ({
