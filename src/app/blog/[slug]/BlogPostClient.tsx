@@ -256,8 +256,8 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                     </div>
                 </header>
 
-                {/* MAIN CONTENT + STICKY SIDEBAR GRID (RESPONSIVE FULL-SCREEN LEVEL) */}
-                <div className={`${styles.contentGrid} ${headings.length <= 1 ? styles.contentGridFullWidth : ""}`}>
+                {/* FULL SCREEN LEVEL ARTICLE CONTAINER */}
+                <div className={styles.fullArticleContainer}>
                     {/* ARTICLE BODY */}
                     <article className={styles.mainArticle}>
                         <div
@@ -327,92 +327,6 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                             </div>
                         </div>
                     </article>
-
-                    {/* STICKY SIDEBAR */}
-                    <aside className={styles.sidebar}>
-                        <div className={styles.stickySidebarInner}>
-                            {/* TABLE OF CONTENTS WIDGET */}
-                            {headings.length > 1 && (
-                                <div className={styles.tocCard}>
-                                    <div className={styles.tocHeader}>
-                                        <BookOpen size={16} color="#FCB318" />
-                                        <span>In This Article</span>
-                                    </div>
-                                    <ul className={styles.tocList}>
-                                        {headings.map((item) => (
-                                            <li
-                                                key={item.id}
-                                                className={`${styles.tocItem} ${item.level === 3 ? styles.tocSubItem : ""} ${activeHeadingId === item.id ? styles.tocItemActive : ""}`}
-                                            >
-                                                <a
-                                                    href={`#${item.id}`}
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        const el = document.getElementById(item.id);
-                                                        if (el) {
-                                                            const yOffset = -90;
-                                                            const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                                                            window.scrollTo({ top: y, behavior: "smooth" });
-                                                        }
-                                                    }}
-                                                >
-                                                    {item.text}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-
-                            {/* QUICK CONSULTATION SIDEBAR CARD */}
-                            <div className={styles.sidebarConsultCard}>
-                                <div className={styles.sidebarCardBadge}>DIRECT ASSISTANCE</div>
-                                <h4 className={styles.sidebarCardTitle}>Planning an Event in Thrissur or Kochi?</h4>
-                                <p className={styles.sidebarCardText}>
-                                    Speak directly with our senior event coordinator for custom menu tastings, venue options, and transparent pricing.
-                                </p>
-                                <a
-                                    href="tel:+918138002333"
-                                    className={styles.sidebarPhoneBtn}
-                                >
-                                    <Phone size={16} />
-                                    <span>+91 81380 02333</span>
-                                </a>
-                                <a
-                                    href="https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20plan%20an%20event."
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.sidebarWhatsAppBtn}
-                                >
-                                    <MessageCircle size={16} />
-                                    <span>WhatsApp Inquiry</span>
-                                </a>
-                            </div>
-
-                            {/* PKC TRUST CARD */}
-                            <div className={styles.sidebarTrustCard}>
-                                <div className={styles.sidebarTrustTitle}>Why PKC Events?</div>
-                                <ul className={styles.sidebarTrustList}>
-                                    <li>
-                                        <span className={styles.sidebarTrustBullet}>✦</span>
-                                        <span>FSSAI &amp; ISO 9001:2015 Certified Quality</span>
-                                    </li>
-                                    <li>
-                                        <span className={styles.sidebarTrustBullet}>✦</span>
-                                        <span>2,500+ Luxury Celebrations Across Kerala</span>
-                                    </li>
-                                    <li>
-                                        <span className={styles.sidebarTrustBullet}>✦</span>
-                                        <span>16+ Years Heritage in Thrissur &amp; Kochi</span>
-                                    </li>
-                                    <li>
-                                        <span className={styles.sidebarTrustBullet}>✦</span>
-                                        <span>100% In-House Master Chefs &amp; Event Crew</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </aside>
                 </div>
 
                 {/* RELATED ARTICLES SECTION */}
