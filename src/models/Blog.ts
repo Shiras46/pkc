@@ -75,7 +75,7 @@ const BlogSchema = new Schema({
         type: String,
         default: 'https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering.',
     },
-}, { timestamps: true });
+}, { timestamps: true, strict: false });
 
 // Add virtual 'id' if needed to transform _id to id
 BlogSchema.virtual('id').get(function () {
@@ -87,6 +87,12 @@ BlogSchema.set('toJSON', {
     virtuals: true,
 });
 
-const Blog = models.Blog || model('Blog', BlogSchema);
+// Always delete stale cached model in memory to ensure new schema fields (CTA fields) are recognized
+if (models && models.Blog) {
+    delete (models as any).Blog;
+}
+
+const Blog = model('Blog', BlogSchema);
 
 export default Blog;
+

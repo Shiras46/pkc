@@ -35,10 +35,12 @@ export default function EditBlogPost() {
 
     useEffect(() => {
         if (!id) return;
-        fetch("/api/admin/blogs")
-            .then(res => res.json())
-            .then(data => {
-                const found = data.find((b: Blog) => b.id === id || (b as any)._id === id);
+        fetch(`/api/admin/blogs/${id}`, { cache: "no-store" })
+            .then(res => {
+                if (!res.ok) throw new Error("Failed to fetch by id");
+                return res.json();
+            })
+            .then(found => {
                 if (found) {
                     setFormData({
                         ...found,
@@ -54,7 +56,28 @@ export default function EditBlogPost() {
                 }
                 setLoading(false);
             })
-            .catch(() => setLoading(false));
+            .catch(() => {
+                fetch("/api/admin/blogs", { cache: "no-store" })
+                    .then(res => res.json())
+                    .then(data => {
+                        const found = Array.isArray(data) ? data.find((b: any) => b.id === id || b._id === id) : null;
+                        if (found) {
+                            setFormData({
+                                ...found,
+                                showCta: found.showCta ?? true,
+                                ctaEyebrow: found.ctaEyebrow ?? "START PLANNING YOUR CELEBRATION",
+                                ctaTitle: found.ctaTitle ?? "Ready to make your dream event a reality?",
+                                ctaDescription: found.ctaDescription ?? "Whether it is an intimate engagement, a grand royal wedding, or an elegant corporate event, our master chefs and planners handle every detail seamlessly.",
+                                ctaButtonText: found.ctaButtonText ?? "Request Free Consultation",
+                                ctaButtonLink: found.ctaButtonLink ?? "/contact",
+                                ctaSecondaryText: found.ctaSecondaryText ?? "Chat on WhatsApp",
+                                ctaSecondaryLink: found.ctaSecondaryLink ?? "https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering."
+                            });
+                        }
+                        setLoading(false);
+                    })
+                    .catch(() => setLoading(false));
+            });
     }, [id]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,13 +110,27 @@ export default function EditBlogPost() {
                 imageUrl = trimmed;
             }
 
+            const payload = {
+                ...formData,
+                image: imageUrl,
+                showCta: formData.showCta ?? true,
+                ctaEyebrow: formData.ctaEyebrow ?? "START PLANNING YOUR CELEBRATION",
+                ctaTitle: formData.ctaTitle ?? "Ready to make your dream event a reality?",
+                ctaDescription: formData.ctaDescription ?? "Whether it is an intimate engagement, a grand royal wedding, or an elegant corporate event, our master chefs and planners handle every detail seamlessly.",
+                ctaButtonText: formData.ctaButtonText ?? "Request Free Consultation",
+                ctaButtonLink: formData.ctaButtonLink ?? "/contact",
+                ctaSecondaryText: formData.ctaSecondaryText ?? "Chat on WhatsApp",
+                ctaSecondaryLink: formData.ctaSecondaryLink ?? "https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering."
+            };
+
             const res = await fetch(`/api/admin/blogs/${id}`, {
                 method: "PUT",
-                body: JSON.stringify({ ...formData, image: imageUrl }),
+                body: JSON.stringify(payload),
                 headers: { "Content-Type": "application/json" }
             });
 
             if (res.ok) {
+                router.refresh();
                 router.push("/admin/blog");
             } else {
                 const json = await res.json().catch(() => null);

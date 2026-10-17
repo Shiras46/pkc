@@ -3,6 +3,7 @@ import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 import { cookies } from 'next/headers';
 import { verifySessionToken } from '@/lib/auth';
+import { revalidatePath } from 'next/cache';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -35,10 +36,28 @@ export async function POST(request: Request) {
     await dbConnect();
     const data = await request.json();
 
+    delete data._id;
+    delete data.id;
+
     const newBlog = await Blog.create({
         ...data,
         date: new Date().toISOString().split('T')[0]
     });
 
-    return NextResponse.json(newBlog);
+    try {
+        revalidatePath('/blog');
+        if (newBlog?.slug) {
+            revalidatePath(`/blog/${newBlog.slug}`);
+        }
+        revalidatePath('/', 'layout');
+    } catch (err) {
+        console.error('Revalidation error:', err);
+    }
+
+    return NextResponse.json(newBlog, {
+        headers: {
+            'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+        },
+    });
 }
+

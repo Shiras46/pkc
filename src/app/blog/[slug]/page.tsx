@@ -6,9 +6,13 @@ import { Blog as BlogType } from '@/lib/types';
 import { getValidImageUrl } from '@/lib/image';
 import BlogPostClient from './BlogPostClient';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -95,14 +99,14 @@ export default async function BlogPostPage({ params }: Props) {
     published: post.published,
     metaTitle: post.metaTitle,
     metaDescription: post.metaDescription,
-    showCta: post.showCta ?? true,
-    ctaEyebrow: post.ctaEyebrow || '',
-    ctaTitle: post.ctaTitle || '',
-    ctaDescription: post.ctaDescription || '',
-    ctaButtonText: post.ctaButtonText || '',
-    ctaButtonLink: post.ctaButtonLink || '',
-    ctaSecondaryText: post.ctaSecondaryText || '',
-    ctaSecondaryLink: post.ctaSecondaryLink || '',
+    showCta: post.showCta !== false,
+    ctaEyebrow: post.ctaEyebrow ?? 'START PLANNING YOUR CELEBRATION',
+    ctaTitle: post.ctaTitle ?? 'Ready to make your dream event a reality?',
+    ctaDescription: post.ctaDescription ?? 'Whether it is an intimate engagement, a grand royal wedding, or an elegant corporate event, our master chefs and planners handle every detail seamlessly.',
+    ctaButtonText: post.ctaButtonText ?? 'Request Free Consultation',
+    ctaButtonLink: post.ctaButtonLink ?? '/contact',
+    ctaSecondaryText: post.ctaSecondaryText ?? 'Chat on WhatsApp',
+    ctaSecondaryLink: post.ctaSecondaryLink ?? 'https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering.',
   };
 
   const serializableRelated: BlogType[] = (relatedPosts || []).map((r: any) => ({
