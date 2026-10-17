@@ -298,34 +298,38 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                             </div>
                         </div>
 
-                        {/* BOTTOM CTA BANNER */}
-                        <div className={styles.luxuryCtaBanner}>
-                            <div className={styles.ctaGlow} />
-                            <div className={styles.ctaContent}>
-                                <span className={styles.ctaEyebrow}>START PLANNING YOUR CELEBRATION</span>
-                                <h3 className={styles.ctaHeadline}>
-                                    Ready to make your dream event a reality?
-                                </h3>
-                                <p className={styles.ctaParagraph}>
-                                    Whether it is an intimate engagement, a grand royal wedding, or an elegant corporate event, our master chefs and planners handle every detail seamlessly.
-                                </p>
-                                <div className={styles.ctaActions}>
-                                    <Link href="/contact" className={styles.ctaPrimaryBtn}>
-                                        <span>Request Free Consultation</span>
-                                        <ChevronRight size={16} />
-                                    </Link>
-                                    <a
-                                        href="https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering."
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={styles.ctaSecondaryBtn}
-                                    >
-                                        <MessageCircle size={16} />
-                                        <span>Chat on WhatsApp</span>
-                                    </a>
+                        {/* BOTTOM CTA BANNER (EDITABLE VIA ADMIN PANEL) */}
+                        {post.showCta !== false && (
+                            <div className={styles.luxuryCtaBanner}>
+                                <div className={styles.ctaGlow} />
+                                <div className={styles.ctaContent}>
+                                    <span className={styles.ctaEyebrow}>
+                                        {post.ctaEyebrow || "START PLANNING YOUR CELEBRATION"}
+                                    </span>
+                                    <h3 className={styles.ctaHeadline}>
+                                        {post.ctaTitle || "Ready to make your dream event a reality?"}
+                                    </h3>
+                                    <p className={styles.ctaParagraph}>
+                                        {post.ctaDescription || "Whether it is an intimate engagement, a grand royal wedding, or an elegant corporate event, our master chefs and planners handle every detail seamlessly."}
+                                    </p>
+                                    <div className={styles.ctaActions}>
+                                        <Link href={post.ctaButtonLink || "/contact"} className={styles.ctaPrimaryBtn}>
+                                            <span>{post.ctaButtonText || "Request Free Consultation"}</span>
+                                            <ChevronRight size={16} />
+                                        </Link>
+                                        <a
+                                            href={post.ctaSecondaryLink || "https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering."}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={styles.ctaSecondaryBtn}
+                                        >
+                                            <MessageCircle size={16} />
+                                            <span>{post.ctaSecondaryText || "Chat on WhatsApp"}</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </article>
                 </div>
 

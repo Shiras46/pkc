@@ -11,4 +11,12 @@ export interface Blog {
     published?: boolean;
     metaTitle?: string;
     metaDescription?: string;
+    showCta?: boolean;
+    ctaEyebrow?: string;
+    ctaTitle?: string;
+    ctaDescription?: string;
+    ctaButtonText?: string;
+    ctaButtonLink?: string;
+    ctaSecondaryText?: string;
+    ctaSecondaryLink?: string;
 }

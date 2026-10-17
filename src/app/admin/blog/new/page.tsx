@@ -16,7 +16,15 @@ export default function NewBlogPost() {
         author: "PKC Admin",
         published: true,
         metaTitle: "",
-        metaDescription: ""
+        metaDescription: "",
+        showCta: true,
+        ctaEyebrow: "START PLANNING YOUR CELEBRATION",
+        ctaTitle: "Ready to make your dream event a reality?",
+        ctaDescription: "Whether it is an intimate engagement, a grand royal wedding, or an elegant corporate event, our master chefs and planners handle every detail seamlessly.",
+        ctaButtonText: "Request Free Consultation",
+        ctaButtonLink: "/contact",
+        ctaSecondaryText: "Chat on WhatsApp",
+        ctaSecondaryLink: "https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering."
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
@@ -182,6 +190,94 @@ export default function NewBlogPost() {
                         placeholder="Enter SEO meta description (150-160 characters)"
                     />
                 </div>
+
+                <div className={styles.sectionHeader} style={{ marginTop: '35px' }}>BOTTOM CALL-TO-ACTION (CTA) BANNER</div>
+
+                <div className={styles.checkboxGroup}>
+                    <input
+                        type="checkbox"
+                        id="showCta"
+                        checked={formData.showCta}
+                        onChange={(e) => setFormData({ ...formData, showCta: e.target.checked })}
+                    />
+                    <label htmlFor="showCta">Enable Bottom Call-To-Action Banner</label>
+                </div>
+
+                {formData.showCta && (
+                    <div style={{ background: '#FAF8F5', padding: '24px', borderRadius: '12px', marginBottom: '25px', border: '1px solid rgba(252, 179, 24, 0.25)' }}>
+                        <div className={styles.inputGroup}>
+                            <label>CTA Eyebrow Tag</label>
+                            <input
+                                type="text"
+                                value={formData.ctaEyebrow}
+                                onChange={(e) => setFormData({ ...formData, ctaEyebrow: e.target.value })}
+                                placeholder="e.g. START PLANNING YOUR CELEBRATION"
+                            />
+                        </div>
+
+                        <div className={styles.inputGroup}>
+                            <label>CTA Headline</label>
+                            <input
+                                type="text"
+                                value={formData.ctaTitle}
+                                onChange={(e) => setFormData({ ...formData, ctaTitle: e.target.value })}
+                                placeholder="e.g. Ready to make your dream event a reality?"
+                            />
+                        </div>
+
+                        <div className={styles.inputGroup}>
+                            <label>CTA Description</label>
+                            <textarea
+                                style={{ height: '90px' }}
+                                value={formData.ctaDescription}
+                                onChange={(e) => setFormData({ ...formData, ctaDescription: e.target.value })}
+                                placeholder="Enter description for the CTA banner"
+                            />
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                            <div className={styles.inputGroup}>
+                                <label>Primary Button Text</label>
+                                <input
+                                    type="text"
+                                    value={formData.ctaButtonText}
+                                    onChange={(e) => setFormData({ ...formData, ctaButtonText: e.target.value })}
+                                    placeholder="e.g. Request Free Consultation"
+                                />
+                            </div>
+                            <div className={styles.inputGroup}>
+                                <label>Primary Button URL / Link</label>
+                                <input
+                                    type="text"
+                                    value={formData.ctaButtonLink}
+                                    onChange={(e) => setFormData({ ...formData, ctaButtonLink: e.target.value })}
+                                    placeholder="e.g. /contact"
+                                />
+                            </div>
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                            <div className={styles.inputGroup}>
+                                <label>Secondary Button Text</label>
+                                <input
+                                    type="text"
+                                    value={formData.ctaSecondaryText}
+                                    onChange={(e) => setFormData({ ...formData, ctaSecondaryText: e.target.value })}
+                                    placeholder="e.g. Chat on WhatsApp"
+                                />
+                            </div>
+                            <div className={styles.inputGroup}>
+                                <label>Secondary Button URL / WhatsApp Link</label>
+                                <input
+                                    type="text"
+                                    value={formData.ctaSecondaryLink}
+                                    onChange={(e) => setFormData({ ...formData, ctaSecondaryLink: e.target.value })}
+                                    placeholder="e.g. https://api.whatsapp.com/send?phone=..."
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 <div className={styles.checkboxGroup}>
                     <input

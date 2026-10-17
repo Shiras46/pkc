@@ -95,6 +95,14 @@ export default async function BlogPostPage({ params }: Props) {
     published: post.published,
     metaTitle: post.metaTitle,
     metaDescription: post.metaDescription,
+    showCta: post.showCta ?? true,
+    ctaEyebrow: post.ctaEyebrow || '',
+    ctaTitle: post.ctaTitle || '',
+    ctaDescription: post.ctaDescription || '',
+    ctaButtonText: post.ctaButtonText || '',
+    ctaButtonLink: post.ctaButtonLink || '',
+    ctaSecondaryText: post.ctaSecondaryText || '',
+    ctaSecondaryLink: post.ctaSecondaryLink || '',
   };
 
   const serializableRelated: BlogType[] = (relatedPosts || []).map((r: any) => ({

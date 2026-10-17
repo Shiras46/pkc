@@ -43,6 +43,38 @@ const BlogSchema = new Schema({
         type: String,
         default: '',
     },
+    showCta: {
+        type: Boolean,
+        default: true,
+    },
+    ctaEyebrow: {
+        type: String,
+        default: 'START PLANNING YOUR CELEBRATION',
+    },
+    ctaTitle: {
+        type: String,
+        default: 'Ready to make your dream event a reality?',
+    },
+    ctaDescription: {
+        type: String,
+        default: 'Whether it is an intimate engagement, a grand royal wedding, or an elegant corporate event, our master chefs and planners handle every detail seamlessly.',
+    },
+    ctaButtonText: {
+        type: String,
+        default: 'Request Free Consultation',
+    },
+    ctaButtonLink: {
+        type: String,
+        default: '/contact',
+    },
+    ctaSecondaryText: {
+        type: String,
+        default: 'Chat on WhatsApp',
+    },
+    ctaSecondaryLink: {
+        type: String,
+        default: 'https://api.whatsapp.com/send?phone=918138002333&text=Hi%20PKC%20Events,%20I%20would%20like%20to%20inquire%20about%20event%20management%20and%20catering.',
+    },
 }, { timestamps: true });
 
 // Add virtual 'id' if needed to transform _id to id
