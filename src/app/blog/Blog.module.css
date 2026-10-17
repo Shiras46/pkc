@@ -3,8 +3,9 @@
 }
 
 .header {
-    background: var(--accent);
+    background: radial-gradient(circle at 50% 0%, #FFFDF9 0%, #FAF6EE 50%, #F5EFE3 100%);
     padding: 100px 0 60px;
+    border-bottom: 1px solid rgba(252, 179, 24, 0.15);
 }
 
 .subtitle {
@@ -16,6 +17,7 @@
 
 .listingSection {
     padding: 80px 0;
+    background: #FAF8F5;
 }
 
 .container {
@@ -33,17 +35,19 @@
 .card {
     display: flex;
     flex-direction: column;
-    background: #fdfaf5;
+    background: #FFFFFF;
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 15px;
-    border-radius: 30px;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    padding: 18px;
+    border-radius: 26px;
+    border: 1px solid rgba(252, 179, 24, 0.18);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(252, 179, 24, 0.12);
+    border-color: rgba(252, 179, 24, 0.45);
 }
 
 .imageWrapper {
