@@ -1,135 +1,222 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
-import { Award, ShieldCheck, MapPin } from 'lucide-react';
+import ThrissurPageClient from './ThrissurPageClient';
 
 export const metadata: Metadata = {
-    title: 'Event Management in Thrissur | Wedding & Event Caterers | PKC Events',
-    description: 'Award-winning event management and luxury catering in Thrissur by Pride Kitchen Caterers & Events. FSSAI & ISO certified wedding planners and corporate event organizers since 2008.',
+    title: 'Event Management in Thrissur | Wedding Planners | PKC Events',
+    description: 'Event management in Thrissur since 2008. Weddings, sadhya catering, stage decor and corporate events by PKC Events, Mannuthy. FSSAI & ISO certified.',
     alternates: {
         canonical: 'https://pkcevents.com/event-management-thrissur'
     },
     openGraph: {
-        title: 'Event Management in Thrissur | Wedding & Event Caterers | PKC Events',
-        description: 'Award-winning event management and luxury catering in Thrissur by Pride Kitchen Caterers & Events. FSSAI & ISO certified wedding planners and corporate event organizers since 2008.',
+        title: 'Event Management in Thrissur | Wedding Planners | PKC Events',
+        description: 'Event management in Thrissur since 2008. Weddings, sadhya catering, stage decor and corporate events by PKC Events, Mannuthy. FSSAI & ISO certified.',
         url: 'https://pkcevents.com/event-management-thrissur',
         images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'PKC Events Thrissur' }],
         type: 'website'
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Event Management in Thrissur | PKC Events',
-        description: 'Award-winning event management and luxury catering in Thrissur by Pride Kitchen Caterers & Events.',
+        title: 'Event Management in Thrissur | Wedding Planners | PKC Events',
+        description: 'Event management in Thrissur since 2008. Weddings, sadhya catering, stage decor and corporate events by PKC Events, Mannuthy. FSSAI & ISO certified.',
         images: ['https://pkcevents.com/logo.png']
     }
 };
 
-export default function EventManagementThrissurPage() {
-    const thrissurServices = [
-        {
-            title: "Traditional & Contemporary Wedding Planning",
-            desc: "Expertly orchestrated Kerala wedding ceremonies, engagement functions, and grand receptions across top convention centers and heritage venues in Thrissur."
-        },
-        {
-            title: "Authentic Sadhya & Multi-Cuisine Catering",
-            desc: "Renowned culinary heritage featuring traditional Kerala sadhya served with authentic flavours, alongside modern North Indian, Continental, and live food counters."
-        },
-        {
-            title: "Theme Stage Decor & Floral Architecture",
-            desc: "Custom stage concepts, traditional temple-inspired wedding floral arrangements, LED production, and bespoke bridal entrance designs."
-        },
-        {
-            title: "Corporate Meets & Public Celebrations",
-            desc: "End-to-end planning for conferences, trade exhibits, college festivals, and family milestones throughout Thrissur district."
-        }
-    ];
+const trustItems = [
+    { icon: 'clock', text: '18+ years in Thrissur' },
+    { icon: 'users', text: '2,500+ events delivered' },
+    { icon: 'shield', text: 'FSSAI & ISO 22000 certified kitchen' },
+    { icon: 'award', text: 'Metro Food Award 2023, 2024, 2025' }
+];
 
+const whyFamiliesChoose = [
+    {
+        title: 'We are local.',
+        desc: "Our headquarters at Arammel Arcade, Mannuthy, means faster site visits, same-day tastings and a team that already knows Thrissur's auditoriums, parking limits and traffic patterns."
+    },
+    {
+        title: 'We cook, not subcontract.',
+        desc: 'Food is the part guests remember most. Ours comes from our own certified kitchen, not a third-party caterer.'
+    },
+    {
+        title: 'Award-recognised.',
+        desc: 'Metro Food Award winner three years running (2023, 2024, 2025).'
+    },
+    {
+        title: 'One contract, one coordinator.',
+        desc: 'Catering, decor, photography, make-up and cars are planned together, so nothing falls between vendors.'
+    },
+    {
+        title: 'Proven at scale.',
+        desc: 'More than 2,500 events delivered since 2008, from 50-guest family lunches to large wedding receptions.'
+    }
+];
+
+const planningSteps = [
+    {
+        step: '1',
+        title: 'Consultation',
+        desc: 'Call or WhatsApp us. We note the date, guest count, venue and budget.'
+    },
+    {
+        step: '2',
+        title: 'Site visit & proposal',
+        desc: 'We visit the venue, then send a written plan with menu options, decor concepts and a clear quote.'
+    },
+    {
+        step: '3',
+        title: 'Tasting & design sign-off',
+        desc: 'Taste the menu at our Mannuthy kitchen and approve the stage design.'
+    },
+    {
+        step: '4',
+        title: 'Coordination',
+        desc: 'Your event manager confirms every vendor, timing and guest-flow detail in the final week.'
+    },
+    {
+        step: '5',
+        title: 'Event day',
+        desc: 'Our team sets up, runs the schedule and stays until the venue is cleared.'
+    }
+];
+
+const areasCoveredList = [
+    'Thrissur Town',
+    'Swaraj Round',
+    'Mannuthy HQ',
+    'Ollur',
+    'Puzhakkal',
+    'Guruvayur',
+    'Chavakkad',
+    'Kunnamkulam',
+    'Wadakkanchery',
+    'Irinjalakuda',
+    'Chalakudy',
+    'Kodungallur',
+    'Triprayar',
+    'Kodakara',
+    'Palakkad',
+    'Malappuram',
+    'Kochi'
+];
+
+const faqs = [
+    {
+        q: 'How much does event management in Thrissur cost?',
+        a: 'Cost depends on guest count, menu, decor scale and the services you add. We give a written, itemised quote after the first consultation, with no hidden charges.'
+    },
+    {
+        q: 'Do you provide catering only, or full event management?',
+        a: 'Both. Many clients book us for catering alone; others hand over the full event, from decor to photography and wedding cars.'
+    },
+    {
+        q: 'How early should we book for a wedding in Thrissur?',
+        a: 'Three to six months for peak muhurtham, Onam and Christmas dates. Smaller events can often be arranged in two to four weeks.'
+    },
+    {
+        q: 'Do you handle Guruvayur temple weddings?',
+        a: 'Yes. We manage the sadhya, reception, decor and guest transport around the temple ceremony slot.'
+    },
+    {
+        q: 'Is your kitchen certified?',
+        a: 'Yes. Our kitchen is FSSAI licensed and ISO 22000 certified for food safety.'
+    },
+    {
+        q: 'Can we taste the menu before booking?',
+        a: 'Yes. We arrange menu tastings at our Mannuthy kitchen once the proposal is shared.'
+    },
+    {
+        q: 'Do you manage corporate events in Thrissur too?',
+        a: 'Yes. We run conferences, dealer meets, launches, annual days and award nights with full AV and catering.'
+    }
+];
+
+export default function EventManagementThrissurPage() {
     const serviceSchema = {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "serviceType": "Event Management",
-        "name": "Event Management in Thrissur",
-        "provider": {
-            "@type": "Organization",
-            "name": "Pride Kitchen Caterers & Events",
-            "url": "https://pkcevents.com"
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        'serviceType': 'Event Management',
+        'name': 'Event Management in Thrissur | Wedding Planners | PKC Events',
+        'provider': {
+            '@type': 'Organization',
+            'name': 'Pride Kitchen Caterers & Events',
+            'url': 'https://pkcevents.com',
+            'address': {
+                '@type': 'PostalAddress',
+                'streetAddress': 'Arammel Arcade, Mannuthy–Madakkathara Road',
+                'addressLocality': 'Thrissur',
+                'postalCode': '680651',
+                'addressRegion': 'Kerala',
+                'addressCountry': 'IN'
+            }
         },
-        "areaServed": {
-            "@type": "City",
-            "name": "Thrissur"
-        },
-        "description": "Professional luxury wedding planning, corporate event management, and authentic catering services in Thrissur, Kerala."
+        'areaServed': [
+            {
+                '@type': 'City',
+                'name': 'Thrissur'
+            },
+            {
+                '@type': 'AdministrativeArea',
+                'name': 'Kerala'
+            }
+        ],
+        'description': 'Event management in Thrissur since 2008. Weddings, sadhya catering, stage decor and corporate events by PKC Events, Mannuthy. FSSAI & ISO certified.'
+    };
+
+    const faqSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': faqs.map((faq) => ({
+            '@type': 'Question',
+            'name': faq.q,
+            'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': faq.a
+            }
+        }))
+    };
+
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Home',
+                'item': 'https://pkcevents.com'
+            },
+            {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Event Management in Thrissur',
+                'item': 'https://pkcevents.com/event-management-thrissur'
+            }
+        ]
     };
 
     return (
-        <main className="container section-padding" style={{ paddingTop: '150px', paddingBottom: '90px' }}>
+        <>
+            {/* JSON-LD Schemas */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
             />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
 
-            <header style={{ maxWidth: '900px', marginBottom: '50px' }}>
-                <span style={{ color: 'var(--primary, #D4AF37)', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.9rem' }}>
-                    Thrissur Headquarters &amp; Central Kerala Specialists
-                </span>
-                <h1 className="heading-md" style={{ marginTop: '10px', lineHeight: '1.2' }}>
-                    Event Management in Thrissur for Weddings, Receptions &amp; Celebrations
-                </h1>
-                <p style={{ marginTop: '20px', fontSize: '1.15rem', lineHeight: '1.8', color: '#555' }}>
-                    Based in Mannuthy, Thrissur since 2008, Pride Kitchen Caterers &amp; Events is the cultural capital&apos;s leading name in hospitality, wedding production, and catering. With over 18 years of experience and three-time Metro Food Award honors, our dedicated team manages every logistical detail so your celebration is stress-free and unforgettable.
-                </p>
-            </header>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '25px', marginBottom: '60px' }}>
-                {thrissurServices.map((svc) => (
-                    <div key={svc.title} style={{ padding: '30px', background: '#fafafa', borderRadius: '12px', border: '1px solid #eee' }}>
-                        <h2 style={{ fontSize: '1.25rem', marginBottom: '12px', color: '#111' }}>{svc.title}</h2>
-                        <p style={{ color: '#666', lineHeight: '1.7', fontSize: '0.95rem' }}>{svc.desc}</p>
-                    </div>
-                ))}
-            </div>
-
-            <section style={{ background: '#1C1B19', color: '#fff', padding: '50px 40px', borderRadius: '16px', marginBottom: '60px' }}>
-                <div style={{ maxWidth: '800px' }}>
-                    <h2 style={{ fontSize: '1.8rem', color: '#fcb318', marginBottom: '15px' }}>The PKC Events Advantage in Thrissur</h2>
-                    <ul style={{ listStyle: 'none', padding: 0, margin: '20px 0', display: 'grid', gap: '15px' }}>
-                        <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                            <ShieldCheck color="#fcb318" size={22} />
-                            <span><strong>FSSAI &amp; ISO 22000 Certified Kitchens</strong> — Unmatched standards in hygiene and taste.</span>
-                        </li>
-                        <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                            <Award color="#fcb318" size={22} />
-                            <span><strong>Metro Food Award Winner (2023, 2024, 2025)</strong> — Top-ranked catering service in Kerala.</span>
-                        </li>
-                        <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                            <MapPin color="#fcb318" size={22} />
-                            <span><strong>Headquartered in Thrissur</strong> — Arammel Arcade, Mannuthy with deep local network of convention centers and auditoriums.</span>
-                        </li>
-                    </ul>
-                    <div style={{ marginTop: '30px', display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
-                        <Link href="/contact" className="btn btn-primary">
-                            Plan Your Event
-                        </Link>
-                        <a href="https://wa.me/918138002333" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ color: '#fff', borderColor: '#fff' }}>
-                            WhatsApp Enquiry
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section style={{ borderTop: '1px solid #eee', paddingTop: '40px' }}>
-                <h2 style={{ fontSize: '1.4rem', marginBottom: '15px' }}>Explore Our Event Services in Kerala</h2>
-                <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
-                    <Link href="/services/catering" style={{ color: '#666', textDecoration: 'underline' }}>Premium Catering</Link>
-                    <span>•</span>
-                    <Link href="/services/venue" style={{ color: '#666', textDecoration: 'underline' }}>Venue Management</Link>
-                    <span>•</span>
-                    <Link href="/services/decoration" style={{ color: '#666', textDecoration: 'underline' }}>Event Decoration</Link>
-                    <span>•</span>
-                    <Link href="/services/cars" style={{ color: '#666', textDecoration: 'underline' }}>Luxury Wedding Cars</Link>
-                    <span>•</span>
-                    <Link href="/event-management-kochi" style={{ color: '#666', textDecoration: 'underline' }}>Event Management Kochi</Link>
-                </div>
-            </section>
-        </main>
+            <ThrissurPageClient
+                whyFamiliesChoose={whyFamiliesChoose}
+                planningSteps={planningSteps}
+                areasCoveredList={areasCoveredList}
+                faqs={faqs}
+            />
+        </>
     );
 }

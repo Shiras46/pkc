@@ -106,7 +106,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Corporate catering buffet line setup for premium business events in Kerala"
             },
             {
-                image: "/image/services/catering.webp", icon: <Utensils color="#fcb318" />,
+                image: "/image/services/sadhya.webp", icon: <Utensils color="#fcb318" />,
                 title: "Kerala Traditional Sadhya", desc: "Authentic Kerala traditional sadhya is unlike any other meal. It’s the symbol of a cultural heritage wrapped in the flavour of a living tradition. We offer a true Kerala traditional menu where every district in Kerala reflects its own unique rhythm to the feast. For premium weddings, we take pride in bringing that local diversity to your banana leaf according to your preferred choice.",
                 alt: "Traditional Kerala Sadhya served on banana leaf with side dishes"
             },
