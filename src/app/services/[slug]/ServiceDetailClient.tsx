@@ -173,7 +173,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Professional event coordinator managing venue settings and guest services on-site"
             },
             {
-                image: "/image/services/venue3.webp", icon: <Sparkles color="#fcb318" />,
+                image: "/image/services/event exicution support.webp", icon: <Sparkles color="#fcb318" />,
                 title: "Event Execution Support", desc: "Success of any event is reflected in the perfection in the execution. With Pride Kitchen Caterers & Events, execution will never be a Herculean task, as we expertly provide logistical precision and technical strength ensuring the smooth sailing of the event. From managing the minutiae of vendor arrivals and load-ins to handling all the heavy lifting we oversee every detail to arrange a perfect physical set up for your event.",
                 alt: "PKC event execution support and technical setups at wedding venue"
             }
@@ -355,7 +355,7 @@ const serviceSpecificData: Record<string, any> = {
     entertainment: {
         headline: "Wedding and Event Entertainment\nin Thrissur",
         subheadline: "",
-        heroImage: "/image/services/entire tainment banner.jpg",
+        heroImage: "/image/services/pre-wedding-multi-day-celebrations.webp",
         heroAlt: "Vibrant live musical band concert with colorful stage lights and drums at wedding party banner",
         useHalfHero: true,
         useStaggeredLayout: true,
@@ -587,7 +587,7 @@ const serviceSpecificData: Record<string, any> = {
                 alt: "Luxury pre-wedding and multi-day destination celebration dining setup including Mehendi, Sangeet and Haldi catering"
             },
             {
-                image: "/image/services/onsite-coordination-v2.webp", icon: <Plane color="#fcb318" />,
+                image: "/image/services/complete planning guest hospitality.webp", icon: <Plane color="#fcb318" />,
                 title: "Complete Planning & Guest Hospitality", desc: "Hosting guests in a new place takes more than good food. We work with you on menu planning, venue coordination, live counters, décor-matched presentation and dietary needs for every guest, including vegetarian, Jain and allergy-friendly options. With Pride Kitchen managing the dining experience end to end, you are free to be present for every moment of your celebration.",
                 alt: "Complete wedding planning, on-site kitchen management and guest hospitality service in Thrissur by PKC Events"
             }
