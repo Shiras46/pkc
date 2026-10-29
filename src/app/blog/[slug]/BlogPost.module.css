@@ -450,25 +450,27 @@
     scroll-margin-top: 100px;
 }
 
-/* LUXURY HYPERLINKS - NO MORE UGLY BROWSER BLUE! */
+/* CLEAN HYPERLINKS - STATIC, NO MOVING ANIMATION OR JITTER */
 .proseContent a,
 .proseContent a span {
     color: #C28004 !important;
     font-weight: 600 !important;
     text-decoration: none !important;
-    border-bottom: 2px solid rgba(252, 179, 24, 0.45);
+    border-bottom: 1.5px solid rgba(252, 179, 24, 0.45);
     padding-bottom: 1px;
-    border-radius: 2px;
-    transition: all 0.25s ease;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    background: transparent !important;
+    transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .proseContent a:hover,
 .proseContent a:hover span {
     color: #8C5B00 !important;
-    background: rgba(252, 179, 24, 0.12);
-    border-bottom-color: #C28004;
-    padding-left: 3px;
-    padding-right: 3px;
+    border-bottom-color: #8C5B00;
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 /* LISTS */
@@ -586,23 +588,67 @@
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    margin: 30px 0;
+    margin: 32px 0;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1.5px solid #FCB318;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .proseContent th,
 .proseContent td {
     padding: 14px 18px;
     text-align: left;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid #EAE7DF;
+    border-right: 1px solid #EAE7DF;
+}
+
+.proseContent th:last-child,
+.proseContent td:last-child {
+    border-right: none;
+}
+
+.proseContent tr:last-child td {
+    border-bottom: none;
 }
 
 .proseContent th {
-    background: #FAF6ED;
-    color: #1A1916;
+    background: #1A1916;
+    color: #FCB318;
     font-weight: 700;
+    border-bottom: 2px solid #FCB318;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.proseContent tr:nth-child(even) td {
+    background: #FAF8F5;
+}
+
+/* FAQ CARDS IN CONTENT */
+.proseContent .faq-card {
+    margin: 24px 0;
+    padding: 22px 28px;
+    background: linear-gradient(135deg, #FFFDF9 0%, #FAF6EE 100%);
+    border-radius: 16px;
+    border: 1.5px solid #FCB318;
+    box-shadow: 0 6px 20px rgba(252, 179, 24, 0.08);
+}
+
+.proseContent .faq-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1A1916;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.proseContent .faq-card p {
+    margin: 0;
+    color: #4A4843;
+    font-size: 1rem;
+    line-height: 1.75;
 }
 
 /* =========================================================

@@ -75,6 +75,30 @@
     color: #000000;
 }
 
+.tableBtn {
+    background: #F4F8FA;
+    border-color: #BCE0FD;
+    color: #0366D6;
+}
+
+.tableBtn:hover {
+    background: #FCB318;
+    color: #000000;
+    border-color: #FCB318;
+}
+
+.faqBtn {
+    background: #FDF8F0;
+    border-color: #F8D7A4;
+    color: #A36500;
+}
+
+.faqBtn:hover {
+    background: #FCB318;
+    color: #000000;
+    border-color: #FCB318;
+}
+
 .visualArea {
     width: 100%;
     min-height: 280px;
@@ -128,6 +152,71 @@
 .visualArea ul, .visualArea ol {
     margin-left: 24px;
     margin-bottom: 12px;
+}
+
+/* TABLE STYLES IN VISUAL EDITOR */
+.visualArea table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid #FCB318;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.visualArea th {
+    background: #1A1916;
+    color: #FCB318;
+    padding: 12px 16px;
+    font-weight: 700;
+    text-align: left;
+    border-bottom: 2px solid #FCB318;
+}
+
+.visualArea td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #EAE7DF;
+    border-right: 1px solid #EAE7DF;
+    color: #222222;
+}
+
+.visualArea tr:last-child td {
+    border-bottom: none;
+}
+
+.visualArea td:last-child,
+.visualArea th:last-child {
+    border-right: none;
+}
+
+.visualArea tr:nth-child(even) td {
+    background: #FAF8F5;
+}
+
+/* FAQ CARD IN VISUAL EDITOR */
+.visualArea .faq-card {
+    margin: 18px 0;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, #FFFDF9 0%, #FAF6EE 100%);
+    border-radius: 12px;
+    border: 1.5px solid #FCB318;
+    box-shadow: 0 4px 15px rgba(252, 179, 24, 0.08);
+}
+
+.visualArea .faq-card h4 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1A1916;
+}
+
+.visualArea .faq-card p {
+    margin: 0;
+    color: #444444;
+    font-size: 0.95rem;
+    line-height: 1.65;
 }
 
 .textarea {
@@ -228,4 +317,130 @@
 
 .insertBtn:hover {
     background: #e5a216;
+}
+
+/* ACTIVE TABLE CONTROLS BAR */
+.tableActiveToolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    background: linear-gradient(90deg, #1A1916 0%, #2A2620 100%);
+    border-bottom: 2px solid #FCB318;
+    flex-wrap: wrap;
+    animation: fadeIn 0.2s ease;
+}
+
+.tableToolbarLabel {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #FCB318;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-right: 4px;
+}
+
+.tableControlBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border: 1px solid rgba(252, 179, 24, 0.4);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.tableControlBtn:hover {
+    background: #FCB318;
+    color: #000000;
+    border-color: #FCB318;
+}
+
+.tableDeleteBtn {
+    margin-left: auto;
+    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.12);
+    color: #FCA5A5;
+}
+
+.tableDeleteBtn:hover {
+    background: #EF4444;
+    color: #FFFFFF;
+    border-color: #EF4444;
+}
+
+/* VISUAL WRAPPER WITH FLOATING TABLE BUBBLE */
+.visualWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.floatingTableBubble {
+    position: absolute;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: #1A1916;
+    border: 1.5px solid #FCB318;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.15s ease;
+}
+
+.bubbleTitle {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #FCB318;
+    text-transform: uppercase;
+    margin-right: 2px;
+}
+
+.floatingTableBubble button {
+    padding: 3px 7px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.floatingTableBubble button:hover {
+    background: #FCB318;
+    color: #000000;
+    border-color: #FCB318;
+}
+
+.floatingTableBubble .bubbleDelete {
+    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.floatingTableBubble .bubbleDelete:hover {
+    background: #EF4444;
+    color: #FFFFFF;
+    border-color: #EF4444;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
