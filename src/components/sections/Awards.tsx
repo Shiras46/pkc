@@ -12,23 +12,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const awardsData: { year: string; title: string; subtitle: string; image: string; containImage?: boolean; imageStyle?: React.CSSProperties; frameStyle?: React.CSSProperties; width?: number; height?: number }[] = [
     {
-        year: "2023",
-        title: "South Indian Hospitality Awards 2023",
-        subtitle: "Excellence in Client Hospitality",
-        image: "/image/timeline/2023.webp",
-        containImage: true,
-        frameStyle: { aspectRatio: "auto", overflow: "visible" },
-        imageStyle: { position: "relative", width: "100%", height: "auto", objectFit: "contain", top: 0, borderRadius: "inherit" },
-        width: 1280,
-        height: 933
-    },
-    {
-        year: "2024",
-        title: "Metro Food Awards 2024",
-        subtitle: "Excellence in Culinary Services",
-        image: "/image/timeline/2024 award.webp"
-    },
-    {
         year: "2025",
         title: "Metro Food Awards 2025",
         subtitle: "Excellence in Catering & Hospitality Services",
@@ -40,6 +23,23 @@ const awardsData: { year: string; title: string; subtitle: string; image: string
         subtitle: "Media & Industry Spotlight",
         image: "/image/timeline/indain express.webp",
         imageStyle: { objectPosition: "center 15%" }
+    },
+    {
+        year: "2024",
+        title: "Metro Food Awards 2024",
+        subtitle: "Excellence in Culinary Services",
+        image: "/image/timeline/2024 award.webp"
+    },
+    {
+        year: "2023",
+        title: "South Indian Hospitality Awards 2023",
+        subtitle: "Excellence in Client Hospitality",
+        image: "/image/timeline/2023.webp",
+        containImage: true,
+        frameStyle: { aspectRatio: "auto", overflow: "visible" },
+        imageStyle: { position: "relative", width: "100%", height: "auto", objectFit: "contain", top: 0, borderRadius: "inherit" },
+        width: 1280,
+        height: 933
     }
 ];
 
