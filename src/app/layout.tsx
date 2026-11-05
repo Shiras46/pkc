@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Header from "@/components/Navigation/Header";
 import Footer from "@/components/Navigation/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import MobileContactBar from "@/components/ui/MobileContactBar";
 import QuotePopup from "@/components/ui/QuotePopup";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import Script from "next/script";
@@ -429,6 +430,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <main>{children}</main>
                     <Footer />
                     <WhatsAppButton />
+                    <MobileContactBar />
                     <QuotePopup />
                 </SmoothScroll>
             </body>
