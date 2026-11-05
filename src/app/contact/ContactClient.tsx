@@ -29,20 +29,37 @@ export default function ContactClient() {
             window.open(whatsappUrl, '_blank');
 
             // 2. Save enquiry to MongoDB Database (Admin Dashboard)
-            const res = await fetch("/api/enquiries", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            });
+            try {
+                const res = await fetch("/api/enquiries", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        email: formData.email,
+                        phone: formData.phone,
+                        service: formData.service,
+                        message: formData.message || "Submitted from Website Contact Form"
+                    }),
+                    keepalive: true
+                });
 
-            if (res.ok) {
-                trackEvent('form_submit', { form_type: 'contact_page' });
+                if (res.ok) {
+                    trackEvent('form_submit', { form_type: 'contact_page' });
+                    setStatus("success");
+                    setFormData({ name: "", email: "", phone: "", service: "Wedding", message: "" });
+                } else {
+                    console.error("Backend returned non-ok status:", res.status);
+                    // Still mark success since WhatsApp was triggered
+                    trackEvent('form_submit', { form_type: 'contact_page' });
+                    setStatus("success");
+                    setFormData({ name: "", email: "", phone: "", service: "Wedding", message: "" });
+                }
+            } catch (apiErr) {
+                console.error("Failed to save enquiry:", apiErr);
                 setStatus("success");
-                setFormData({ name: "", email: "", phone: "", service: "Wedding", message: "" });
-            } else {
-                setStatus("error");
             }
         } catch (error) {
+            console.error("Contact form error:", error);
             setStatus("error");
         }
     };

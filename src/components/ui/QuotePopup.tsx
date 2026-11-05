@@ -39,16 +39,24 @@ export default function QuotePopup() {
             window.open(whatsappUrl, '_blank');
 
             // 2. Save enquiry to MongoDB Database (Admin Dashboard)
-            await fetch("/api/enquiries", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: formData.name,
-                    phone: formData.phone,
-                    service: formData.service,
-                    message: "Submitted from Website Quote Popup"
-                })
-            });
+            try {
+                const res = await fetch("/api/enquiries", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        phone: formData.phone,
+                        service: formData.service,
+                        message: "Submitted from Website Quote Popup"
+                    }),
+                    keepalive: true
+                });
+                if (!res.ok) {
+                    console.error("Failed to save enquiry:", await res.text());
+                }
+            } catch (apiError) {
+                console.error("Failed to save enquiry to backend:", apiError);
+            }
             
             trackEvent('form_submit', { form_type: 'popup_quote' });
             setStatus("success");
@@ -58,7 +66,8 @@ export default function QuotePopup() {
                 setStatus("idle");
                 setFormData({ name: "", phone: "", service: "Wedding Catering" });
             }, 3000);
-        } catch {
+        } catch (error) {
+            console.error("Popup submit error:", error);
             setStatus("idle");
         }
     };

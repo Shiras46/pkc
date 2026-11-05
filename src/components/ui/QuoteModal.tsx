@@ -30,7 +30,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
             // 2. Concurrently save enquiry to backend (Admin Panel)
             try {
-                await fetch("/api/enquiries", {
+                const res = await fetch("/api/enquiries", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -38,8 +38,12 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         phone: formData.phone,
                         service: formData.eventType,
                         message: "Submitted from Website Quote Modal"
-                    })
+                    }),
+                    keepalive: true
                 });
+                if (!res.ok) {
+                    console.error("Failed to save enquiry:", await res.text());
+                }
             } catch (apiError) {
                 console.error("Failed to save enquiry to backend:", apiError);
             }

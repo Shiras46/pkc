@@ -11,7 +11,7 @@ export default function AdminDashboard() {
         totalBlogs: 0,
         publishedBlogs: 0,
         views: 1250, // Mock data
-        enquiries: 45 // Mock data
+        enquiries: 0
     });
 
     useEffect(() => {

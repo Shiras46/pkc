@@ -7,19 +7,32 @@ export async function POST(request: Request) {
         await dbConnect();
         const body = await request.json();
 
+        const serviceName = body.service || body.eventType || 'General Inquiry';
+        const todayStr = new Date().toISOString().split('T')[0];
+
         const newEnquiry = await Enquiry.create({
-            name: body.name,
+            name: body.name || 'Website Visitor',
             email: body.email || '',
             phone: body.phone || '',
-            service: body.service || body.eventType || 'General Inquiry',
+            service: serviceName,
+            eventType: serviceName,
+            eventDate: body.eventDate || body.date || '',
+            guestCount: body.guestCount ? Number(body.guestCount) : undefined,
             message: body.message || 'Submitted from Website',
-            date: new Date().toISOString().split('T')[0],
-            status: "New"
+            date: body.date || todayStr,
+            status: body.status || "New"
         });
 
-        return NextResponse.json({ success: true, message: "Enquiry submitted successfully", data: newEnquiry });
+        return NextResponse.json({ 
+            success: true, 
+            message: "Enquiry submitted successfully", 
+            data: newEnquiry 
+        });
     } catch (error: any) {
-        console.error('Enquiry error:', error);
-        return NextResponse.json({ error: "Failed to submit enquiry", details: error?.message }, { status: 500 });
+        console.error('Enquiry submission error:', error);
+        return NextResponse.json({ 
+            error: "Failed to submit enquiry", 
+            details: error?.message || 'Unknown database error' 
+        }, { status: 500 });
     }
 }
