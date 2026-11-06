@@ -17,7 +17,7 @@ const faqs = [
     },
     {
         question: "Are your services ISO certified?",
-        answer: "Yes. We are certified under ISO 9001:2015 and ISO 22000:2018 standards for quality management and food safety management."
+        answer: "Yes. We are certified under ISO 22000:2018 for food safety management."
     },
     {
         question: "Do you undertake large-scale events?",
@@ -29,7 +29,7 @@ const faqs = [
     },
     {
         question: "Why choose Pride Kitchen Caterers & Events?",
-        answer: "✔ Established in 2008\n✔ 18+ Years of Industry Experience\n✔ Metro Food Award Winner (2023, 2024 & 2025)\n✔ FSSAI Licensed\n✔ ISO 9001:2015 Certified\n✔ ISO 22000:2018 Certified"
+        answer: "✔ Established in 2008\n✔ 18+ Years of Industry Experience\n✔ Metro Food Award Winner (2023, 2024 & 2025)\n✔ FSSAI Licensed\n✔ ISO 22000:2018 Certified"
     }
 ];
 
