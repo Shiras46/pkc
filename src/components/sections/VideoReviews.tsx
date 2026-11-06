@@ -121,8 +121,24 @@ export default function VideoReviews() {
                         const videoId = video._id || video.id || `v-${index}`;
                         const isPlaying = activePlayingId === videoId;
                         const embedUrl = getEmbedUrl(video);
-                        const thumbUrl = getVideoThumbnail(video);
+                        const thumbUrl = getVideoThumbnail(video) || '/image/hero1.webp';
                         const isInstagram = video.videoUrl.includes('instagram.com') || video.videoUrl.includes('instagr.am') || video.platform === 'instagram';
+                        const isDirectVideo = Boolean(
+                            video.videoUrl && (
+                                video.platform === 'custom' ||
+                                video.videoUrl.endsWith('.mp4') ||
+                                video.videoUrl.endsWith('.webm') ||
+                                video.videoUrl.endsWith('.mov') ||
+                                video.videoUrl.endsWith('.m4v') ||
+                                video.videoUrl.includes('/uploads/videos') ||
+                                video.videoUrl.includes('.s3.') ||
+                                video.videoUrl.includes('amazonaws.com')
+                            ) &&
+                            !video.videoUrl.includes('youtube.com') &&
+                            !video.videoUrl.includes('youtu.be') &&
+                            !video.videoUrl.includes('instagram.com') &&
+                            !video.videoUrl.includes('instagr.am')
+                        );
                         
                         const displayTitle = video.title || [
                             "Another Happy Couple, Another Beautiful Story",
@@ -131,18 +147,31 @@ export default function VideoReviews() {
                             "Destination Wedding Setup"
                         ][index % 4];
 
-                        // All cards render thumbnail facade initially; iframe loads ONLY when user clicks play
+                        // All cards render thumbnail facade initially; video/iframe loads ONLY when user clicks play
                         return (
                             <div key={videoId} className={styles.card}>
                                 {isPlaying ? (
                                     <div className={styles.playerContainer}>
-                                        <iframe
-                                            src={embedUrl}
-                                            title={displayTitle}
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            allowFullScreen
-                                            className={`${styles.iframe} ${isInstagram ? styles.instaIframe : ''}`}
-                                        ></iframe>
+                                        {isDirectVideo ? (
+                                            <video
+                                                src={video.videoUrl}
+                                                controls
+                                                autoPlay
+                                                playsInline
+                                                poster={thumbUrl}
+                                                className={styles.videoPlayer}
+                                            >
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        ) : (
+                                            <iframe
+                                                src={embedUrl}
+                                                title={displayTitle}
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowFullScreen
+                                                className={`${styles.iframe} ${isInstagram ? styles.instaIframe : ''}`}
+                                            ></iframe>
+                                        )}
                                         <button 
                                             className={styles.closeBtn} 
                                             onClick={() => setActivePlayingId(null)}
