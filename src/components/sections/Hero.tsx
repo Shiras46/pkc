@@ -123,35 +123,6 @@ export default function Hero() {
                             </button>
                         </div>
                         <div className={`hero-reveal ${styles.googleReview}`}>
-                            <div className={styles.avatarGroup}>
-                                <div className={styles.avatar}>
-                                    <Image
-                                        src="/image/avatar_wedding_1.webp"
-                                        alt="Happy wedding catering client sharing a five-star review"
-                                        fill
-                                        sizes="48px"
-                                        style={{ objectFit: 'cover' }}
-                                    />
-                                </div>
-                                <div className={styles.avatar}>
-                                    <Image
-                                        src="/image/avatar_wedding_2.webp"
-                                        alt="Satisfied event management client providing a positive testimonial"
-                                        fill
-                                        sizes="48px"
-                                        style={{ objectFit: 'cover' }}
-                                    />
-                                </div>
-                                <div className={styles.avatar}>
-                                    <Image
-                                        src="/image/avatar_wedding_3.webp"
-                                        alt="Delighted wedding celebration client recommending premium catering services"
-                                        fill
-                                        sizes="48px"
-                                        style={{ objectFit: 'cover' }}
-                                    />
-                                </div>
-                            </div>
                             <div className={styles.reviewContent}>
                                 <div className={styles.stars}>
                                     <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
