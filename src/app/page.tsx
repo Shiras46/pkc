@@ -18,13 +18,13 @@ import { Blog as BlogType } from '@/lib/types';
 
 export const metadata: Metadata = {
     title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',
-    description: "Luxury wedding & event management in Thrissur since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
+    description: "Luxury wedding & event management in Thrissur and Kochi since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
     alternates: {
         canonical: 'https://pkcevents.com'
     },
     openGraph: {
         title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',
-        description: "Luxury wedding & event management in Thrissur since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
+        description: "Luxury wedding & event management in Thrissur and Kochi since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
         url: 'https://pkcevents.com',
         images: [{ url: 'https://pkcevents.com/logo.png', width: 800, height: 600, alt: 'Pride Kitchen Logo' }],
         type: 'website'
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',
-        description: "Luxury wedding & event management in Thrissur since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
+        description: "Luxury wedding & event management in Thrissur and Kochi since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
         images: ['https://pkcevents.com/logo.png']
     }
 };

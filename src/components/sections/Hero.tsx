@@ -101,13 +101,13 @@ export default function Hero() {
 
                         <div className="hero-reveal">
                             <h1 className={styles.heading}>
-                                Wedding Planning and <br />
-                                <span className={styles.goldTextNormal}>Event Management in Thrissur</span>
+                                Event Management in Thrissur <br />
+                                <span className={styles.goldTextNormal}>for Weddings and Corporate Events</span>
                             </h1>
                         </div>
                         <div className="hero-reveal">
                             <p className={styles.subtext}>
-                                [PLACEHOLDER: named event result: couple/client, venue, guest count, date] · 4.9★ from 451 Google reviews · Since 2008
+                                Your Celebrations, Our Premium Touch
                             </p>
                         </div>
                         <div className="hero-reveal">
