@@ -11,6 +11,7 @@ interface GoogleReviewItem {
   relativeTime: string;
   rating: number;
   text: string;
+  publishTime?: string;
 }
 
 interface GoogleReviewData {
@@ -30,16 +31,10 @@ const DEFAULT_MAPS_URI =
 
 const FALLBACK_REVIEWS: GoogleReviewItem[] = [
   {
-    authorName: "Hanson J.",
-    relativeTime: "3 months ago",
+    authorName: "Dr. Rahul Varma",
+    relativeTime: "1 month ago",
     rating: 5,
-    text: "PKC Caterers handled the catering for my daughter’s baptism, and they were truly exceptional. The food was delicious and remained piping hot until the very end of the event. The staff provided excellent service with warm smiles throughout, while the...",
-  },
-  {
-    authorName: "Eric",
-    relativeTime: "3 months ago",
-    rating: 5,
-    text: "We had ordered catering for our marriage function, and the entire experience was excellent. The food was extremely tasty, well-prepared, and appreciated by all our guests. The team was very professional and dealt with us in a friendly and supportive...",
+    text: "Exceptional service and authentic Kerala cuisine. The team took care of all arrangements seamlessly. Best event management and catering team in Kerala.",
   },
   {
     authorName: "Anjali Ramesh",
@@ -48,10 +43,16 @@ const FALLBACK_REVIEWS: GoogleReviewItem[] = [
     text: "Pride Kitchen Caterers organized our wedding reception catering and decor in Thrissur. Every single dish was praised by our guests. Highly recommended for any grand celebration!",
   },
   {
-    authorName: "Dr. Rahul Varma",
-    relativeTime: "1 month ago",
+    authorName: "Eric",
+    relativeTime: "3 months ago",
     rating: 5,
-    text: "Exceptional service and authentic Kerala cuisine. The team took care of all arrangements seamlessly. Best event management and catering team in Kerala.",
+    text: "We had ordered catering for our marriage function, and the entire experience was excellent. The food was extremely tasty, well-prepared, and appreciated by all our guests. The team was very professional and dealt with us in a friendly and supportive...",
+  },
+  {
+    authorName: "Hanson J.",
+    relativeTime: "3 months ago",
+    rating: 5,
+    text: "PKC Caterers handled the catering for my daughter’s baptism, and they were truly exceptional. The food was delicious and remained piping hot until the very end of the event. The staff provided excellent service with warm smiles throughout, while the...",
   },
 ];
 
@@ -71,6 +72,31 @@ function getAvatarColor(name: string): string {
   }
   const index = Math.abs(hash) % AVATAR_COLORS.length;
   return AVATAR_COLORS[index];
+}
+
+function parseRelativeTimeToDays(relativeTime: string): number {
+  if (!relativeTime) return 9999;
+  const lower = relativeTime.toLowerCase().trim();
+  if (lower.includes("just now") || lower.includes("today")) return 0;
+  if (lower.includes("yesterday")) return 1;
+
+  const match = lower.match(/(\d+)\s*(minute|hour|day|week|month|year)/);
+  if (match) {
+    const count = parseInt(match[1], 10);
+    const unit = match[2];
+    if (unit.startsWith("minute") || unit.startsWith("hour")) return 0.5;
+    if (unit.startsWith("day")) return count;
+    if (unit.startsWith("week")) return count * 7;
+    if (unit.startsWith("month")) return count * 30;
+    if (unit.startsWith("year")) return count * 365;
+  }
+
+  if (lower.includes("a day ago")) return 1;
+  if (lower.includes("a week ago")) return 7;
+  if (lower.includes("a month ago")) return 30;
+  if (lower.includes("a year ago")) return 365;
+
+  return 9999;
 }
 
 function GoogleGIcon() {
@@ -146,7 +172,7 @@ export default function GoogleReviews() {
   const googleMapsUri = data?.googleMapsUri || data?.reviewsUri || DEFAULT_MAPS_URI;
 
   const realReviews = data?.reviews || [];
-  const reviewList: GoogleReviewItem[] =
+  const rawList: GoogleReviewItem[] =
     realReviews.length > 0
       ? [
           ...realReviews,
@@ -155,6 +181,16 @@ export default function GoogleReviews() {
           ),
         ]
       : FALLBACK_REVIEWS;
+
+  // Always sort latest review first
+  const reviewList: GoogleReviewItem[] = [...rawList].sort((a, b) => {
+    if (a.publishTime && b.publishTime) {
+      return new Date(b.publishTime).getTime() - new Date(a.publishTime).getTime();
+    }
+    const daysA = parseRelativeTimeToDays(a.relativeTime);
+    const daysB = parseRelativeTimeToDays(b.relativeTime);
+    return daysA - daysB;
+  });
 
   const handleScroll = (direction: "left" | "right") => {
     if (scrollRef.current) {

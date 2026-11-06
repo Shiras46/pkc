@@ -47,14 +47,22 @@ export async function GET() {
     }
 
     const reviews = Array.isArray(data.reviews)
-      ? data.reviews.map((r: any) => ({
-          authorName: r.authorAttribution?.displayName ?? "Google User",
-          authorPhoto: r.authorAttribution?.photoUri ?? "",
-          authorUri: r.authorAttribution?.uri ?? data.googleMapsUri ?? "",
-          relativeTime: r.relativePublishTimeDescription ?? "",
-          rating: r.rating ?? 5,
-          text: r.text?.text ?? r.originalText?.text ?? "",
-        }))
+      ? data.reviews
+          .map((r: any) => ({
+            authorName: r.authorAttribution?.displayName ?? "Google User",
+            authorPhoto: r.authorAttribution?.photoUri ?? "",
+            authorUri: r.authorAttribution?.uri ?? data.googleMapsUri ?? "",
+            relativeTime: r.relativePublishTimeDescription ?? "",
+            rating: r.rating ?? 5,
+            text: r.text?.text ?? r.originalText?.text ?? "",
+            publishTime: r.publishTime ?? "",
+          }))
+          .sort((a: any, b: any) => {
+            if (a.publishTime && b.publishTime) {
+              return new Date(b.publishTime).getTime() - new Date(a.publishTime).getTime();
+            }
+            return 0;
+          })
       : [];
 
     return NextResponse.json({
