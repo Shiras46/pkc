@@ -17,10 +17,11 @@ export default function BlogPreview({ initialBlogs }: BlogPreviewProps) {
     useEffect(() => {
         if (initialBlogs && initialBlogs.length > 0) {
             setBlogs(initialBlogs);
+            return;
         }
 
-        // Always query latest published blogs to guarantee real-time sync
-        fetch("/api/blogs", { cache: "no-store" })
+        // Query published blogs if initialBlogs was empty
+        fetch("/api/blogs")
             .then(res => res.json())
             .then(data => {
                 if (Array.isArray(data) && data.length > 0) {
@@ -35,7 +36,7 @@ export default function BlogPreview({ initialBlogs }: BlogPreviewProps) {
     }
 
     return (
-        <section className={styles.section}>
+        <section className={`${styles.section} defer-render`}>
             <div className={styles.container}>
                 <div className={styles.header}>
                     <div>

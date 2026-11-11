@@ -6,7 +6,7 @@ import MobileContactBar from "@/components/ui/MobileContactBar";
 import QuotePopup from "@/components/ui/QuotePopup";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import Script from "next/script";
-import { Playfair_Display, Jost, Poppins, Inter, DM_Sans } from "next/font/google";
+import { Playfair_Display, Poppins, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -15,11 +15,21 @@ const playfair = Playfair_Display({
     style: ["normal", "italic"],
     variable: "--font-playfair",
     display: "swap",
+    preload: true,
 });
-const jost = Jost({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins-font", display: "swap" });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700", "800"], variable: "--font-dm-sans", display: "swap" });
+const poppins = Poppins({
+    subsets: ["latin"],
+    weight: ["400", "600", "700"],
+    variable: "--font-poppins-font",
+    display: "swap",
+    preload: true,
+});
+const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-inter",
+    display: "swap",
+    preload: true,
+});
 
 const veggieBurger = localFont({
     src: [
@@ -348,10 +358,20 @@ export default function RootLayout({
     const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
 
     return (
-        <html lang="en" className={`${playfair.variable} ${jost.variable} ${poppins.variable} ${inter.variable} ${dmSans.variable} ${veggieBurger.variable}`}>
+        <html lang="en" className={`${playfair.variable} ${poppins.variable} ${inter.variable} ${veggieBurger.variable}`}>
             <head>
-                {/* Google Tag Manager */}
-                <script
+                {/* Critical image preloads for instant LCP */}
+                <link rel="preload" as="image" href="/image/hero1.webp" type="image/webp" fetchPriority="high" />
+                <link rel="preload" as="image" href="/logo.png" type="image/png" />
+
+                <link rel="preconnect" href="https://www.googletagmanager.com" />
+                <link rel="preconnect" href="https://www.google-analytics.com" />
+                <link rel="dns-prefetch" href="https://clarity.ms" />
+
+                {/* Google Tag Manager - loaded afterInteractive to protect TBT & LCP */}
+                <Script
+                    id="gtm-script"
+                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

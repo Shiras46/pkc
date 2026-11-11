@@ -42,7 +42,7 @@ export default function Certifications() {
     }, [nextSlide]);
 
     return (
-        <section className={styles.certifications}>
+        <section className={`${styles.certifications} defer-render`}>
             <div className="container">
                 <div className={styles.header}>
                     <motion.div

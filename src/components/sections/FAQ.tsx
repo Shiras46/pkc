@@ -62,7 +62,7 @@ export default function FAQ() {
     };
 
     return (
-        <section className={styles.faqSection}>
+        <section className={`${styles.faqSection} defer-render`}>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

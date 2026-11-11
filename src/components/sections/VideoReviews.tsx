@@ -113,7 +113,7 @@ export default function VideoReviews() {
     if (videos.length === 0) return null;
 
     return (
-        <section className={styles.section}>
+        <section className={`${styles.section} defer-render`}>
             <div className="container">
                 {/* Shorts / Video Cards Grid */}
                 <div className={styles.grid}>
@@ -147,10 +147,61 @@ export default function VideoReviews() {
                             "Destination Wedding Setup"
                         ][index % 4];
 
-                        // All cards render thumbnail facade initially; video/iframe loads ONLY when user clicks play
+                        const cardInner = (
+                            <>
+                                {/* Top Header Overlay inside Card */}
+                                <div className={styles.cardHeaderOverlay}>
+                                    <div className={styles.avatarWrapper}>
+                                        <Image src="/logo.png" alt="PKC Logo" width={32} height={32} className={styles.avatarImg} />
+                                    </div>
+                                    <div className={styles.metaText}>
+                                        <h3 className={styles.videoTitle}>{displayTitle}</h3>
+                                        <p className={styles.brandName}>Pride Kitchen Caterers &amp; Events</p>
+                                    </div>
+                                </div>
+
+                                {/* Play Icon Overlay in Center */}
+                                <div className={styles.playButtonOverlay}>
+                                    <div className={styles.redPlayIcon}>
+                                        {isInstagram ? (
+                                            <svg width="52" height="52" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="48" height="48" rx="14" fill="url(#instaGrad)" />
+                                                <path d="M19 15.5L31 23.5L19 31.5V15.5Z" fill="white" />
+                                                <defs>
+                                                    <linearGradient id="instaGrad" x1="0" y1="48" x2="48" y2="0" gradientUnits="userSpaceOnUse">
+                                                        <stop stopColor="#FEE440"/>
+                                                        <stop offset="0.3" stopColor="#F72585"/>
+                                                        <stop offset="0.7" stopColor="#7209B7"/>
+                                                        <stop offset="1" stopColor="#3A0CA3"/>
+                                                    </linearGradient>
+                                                </defs>
+                                            </svg>
+                                        ) : (
+                                            <svg width="52" height="52" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path 
+                                                    d="M39.6 14.2C38.3 9.4 34.2 5.8 29.3 5.3C23.6 4.7 17.8 4.7 12.1 5.4C7.3 6 3.4 9.8 2.2 14.6C1 19.4 1 24.5 2.2 29.4C3.4 34.2 7.3 38 12.1 38.6C17.8 39.3 23.6 39.3 29.3 38.7C34.2 38.2 38.3 34.4 39.6 29.6C40.8 24.7 40.8 19.1 39.6 14.2Z" 
+                                                    fill="#FF0033" 
+                                                />
+                                                <path d="M19 15.5L31 23.5L19 31.5V15.5Z" fill="white" />
+                                            </svg>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Bottom Label */}
+                                <div className={styles.bottomLabel}>
+                                    <span>{isInstagram ? "Instagram ↗" : isDirectVideo ? "Video" : "Shorts"}</span>
+                                </div>
+
+                                {/* Gradient backdrop shading */}
+                                <div className={styles.gradientShade}></div>
+                            </>
+                        );
+
+                        // All cards render thumbnail facade initially; direct video / YouTube iframe loads ONLY when user clicks play
                         return (
                             <div key={videoId} className={styles.card}>
-                                {isPlaying ? (
+                                {isPlaying && !isInstagram ? (
                                     <div className={styles.playerContainer}>
                                         {isDirectVideo ? (
                                             <video
@@ -169,7 +220,7 @@ export default function VideoReviews() {
                                                 title={displayTitle}
                                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                                 allowFullScreen
-                                                className={`${styles.iframe} ${isInstagram ? styles.instaIframe : ''}`}
+                                                className={styles.iframe}
                                             ></iframe>
                                         )}
                                         <button 
@@ -181,6 +232,20 @@ export default function VideoReviews() {
                                             ✕
                                         </button>
                                     </div>
+                                ) : isInstagram ? (
+                                    <a
+                                        href={video.videoUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={styles.cardThumbnail}
+                                        style={{
+                                            backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.8) 100%), url('${thumbUrl}')`,
+                                            textDecoration: "none"
+                                        }}
+                                        aria-label={`Watch Reel on Instagram in new tab: ${displayTitle}`}
+                                    >
+                                        {cardInner}
+                                    </a>
                                 ) : (
                                     <div 
                                         className={styles.cardThumbnail} 
@@ -192,52 +257,7 @@ export default function VideoReviews() {
                                         tabIndex={0}
                                         aria-label={`Play video inline: ${displayTitle}`}
                                     >
-                                        {/* Top Header Overlay inside Card */}
-                                        <div className={styles.cardHeaderOverlay}>
-                                            <div className={styles.avatarWrapper}>
-                                                <Image src="/logo.png" alt="PKC Logo" width={32} height={32} className={styles.avatarImg} />
-                                            </div>
-                                            <div className={styles.metaText}>
-                                                <h3 className={styles.videoTitle}>{displayTitle}</h3>
-                                                <p className={styles.brandName}>Pride Kitchen Caterers &amp; Events</p>
-                                            </div>
-                                        </div>
-
-                                        {/* Play Icon Overlay in Center */}
-                                        <div className={styles.playButtonOverlay}>
-                                            <div className={styles.redPlayIcon}>
-                                                {isInstagram ? (
-                                                    <svg width="52" height="52" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="48" height="48" rx="14" fill="url(#instaGrad)" />
-                                                        <path d="M19 15.5L31 23.5L19 31.5V15.5Z" fill="white" />
-                                                        <defs>
-                                                            <linearGradient id="instaGrad" x1="0" y1="48" x2="48" y2="0" gradientUnits="userSpaceOnUse">
-                                                                <stop stopColor="#FEE440"/>
-                                                                <stop offset="0.3" stopColor="#F72585"/>
-                                                                <stop offset="0.7" stopColor="#7209B7"/>
-                                                                <stop offset="1" stopColor="#3A0CA3"/>
-                                                            </linearGradient>
-                                                        </defs>
-                                                    </svg>
-                                                ) : (
-                                                    <svg width="52" height="52" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path 
-                                                            d="M39.6 14.2C38.3 9.4 34.2 5.8 29.3 5.3C23.6 4.7 17.8 4.7 12.1 5.4C7.3 6 3.4 9.8 2.2 14.6C1 19.4 1 24.5 2.2 29.4C3.4 34.2 7.3 38 12.1 38.6C17.8 39.3 23.6 39.3 29.3 38.7C34.2 38.2 38.3 34.4 39.6 29.6C40.8 24.7 40.8 19.1 39.6 14.2Z" 
-                                                            fill="#FF0033" 
-                                                        />
-                                                        <path d="M19 15.5L31 23.5L19 31.5V15.5Z" fill="white" />
-                                                    </svg>
-                                                )}
-                                            </div>
-                                        </div>
-
-                                        {/* Bottom Label */}
-                                        <div className={styles.bottomLabel}>
-                                            <span>{isInstagram ? "Reels" : "Shorts"}</span>
-                                        </div>
-
-                                        {/* Gradient backdrop shading */}
-                                        <div className={styles.gradientShade}></div>
+                                        {cardInner}
                                     </div>
                                 )}
                             </div>

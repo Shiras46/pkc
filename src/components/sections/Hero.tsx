@@ -38,21 +38,9 @@ export default function Hero() {
 
     useGSAP(() => {
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-        // On mobile or reduced motion, prevent delaying LCP render
-        if (!reduceMotion && !isMobile) {
-            const tl = gsap.timeline();
-
-            tl.from(".hero-reveal", {
-                y: 50,
-                opacity: 0,
-                stagger: 0.2,
-                duration: 1.2,
-                ease: "expo.out",
-                delay: 0.2
-            });
-
+        // Ensure LCP text renders with 0 delay; only smooth parallax on scroll
+        if (!reduceMotion && backgroundRef.current) {
             gsap.to(backgroundRef.current, {
                 yPercent: 10,
                 ease: "none",
@@ -73,7 +61,7 @@ export default function Hero() {
                     <motion.div
                         key={currentIndex}
                         className={styles.carouselImage}
-                        initial={{ opacity: 0.8 }}
+                        initial={false}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0.8 }}
                         transition={{ duration: 1.5, ease: "easeInOut" }}
@@ -82,9 +70,9 @@ export default function Hero() {
                             src={heroImages[currentIndex]}
                             alt="Luxury wedding and event celebration with elegant catering and premium event management in Kerala"
                             fill
-                            sizes="(max-width: 768px) 100vw, 100vw"
+                            sizes="100vw"
                             priority={currentIndex === 0}
-                            quality={currentIndex === 0 ? 70 : 75}
+                            quality={80}
                             loading={currentIndex === 0 ? "eager" : "lazy"}
                             fetchPriority={currentIndex === 0 ? "high" : "auto"}
                             style={{ objectFit: 'cover', objectPosition: 'center 78%' }}

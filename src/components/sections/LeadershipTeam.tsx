@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function LeadershipTeam() {
     return (
-        <section className={styles.section}>
+        <section className={`${styles.section} defer-render`}>
             <div className="container">
                 <div className={styles.header}>
                     <h2><span style={{ color: '#000000' }}>Faces Behind the</span> Brand</h2>
@@ -12,7 +12,7 @@ export default function LeadershipTeam() {
                 <div className={styles.grid}>
                     <div className={styles.memberCard}>
                         <div className={styles.imageWrapper}>
-                            <Image src="/image/RIJO2.webp" alt="Rijo George, Managing Director of Pride Kitchen Caterers & Events in Kerala" fill style={{ objectFit: 'cover', objectPosition: 'center 10%', transform: 'scale(1.12)', transformOrigin: 'center 10%' }} />
+                            <Image src="/image/RIJO2.webp" alt="Rijo George, Managing Director of Pride Kitchen Caterers & Events in Kerala" fill sizes="(max-width: 768px) 100vw, 380px" style={{ objectFit: 'cover', objectPosition: 'center 10%', transform: 'scale(1.12)', transformOrigin: 'center 10%' }} />
                         </div>
                         <span className={styles.role}>Managing Director</span>
                         <h3>Rijo George</h3>
@@ -20,7 +20,7 @@ export default function LeadershipTeam() {
                     </div>
                     <div className={styles.memberCard}>
                         <div className={styles.imageWrapper}>
-                            <Image src="/image/MUKHU3.webp" alt="Mukesh E B, Founder & CEO of Pride Kitchen Caterers & Events in Kerala" fill style={{ objectFit: 'cover', objectPosition: 'center 10%', transform: 'scale(1.05)', transformOrigin: 'center 10%' }} />
+                            <Image src="/image/MUKHU3.webp" alt="Mukesh E B, Founder & CEO of Pride Kitchen Caterers & Events in Kerala" fill sizes="(max-width: 768px) 100vw, 380px" style={{ objectFit: 'cover', objectPosition: 'center 10%', transform: 'scale(1.05)', transformOrigin: 'center 10%' }} />
                         </div>
                         <span className={styles.role}>Founder & CEO</span>
                         <h3>Mukesh E B</h3>
@@ -28,7 +28,7 @@ export default function LeadershipTeam() {
                     </div>
                     <div className={styles.memberCard}>
                         <div className={styles.imageWrapper}>
-                            <Image src="/image/MINTO3.webp" alt="Minto Vincent, General Manager of Pride Kitchen Caterers & Events in Kerala" fill style={{ objectFit: 'cover', objectPosition: 'center 10%', transform: 'scale(1.12)', transformOrigin: 'center 10%' }} />
+                            <Image src="/image/MINTO3.webp" alt="Minto Vincent, General Manager of Pride Kitchen Caterers & Events in Kerala" fill sizes="(max-width: 768px) 100vw, 380px" style={{ objectFit: 'cover', objectPosition: 'center 10%', transform: 'scale(1.12)', transformOrigin: 'center 10%' }} />
                         </div>
                         <span className={styles.role}>General Manager</span>
                         <h3>Minto Vincent</h3>

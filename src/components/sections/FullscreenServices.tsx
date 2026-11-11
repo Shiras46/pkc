@@ -144,7 +144,7 @@ export default function FullscreenServices() {
                                 src={services[activeIndex].image}
                                 alt={services[activeIndex].alt || `${services[activeIndex].title} service by Pride Kitchen Caterers & Events showcasing premium catering, luxury event management, and hospitality solutions in Kerala`}
                                 fill
-                                priority
+                                loading="lazy"
                                 sizes="(max-width: 1024px) 100vw, 60vw"
                                 className={styles.bgImage}
                             />
