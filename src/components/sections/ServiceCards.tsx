@@ -71,7 +71,7 @@ export default function ServiceCards() {
                                     </div>
                                     <p className={styles.cardDesc}>{service.desc}</p>
                                     <div className={styles.cardAction}>
-                                        <Link href={service.href} className={styles.exploreBtn}>
+                                        <Link href={service.href} className={styles.exploreBtn} aria-label={`Explore details for ${service.name}`}>
                                             Explore Details <ChevronRight size={14} style={{ marginLeft: '4px' }} />
                                         </Link>
                                     </div>
