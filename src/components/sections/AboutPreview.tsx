@@ -30,36 +30,13 @@ export default function About() {
             }
         });
 
-        // 1. Text Reveal
+        // 1. Text Reveal on Desktop
         tl.from(".about-content-fade", {
             y: 30,
             opacity: 0,
             duration: 0.8,
             stagger: 0.12,
             ease: "power2.out"
-        });
-
-        // 2. Image Reveal (Wipe Up)
-        gsap.to(`.${styles.visualSide}`, {
-            clipPath: "inset(0% 0 0 0)",
-            duration: 1.2,
-            ease: "power3.inOut",
-            scrollTrigger: {
-                trigger: `.${styles.visualSide}`,
-                start: "top 80%",
-            }
-        });
-
-        // 3. Image Parallax
-        gsap.to(`.${styles.image}`, {
-            y: "-10%",
-            ease: "none",
-            scrollTrigger: {
-                trigger: `.${styles.visualSide}`,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
         });
 
     }, { scope: containerRef });
@@ -112,11 +89,12 @@ export default function About() {
                     {/* Right: Visual */}
                     <div className={styles.visualSide}>
                         <Image
-                            src="/image/about.webp" // Using the about section image
+                            src="/image/about.webp"
                             alt="Pride Kitchen Caterers & Events (PKC Events) premium wedding and event management team creating elegant celebrations with luxury catering and hospitality services in Kerala"
                             fill
                             sizes="(max-width: 768px) 100vw, 50vw"
                             className={styles.image}
+                            style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
                         />
                     </div>
 
