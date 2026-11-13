@@ -1,25 +1,26 @@
 .section {
     position: relative;
     background: #fdfaf5;
-    padding: 160px 0;
+    padding: 90px 0;
 }
 
 .container {
-    max-width: var(--container-width);
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 4rem;
+    padding: 0 clamp(1.5rem, 3.5vw, 3rem);
 }
 
+/* Two-column layout: Text on LEFT, Image on RIGHT */
 .grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(36px, 4.5vw, 64px);
     align-items: center;
-    gap: 120px;
 }
 
 .contentSide {
-    flex: 1;
     position: relative;
-    padding-right: 20px;
+    width: 100%;
 }
 
 .decoPattern {
@@ -38,7 +39,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     color: #222;
     font-size: 0.85rem;
     font-weight: 600;
@@ -53,12 +54,12 @@
 }
 
 .heading {
-    font-size: clamp(3.2rem, 8vw, 5rem);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
     line-height: 1.15;
     color: #1a1a1a;
     font-weight: 400;
     font-family: var(--font-heading, serif);
-    margin-bottom: 40px;
+    margin-bottom: 28px;
     letter-spacing: 0.01em;
     font-variant-ligatures: none;
     font-feature-settings: "liga" 0, "clig" 0;
@@ -66,30 +67,31 @@
 
 .storyText {
     font-family: var(--font-body);
-    font-size: 1.25rem;
-    line-height: 1.8;
+    font-size: 1.12rem;
+    line-height: 1.75;
     color: #555;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
 }
 
 .storyHighlight {
     font-family: var(--font-body);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 500;
     color: #111;
-    line-height: 1.4;
-    margin-bottom: 50px;
+    line-height: 1.45;
+    margin-bottom: 34px;
     font-style: italic;
     border-left: 3px solid var(--primary);
-    padding: 10px 0 10px 35px;
+    padding: 10px 0 10px 24px;
     background: rgba(252, 179, 24, 0.03);
-    border-radius: 0 20px 20px 0;
+    border-radius: 0 16px 16px 0;
 }
 
+/* Right-side image presentation */
 .visualSide {
-    flex: 1;
-    height: 560px;
     position: relative;
+    width: 100%;
+    height: 520px;
     border-radius: 28px;
     overflow: hidden;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
@@ -103,7 +105,7 @@
     height: 100% !important;
 }
 
-/* Tablet (Foldables & Tablets 600px - 1024px): 2 Horizontal Columns */
+/* Tablet (Foldables & Tablets 600px - 1024px): Text on LEFT, Image on RIGHT */
 @media (min-width: 600px) and (max-width: 1024px) {
     .section {
         padding: 60px 0;
@@ -115,14 +117,13 @@
 
     .grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
         align-items: center;
     }
 
     .contentSide {
         padding-right: 0;
-        order: 1;
         width: 100%;
     }
 
