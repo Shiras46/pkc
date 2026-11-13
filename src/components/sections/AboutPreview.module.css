@@ -21,6 +21,8 @@
 .contentSide {
     position: relative;
     width: 100%;
+    grid-column: 1;
+    order: 1;
 }
 
 .decoPattern {
@@ -96,6 +98,8 @@
     overflow: hidden;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
     background: transparent;
+    grid-column: 2;
+    order: 2;
 }
 
 .image {
@@ -125,6 +129,8 @@
     .contentSide {
         padding-right: 0;
         width: 100%;
+        grid-column: 1;
+        order: 1;
     }
 
     .visualSide {
@@ -132,6 +138,8 @@
         height: 420px;
         border-radius: 20px;
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        grid-column: 2;
+        order: 2;
     }
 
     .heading {
