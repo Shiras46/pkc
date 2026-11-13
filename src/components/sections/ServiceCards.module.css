@@ -195,6 +195,14 @@
     flex-grow: 1;
 }
 
+@media (max-width: 600px) {
+    .cardDesc {
+        font-size: 0.9rem;
+        line-height: 1.55;
+        margin: 0 0 18px;
+    }
+}
+
 .cardAction {
     margin-top: auto;
     text-align: left;

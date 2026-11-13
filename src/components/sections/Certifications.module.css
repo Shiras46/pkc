@@ -219,3 +219,32 @@
         right: 18px;
     }
 }
+
+@media (max-width: 600px) {
+    .imageSection {
+        height: 250px;
+        min-height: 250px;
+    }
+
+    .contentSection {
+        padding: 22px 14px 18px;
+    }
+
+    .cardTitle {
+        font-size: 1.45rem;
+    }
+
+    .navButton {
+        top: 135px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .prevButton {
+        left: 10px;
+    }
+
+    .nextButton {
+        right: 10px;
+    }
+}
