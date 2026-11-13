@@ -360,11 +360,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${playfair.variable} ${poppins.variable} ${inter.variable} ${veggieBurger.variable}`}>
             <head>
-                {/* Critical hero image preload for instant LCP */}
-                <link rel="preload" as="image" href="/image/hero1.webp" type="image/webp" fetchPriority="high" />
 
-                <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-                <link rel="dns-prefetch" href="https://clarity.ms" />
 
                 {/* JSON-LD Catering / LocalBusiness Schema */}
                 <script

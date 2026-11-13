@@ -25,7 +25,7 @@ PKC Events (Pride Kitchen Caterers & Events) provides complete wedding planning,
 ## Target Locations
 - [Event Management Thrissur](https://pkcevents.com/event-management-thrissur): Headquarters and services in Thrissur
 - [Event Management Kochi](https://pkcevents.com/event-management-kochi): Luxury wedding and corporate events in Kochi
-- Kerala: Comprehensive event coverage across all districts in Kerala
+- [Kerala Events](https://pkcevents.com/): Comprehensive event coverage across all districts in Kerala
 
 ## Optional
 - [Full Documentation](https://pkcevents.com/llms-full.txt): Extended documentation and business specifications

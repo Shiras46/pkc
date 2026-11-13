@@ -57,11 +57,11 @@ export default function Certifications() {
                 </div>
 
                 <div className={styles.carouselWrapper}>
-                    <button onClick={prevSlide} className={`${styles.navButton} ${styles.prevButton}`} aria-label="Previous">
+                    <button onClick={prevSlide} className={`${styles.navButton} ${styles.prevButton}`} aria-label="Previous certificate slide">
                         <ChevronLeft size={24} />
                     </button>
                     
-                    <button onClick={nextSlide} className={`${styles.navButton} ${styles.nextButton}`} aria-label="Next">
+                    <button onClick={nextSlide} className={`${styles.navButton} ${styles.nextButton}`} aria-label="Next certificate slide">
                         <ChevronRight size={24} />
                     </button>
 

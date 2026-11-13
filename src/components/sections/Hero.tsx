@@ -37,21 +37,28 @@ export default function Hero() {
     }, []);
 
     useGSAP(() => {
+        if (typeof window === "undefined") return;
+        const isMobile = window.innerWidth < 768 || window.matchMedia("(pointer: coarse)").matches;
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        // Ensure LCP text renders with 0 delay; only smooth parallax on scroll
-        if (!reduceMotion && backgroundRef.current) {
-            gsap.to(backgroundRef.current, {
-                yPercent: 10,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true,
-                }
-            });
-        }
+        if (isMobile || reduceMotion || !backgroundRef.current) return;
+
+        const timer = setTimeout(() => {
+            if (backgroundRef.current && sectionRef.current) {
+                gsap.to(backgroundRef.current, {
+                    yPercent: 10,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: true,
+                    }
+                });
+            }
+        }, 150);
+
+        return () => clearTimeout(timer);
     }, { scope: sectionRef, dependencies: [] });
 
     return (

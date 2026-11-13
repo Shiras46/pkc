@@ -26,7 +26,7 @@
 }
 
 .description {
-    color: #999;
+    color: #a6a6a6;
     line-height: 1.8;
     margin-bottom: 30px;
 }
@@ -68,7 +68,7 @@
 }
 
 .linksCol a {
-    color: #999;
+    color: #a6a6a6;
 }
 
 .linksCol a:hover {
@@ -81,7 +81,7 @@
     gap: 15px;
     align-items: flex-start;
     margin-bottom: 20px;
-    color: #999;
+    color: #a6a6a6;
 }
 
 .bottom {
@@ -90,7 +90,7 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    color: #888;
+    color: #a6a6a6;
     font-size: 0.85rem;
     gap: 20px;
 }
