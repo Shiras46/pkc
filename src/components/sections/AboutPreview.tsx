@@ -15,6 +15,13 @@ export default function About() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
+        if (typeof window === "undefined") return;
+        const isMobile = window.innerWidth < 1024 || window.matchMedia("(pointer: coarse)").matches;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // On mobile and tablets: ensure text and visuals are immediately 100% visible without scroll blocking
+        if (isMobile || reduceMotion) return;
+
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
@@ -25,18 +32,18 @@ export default function About() {
 
         // 1. Text Reveal
         tl.from(".about-content-fade", {
-            y: 40,
+            y: 30,
             opacity: 0,
-            duration: 1,
-            stagger: 0.15,
-            ease: "power3.out"
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power2.out"
         });
 
         // 2. Image Reveal (Wipe Up)
         gsap.to(`.${styles.visualSide}`, {
             clipPath: "inset(0% 0 0 0)",
-            duration: 1.5,
-            ease: "power4.inOut",
+            duration: 1.2,
+            ease: "power3.inOut",
             scrollTrigger: {
                 trigger: `.${styles.visualSide}`,
                 start: "top 80%",
@@ -45,7 +52,7 @@ export default function About() {
 
         // 3. Image Parallax
         gsap.to(`.${styles.image}`, {
-            y: "-15%", // Move up slightly as container moves down
+            y: "-10%",
             ease: "none",
             scrollTrigger: {
                 trigger: `.${styles.visualSide}`,
