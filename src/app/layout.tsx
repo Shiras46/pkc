@@ -367,7 +367,31 @@ export default function RootLayout({
                 <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://clarity.ms" />
 
-                {/* Deferred Tracking: Loads on user interaction or idle to achieve 0ms TBT and 100 Performance */}
+                {/* JSON-LD Catering / LocalBusiness Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(cateringSchema) }}
+                />
+
+                {/* JSON-LD Organization Schema */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+                />
+            </head>
+            <body className={inter.className}>
+                {/* Google Tag Manager (noscript) */}
+                <noscript>
+                    <iframe
+                        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+                        height="0"
+                        width="0"
+                        style={{ display: 'none', visibility: 'hidden' }}
+                    />
+                </noscript>
+                {/* End Google Tag Manager (noscript) */}
+
+                {/* Deferred Tracking in body: Loads on user interaction or idle to achieve 0ms TBT */}
                 <Script
                     id="deferred-analytics"
                     strategy="afterInteractive"
@@ -416,30 +440,6 @@ export default function RootLayout({
                         `,
                     }}
                 />
-
-                {/* JSON-LD Catering / LocalBusiness Schema */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(cateringSchema) }}
-                />
-
-                {/* JSON-LD Organization Schema */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-                />
-            </head>
-            <body className={inter.className}>
-                {/* Google Tag Manager (noscript) */}
-                <noscript>
-                    <iframe
-                        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-                        height="0"
-                        width="0"
-                        style={{ display: 'none', visibility: 'hidden' }}
-                    />
-                </noscript>
-                {/* End Google Tag Manager (noscript) */}
                 
                 <SmoothScroll>
                     <Header />

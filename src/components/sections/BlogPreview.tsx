@@ -41,7 +41,7 @@ export default function BlogPreview({ initialBlogs }: BlogPreviewProps) {
                 <div className={styles.header}>
                     <div>
                         <span style={{ color: '#000', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase' }}>Our Blog</span>
-                        <h2 className="heading-lg" style={{ color: '#fcb318', marginTop: '10px' }}><span style={{ color: '#000000' }}>“Our thoughts and experiences</span> handcrafted into words”</h2>
+                        <h2 className="heading-lg" style={{ color: '#A66F00', marginTop: '10px' }}><span style={{ color: '#000000' }}>“Our thoughts and experiences</span> handcrafted into words”</h2>
                     </div>
                     <Link href="/blog" className="btn btn-outline">
                         Read Our Blog

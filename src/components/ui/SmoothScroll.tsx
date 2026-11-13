@@ -12,8 +12,9 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
         let lenisInstance: { raf: (time: number) => void; destroy: () => void } | null = null;
         let rafId: number;
 
-        import("lenis").then(({ default: Lenis }) => {
-            lenisInstance = new Lenis({
+        import("lenis").then((m) => {
+            const LenisClass = ((m && (m as any).default) || m) as any;
+            lenisInstance = new LenisClass({
                 lerp: 0.1,
                 duration: 1.2,
                 smoothWheel: true,

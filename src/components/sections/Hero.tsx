@@ -32,7 +32,7 @@ export default function Hero() {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-        }, 5000);
+        }, 9000);
         return () => clearInterval(timer);
     }, []);
 

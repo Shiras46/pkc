@@ -42,7 +42,7 @@
 }
 
 .title span {
-  color: var(--primary, #FCB318);
+  color: #A66F00;
 }
 
 .headerRight {
@@ -199,7 +199,7 @@
 
 .timeAgo {
   margin: 1px 0 0;
-  color: #8a9299;
+  color: #59636c;
   font-size: 11px;
   font-weight: 400;
 }
@@ -228,7 +228,7 @@
   padding: 0;
   background: none;
   border: none;
-  color: #707b86;
+  color: #4b5563;
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
@@ -273,7 +273,7 @@
 
 .bottomBanner p {
   margin: 0;
-  color: #8a9299;
+  color: #59636c;
   font-size: 11px;
 }
 
