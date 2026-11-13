@@ -303,8 +303,7 @@ a[href*="elfsight.com/google-reviews-widget"] {
     overflow: hidden !important;
 }
 
-/* Performance optimization: defer rendering of below-the-fold content */
+/* Smooth below-the-fold rendering without skipping accessibility tree or tap-target geometry */
 .defer-render {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 700px;
+  contain: layout style;
 }

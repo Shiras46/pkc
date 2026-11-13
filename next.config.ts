@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   compress: true,
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
+    removeConsole: process.env.NODE_ENV === 'production' ? true : false,
   },
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', 'gsap', 'react-icons'],

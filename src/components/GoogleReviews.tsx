@@ -138,8 +138,8 @@ export default function GoogleReviews() {
           const result = await response.json();
           setData(result);
         }
-      } catch (error) {
-        console.error("Google Reviews fetch error:", error);
+      } catch {
+        // Silently fallback without polluting browser console
       } finally {
         if (active) setLoading(false);
       }

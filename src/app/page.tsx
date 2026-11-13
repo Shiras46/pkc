@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',
     description: "Luxury wedding & event management in Thrissur and Kochi since 2008. Premium catering, decoration, venues, photography & more — FSSAI & ISO certified.",
     alternates: {
-        canonical: 'https://pkcevents.com'
+        canonical: '/'
     },
     openGraph: {
         title: 'Best Event Management in Thrissur, Kerala | Pride Kitchen Caters & Events',
