@@ -1,35 +1,38 @@
 "use client";
 
-import { ReactNode, useSyncExternalStore } from "react";
-import { ReactLenis } from "lenis/react";
-
-function subscribe(callback: () => void) {
-    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
-    mql.addEventListener("change", callback);
-    return () => mql.removeEventListener("change", callback);
-}
-
-function getSnapshot() {
-    if (typeof window === "undefined") return false;
-    const isTouch = window.matchMedia("(pointer: coarse)").matches || 'ontouchstart' in window;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    return isTouch || reduceMotion;
-}
-
-function getServerSnapshot() {
-    return false;
-}
+import { ReactNode, useEffect } from "react";
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
-    const isTouchOrReduced = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        const isTouch = window.matchMedia("(pointer: coarse)").matches || 'ontouchstart' in window;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (isTouch || reduceMotion) return;
 
-    if (isTouchOrReduced) {
-        return <>{children}</>;
-    }
+        let lenisInstance: { raf: (time: number) => void; destroy: () => void } | null = null;
+        let rafId: number;
 
-    return (
-        <ReactLenis root options={{ lerp: 0.1, duration: 1.2 }}>
-            {children}
-        </ReactLenis>
-    );
+        import("lenis").then(({ default: Lenis }) => {
+            lenisInstance = new Lenis({
+                lerp: 0.1,
+                duration: 1.2,
+                smoothWheel: true,
+            });
+
+            function raf(time: number) {
+                if (lenisInstance) {
+                    lenisInstance.raf(time);
+                    rafId = requestAnimationFrame(raf);
+                }
+            }
+            rafId = requestAnimationFrame(raf);
+        }).catch(() => {});
+
+        return () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            if (lenisInstance) lenisInstance.destroy();
+        };
+    }, []);
+
+    return <>{children}</>;
 }

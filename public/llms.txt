@@ -1,37 +1,31 @@
 # PKC Events
 
-> Professional event management and catering services for weddings, corporate events, engagements, birthdays, and special occasions.
+> Professional wedding planning, luxury catering, and event management services across Kerala since 2008. Certified under ISO 22000:2018 for food safety and licensed by FSSAI.
 
-## Website
-https://pkcevents.com/
+PKC Events (Pride Kitchen Caterers & Events) provides complete wedding planning, corporate event management, luxury catering, venue decoration, and hospitality solutions across Kerala.
 
 ## Main Pages
-- Home: https://pkcevents.com/
-- About: https://pkcevents.com/about
-- Services: https://pkcevents.com/services
-- Gallery: https://pkcevents.com/gallery
-- Blog: https://pkcevents.com/blog
-- Locations: https://pkcevents.com/locations
-- Contact: https://pkcevents.com/contact
+- [Home](https://pkcevents.com/): Official homepage and overview of PKC Events
+- [About Us](https://pkcevents.com/about): Story, leadership team, ISO certifications, and company milestones
+- [Services](https://pkcevents.com/services): Complete event management and catering services
+- [Gallery](https://pkcevents.com/gallery): Portfolio and photos of luxury weddings, receptions, and celebrations
+- [Blog](https://pkcevents.com/blog): Wedding planning guides, catering tips, and event inspiration
+- [Contact](https://pkcevents.com/contact): Book a consultation and enquiry form
 
 ## Services
-- Catering Services: https://pkcevents.com/services/catering
-- Event Venue Services: https://pkcevents.com/services/venue
-- Event Decoration Services: https://pkcevents.com/services/decoration
-- Photography Services: https://pkcevents.com/services/photography
-- Bridal & Event Makeup Services: https://pkcevents.com/services/makeup
-- Luxury & Wedding Car Services: https://pkcevents.com/services/cars
-
-## Business Summary
-PKC Events provides complete event management solutions, including catering, venue arrangements, decoration, photography, makeup, and luxury vehicle services. The company specializes in wedding events, corporate functions, engagement ceremonies, birthday celebrations, and customized event planning.
+- [Premium Catering](https://pkcevents.com/services/catering): Luxury wedding, corporate, and private catering
+- [Venue Booking](https://pkcevents.com/services/venue): Premium event and wedding venues in Kerala
+- [Event Decoration](https://pkcevents.com/services/decoration): Custom floral, stage, and table designs
+- [Photography & Video](https://pkcevents.com/services/photography): Cinematic wedding photography and film
+- [Bridal Makeup](https://pkcevents.com/services/makeup): Professional bridal styling and makeup
+- [Luxury Cars](https://pkcevents.com/services/cars): Premium wedding and VIP car rentals
+- [Corporate Events](https://pkcevents.com/services/corporate-event): Professional corporate event management
+- [Destination Weddings](https://pkcevents.com/services/destination-wedding): Complete destination wedding planning
 
 ## Target Locations
-- Kerala, India
-- Malappuram
-- Kozhikode
-- Kochi
-- Thrissur
-- Palakkad
+- [Event Management Thrissur](https://pkcevents.com/event-management-thrissur): Headquarters and services in Thrissur
+- [Event Management Kochi](https://pkcevents.com/event-management-kochi): Luxury wedding and corporate events in Kochi
+- Kerala: Comprehensive event coverage across all districts in Kerala
 
-## Contact
-Website: https://pkcevents.com/contact
+## Optional
+- [Full Documentation](https://pkcevents.com/llms-full.txt): Extended documentation and business specifications

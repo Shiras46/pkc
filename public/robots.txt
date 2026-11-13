@@ -14,4 +14,4 @@ Allow: /images/
 Sitemap: https://pkcevents.com/sitemap.xml
 
 # AI Content Discovery
-LLMs.txt: https://pkcevents.com/llms.txt
+# LLMs: https://pkcevents.com/llms.txt

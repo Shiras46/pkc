@@ -72,7 +72,7 @@ export default function Hero() {
                             fill
                             sizes="100vw"
                             priority={currentIndex === 0}
-                            quality={80}
+                            quality={60}
                             loading={currentIndex === 0 ? "eager" : "lazy"}
                             fetchPriority={currentIndex === 0 ? "high" : "auto"}
                             style={{ objectFit: 'cover', objectPosition: 'center 78%' }}

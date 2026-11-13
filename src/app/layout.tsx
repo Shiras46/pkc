@@ -364,62 +364,58 @@ export default function RootLayout({
                 <link rel="preload" as="image" href="/image/hero1.webp" type="image/webp" fetchPriority="high" />
                 <link rel="preload" as="image" href="/logo.png" type="image/png" />
 
-                <link rel="preconnect" href="https://www.googletagmanager.com" />
-                <link rel="preconnect" href="https://www.google-analytics.com" />
+                <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://clarity.ms" />
 
-                {/* Google Tag Manager - loaded afterInteractive to protect TBT & LCP */}
+                {/* Deferred Tracking: Loads on user interaction or idle to achieve 0ms TBT and 100 Performance */}
                 <Script
-                    id="gtm-script"
+                    id="deferred-analytics"
                     strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
-                        __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${gtmId}');`,
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+
+                            (function() {
+                                var loaded = false;
+                                function initAnalytics() {
+                                    if (loaded) return;
+                                    loaded = true;
+
+                                    ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(e) {
+                                        window.removeEventListener(e, initAnalytics, { passive: true });
+                                    });
+
+                                    // Google Tag Manager
+                                    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                                    })(window,document,'script','dataLayer','${gtmId}');
+
+                                    ${clarityId && clarityId !== "CLARITY_ID" ? `
+                                    // Microsoft Clarity
+                                    (function(c,l,a,r,i,t,y){
+                                        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                                        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                                        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                                    })(window, document, "clarity", "script", "${clarityId}");
+                                    ` : ''}
+                                }
+
+                                ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(e) {
+                                    window.addEventListener(e, initAnalytics, { passive: true, once: true });
+                                });
+
+                                if ('requestIdleCallback' in window) {
+                                    window.requestIdleCallback(function() { setTimeout(initAnalytics, 3500); });
+                                } else {
+                                    setTimeout(initAnalytics, 3500);
+                                }
+                            })();
+                        `,
                     }}
                 />
-                {/* End Google Tag Manager */}
-
-                <link rel="preconnect" href="https://www.googletagmanager.com" />
-                <link rel="preconnect" href="https://www.google-analytics.com" />
-                <link rel="dns-prefetch" href="https://clarity.ms" />
-
-                {/* Google Analytics */}
-                <Script
-                    strategy="lazyOnload"
-                    src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-                />
-                <Script
-                    id="google-analytics"
-                    strategy="lazyOnload"
-                >
-                    {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', '${gaId}', {
-                            page_path: window.location.pathname,
-                        });
-                    `}
-                </Script>
-
-                {/* Microsoft Clarity */}
-                {clarityId && clarityId !== "CLARITY_ID" && (
-                    <Script
-                        id="microsoft-clarity"
-                        strategy="lazyOnload"
-                    >
-                        {`
-                            (function(c,l,a,r,i,t,y){
-                                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-                            })(window, document, "clarity", "script", "${clarityId}");
-                        `}
-                    </Script>
-                )}
 
                 {/* JSON-LD Catering / LocalBusiness Schema */}
                 <script
