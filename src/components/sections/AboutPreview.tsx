@@ -94,7 +94,7 @@ export default function About() {
                             fill
                             sizes="(max-width: 768px) 100vw, 50vw"
                             className={styles.image}
-                            style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+                            style={{ objectFit: 'cover', objectPosition: 'center 15%', transformOrigin: 'center 15%' }}
                         />
                     </div>
 

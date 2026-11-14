@@ -19,6 +19,18 @@ const iconConfig: Record<string, { icon: React.ReactNode }> = {
     "destination-wedding": { icon: <Plane size={20} color="#fcb318" aria-hidden="true" /> }
 };
 
+const serviceImageSettings: Record<string, { objectPosition: string; transformOrigin: string }> = {
+    makeup: { objectPosition: "center 12%", transformOrigin: "center 15%" },
+    photography: { objectPosition: "center 20%", transformOrigin: "center 20%" },
+    entertainment: { objectPosition: "center 20%", transformOrigin: "center 20%" },
+    "destination-wedding": { objectPosition: "center 25%", transformOrigin: "center 25%" },
+    catering: { objectPosition: "center 35%", transformOrigin: "center 35%" },
+    venue: { objectPosition: "center center", transformOrigin: "center center" },
+    decoration: { objectPosition: "center center", transformOrigin: "center center" },
+    cars: { objectPosition: "center center", transformOrigin: "center center" },
+    "corporate-event": { objectPosition: "center center", transformOrigin: "center center" }
+};
+
 export default function ServiceCards() {
     return (
         <section className={styles.section} id="services">
@@ -55,10 +67,15 @@ export default function ServiceCards() {
                                         src={service.image}
                                         alt={`${service.name} service by Pride Kitchen Caterers & Events showcasing premium event management, luxury catering, and hospitality services in Kerala`}
                                         fill
-                                        quality={60}
+                                        quality={75}
                                         loading="lazy"
-                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         className={styles.cardImage}
+                                        style={{
+                                            objectFit: "cover",
+                                            objectPosition: serviceImageSettings[service.id]?.objectPosition || "center 20%",
+                                            transformOrigin: serviceImageSettings[service.id]?.transformOrigin || "center 20%"
+                                        }}
                                     />
                                     <div className={styles.imageOverlay}></div>
                                 </div>

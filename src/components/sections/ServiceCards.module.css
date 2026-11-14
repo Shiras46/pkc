@@ -107,18 +107,19 @@
 
 @media (min-width: 600px) and (max-width: 1024px) {
     .cardTop {
-        height: 190px;
+        height: 220px;
     }
 }
 
 @media (max-width: 599px) {
     .cardTop {
-        height: 195px;
+        height: 210px;
     }
 }
 
 .cardImage {
     object-fit: cover;
+    transform-origin: center 20%;
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
