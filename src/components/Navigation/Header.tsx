@@ -28,6 +28,7 @@ const navLinks = [
             { name: "Destination Wedding", href: "/services/destination-wedding" }
         ]
     },
+    { name: "Portfolio", href: "/portfolio" },
     { name: "Gallery", href: "/gallery" },
     // { name: "Locations", href: "/locations" },
     { name: "Blog", href: "/blog" },

@@ -22,6 +22,7 @@ export async function GET() {
         '/services/venue',
         '/services/corporate-event',
         '/services/destination-wedding',
+        '/portfolio',
         '/gallery',
         '/locations',
         '/locations/kochi',

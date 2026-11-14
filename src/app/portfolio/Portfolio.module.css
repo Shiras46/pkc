@@ -1,0 +1,642 @@
+.wrapper {
+    overflow-x: hidden;
+    background: #ffffff;
+    color: #171717;
+}
+
+/* ==========================================================================
+   1. HERO SECTION
+   ========================================================================== */
+.hero {
+    position: relative;
+    min-height: 72vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 170px 24px 80px;
+    isolation: isolate;
+}
+
+@keyframes zoomOut {
+    from { transform: scale(1.08); }
+    to { transform: scale(1); }
+}
+
+.heroImage {
+    object-fit: cover;
+    object-position: center 35%;
+    z-index: -2;
+    animation: zoomOut 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.heroOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 15%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.heroContent {
+    width: min(1240px, 100%);
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: #fcb318;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.heroTitle {
+    font-family: var(--font-heading, serif);
+    font-size: clamp(2.5rem, 5.5vw, 4.4rem);
+    line-height: 1.1;
+    font-weight: 400;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+}
+
+.heroSubtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 680px;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0 0 32px;
+}
+
+.heroActions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.primaryBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fcb318;
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(252, 179, 24, 0.3);
+}
+
+.primaryBtn:hover {
+    background: #e09f14;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(252, 179, 24, 0.4);
+}
+
+.secondaryBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.secondaryBtn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: #ffffff;
+}
+
+/* ==========================================================================
+   2. STATS BAR (Floating Over Hero Base)
+   ========================================================================== */
+.statsSection {
+    background: #fdfaf5;
+    padding: 50px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.statCard {
+    text-align: center;
+    padding: 24px 16px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
+}
+
+.statCard:hover {
+    transform: translateY(-3px);
+}
+
+.statValue {
+    font-family: var(--font-heading, serif);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #8C5D00;
+    margin-bottom: 6px;
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #444444;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+@media (max-width: 900px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+/* ==========================================================================
+   3. FILTER TABS & PORTFOLIO GRID
+   ========================================================================== */
+.portfolioSection {
+    padding: 90px 0;
+    background: #fdfaf5;
+}
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.sectionHeader {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 50px;
+}
+
+.sectionEyebrow {
+    display: inline-block;
+    color: #8C5D00;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.sectionTitle {
+    font-family: var(--font-heading, serif);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    color: #1a1a1a;
+    font-weight: 400;
+    margin-bottom: 18px;
+    line-height: 1.15;
+}
+
+.sectionDesc {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #555555;
+    margin: 0;
+}
+
+/* Category Filter Tabs */
+.tabsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+}
+
+.filterTab {
+    padding: 10px 22px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    color: #444444;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filterTab:hover {
+    border-color: #8C5D00;
+    color: #8C5D00;
+}
+
+.filterTabActive {
+    background: #fcb318 !important;
+    border-color: #fcb318 !important;
+    color: #1a1a1a !important;
+    box-shadow: 0 4px 14px rgba(252, 179, 24, 0.28);
+}
+
+/* Portfolio Responsive Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 599px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+/* Project Card */
+.card {
+    background: #ffffff;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    border-color: rgba(252, 179, 24, 0.4);
+}
+
+.cardImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #eae6df;
+}
+
+@media (max-width: 768px) {
+    .cardImageWrapper {
+        height: 220px;
+    }
+}
+
+.cardImage {
+    object-fit: cover;
+    transform-origin: center 20%;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .cardImage {
+    transform: scale(1.05);
+}
+
+.categoryBadge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 2;
+}
+
+.cardBody {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.cardMetaRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 0.82rem;
+    color: #666666;
+}
+
+.location {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #8C5D00;
+    font-weight: 600;
+}
+
+.guestCount {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #555555;
+}
+
+.cardTitle {
+    font-family: var(--font-heading, serif);
+    font-size: 1.35rem;
+    color: #1a1a1a;
+    font-weight: 600;
+    margin: 0 0 10px;
+    line-height: 1.25;
+}
+
+.cardDesc {
+    font-family: var(--font-body);
+    font-size: 0.94rem;
+    color: #666666;
+    line-height: 1.6;
+    margin: 0 0 18px;
+    flex-grow: 1;
+}
+
+.highlightPills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.highlightChip {
+    font-size: 0.75rem;
+    background: rgba(252, 179, 24, 0.08);
+    color: #8C5D00;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.cardAction {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-top: 14px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    transition: color 0.3s ease;
+}
+
+.card:hover .cardAction {
+    color: #8C5D00;
+}
+
+/* ==========================================================================
+   4. FEATURED CASE STUDY SPOTLIGHT (2-Column Model)
+   ========================================================================== */
+.spotlightSection {
+    padding: 100px 0;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.spotlightGrid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(36px, 5vw, 70px);
+    align-items: center;
+}
+
+.spotlightContent {
+    grid-column: 1;
+    order: 1;
+}
+
+.spotlightVisual {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    grid-column: 2;
+    order: 2;
+}
+
+.spotlightImage {
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+.quoteBox {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #222222;
+    border-left: 3px solid #fcb318;
+    padding: 12px 0 12px 24px;
+    background: rgba(252, 179, 24, 0.04);
+    border-radius: 0 16px 16px 0;
+    margin: 28px 0;
+    line-height: 1.5;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .spotlightGrid {
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 30px;
+    }
+    .spotlightVisual {
+        height: 400px;
+    }
+}
+
+@media (max-width: 599px) {
+    .spotlightGrid {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+    .spotlightContent {
+        order: 1;
+    }
+    .spotlightVisual {
+        height: 280px;
+        order: 2;
+    }
+}
+
+/* ==========================================================================
+   5. PROJECT DETAILS LIGHTBOX / MODAL
+   ========================================================================== */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modalBox {
+    background: #ffffff;
+    width: min(840px, 100%);
+    max-height: 90vh;
+    border-radius: 24px;
+    overflow-y: auto;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding: 0;
+}
+
+.modalImageHeader {
+    position: relative;
+    width: 100%;
+    height: 360px;
+}
+
+@media (max-width: 600px) {
+    .modalImageHeader {
+        height: 240px;
+    }
+}
+
+.modalCloseBtn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.modalCloseBtn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.08);
+}
+
+.modalBody {
+    padding: 32px;
+}
+
+@media (max-width: 600px) {
+    .modalBody {
+        padding: 24px 18px;
+    }
+}
+
+.modalTitle {
+    font-family: var(--font-heading, serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    color: #1a1a1a;
+    margin: 0 0 12px;
+}
+
+.modalMeta {
+    display: flex;
+    gap: 20px;
+    color: #666666;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.modalStory {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #444444;
+    margin-bottom: 30px;
+}
+
+.modalSectionLabel {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #8C5D00;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.modalChipsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+.modalChip {
+    font-size: 0.85rem;
+    background: #fdfaf5;
+    border: 1px solid rgba(252, 179, 24, 0.25);
+    color: #8C5D00;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.modalFooter {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 24px;
+}
