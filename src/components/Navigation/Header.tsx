@@ -18,6 +18,7 @@ const navLinks = [
         href: "/services",
         subLinks: [
             { name: "Premium Catering", href: "/services/catering" },
+            { name: "Menu Selection", href: "/menu" },
             { name: "Venue Management", href: "/services/venue" },
             { name: "Event Decoration", href: "/services/decoration" },
             { name: "Photography & Video", href: "/services/photography" },

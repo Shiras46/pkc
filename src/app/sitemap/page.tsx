@@ -35,6 +35,7 @@ export default function SitemapPage() {
         { name: "Luxury Cars", href: "/services/cars" },
         { name: "Corporate Event", href: "/services/corporate-event" },
         { name: "Destination Wedding", href: "/services/destination-wedding" },
+        { name: "Catering Menu Selection", href: "/menu" },
         { name: "Signature Portfolio", href: "/portfolio" },
         { name: "Our Gallery", href: "/gallery" },
         { name: "Our Locations", href: "/locations" },

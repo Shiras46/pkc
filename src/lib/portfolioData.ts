@@ -140,3 +140,4 @@ export const portfolioProjects: PortfolioProject[] = [
         servicesDelivered: ["Complete Palace Styling", "Luxury Car Rental Fleet", "Five-Star Banquet Service", "Event Security & Crowd Flow"]
     }
 ];
+

@@ -56,6 +56,7 @@ export default function Footer() {
                         <h3>Company</h3>
                         <ul>
                             <li><Link href="/about">About Us</Link></li>
+                            <li><Link href="/menu">Menu Selection</Link></li>
                             <li><Link href="/portfolio">Portfolio</Link></li>
                             <li><Link href="/gallery">Gallery</Link></li>
                             <li><Link href="/blog">Blog</Link></li>

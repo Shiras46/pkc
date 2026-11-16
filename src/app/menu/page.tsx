@@ -1,129 +1,69 @@
-import Image from "next/image";
+import { Metadata } from "next";
+import MenuClient from "./MenuClient";
+
+export const metadata: Metadata = {
+    title: "Catering Menu Selection | 32 Pages of Royal Delicacies | PKC Events Kerala",
+    description: "Explore and curate your custom event menu across 32 pages of authentic Kerala catering delicacies: welcome drinks, starters, dum biryani, live counters, grand sadhya, and desserts by Pride Kitchen Caterers & Events.",
+    alternates: {
+        canonical: "https://pkcevents.com/menu"
+    },
+    openGraph: {
+        title: "Catering Menu Selection | 32 Pages of Royal Delicacies | PKC Events Kerala",
+        description: "Explore and curate your custom event menu across 32 pages of authentic Kerala catering delicacies: welcome drinks, starters, dum biryani, live counters, grand sadhya, and desserts by Pride Kitchen Caterers & Events.",
+        url: "https://pkcevents.com/menu",
+        images: [{ url: "https://pkcevents.com/image/services/catering.webp", width: 1200, height: 800, alt: "PKC Events Catering Menu" }],
+        type: "website"
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Catering Menu Selection | 32 Pages of Royal Delicacies | PKC Events Kerala",
+        description: "Explore and curate your custom event menu across 32 pages of authentic Kerala catering delicacies: welcome drinks, starters, dum biryani, live counters, grand sadhya, and desserts by Pride Kitchen Caterers & Events.",
+        images: ["https://pkcevents.com/image/services/catering.webp"]
+    }
+};
 
 export default function MenuPage() {
-  const pdfUrl =
-    "https://pkcevents-storage.s3.us-east-1.amazonaws.com/menucard/wedding-menu.pdf";
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Menu",
+        "name": "Pride Kitchen Caterers & Events Catering Menu",
+        "description": "Comprehensive 32-page event catering menu including live welcome drinks, starters, dum biryanis, seafood specialties, live food counters, and authentic Kerala Sadhya.",
+        "url": "https://pkcevents.com/menu",
+        "hasMenuSection": [
+            {
+                "@type": "MenuSection",
+                "name": "Welcome Drinks & Mocktails"
+            },
+            {
+                "@type": "MenuSection",
+                "name": "Starters & Appetizers"
+            },
+            {
+                "@type": "MenuSection",
+                "name": "Biryani & Fragrant Pulao"
+            },
+            {
+                "@type": "MenuSection",
+                "name": "Coastal Seafood Specials"
+            },
+            {
+                "@type": "MenuSection",
+                "name": "Live Food Counters & Thattu Kada"
+            },
+            {
+                "@type": "MenuSection",
+                "name": "Grand Kerala Sadhya"
+            }
+        ]
+    };
 
-  return (
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background:
-          "linear-gradient(180deg, #ffffff 0%, #fff8e7 50%, #ffffff 100%)",
-        padding: "20px",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "600px",
-          width: "100%",
-          textAlign: "center",
-          background: "#fff",
-          borderRadius: "30px",
-          padding: "60px 40px",
-          boxShadow: "0 25px 80px rgba(0,0,0,.08)",
-        }}
-      >
-        <Image
-          src="/logo.png"
-          alt="PKC Events"
-          width={110}
-          height={110}
-          style={{
-            objectFit: "contain",
-            margin: "0 auto 25px",
-          }}
-        />
-
-        <div
-          style={{
-            fontSize: "60px",
-            marginBottom: "15px",
-          }}
-        >
-          🍽️
-        </div>
-
-        <h1
-          style={{
-            fontSize: "48px",
-            fontWeight: 700,
-            color: "#111",
-            marginBottom: "15px",
-          }}
-        >
-           Wedding Checklist
-        </h1>
-
-        <p
-          style={{
-            color: "#666",
-            fontSize: "18px",
-            lineHeight: 1.7,
-            marginBottom: "40px",
-          }}
-        >
-          Explore our complete wedding checklist with premium services crafted for unforgettable weddings and celebrations.
-        </p>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "20px",
-            flexWrap: "wrap",
-          }}
-        >
-          <a
-            href={pdfUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              padding: "16px 34px",
-              borderRadius: "999px",
-              background:
-                "linear-gradient(135deg,#d4af37,#f6d365)",
-              color: "#111",
-              fontWeight: 700,
-              textDecoration: "none",
-              boxShadow: "0 12px 30px rgba(212,175,55,.35)",
-              transition: "0.3s",
-            }}
-          >
-            👁 View checklist
-          </a>
-
-          <a
-            href={pdfUrl}
-            download
-            style={{
-              padding: "16px 34px",
-              borderRadius: "999px",
-              border: "2px solid #d4af37",
-              color: "#d4af37",
-              fontWeight: 700,
-              textDecoration: "none",
-              background: "#fff",
-              transition: "0.3s",
-            }}
-          >
-            ⬇ Download PDF
-          </a>
-        </div>
-
-        <div
-          style={{
-            marginTop: "35px",
-            color: "#999",
-            fontSize: "14px",
-          }}
-        >
-          Powered by PKC Events
-        </div>
-      </div>
-    </main>
-  );
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <MenuClient />
+        </>
+    );
 }

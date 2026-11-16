@@ -8,6 +8,7 @@ PKC Events (Pride Kitchen Caterers & Events) provides complete wedding planning,
 - [Home](/): Official homepage and overview of PKC Events
 - [About Us](/about): Story, leadership team, ISO certifications, and company milestones
 - [Services](/services): Complete event management and catering services
+- [Menu Selection](/menu): Interactive 32-page catering menu selection with live juices, biryanis, live counters, and grand sadhya spreads
 - [Portfolio](/portfolio): Signature portfolio of luxury weddings, corporate galas, and catering banquets
 - [Gallery](/gallery): Portfolio and photos of luxury weddings, receptions, and celebrations
 - [Blog](/blog): Wedding planning guides, catering tips, and event inspiration
