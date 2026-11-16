@@ -5,9 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-    Search, X, Check, Share2, FileDown, 
-    ChevronRight, Sparkles, Trash2, Copy, CheckCheck, 
-    PhoneCall, Download
+    Search, X, Check, Share2, 
+    ChevronRight, Sparkles, Trash2, Copy, CheckCheck
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import styles from "./Menu.module.css";
@@ -16,7 +15,6 @@ import QuoteModal from "@/components/ui/QuoteModal";
 import BrandName from "@/components/ui/BrandName";
 
 const WHATSAPP_NUMBER = "918138002333";
-const PDF_URL = "https://pkcevents-storage.s3.us-east-1.amazonaws.com/menucard/wedding-menu.pdf";
 
 export default function MenuClient() {
     const [selectedDishes, setSelectedDishes] = useState<Map<string, { name: string; section: string; type: string }>>(new Map());
@@ -187,9 +185,6 @@ export default function MenuClient() {
                     <div className={styles.heroActions}>
                         <a href="#menu-explorer" className={styles.primaryBtn}>
                             Start Menu Selection <ChevronRight size={16} />
-                        </a>
-                        <a href={PDF_URL} target="_blank" rel="noopener noreferrer" className={styles.pdfBtn}>
-                            <FileDown size={16} /> Download Checklist PDF
                         </a>
                     </div>
                 </motion.div>

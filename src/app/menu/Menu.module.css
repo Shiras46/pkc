@@ -104,27 +104,6 @@
     box-shadow: 0 14px 30px rgba(252, 179, 24, 0.4);
 }
 
-.pdfBtn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(8px);
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 14px 28px;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.pdfBtn:hover {
-    background: rgba(255, 255, 255, 0.22);
-    border-color: #ffffff;
-}
-
 /* ==========================================================================
    2. STICKY FILTER & SEARCH TOOLBAR
    ========================================================================== */
