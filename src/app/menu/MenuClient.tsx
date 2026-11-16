@@ -409,7 +409,7 @@ export default function MenuClient() {
                                 onClick={() => setIsDrawerOpen(true)}
                                 aria-label="Review selected menu"
                             >
-                                Review Selection
+                                Review
                             </button>
 
                             <button
@@ -417,7 +417,7 @@ export default function MenuClient() {
                                 onClick={handleWhatsAppShare}
                                 aria-label="Send menu via WhatsApp"
                             >
-                                <FaWhatsapp size={16} /> Send via WhatsApp
+                                <FaWhatsapp size={16} /> WhatsApp
                             </button>
 
                             <button
@@ -425,7 +425,7 @@ export default function MenuClient() {
                                 onClick={() => setIsQuoteOpen(true)}
                                 aria-label="Request quote for this menu"
                             >
-                                Get Event Quote <ChevronRight size={14} />
+                                Get Quote <ChevronRight size={14} />
                             </button>
                         </div>
                     </motion.div>
