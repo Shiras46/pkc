@@ -42,7 +42,7 @@
 }
 
 .title span {
-  color: #8C5D00;
+  color: var(--primary, #FCB318);
 }
 
 .headerRight {

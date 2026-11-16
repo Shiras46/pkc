@@ -284,7 +284,7 @@ export default function MenuClient() {
 
                     {filteredCatalog.length === 0 ? (
                         <div className={styles.emptyState}>
-                            <Sparkles size={40} color="#8C5D00" />
+                            <Sparkles size={40} color="#fcb318" />
                             <h3 className={styles.emptyStateTitle}>No Delicacies Match Your Filter</h3>
                             <p className={styles.emptyStateText}>
                                 Try clearing your search query or switching dietary filters to view our full catering selection.
@@ -325,7 +325,7 @@ export default function MenuClient() {
                                     <div key={sIdx} className={styles.subSectionBlock}>
                                         <div className={styles.subSectionTitle}>
                                             <span>{sub.title}</span>
-                                            <span style={{ fontSize: "0.8rem", color: "#8C5D00", fontWeight: 600 }}>
+                                            <span style={{ fontSize: "0.8rem", color: "#fcb318", fontWeight: 600 }}>
                                                 (Page {sub.page})
                                             </span>
                                             <div className={styles.subSectionTitleLine} />
@@ -487,7 +487,7 @@ export default function MenuClient() {
                                     <button onClick={clearAllSelection} className={styles.clearAllBtn}>
                                         <Trash2 size={14} style={{ display: "inline", marginRight: "4px" }} /> Clear All
                                     </button>
-                                    <button onClick={copyMenuToClipboard} className={styles.clearAllBtn} style={{ color: copied ? "#2e7d32" : "#8C5D00" }}>
+                                    <button onClick={copyMenuToClipboard} className={styles.clearAllBtn} style={{ color: copied ? "#2e7d32" : "#fcb318" }}>
                                         {copied ? <CheckCheck size={14} style={{ display: "inline", marginRight: "4px" }} /> : <Copy size={14} style={{ display: "inline", marginRight: "4px" }} />}
                                         {copied ? "Copied!" : "Copy Text"}
                                     </button>

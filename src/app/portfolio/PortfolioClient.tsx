@@ -115,7 +115,7 @@ export default function PortfolioClient() {
                     <div className={styles.sectionHeader}>
                         <span className={styles.sectionEyebrow}>Selected Projects</span>
                         <h2 className={styles.sectionTitle}>
-                            Every Celebration Has A <span style={{ color: "#8C5D00" }}>Story</span>
+                            Every Celebration Has A <span style={{ color: "#fcb318" }}>Story</span>
                         </h2>
                         <p className={styles.sectionDesc}>
                             From intimate temple ceremonies to monumental waterfront gatherings, discover how we turn grand visions into seamless reality with our golden touch.
@@ -223,7 +223,7 @@ export default function PortfolioClient() {
                             <span className={styles.sectionEyebrow}>Featured Spotlight</span>
                             <h2 className={styles.sectionTitle}>
                                 Waterfront Grandeur at <br />
-                                <span style={{ color: "#8C5D00" }}>Bolgatty Palace</span>
+                                <span style={{ color: "#fcb318" }}>Bolgatty Palace</span>
                             </h2>
                             <p className={styles.sectionDesc}>
                                 When our clients envisioned a 3-day royal gathering by the Kochi backwaters, every logistical element—from floating stage structures to authentic culinary service for over 1,500 VIP attendees—was engineered with effortless poise.

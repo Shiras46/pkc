@@ -40,7 +40,7 @@ export default function ServiceCards() {
                 <div className={styles.header}>
                     <span className={styles.eyebrow}>WHAT WE OFFER</span>
                     <h2 className={styles.title}>
-                        Explore Our <span style={{ color: '#8C5D00' }}>Services</span>
+                        Explore Our <span style={{ color: '#fcb318' }}>Services</span>
                     </h2>
                     <p className={styles.description}>
                         At Pride Kitchen Caterers & Events, we transform your plans, ideas, and vision into a full-fledged reality with a touch of professional perfectionism. From private events to large-scale festivals, our expert team handles every nuance of your events with precise execution and care. You experience every little joy of your precious moments, while we manage the details.

@@ -14,7 +14,7 @@
 .header h2 {
     font-family: var(--font-heading, serif);
     font-size: clamp(2.5rem, 5vw, 3.5rem);
-    color: #8C5D00;
+    color: #fcb318;
     margin-bottom: 20px;
     font-weight: 700;
 }

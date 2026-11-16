@@ -58,7 +58,7 @@ export default function About() {
                         <div className="about-content-fade">
                             <h2 className={styles.heading}>
                                 Your Vision, <br />
-                                <span style={{ color: '#8C5D00' }}>Our Golden Touch</span>
+                                <span style={{ color: '#fcb318' }}>Our Golden Touch</span>
                             </h2>
                         </div>
 

@@ -152,7 +152,7 @@
 }
 
 .searchInput:focus {
-    border-color: #8C5D00;
+    border-color: #fcb318;
     box-shadow: 0 0 0 3px rgba(252, 179, 24, 0.2);
 }
 
@@ -194,15 +194,15 @@
 }
 
 .dietaryBtn:hover {
-    border-color: #8C5D00;
-    color: #8C5D00;
+    border-color: #fcb318;
+    color: #1a1a1a;
 }
 
 .dietaryBtnActive {
-    background: #8C5D00 !important;
-    border-color: #8C5D00 !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 12px rgba(140, 93, 0, 0.2);
+    background: #fcb318 !important;
+    border-color: #fcb318 !important;
+    color: #1a1a1a !important;
+    box-shadow: 0 4px 12px rgba(252, 179, 24, 0.28);
 }
 
 /* Category Quick Jump Bar */
@@ -278,7 +278,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8C5D00;
+    color: #fcb318;
     font-weight: bold;
     flex-shrink: 0;
 }
@@ -301,8 +301,8 @@
     display: inline-flex;
     align-items: center;
     background: #fdfaf5;
-    border: 1px solid rgba(252, 179, 24, 0.3);
-    color: #8C5D00;
+    border: 1px solid rgba(252, 179, 24, 0.35);
+    color: #1a1a1a;
     font-size: 0.76rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -369,8 +369,8 @@
 
 .dishCardSelected {
     background: #fffcf4 !important;
-    border-color: #8C5D00 !important;
-    box-shadow: 0 4px 16px rgba(140, 93, 0, 0.12) !important;
+    border-color: #fcb318 !important;
+    box-shadow: 0 4px 16px rgba(252, 179, 24, 0.2) !important;
 }
 
 .dishCardLeft {
@@ -463,9 +463,9 @@
 }
 
 .dishCardSelected .selectBtn {
-    background: #8C5D00;
-    border-color: #8C5D00;
-    color: #ffffff;
+    background: #fcb318;
+    border-color: #fcb318;
+    color: #1a1a1a;
 }
 
 /* Empty search state */
@@ -711,7 +711,7 @@
 .selectedGroupTitle {
     font-size: 0.88rem;
     font-weight: 700;
-    color: #8C5D00;
+    color: #fcb318;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 10px;
