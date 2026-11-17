@@ -8,18 +8,6 @@ export async function POST(req: Request) {
   try {
     await dbConnect();
 
-    // Auto-seed default admin only if no users exist in the database yet
-    const defaultEmail = process.env.ADMIN_DEFAULT_EMAIL || "admin@pkcevents.com";
-    const defaultPassword = process.env.ADMIN_DEFAULT_PASSWORD || "PkcAdminSecure2026!";
-    const adminCount = await User.countDocuments();
-    if (adminCount === 0) {
-      const hashedPassword = await bcrypt.hash(defaultPassword, 10);
-      await User.create({
-        email: defaultEmail,
-        password: hashedPassword,
-      });
-    }
-
     const body = await req.json();
     const password = body.password;
     const email = body.email?.trim().toLowerCase();
@@ -31,7 +19,20 @@ export async function POST(req: Request) {
       );
     }
 
-    const user = await User.findOne({ email });
+    // Default admin credentials from env or fallback
+    const defaultEmail = (process.env.ADMIN_DEFAULT_EMAIL || "admin@pkcevents.com").trim().toLowerCase();
+    const defaultPassword = process.env.ADMIN_DEFAULT_PASSWORD || "PkcAdminSecure2026!";
+
+    let user = await User.findOne({ email });
+
+    // Auto-seed default admin if it doesn't exist yet
+    if (!user && email === defaultEmail) {
+      const hashedPassword = await bcrypt.hash(defaultPassword, 10);
+      user = await User.create({
+        email: defaultEmail,
+        password: hashedPassword,
+      });
+    }
 
     if (!user) {
       return NextResponse.json(
@@ -40,7 +41,15 @@ export async function POST(req: Request) {
       );
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    let isMatch = await bcrypt.compare(password, user.password);
+
+    // If logging in as default admin and the entered password matches the configured defaultPassword
+    // (e.g. if the DB had an old hash or ADMIN_DEFAULT_PASSWORD was updated in .env), auto-sync and allow
+    if (!isMatch && email === defaultEmail && password === defaultPassword) {
+      const newHash = await bcrypt.hash(defaultPassword, 10);
+      await User.updateOne({ email: defaultEmail }, { password: newHash });
+      isMatch = true;
+    }
 
     if (!isMatch) {
       return NextResponse.json(
