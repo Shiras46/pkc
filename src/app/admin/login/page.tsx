@@ -14,19 +14,25 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setError("");
 
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,      // ✅ MUST be `email`
-        password,
-      }),
-    });
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+        }),
+      });
 
-    if (res.ok) {
-      router.push("/admin/dashboard");
-    } else {
-      setError("Invalid credentials. Please try again.");
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.success) {
+        router.push("/admin/dashboard");
+      } else {
+        setError(data?.message || "Invalid credentials. Please try again.");
+      }
+    } catch {
+      setError("Unable to connect to server. Please check your network connection.");
     }
   };
 
