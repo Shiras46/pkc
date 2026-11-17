@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const DEFAULT_MONGODB_URI = "mongodb+srv://shiraskn46_db_user:shiras6006@cluster0.o8jawot.mongodb.net/pkc_events_dev?retryWrites=true&w=majority";
+const MONGODB_URI = process.env.MONGODB_URI || DEFAULT_MONGODB_URI;
 
 /**
  * Global is used here to maintain a cached connection across hot reloads
