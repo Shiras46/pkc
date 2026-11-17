@@ -67,7 +67,7 @@ export default function ServiceCards() {
                                         src={service.image}
                                         alt={`${service.name} service by Pride Kitchen Caterers & Events showcasing premium event management, luxury catering, and hospitality services in Kerala`}
                                         fill
-                                        quality={75}
+                                        quality={60}
                                         loading="lazy"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         className={styles.cardImage}

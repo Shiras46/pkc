@@ -92,6 +92,7 @@ export default function About() {
                             src="/image/about.webp"
                             alt="Pride Kitchen Caterers & Events (PKC Events) premium wedding and event management team creating elegant celebrations with luxury catering and hospitality services in Kerala"
                             fill
+                            quality={60}
                             sizes="(max-width: 768px) 100vw, 50vw"
                             className={styles.image}
                             style={{ objectFit: 'cover', objectPosition: 'center 15%', transformOrigin: 'center 15%' }}

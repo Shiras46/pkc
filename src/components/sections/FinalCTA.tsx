@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./FinalCTA.module.css";
 import QuoteModal from "@/components/ui/QuoteModal";
@@ -12,6 +13,17 @@ export default function FinalCTA() {
     return (
         <>
             <section className={styles.cta}>
+                <div className={styles.imageBackdrop}>
+                    <Image
+                        src="/image/hero2.webp"
+                        alt="Pride Kitchen Caterers and Events Grand Wedding Celebration Backdrop"
+                        fill
+                        quality={45}
+                        loading="lazy"
+                        sizes="100vw"
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    />
+                </div>
                 <div className={styles.overlay}></div>
                 <div className={`container ${styles.container}`}>
                     <motion.div

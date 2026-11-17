@@ -7,14 +7,18 @@
     overflow: hidden;
 }
 
+.imageBackdrop {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+    z-index: 0;
+}
+
 .overlay {
     position: absolute;
     inset: 0;
-    background-image: url('/image/hero2.webp');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.3;
-    z-index: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .container {

@@ -401,7 +401,7 @@ export default function RootLayout({
                                     if (loaded) return;
                                     loaded = true;
 
-                                    ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(e) {
+                                    ['scroll', 'touchstart', 'click', 'keydown'].forEach(function(e) {
                                         window.removeEventListener(e, initAnalytics, { passive: true });
                                     });
 
@@ -422,14 +422,14 @@ export default function RootLayout({
                                     ` : ''}
                                 }
 
-                                ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(e) {
+                                ['scroll', 'touchstart', 'click', 'keydown'].forEach(function(e) {
                                     window.addEventListener(e, initAnalytics, { passive: true, once: true });
                                 });
 
                                 if ('requestIdleCallback' in window) {
-                                    window.requestIdleCallback(function() { setTimeout(initAnalytics, 3500); });
+                                    window.requestIdleCallback(function() { setTimeout(initAnalytics, 6000); });
                                 } else {
-                                    setTimeout(initAnalytics, 3500);
+                                    setTimeout(initAnalytics, 6000);
                                 }
                             })();
                         `,
