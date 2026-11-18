@@ -7,7 +7,10 @@
  *
  * Any invalid strings (like "afdas", whitespace, or arbitrary text) will safely fall back to the fallback image.
  */
-export function getValidImageUrl(src?: string | null, fallback = '/image/about.webp'): string {
+export function getValidImageUrl(
+    src?: string | null,
+    fallback = 'https://pkcevents-storage.s3.us-east-1.amazonaws.com/uploads/1793270216375-ba94ca51-blogdestinationwedding.webp'
+): string {
     if (!src || typeof src !== 'string') return fallback;
     const trimmed = src.trim();
     if (!trimmed) return fallback;
