@@ -35,6 +35,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
     const [scrollProgress, setScrollProgress] = useState(0);
     const [headings, setHeadings] = useState<TOCItem[]>([]);
     const [activeHeadingId, setActiveHeadingId] = useState<string>("");
+    const [heroSrc, setHeroSrc] = useState(getValidImageUrl(post.image));
     const contentRef = useRef<HTMLDivElement>(null);
 
     // Calculate estimated reading time
@@ -236,12 +237,13 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                     {/* CINEMATIC COVER IMAGE */}
                     <div className={styles.heroImageWrapper}>
                         <Image
-                            src={getValidImageUrl(post.image)}
+                            src={heroSrc}
                             alt={post.title}
                             fill
                             sizes="(max-width: 1200px) 100vw, 1200px"
                             className={styles.heroImage}
                             priority
+                            onError={() => setHeroSrc("https://pkcevents-storage.s3.us-east-1.amazonaws.com/uploads/1793270216375-ba94ca51-blogdestinationwedding.webp")}
                         />
                         <div className={styles.imageOverlayGradient} />
                     </div>
