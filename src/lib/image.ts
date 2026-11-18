@@ -9,7 +9,7 @@
  */
 export function getValidImageUrl(
     src?: string | null,
-    fallback = 'https://pkcevents-storage.s3.us-east-1.amazonaws.com/uploads/1793270216375-ba94ca51-blogdestinationwedding.webp'
+    fallback = '/image/services/wedding-catering.webp'
 ): string {
     if (!src || typeof src !== 'string') return fallback;
     const trimmed = src.trim();

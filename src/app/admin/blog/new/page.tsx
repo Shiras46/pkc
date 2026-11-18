@@ -195,7 +195,7 @@ export default function NewBlogPost() {
                         )}
                         <input
                             type="file"
-                            accept="image/*"
+                            accept="image/*,.jpg,.jpeg,.png,.webp,.avif,.heic,.heif,.gif,.svg,.bmp,.tiff,.tif,.jfif,.ico,.raw,.cr2,.nef,.arw,.dng"
                             onChange={handleFileChange}
                         />
                         <input

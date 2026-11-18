@@ -27,8 +27,23 @@ export async function convertImageToWebP(
 ): Promise<WebPConversionResult> {
     const originalSize = file.size;
 
-    // If it's not an image (e.g. video), bypass conversion
-    if (!file.type.startsWith('image/')) {
+    const isSvg = file.type === 'image/svg+xml' || /\.svgz?$/i.test(file.name);
+    const isGif = file.type === 'image/gif' || /\.gif$/i.test(file.name);
+    const isImage = file.type.startsWith('image/') || /\.(jpg|jpeg|png|webp|avif|gif|bmp|tiff|tif|heic|heif|jfif|svg|svgz|ico|raw|cr2|nef|arw|dng|jpe)$/i.test(file.name);
+
+    // If it's SVG (vector) or GIF (animated), preserve original format and allow server to process
+    if (isSvg || isGif) {
+        return {
+            file,
+            previewUrl: URL.createObjectURL(file),
+            originalSize,
+            webpSize: originalSize,
+            savedPercent: 0,
+        };
+    }
+
+    // If it's not an image (e.g. video or other file), bypass conversion
+    if (!isImage) {
         return {
             file,
             previewUrl: URL.createObjectURL(file),

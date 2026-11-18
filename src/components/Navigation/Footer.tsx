@@ -56,8 +56,8 @@ export default function Footer() {
                         <h3>Company</h3>
                         <ul>
                             <li><Link href="/about">About Us</Link></li>
-                            <li><Link href="/menu">Menu Selection</Link></li>
-                            <li><Link href="/portfolio">Portfolio</Link></li>
+                            {/* <li><Link href="/menu">Menu Selection</Link></li>
+                            <li><Link href="/portfolio">Portfolio</Link></li> */}
                             <li><Link href="/gallery">Gallery</Link></li>
                             <li><Link href="/blog">Blog</Link></li>
                             <li><Link href="/contact">Contact</Link></li>
@@ -69,24 +69,24 @@ export default function Footer() {
                         <h3>Headquarters</h3>
                         <div className={styles.contactItem}>
                             <MapPin size={20} className="text-gold" aria-hidden="true" />
-                            <a 
-                                href="https://maps.app.goo.gl/a39cG6zMdG82upn96" 
-                                target="_blank" 
+                            <a
+                                href="https://maps.app.goo.gl/a39cG6zMdG82upn96"
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 style={{ color: 'inherit', textDecoration: 'none' }}
                                 onClick={() => trackEvent('contact_click', { method: 'map', location: 'footer' })}
                             >
                                 <address style={{ fontStyle: 'normal', cursor: 'pointer' }}>
-                                    Arammel Arcade, nr. Mannuthy - Madakkathara Road,<br/>
-                                    Sree Lakshmi Nagar, Mannuthy,<br/>
+                                    Arammel Arcade, nr. Mannuthy - Madakkathara Road,<br />
+                                    Sree Lakshmi Nagar, Mannuthy,<br />
                                     Thrissur, Kerala 680651
                                 </address>
                             </a>
                         </div>
                         <div className={styles.contactItem}>
                             <Phone size={20} className="text-gold" aria-hidden="true" />
-                            <a 
-                                href="tel:+918138002333" 
+                            <a
+                                href="tel:+918138002333"
                                 onClick={() => trackContactClick('phone', 'footer')}
                                 style={{ color: 'inherit', textDecoration: 'none' }}
                             >
@@ -95,8 +95,8 @@ export default function Footer() {
                         </div>
                         <div className={styles.contactItem}>
                             <Mail size={20} className="text-gold" aria-hidden="true" />
-                            <a 
-                                href="mailto:pridekitchencaterers@gmail.com" 
+                            <a
+                                href="mailto:pridekitchencaterers@gmail.com"
                                 onClick={() => trackContactClick('email', 'footer')}
                                 style={{ color: 'inherit', textDecoration: 'none' }}
                             >

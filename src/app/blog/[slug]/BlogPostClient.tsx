@@ -243,7 +243,13 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                             sizes="(max-width: 1200px) 100vw, 1200px"
                             className={styles.heroImage}
                             priority
-                            onError={() => setHeroSrc("https://pkcevents-storage.s3.us-east-1.amazonaws.com/uploads/1793270216375-ba94ca51-blogdestinationwedding.webp")}
+                            onError={() => {
+                                if (heroSrc !== '/image/services/wedding-catering.webp') {
+                                    setHeroSrc('/image/services/wedding-catering.webp');
+                                } else {
+                                    setHeroSrc('/image/about.webp');
+                                }
+                            }}
                         />
                         <div className={styles.imageOverlayGradient} />
                     </div>

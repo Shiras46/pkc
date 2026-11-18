@@ -712,7 +712,7 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
             <input
                 type="file"
                 ref={fileInputRef}
-                accept="image/*"
+                accept="image/*,.jpg,.jpeg,.png,.webp,.avif,.heic,.heif,.gif,.svg,.bmp,.tiff,.tif,.jfif,.ico,.raw,.cr2,.nef,.arw,.dng"
                 style={{ display: "none" }}
                 onChange={handleImageFileChange}
             />

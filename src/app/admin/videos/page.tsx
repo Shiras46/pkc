@@ -390,7 +390,7 @@ export default function AdminVideos() {
                         </label>
                         <input
                             type="file"
-                            accept="image/*"
+                            accept="image/*,.jpg,.jpeg,.png,.webp,.avif,.heic,.heif,.gif,.svg,.bmp,.tiff,.tif,.jfif,.ico,.raw,.cr2,.nef,.arw,.dng"
                             onChange={handleThumbnailChange}
                             style={{ padding: "8px", borderRadius: "8px", border: "1px solid #ddd", width: "100%", background: "#fff" }}
                         />
@@ -515,7 +515,7 @@ export default function AdminVideos() {
                                         </label>
                                         <input
                                             type="file"
-                                            accept="image/*"
+                                            accept="image/*,.jpg,.jpeg,.png,.webp,.avif,.heic,.heif,.gif,.svg,.bmp,.tiff,.tif,.jfif,.ico,.raw,.cr2,.nef,.arw,.dng"
                                             onChange={handleEditThumbnailChange}
                                             style={{ padding: "6px", borderRadius: "6px", border: "1px solid #ccc", width: "100%" }}
                                         />
