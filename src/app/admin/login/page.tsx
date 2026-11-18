@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
       const data = await res.json().catch(() => null);
 
       if (res.ok && data?.success) {
-        router.push("/admin/dashboard");
+        window.location.href = "/admin/dashboard";
       } else {
         setError(data?.message || "Invalid credentials. Please try again.");
       }
