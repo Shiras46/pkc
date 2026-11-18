@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Upload, Trash2, Edit2, Check, X, Image as ImageIcon, Sparkles } from "lucide-react";
 import styles from "./GalleryManagement.module.css";
+import { convertImageToWebP, uploadFileSafely } from "@/lib/clientImageUpload";
 
 interface GalleryItem {
     _id?: string;
@@ -53,11 +54,18 @@ export default function AdminGallery() {
         fetchGalleryItems();
     }, []);
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const selectedFile = e.target.files[0];
-            setFile(selectedFile);
-            setPreviewUrl(URL.createObjectURL(selectedFile));
+            try {
+                const res = await convertImageToWebP(selectedFile);
+                setFile(res.file);
+                setPreviewUrl(res.previewUrl);
+            } catch (convErr) {
+                console.warn("Gallery client conversion fallback:", convErr);
+                setFile(selectedFile);
+                setPreviewUrl(URL.createObjectURL(selectedFile));
+            }
         }
     };
 
@@ -73,20 +81,8 @@ export default function AdminGallery() {
 
         try {
             // Step 1: Upload image file to server (auto-converts to WebP)
-            const formData = new FormData();
-            formData.set("file", file);
-
-            const uploadRes = await fetch("/api/upload", {
-                method: "POST",
-                body: formData,
-            });
-
-            const uploadJson = await uploadRes.json();
-            if (!uploadRes.ok) {
-                throw new Error(uploadJson.error || "Failed to upload image");
-            }
-
-            const webpUrl = uploadJson.url;
+            const uploadResult = await uploadFileSafely(file);
+            const webpUrl = uploadResult.url;
 
             // Step 2: Save gallery item record with src, category, and alt tag
             const finalCategory = category === "Custom" ? customCategory.trim() || "Events & Celebrations" : category;
@@ -102,8 +98,8 @@ export default function AdminGallery() {
             });
 
             if (!saveRes.ok) {
-                const saveJson = await saveRes.json();
-                throw new Error(saveJson.error || "Failed to save gallery item");
+                const saveJson = await saveRes.json().catch(() => null);
+                throw new Error(saveJson?.error || "Failed to save gallery item");
             }
 
             // Reset form

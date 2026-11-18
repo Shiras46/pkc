@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Trash2, Edit2, Check, X, Youtube, Instagram, CheckCircle, XCircle, Sparkles, Upload, Image as ImageIcon, Film, Video, AlertTriangle } from "lucide-react";
+import { convertImageToWebP, uploadFileSafely } from "@/lib/clientImageUpload";
 
 export default function AdminVideos() {
     const [videos, setVideos] = useState<any[]>([]);
@@ -63,19 +64,33 @@ export default function AdminVideos() {
         }
     };
 
-    const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleThumbnailChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const selected = e.target.files[0];
-            setThumbnailFile(selected);
-            setThumbnailPreview(URL.createObjectURL(selected));
+            try {
+                const res = await convertImageToWebP(selected);
+                setThumbnailFile(res.file);
+                setThumbnailPreview(res.previewUrl);
+            } catch (convErr) {
+                console.warn("Video thumbnail client conversion fallback:", convErr);
+                setThumbnailFile(selected);
+                setThumbnailPreview(URL.createObjectURL(selected));
+            }
         }
     };
 
-    const handleEditThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleEditThumbnailChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const selected = e.target.files[0];
-            setEditThumbnailFile(selected);
-            setEditThumbnailPreview(URL.createObjectURL(selected));
+            try {
+                const res = await convertImageToWebP(selected);
+                setEditThumbnailFile(res.file);
+                setEditThumbnailPreview(res.previewUrl);
+            } catch (convErr) {
+                console.warn("Video edit thumbnail client conversion fallback:", convErr);
+                setEditThumbnailFile(selected);
+                setEditThumbnailPreview(URL.createObjectURL(selected));
+            }
         }
     };
 
@@ -99,37 +114,15 @@ export default function AdminVideos() {
             // 1. If uploading video file directly (MP4/WebM/MOV)
             if (sourceType === "file" && videoFile) {
                 setUploadStatus("Uploading video file to server...");
-                const videoFormData = new FormData();
-                videoFormData.set("file", videoFile);
-
-                const uploadRes = await fetch("/api/upload", {
-                    method: "POST",
-                    body: videoFormData,
-                });
-                const uploadJson = await uploadRes.json();
-                if (!uploadRes.ok) {
-                    alert(uploadJson.error || "Failed to upload video file");
-                    setSubmitting(false);
-                    setUploadStatus("");
-                    return;
-                }
-                finalVideoUrl = uploadJson.url;
+                const uploadRes = await uploadFileSafely(videoFile);
+                finalVideoUrl = uploadRes.url;
             }
 
             // 2. Upload custom cover thumbnail image if selected (converts to WebP)
             if (thumbnailFile) {
                 setUploadStatus("Optimizing cover image to WebP...");
-                const thumbFormData = new FormData();
-                thumbFormData.set("file", thumbnailFile);
-
-                const thumbRes = await fetch("/api/upload", {
-                    method: "POST",
-                    body: thumbFormData,
-                });
-                const thumbJson = await thumbRes.json();
-                if (thumbRes.ok) {
-                    uploadedThumbnailUrl = thumbJson.url;
-                }
+                const thumbRes = await uploadFileSafely(thumbnailFile);
+                uploadedThumbnailUrl = thumbRes.url;
             }
 
             setUploadStatus("Saving to database...");
@@ -195,30 +188,14 @@ export default function AdminVideos() {
         try {
             // Upload new video file if provided
             if (editVideoFile) {
-                const videoFormData = new FormData();
-                videoFormData.set("file", editVideoFile);
-                const vidRes = await fetch("/api/upload", {
-                    method: "POST",
-                    body: videoFormData,
-                });
-                const vidJson = await vidRes.json();
-                if (vidRes.ok) {
-                    finalVideoUrl = vidJson.url;
-                }
+                const vidRes = await uploadFileSafely(editVideoFile);
+                finalVideoUrl = vidRes.url;
             }
 
             // Upload new thumbnail if provided
             if (editThumbnailFile) {
-                const thumbFormData = new FormData();
-                thumbFormData.set("file", editThumbnailFile);
-                const thumbRes = await fetch("/api/upload", {
-                    method: "POST",
-                    body: thumbFormData,
-                });
-                const thumbJson = await thumbRes.json();
-                if (thumbRes.ok) {
-                    uploadedThumbnailUrl = thumbJson.url;
-                }
+                const thumbRes = await uploadFileSafely(editThumbnailFile);
+                uploadedThumbnailUrl = thumbRes.url;
             }
 
             const res = await fetch(`/api/admin/videos/${id}`, {

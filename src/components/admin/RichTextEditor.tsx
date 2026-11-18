@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link as LinkIcon, Bold, Italic, Underline, List, ListOrdered, Quote, Eye, Code, Image as ImageIcon, Table as TableIcon, HelpCircle } from "lucide-react";
 import styles from "./RichTextEditor.module.css";
+import { convertImageToWebP, uploadFileSafely } from "@/lib/clientImageUpload";
 
 interface RichTextEditorProps {
     value: string;
@@ -664,22 +665,22 @@ export default function RichTextEditor({ value, onChange }: RichTextEditorProps)
         const file = e.target.files?.[0];
         if (!file) return;
 
-        const formData = new FormData();
-        formData.set('file', file);
-
         try {
-            const res = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData,
-            });
-            const json = await res.json();
-            if (!res.ok) throw new Error(json.error || 'Upload failed');
+            let uploadTarget = file;
+            try {
+                const converted = await convertImageToWebP(file);
+                uploadTarget = converted.file;
+            } catch (convErr) {
+                console.warn("Editor client conversion fallback:", convErr);
+            }
+
+            const uploadResult = await uploadFileSafely(uploadTarget);
 
             const alt = prompt("Enter Image Description (Alt Text):") || "Blog Image";
             if (editorRef.current) {
                 editorRef.current.focus();
             }
-            const imgHtml = `<p><img src="${json.url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 16px 0;" /></p>`;
+            const imgHtml = `<p><img src="${uploadResult.url}" alt="${alt}" style="max-width: 100%; height: auto; border-radius: 8px; margin: 16px 0;" /></p>`;
             execCommand("insertHTML", imgHtml);
         } catch (err) {
             alert(err instanceof Error ? err.message : 'Image upload failed');

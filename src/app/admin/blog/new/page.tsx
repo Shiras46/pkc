@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Blog } from "@/lib/types";
 import styles from "../BlogForm.module.css";
 import RichTextEditor from "@/components/admin/RichTextEditor";
+import { convertImageToWebP, uploadFileSafely } from "@/lib/clientImageUpload";
 
 export default function NewBlogPost() {
     const [formData, setFormData] = useState({
@@ -29,6 +30,8 @@ export default function NewBlogPost() {
         ctaEmail: "pridekitchencaterers@gmail.com"
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const [imagePreview, setImagePreview] = useState<string>("");
+    const [imageInfo, setImageInfo] = useState<string>("");
     const [uploading, setUploading] = useState(false);
     const router = useRouter();
 
@@ -38,9 +41,23 @@ export default function NewBlogPost() {
         setFormData({ ...formData, title, slug });
     };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            setImageFile(e.target.files[0]);
+            const rawFile = e.target.files[0];
+            setImageInfo("Converting to optimized WebP format...");
+            try {
+                const res = await convertImageToWebP(rawFile);
+                setImageFile(res.file);
+                setImagePreview(res.previewUrl);
+                const originalKb = Math.round(res.originalSize / 1024);
+                const webpKb = Math.round(res.webpSize / 1024);
+                setImageInfo(`✓ Auto-converted to WebP (${webpKb} KB, saved ${res.savedPercent}% size from ${originalKb} KB)`);
+            } catch (convErr) {
+                console.warn("Client WebP conversion fallback:", convErr);
+                setImageFile(rawFile);
+                setImagePreview(URL.createObjectURL(rawFile));
+                setImageInfo("Ready for upload");
+            }
         }
     };
 
@@ -52,16 +69,8 @@ export default function NewBlogPost() {
             let imageUrl = formData.image;
 
             if (imageFile) {
-                const data = new FormData();
-                data.set('file', imageFile);
-
-                const res = await fetch('/api/upload', {
-                    method: 'POST',
-                    body: data
-                });
-                const json = await res.json();
-                if (!res.ok) throw new Error(json.error || 'Image upload failed');
-                imageUrl = json.url;
+                const uploadResult = await uploadFileSafely(imageFile);
+                imageUrl = uploadResult.url;
             } else if (imageUrl && imageUrl.trim()) {
                 const trimmed = imageUrl.trim();
                 const isValid = trimmed.startsWith('/') || trimmed.startsWith('http://') || trimmed.startsWith('https://');
@@ -146,7 +155,44 @@ export default function NewBlogPost() {
 
                 <div className={styles.inputGroup}>
                     <label>Cover Image</label>
-                    <div style={{ display: 'flex', gap: '10px', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', gap: '12px', flexDirection: 'column' }}>
+                        {(imagePreview || formData.image) && (
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '14px',
+                                padding: '10px 14px',
+                                background: '#f9fafb',
+                                border: '1px solid #e5e7eb',
+                                borderRadius: '8px'
+                            }}>
+                                <img
+                                    src={imagePreview || formData.image}
+                                    alt="Cover preview"
+                                    style={{
+                                        width: '80px',
+                                        height: '60px',
+                                        objectFit: 'cover',
+                                        borderRadius: '6px',
+                                        border: '1px solid #ddd'
+                                    }}
+                                />
+                                <div style={{ fontSize: '0.85rem' }}>
+                                    <div style={{ fontWeight: '600', color: '#111827' }}>
+                                        {imagePreview ? 'Selected Cover Image (Preview)' : 'Image URL'}
+                                    </div>
+                                    {imageInfo ? (
+                                        <div style={{ color: '#059669', marginTop: '2px', fontWeight: '500' }}>
+                                            {imageInfo}
+                                        </div>
+                                    ) : (
+                                        <div style={{ color: '#6b7280', wordBreak: 'break-all' }}>
+                                            {formData.image}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                         <input
                             type="file"
                             accept="image/*"
