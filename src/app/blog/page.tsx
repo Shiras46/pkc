@@ -5,6 +5,7 @@ import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 import { Blog as BlogType } from '@/lib/types';
 import { getValidImageUrl } from '@/lib/image';
+import BlogCardImage from '@/components/blog/BlogCardImage';
 import styles from './Blog.module.css';
 
 export const metadata: Metadata = {
@@ -69,17 +70,14 @@ export default async function BlogListingPage() {
               {posts.map((post) => (
                 <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.card}>
                   <div className={styles.imageWrapper}>
-                    <Image
+                    <BlogCardImage
                       src={post.image}
                       alt={post.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      style={{ objectFit: 'cover' }}
                     />
                   </div>
                   <div className={styles.meta}>
                     <div className={styles.sourceLogo}>
-                      <Image src={post.image} alt={`${post.category} thumbnail`} fill sizes="40px" style={{ objectFit: 'cover' }} />
+                      <Image src="/logo.png" alt="PKC Events" fill sizes="40px" style={{ objectFit: 'contain' }} />
                     </div>
                     <span className={styles.category}>{post.category}</span>
                     <span className={styles.dot}>•</span>
