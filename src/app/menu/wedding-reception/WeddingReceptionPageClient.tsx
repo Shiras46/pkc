@@ -151,15 +151,6 @@ export default function WeddingReceptionPageClient() {
                     <ChevronLeft size={16} /> Back to Menu Collections
                 </Link>
 
-                {/* Page Header */}
-                <div className={styles.pageHeaderCard}>
-                    <span className={styles.headerEyebrow}>PKC Events • Kerala Catering Studio</span>
-                    <h1 className={styles.headerTitle}>Wedding Reception Menu Builder</h1>
-                    <p className={styles.headerSubtitle}>
-                        Pick your package and customize your courses. Each course section shows how many delicacies you can select.
-                    </p>
-                </div>
-
                 {/* 2-Column Main Layout */}
                 <div className={styles.builderMainGrid}>
 
