@@ -14,6 +14,7 @@ import {
 } from "@/lib/menuPortfolioData";
 import QuoteModal from "@/components/ui/QuoteModal";
 import FinalCTA from "@/components/sections/FinalCTA";
+import WeddingReceptionMenuBuilder from "@/components/menu/WeddingReceptionMenuBuilder";
 
 const WHATSAPP_NUMBER = "918138002333";
 
@@ -181,7 +182,7 @@ export default function MenuClient() {
                                         />
                                         <span className={styles.categoryBadge}>{menu.category}</span>
                                         <span className={`${styles.courseBadge} ${menu.isComingSoon ? styles.comingSoonBadge : ""}`}>
-                                            {menu.isComingSoon ? "COMING SOON" : menu.courseCount}
+                                            {menu.isComingSoon ? "COMING SOON" : (menu.id === "wedding-reception" ? "38 DISHES • BUILDER" : menu.courseCount)}
                                         </span>
                                     </div>
 
@@ -208,7 +209,9 @@ export default function MenuClient() {
 
                                         <div className={styles.cardFooter}>
                                             <span className={styles.viewLink}>
-                                                {menu.isComingSoon ? "Preview Menu & Pre-Book" : "Explore Complete Menu"} <ChevronRight size={16} />
+                                                {menu.isComingSoon 
+                                                    ? "Preview Menu & Pre-Book" 
+                                                    : (menu.id === "wedding-reception" ? "Open Interactive Menu Builder" : "Explore Complete Menu")} <ChevronRight size={16} />
                                             </span>
                                         </div>
                                     </div>
@@ -261,10 +264,17 @@ export default function MenuClient() {
                 </div>
             </section>
 
-            {/* 5. INTERACTIVE MENU DETAIL MODAL */}
+            {/* 5. INTERACTIVE MENU BUILDER (FOR WEDDING RECEPTION) OR PREVIEW MODAL */}
             <AnimatePresence>
-                {selectedMenu && (
+                {selectedMenu?.id === "wedding-reception" ? (
+                    <WeddingReceptionMenuBuilder
+                        key="wedding-reception-builder"
+                        onClose={() => setSelectedMenu(null)}
+                        onOpenQuote={() => setIsQuoteOpen(true)}
+                    />
+                ) : selectedMenu ? (
                     <motion.div
+                        key="standard-preview-modal"
                         className={styles.modalBackdrop}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -401,7 +411,7 @@ export default function MenuClient() {
                             </div>
                         </motion.div>
                     </motion.div>
-                )}
+                ) : null}
             </AnimatePresence>
 
             {/* 6. FINAL GLOBAL CALL TO ACTION */}
