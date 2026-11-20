@@ -140,10 +140,7 @@ export default function Header() {
                             whileTap={{ scale: 0.92 }}
                             whileHover={{ scale: 1.05 }}
                         >
-                            <span className={styles.menuToggleText}>MENU</span>
-                            <div className={styles.menuToggleIconBox}>
-                                <Menu size={20} />
-                            </div>
+                            <Menu size={22} />
                         </motion.button>
                     </div>
                 </div>
@@ -175,11 +172,8 @@ export default function Header() {
                             >
                                 <div className={styles.mobileMenuHeader}>
                                     <Link href="/" className={styles.logoGroup} onClick={() => setIsOpen(false)} aria-label="Go to Homepage">
-                                        <Image src="/logo.png" alt="Pride Kitchen Logo" width={44} height={44} className={styles.logoImg} />
-                                        <div className={styles.mobileBrandTextCol}>
-                                            <span className={styles.drawerBrandTitle}>PRIDE KITCHEN</span>
-                                            <span className={styles.drawerBrandSubtitle}>Caterers &amp; Events</span>
-                                        </div>
+                                        <Image src="/logo.png" alt="Pride Kitchen Logo" width={45} height={45} className={styles.logoImg} />
+                                        <span className={styles.mobileBrandName}>PRIDE KITCHEN CATERERS & EVENTS</span>
                                     </Link>
                                     <motion.button
                                         className={styles.closeBtn}
@@ -188,7 +182,7 @@ export default function Header() {
                                         whileTap={{ scale: 0.88, rotate: 90 }}
                                         whileHover={{ scale: 1.05 }}
                                     >
-                                        <X size={20} />
+                                        <X size={26} />
                                     </motion.button>
                                 </div>
 
