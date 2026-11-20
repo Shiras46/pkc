@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { ChevronLeft, Check, Copy, MessageCircle, ArrowUpRight, RotateCcw } from "lucide-react";
+import { ChevronLeft, Check, Copy, MessageCircle, RotateCcw } from "lucide-react";
 import styles from "./WeddingReceptionPage.module.css";
 import { 
     DISH_POOLS, 
@@ -316,20 +316,16 @@ export default function WeddingReceptionPageClient() {
 
                         {/* Actions */}
                         <div className={styles.actionBtnsContainer}>
-                            <button type="button" className={styles.whatsappActionBtn} onClick={handleWhatsApp}>
-                                <MessageCircle size={18} /> Send on WhatsApp
-                            </button>
-
                             <button type="button" className={styles.copyActionBtn} onClick={handleCopy}>
                                 <Copy size={16} /> {copyStatus}
                             </button>
 
-                            <button type="button" className={styles.quoteActionBtn} onClick={() => setIsQuoteOpen(true)}>
-                                Request Quote With Menu <ArrowUpRight size={16} />
+                            <button type="button" className={styles.whatsappActionBtn} onClick={handleWhatsApp}>
+                                <MessageCircle size={18} /> Send on WhatsApp
                             </button>
 
                             <button type="button" className={styles.resetActionBtn} onClick={handleReset}>
-                                <RotateCcw size={13} style={{ display: "inline", marginRight: 4 }} /> Clear selections
+                                <RotateCcw size={14} /> Clear selections
                             </button>
                         </div>
                     </aside>

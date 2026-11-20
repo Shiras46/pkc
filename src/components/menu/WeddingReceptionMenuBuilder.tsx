@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check, Copy, MessageCircle, ArrowUpRight, RotateCcw } from "lucide-react";
+import { X, Check, Copy, MessageCircle, RotateCcw } from "lucide-react";
 import styles from "./WeddingReceptionMenuBuilder.module.css";
 
 const WHATSAPP_NUMBER = "918138002333";
@@ -194,8 +194,8 @@ export const PACKAGES: Record<string, PackageDef> = {
 };
 
 interface WeddingReceptionMenuBuilderProps {
-    onClose: () => void;
-    onOpenQuote: (customSummaryText?: string) => void;
+    onClose?: () => void;
+    onOpenQuote?: (customSummaryText?: string) => void;
 }
 
 export default function WeddingReceptionMenuBuilder({ onClose, onOpenQuote }: WeddingReceptionMenuBuilderProps) {
@@ -514,20 +514,16 @@ export default function WeddingReceptionMenuBuilder({ onClose, onOpenQuote }: We
 
                         {/* Actions */}
                         <div className={styles.actionBtnsContainer}>
-                            <button type="button" className={styles.whatsappActionBtn} onClick={handleWhatsApp}>
-                                <MessageCircle size={18} /> Send on WhatsApp
-                            </button>
-
                             <button type="button" className={styles.copyActionBtn} onClick={handleCopy}>
                                 <Copy size={16} /> {copyStatus}
                             </button>
 
-                            <button type="button" className={styles.quoteActionBtn} onClick={() => onOpenQuote(generateMenuText())}>
-                                Request Quote With Menu <ArrowUpRight size={16} />
+                            <button type="button" className={styles.whatsappActionBtn} onClick={handleWhatsApp}>
+                                <MessageCircle size={18} /> Send on WhatsApp
                             </button>
 
                             <button type="button" className={styles.resetActionBtn} onClick={handleReset}>
-                                <RotateCcw size={13} style={{ display: "inline", marginRight: 4 }} /> Clear selections
+                                <RotateCcw size={14} /> Clear selections
                             </button>
                         </div>
                     </aside>
