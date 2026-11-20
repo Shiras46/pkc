@@ -269,7 +269,7 @@ export default function WeddingReceptionPageClient() {
                     </div>
 
                     {/* Right Column: Sticky Summary & Actions */}
-                    <aside className={styles.summarySidebar}>
+                    <aside className={styles.summarySidebar} data-lenis-prevent="true">
                         <h3>Your Menu</h3>
                         <div className={styles.progressLabel}>
                             {activePkg.title} menu: {totalChosen} of {totalSelectable} dishes chosen
@@ -279,7 +279,11 @@ export default function WeddingReceptionPageClient() {
                         </div>
 
                         {/* Summary List */}
-                        <div className={styles.summaryListContainer}>
+                        <div 
+                            className={styles.summaryListContainer} 
+                            data-lenis-prevent="true"
+                            onWheel={(e) => e.stopPropagation()}
+                        >
                             {(() => {
                                 let lastCourse = "";
                                 return slots.map((s, idx) => {

@@ -374,33 +374,35 @@
 
 .summaryListContainer {
     flex: 1 1 auto;
-    min-height: 160px;
+    min-height: 180px;
     max-height: clamp(280px, 48vh, 520px);
     overflow-y: auto;
     overscroll-behavior: contain;
+    touch-action: pan-y;
     margin-bottom: 16px;
-    padding-right: 10px;
+    padding: 6px 10px 6px 0;
     scrollbar-width: thin;
-    scrollbar-color: rgba(252, 179, 24, 0.4) transparent;
+    scrollbar-color: #fcb318 rgba(0, 0, 0, 0.04);
 }
 
 /* Custom Sleek Scrollbar */
 .summaryListContainer::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
 }
 
 .summaryListContainer::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 9999px;
 }
 
 .summaryListContainer::-webkit-scrollbar-thumb {
-    background: rgba(252, 179, 24, 0.4);
+    background: #fcb318;
     border-radius: 9999px;
     transition: background 0.2s ease;
 }
 
 .summaryListContainer::-webkit-scrollbar-thumb:hover {
-    background: #fcb318;
+    background: #e09f14;
 }
 
 .summaryCourseSection {
