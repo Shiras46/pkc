@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Menu, X, Instagram, Facebook, Phone, ChevronDown, ChevronRight, Youtube, Sparkles } from "lucide-react";
+import { Menu, X, Instagram, Facebook, Phone, ChevronDown, ChevronRight, Youtube } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Header.module.css";
 import Image from "next/image";
@@ -203,10 +203,7 @@ export default function Header() {
                                                         tabIndex={0}
                                                         aria-expanded={servicesExpanded}
                                                     >
-                                                        <div className={styles.navLabelGroup}>
-                                                            <span>{link.name}</span>
-                                                            <span className={styles.servicesBadge}>10 Specialties</span>
-                                                        </div>
+                                                        <span>{link.name}</span>
                                                         <ChevronDown
                                                             size={18}
                                                             className={`${styles.accordionChevron} ${servicesExpanded ? styles.accordionChevronOpen : ""}`}
@@ -276,8 +273,7 @@ export default function Header() {
                                         whileTap={{ scale: 0.95 }}
                                         whileHover={{ scale: 1.02 }}
                                     >
-                                        <Sparkles size={18} />
-                                        <span>GET A FREE QUOTE</span>
+                                        GET A QUOTE
                                     </motion.button>
 
                                     <motion.a

@@ -305,24 +305,6 @@
     font-weight: 700;
 }
 
-.navLabelGroup {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.servicesBadge {
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: #B45309;
-    background: rgba(252, 179, 24, 0.18);
-    border: 1px solid rgba(252, 179, 24, 0.35);
-    padding: 2px 8px;
-    border-radius: 10px;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-}
-
 .accordionChevron {
     color: #9CA3AF;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s ease;
