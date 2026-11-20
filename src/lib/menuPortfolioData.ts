@@ -6,7 +6,9 @@ export interface MenuCourseSection {
 export interface MenuPortfolioItem {
     id: string;
     title: string;
-    category: "Royal Wedding Feasts" | "Grand Kerala Sadhya" | "Reception Buffets" | "Live Food Counters" | "Continental & Pan-Asian" | "Gourmet Desserts";
+    category: string;
+    filterCategory: string;
+    isComingSoon?: boolean;
     servingCapacity: string;
     courseCount: string;
     dietary: string;
@@ -20,482 +22,576 @@ export interface MenuPortfolioItem {
 }
 
 export const menuCategories = [
-    "All Collections",
-    "Royal Wedding Feasts",
-    "Grand Kerala Sadhya",
-    "Reception Buffets",
-    "Live Food Counters",
-    "Continental & Pan-Asian",
-    "Gourmet Desserts"
+    "All Celebrations",
+    "Weddings & Receptions",
+    "Traditional Sadhya",
+    "Pre-Wedding Rituals",
+    "Social & Birthdays"
 ] as const;
 
 export const menuPortfolioItems: MenuPortfolioItem[] = [
+    // 1. Wedding Reception (Active)
     {
-        id: "royal-malabar-dum-biryani-feast",
-        title: "The Royal Malabar Dum Biryani Feast",
-        category: "Royal Wedding Feasts",
-        servingCapacity: "Min 150 – 5,000+ Guests",
-        courseCount: "26 Signature Courses",
-        dietary: "Halal Non-Veg & Vegetarian",
-        image: "/image/services/catering.webp",
-        objectPosition: "center 30%",
-        shortDesc: "The undisputed crown jewel of Malabar wedding hospitality. Slow-dum cooked in sealed deghs with fragrant Kaima rice, tender choice cuts, and pure golden ghee.",
-        fullStory: "Food is the beating soul of Malabar weddings. Our master chefs prepare this royal feast using centuries-old dum techniques—slow-simmering tender chicken and succulent mutton over fragrant firewood coals. Served with authentic accompaniments and theatrical beverage counters, this menu guarantees an unforgettable culinary milestone.",
-        highlights: [
-            "Authentic Thalassery Kaima Dum",
-            "Kozhi Nirachathu (Stuffed Chicken)",
-            "Wayanad Hand-Ground Spices",
-            "Theatrical Sulaimani Counter"
-        ],
-        courseSections: [
-            {
-                title: "Welcome Drinks & Starters",
-                items: [
-                    "Tender Coconut Elaneer Shake with Pulp",
-                    "Fresh Mint & Kaffir Lime Refresher",
-                    "Mutton Irachi Pathiri",
-                    "Golden Malabar Kozhi Porichathu",
-                    "Crispy Vegetable Spring Rolls with Sweet Chilli"
-                ]
-            },
-            {
-                title: "The Royal Dum Main Feast",
-                items: [
-                    "Thalassery Chicken Dum Biryani with Roasted Cashews & Sultanas",
-                    "Slow-Cooked Malabar Mutton Curry in Rich Coconut Gravy",
-                    "Kozhi Nirachathu (Traditional Stuffed Whole Chicken Roast)",
-                    "Fragrant Jeerakasala Ghee Rice (Neychoru)",
-                    "Malabar Coin Parotta & Soft Ari Pathiri",
-                    "Tangy Dates & Lime Chutney (Eenthapazham Achar)",
-                    "Pineapple & Mint Raitha",
-                    "Crispy Kerala Pappad"
-                ]
-            },
-            {
-                title: "Vegetarian Delights",
-                items: [
-                    "Paneer Butter Masala in Velvet Gravy",
-                    "Vegetable Kurma with Cashew Paste",
-                    "Malabar Dal Tadka with Golden Garlic"
-                ]
-            },
-            {
-                title: "Desserts & Live Brews",
-                items: [
-                    "Warm Carrot Halwa with Madagascar Vanilla Ice Cream",
-                    "PKC Signature Tender Coconut Souffle",
-                    "Theatrical Malabar Sulaimani with Cardamom & Mint"
-                ]
-            }
-        ],
-        chefSpecial: "Prepared in traditional heavy copper deghs sealed with wheat dough, ensuring aromatic spices permeate every single grain of Kaima rice."
-    },
-    {
-        id: "grand-travancore-royal-sadhya",
-        title: "Grand Travancore 32-Course Royal Sadhya",
-        category: "Grand Kerala Sadhya",
-        servingCapacity: "Min 100 – 4,000+ Guests",
-        courseCount: "32 Traditional Courses",
-        dietary: "100% Pure Vegetarian",
-        image: "/image/services/sadhya.webp",
-        objectPosition: "center 25%",
-        shortDesc: "An imperial seated banquet served traditionally on fresh green plantain leaves, curated with cold-pressed coconut oil, fresh garden vegetables, and 4 artisanal payasams.",
-        fullStory: "A celebration of Kerala's sacred culinary heritage. Rooted in traditional temple-feast principles, every dish is prepared with zero artificial food colors or preservatives. Served in orchestrated harmony by our traditional dining attendants, this 32-course spread transforms dining into an auspicious cultural ritual.",
-        highlights: [
-            "32 Auspicious Plantain Leaf Dishes",
-            "4 Artisanal Traditional Payasams",
-            "Cold-Pressed Kerala Coconut Oil",
-            "Seated Dining Protocol & Hospitality"
-        ],
-        courseSections: [
-            {
-                title: "The Plantain Leaf Starters",
-                items: [
-                    "Sweet Jaggery Banana Chips (Sharkara Upperi)",
-                    "Crisp Salted Banana Chips (Kaya Varuthathu)",
-                    "Sweet Small Nendran Banana",
-                    "Twin Crispy Pappadams (Small & Big)"
-                ]
-            },
-            {
-                title: "The Four Auspicious Pickles & Relishes",
-                items: [
-                    "Inji Puli (Ginger, Tamarind & Dark Jaggery Confiture)",
-                    "Kadu Manga Achar (Fiery Tender Cut-Mango Pickle)",
-                    "Nellika Achar (Country Gooseberry Pickle)",
-                    "Naranga Achar (Sun-Cured Wild Lime Pickle)"
-                ]
-            },
-            {
-                title: "Traditional Curries & Side Delicacies",
-                items: [
-                    "Parippu (Yellow Moong Lentil with Pure Cow Ghee)",
-                    "Thiruvithamkoor Sambar with 7 Country Vegetables",
-                    "Authentic Travancore Aviyal in Rich Coconut Paste",
-                    "Pineapple Pachadi with Mustard Tempered Yogurt",
-                    "Vellarikka Kichadi (Crisp Cucumber in Curd)",
-                    "Olan (Ash Gourd & Red Beans in Gentle Coconut Milk)",
-                    "Kalan (Sweet Yam in Tangy Fenugreek Yogurt Gravy)",
-                    "Koottukari (Black Chickpeas with Roasted Coconut & Jaggery)",
-                    "Erissery (Pumpkin & Red Gram with Toasted Coconut)",
-                    "Vendakka Thoran (Crispy Okra with Fresh Coconut Flakes)",
-                    "Ulli Theeyal (Shallots in Smoky Roasted Coconut Paste)",
-                    "Spiced Pachamoru (Tempered Country Buttermilk)",
-                    "Pepper Rasam with Crushed Coriander"
-                ]
-            },
-            {
-                title: "Artisanal Payasam Quartet",
-                items: [
-                    "Palada Pradhaman (Slow-Simmered Rice Flakes in Thick Milk)",
-                    "Parippu Payasam (Split Moong Lentils in Dark Marayoor Jaggery)",
-                    "Chakka Pradhaman (Sun-Ripened Jackfruit Preserve with Coconut Milk)",
-                    "Gothambu Payasam with Soft Ghee Boli"
-                ]
-            }
-        ],
-        chefSpecial: "Prepared under the direction of master temple asans following strict Sattvic hygiene principles, using pure Marayoor organic jaggery and fresh farm coconuts."
-    },
-    {
-        id: "majestic-grand-reception-buffet",
-        title: "The Majestic Grand Reception Buffet",
-        category: "Reception Buffets",
-        servingCapacity: "Min 250 – 5,000+ Guests",
-        courseCount: "38 Multi-Cuisine Dishes",
+        id: "wedding-reception",
+        title: "Wedding Reception",
+        category: "Wedding Reception",
+        filterCategory: "Weddings & Receptions",
+        isComingSoon: false,
+        servingCapacity: "Min 200 – 5,000+ Guests",
+        courseCount: "38 Signature Dishes",
         dietary: "Multi-Cuisine Non-Veg & Veg",
         image: "/image/services/buffet.webp",
         objectPosition: "center 35%",
-        shortDesc: "A multi-regional culinary voyage featuring live tandoor theatres, coastal seafood grills, Mughlai delicacies, and artisanal dessert stations.",
-        fullStory: "Designed for high-profile wedding receptions and grand evening galas. Guests enjoy interactive live chef stations alongside opulent banquet chafers brimming with freshly cooked North Indian, coastal Malabar, and continental specialties.",
+        shortDesc: "A magnificent celebratory feast curated for grand wedding receptions across Kerala. Featuring live tandoor theatres, slow-dum biryanis, coastal seafood grills, and artisanal dessert studios.",
+        fullStory: "Wedding receptions are the joyous climax of your wedding celebration—where families, colleagues, and international guests unite. Our Grand Reception menu is designed for seamless free-flow dining, featuring theatrical live grilling stations, slow-cooked royal dum biryanis, coastal seafood delicacies, and a lavish gourmet dessert boutique that leaves every guest delighted.",
         highlights: [
-            "Live Charcoal Tandoor Station",
+            "Live Charcoal Tandoor & Grill Theatres",
+            "Authentic Malabar Chicken Dum Biryani",
             "Banana Leaf Wrapped Fish Pollichathu",
-            "Slow-Simmered Mutton Rogan Josh",
-            "Interactive Dessert Parlour"
+            "Gourmet Dessert & Payasam Studio"
         ],
+        chefSpecial: "Our slow-smoked Tandoori Pomfret and 12-hour simmered Dal Bukhara served alongside live rumali rotis are the standout stars of this reception banquet.",
         courseSections: [
             {
-                title: "Live Welcome Sips & Appetizers",
+                title: "Welcome Drinks & Mocktails",
                 items: [
-                    "Blue Lagoon Citrus Fizz & Guava Chilli Cooler",
-                    "Murgh Malai Kebab fresh off the Tandoor",
-                    "Crispy Prawn Tempura with Sweet Garlic Dip",
-                    "Paneer Tikka Angara with Mint Chutney",
+                    "Passion Fruit & Mint Sparkler",
+                    "Blue Curaçao Citrus Fizz",
+                    "Tender Coconut Elaneer Shake with Fresh Pulp",
+                    "Spiced Kokum & Ginger Refresher"
+                ]
+            },
+            {
+                title: "Live Grills & Appetizers",
+                items: [
+                    "Murgh Malai Tikka with Mint Chutney",
+                    "Tawa Fish Fry with Pickled Onions",
+                    "Crispy Paneer Kurkure with Sweet Chilli Dip",
+                    "Mutton Seekh Kebab with Garlic Aioli",
                     "Golden Corn & Cheese Croquettes"
                 ]
             },
             {
-                title: "Royal Mains & Coastal Curries",
+                title: "The Grand Main Feast",
                 items: [
-                    "Karimeen Pollichathu (Pearl Spot Roasted in Banana Leaf)",
-                    "Kashmiri Mutton Rogan Josh with Ratanjot Gravy",
-                    "Murgh Makhani (Butter Chicken in Rich Tomato-Cashew Gravy)",
-                    "Paneer Lababdar & Dal Makhani",
-                    "Alleppey Fish Curry with Raw Mango & Coconut Milk"
+                    "Thalassery Chicken Dum Biryani with Cashews & Sultanas",
+                    "Slow-Simmered Mutton Rogan Josh in Kashmiri Spices",
+                    "Kozhi Nirachathu (Traditional Stuffed Whole Chicken Roast)",
+                    "Paneer Butter Masala in Rich Tomato Velouté",
+                    "Saffron Fragrant Jeera Rice"
                 ]
             },
             {
-                title: "Rice, Dum & Breads",
+                title: "Artisanal Breads & Accompaniments",
                 items: [
-                    "Zafrani Chicken Dum Biryani with Saffron Essence",
-                    "Jeera Pulao with Toasted Cashews",
-                    "Live Tandoor: Garlic Naan, Butter Roti & Laccha Paratha",
-                    "Malabar Flaky Coin Parottas"
+                    "Live Roomali Roti & Butter Naan",
+                    "Flaky Kerala Parotta",
+                    "Tangy Dates & Lime Chutney (Eenthapazham Achar)",
+                    "Mint & Pomegranate Raitha",
+                    "Crispy Kerala Pappad"
                 ]
             },
             {
-                title: "Artisanal Dessert Studio",
+                title: "Gourmet Desserts & Payasam Studio",
                 items: [
-                    "Hot Gulab Jamun with Saffron Rabri",
-                    "Chilled Saffron Rasmalai in Pistachio Milk",
-                    "Assorted Gourmet Ice Cream with Belgian Chocolate Fountain",
-                    "Carved Exotic Tropical Fruits"
+                    "Palada Pradhaman with Golden Boli",
+                    "Warm Gulab Jamun with Kesari Shahi Rabri",
+                    "Tender Coconut Soufflé",
+                    "Artisanal Ice Creams with Belgian Chocolate Fudge"
                 ]
             }
-        ],
-        chefSpecial: "Features our signature Live Fish Tawa station where fresh fish steaks are marinated on display and seared to order with shallots and curry leaves."
+        ]
     },
+
+    // 2. Hindu Wedding Sadhya (soon)
     {
-        id: "vibrant-thattu-kada-street-theatre",
-        title: "Vibrant Thattu Kada & Kerala Live Street Food",
-        category: "Live Food Counters",
-        servingCapacity: "Min 150 – 3,000+ Guests",
-        courseCount: "18 Live Interactive Theatres",
-        dietary: "Live Counters (Non-Veg & Veg)",
-        image: "/image/services/live-thattukada.webp",
-        objectPosition: "center 40%",
-        shortDesc: "Recreating the unforgettable charm of Kerala's nocturnal street culture. Sizzling tawa roasts, live appams, and theatrical frothing meter tea.",
-        fullStory: "A sensation at evening Sangeets, Mehendi parties, and cocktail receptions. We bring authentic handcrafted wooden carts, vintage kerosene-style lantern decor, and theatrical master chefs who toss, sizzle, and pour right before your guests' eyes.",
-        highlights: [
-            "Live Appam & Stew Theatre",
-            "Interactive Dosa Studio with 6 Fillings",
-            "Pazham Pori with Spicy Beef Roast",
-            "Theatrical Frothing Meter Chaya"
-        ],
-        courseSections: [
-            {
-                title: "Live Steamer & Tawa Counter",
-                items: [
-                    "Lace Vellayappam made to order",
-                    "Creamy Vegetable Stew with Coconut Milk",
-                    "Nadan Chicken Stew with Crushed Black Pepper",
-                    "Steamed Chiratta Puttu with Spicy Kadala Curry",
-                    "Kallappam with Kuttanadan Duck Roast"
-                ]
-            },
-            {
-                title: "The Live Dosa Studio",
-                items: [
-                    "Ghee Roast & Crispy Paper Dosa",
-                    "Podi Dosa with Homemade Gunpowder",
-                    "Spicy Mysore Masala Dosa",
-                    "Cheese & Sweet Corn Dosa for younger guests",
-                    "Hot Sambar & Trio of Coconut Chutneys"
-                ]
-            },
-            {
-                title: "Kerala Street Legends",
-                items: [
-                    "Hot Crispy Pazham Pori paired with Slow-Roasted Beef Roast",
-                    "Steaming Kappa (Tapioca) with Fiery Fish Curry",
-                    "Theatrical Kothu Parotta (Egg, Chicken & Veg options chopped on iron griddle)"
-                ]
-            },
-            {
-                title: "Live Chai & Evening Bites",
-                items: [
-                    "Theatrical Meter Chaya (Frothing Chai with cardamom kick)",
-                    "Sulaimani Tea with Fresh Mint",
-                    "Crunchy Parippu Vada & Golden Onion Uzhunnu Vada",
-                    "Hot Chicken Cutlets with Sweet Dip"
-                ]
-            }
-        ],
-        chefSpecial: "Complete with traditional tea stalls, brass samovars, and live sound effects that create an unforgettable festival vibe for social guests."
-    },
-    {
-        id: "contemporary-pan-asian-continental",
-        title: "Contemporary Pan-Asian & Continental Spread",
-        category: "Continental & Pan-Asian",
-        servingCapacity: "Min 150 – 1,500+ Guests",
-        courseCount: "24 Global Delicacies",
-        dietary: "Gourmet Global (Veg & Non-Veg)",
-        image: "/image/gallery/catering section/DSC01977.webp",
+        id: "hindu-wedding-sadhya",
+        title: "Hindu Wedding Sadhya (soon)",
+        category: "Hindu Wedding",
+        filterCategory: "Traditional Sadhya",
+        isComingSoon: true,
+        servingCapacity: "Min 100 – 4,000+ Guests",
+        courseCount: "32 Traditional Courses",
+        dietary: "100% Pure Vegetarian",
+        image: "/image/services/sadhya.webp",
         objectPosition: "center 30%",
-        shortDesc: "For cosmopolitan couples seeking global refinement. Live Mongolian woks, handcrafted dim sums, Italian wood-style flatbreads, and grilled coastal cuts.",
-        fullStory: "Curated for destination weddings and contemporary receptions where international guests appreciate world-class flavors. Masterfully balanced sauces, fresh imported herbs, and zero MSG.",
+        shortDesc: "An imperial seated banquet served traditionally on fresh green plantain leaves, curated with cold-pressed coconut oil, fresh garden vegetables, and 4 artisanal payasams.",
+        fullStory: "The Kerala Hindu Wedding Sadhya is an architectural symphony of the 6 sacred tastes (Shadruchi). Served strictly according to ceremonial seating etiquette on freshly harvested plantain leaves, our master sadhya chefs prepare every dish using authentic heritage brass urlis, cold-pressed virgin coconut oil, and hand-ground spices.",
         highlights: [
-            "Live Mongolian Stir-Fry Wok",
-            "Handcrafted Steamed Dim Sum Bar",
-            "Live Italian Pasta Theatre",
-            "Wood-Fired Style Artisanal Flatbreads"
+            "32 Auspicious Plantain Leaf Dishes",
+            "4 Artisanal Traditional Payasams",
+            "Cold-Pressed Kerala Coconut Oil",
+            "Live Hot Boli & Paal Payasam Pairing"
         ],
+        chefSpecial: "Our slow-boiled Palada Pradhaman made with pure buffalo milk and caramelized sugar, served alongside hot, melt-in-the-mouth golden Boli.",
         courseSections: [
             {
-                title: "Handcrafted Dim Sum & Canapes",
+                title: "Traditional Plantain Leaf Starters",
                 items: [
-                    "Steamed Chicken Suimai with Scallion Dip",
-                    "Crystal Edamame & Water Chestnut Dumplings",
-                    "Bruschetta with Sun-Ripened Plum Tomatoes & Fresh Basil",
-                    "Thai Chicken Satay with Creamy Peanut Sauce",
-                    "Crispy Vegetable Tempura with Ponzu Dip"
+                    "Crispy Banana Upperi (Salted Plantain Chips)",
+                    "Sharkara Upperi (Jaggery Glazed Plantain Bites)",
+                    "Inji Puli (Tangy Tamarind & Ginger Relish)",
+                    "Kadumanga Achar (Tender Green Mango Pickle)",
+                    "Small Sweet Yellow Banana & Crystal Salt"
                 ]
             },
             {
-                title: "Live Pasta & Flatbread Station",
+                title: "Sacred Thali Mains & Rice",
                 items: [
-                    "Penne, Fusilli & Spaghetti Live Tossed",
-                    "Choice of Sauces: Creamy Truffle Alfredo, Spicy Arrabbiata, Fresh Basil Pesto",
-                    "Artisanal Flatbreads: Roasted Mediterranean Veggie & Barbeque Chicken",
-                    "Warm Garlic Herb Focaccia"
+                    "Steamed Royal Kerala Red Matta Rice",
+                    "Golden Parippu with Pure Desi Cow Ghee",
+                    "Traditional Kerala Drumstick & Yam Sambar",
+                    "Pulissery with Ash Gourd & Curd",
+                    "Zesty Spiced Pepper Rasam"
                 ]
             },
             {
-                title: "Pan-Asian Wok Mains",
+                title: "Heritage Side Dishes (Thoran & Koottu)",
                 items: [
-                    "Singapore Golden Prawns in Sweet Garlic Sauce",
-                    "Kung Pao Chicken with Roasted Peanuts",
-                    "Exotic Asian Greens in Fragrant Black Bean Sauce",
-                    "Classic Hakka Noodles & Burnt Garlic Fried Rice"
+                    "Traditional Avial with Cold-Pressed Coconut Oil & Curry Leaves",
+                    "Vallaripakka Thoran (Crisp Vegetable Stir-Fry with Grated Coconut)",
+                    "Olan with White Pumpkin, Red Lobia & Sweet Coconut Milk",
+                    "Pineapple Pachadi (Sweet & Sour Pineapple in Yogurt & Mustard)",
+                    "Beetroot Kichadi with Ground Coconut Paste",
+                    "Koottukari with Roasted Coconut & Bengal Gram",
+                    "Erissery with Pumpkin & Toasted Coconut"
                 ]
             },
             {
-                title: "European Dessert Confections",
+                title: "Accompaniments & Crunch",
                 items: [
-                    "Classic Italian Espresso Tiramisu",
-                    "Belgian Dark Chocolate Mousse Cups",
-                    "Vanilla Panna Cotta with Passion Fruit Glaze"
+                    "Crispy Fried Kerala Pappadam",
+                    "Sun-Dried Moru Milagu (Salted Curd Chillies)",
+                    "Fresh Spiced Sambharam (Herb Buttermilk)"
+                ]
+            },
+            {
+                title: "The Auspicious Payasam Quartet",
+                items: [
+                    "Rich Palada Pradhaman",
+                    "Ada Pradhaman with Dark Jaggery & Coconut Milk",
+                    "Parippu Payasam with Fried Coconut Slivers & Cashews",
+                    "Melt-In-Mouth Golden Travancore Boli"
                 ]
             }
-        ],
-        chefSpecial: "Our live pasta and stir-fry chefs cook in full view with flames, tossing fresh pastas with extra virgin olive oil and imported parmesan cheese."
+        ]
     },
+
+    // 3. Christian Wedding (soon)
     {
-        id: "royal-mughlai-nawabi-banquet",
-        title: "Royal Mughlai & Nawabi Heritage Feast",
-        category: "Royal Wedding Feasts",
-        servingCapacity: "Min 200 – 3,000+ Guests",
-        courseCount: "28 Imperial Recipes",
-        dietary: "Halal Non-Veg & Vegetarian",
+        id: "christian-wedding",
+        title: "Christian Wedding (soon)",
+        category: "Christian Wedding",
+        filterCategory: "Weddings & Receptions",
+        isComingSoon: true,
+        servingCapacity: "Min 150 – 3,500+ Guests",
+        courseCount: "28 Heritage Courses",
+        dietary: "Non-Veg & Veg Specialties",
         image: "/image/services/Wedding Catering.webp",
-        objectPosition: "center 20%",
-        shortDesc: "Inspired by the royal courts of Lucknow and Old Delhi. Velvety Awadhi kormas, melt-in-the-mouth kebabs, and saffron-perfumed biryanis.",
-        fullStory: "A tribute to regal culinary grandeur. Each recipe honors slow-cooking techniques (dum pukht) where meat is marinated for 12 hours in yogurt, raw papaya, and whole spices before cooking over gentle charcoal embers.",
-        highlights: [
-            "Melt-in-Mouth Mutton Galouti Kebabs",
-            "Slow-Simmered Awadhi Gosht Biryani",
-            "Live Roomali Roti Tossing Theatre",
-            "Rich Zafrani Shahi Tukda"
-        ],
-        courseSections: [
-            {
-                title: "The Nawabi Kebab Platter",
-                items: [
-                    "Melt-in-Mouth Mutton Galouti Kebabs on Mini Sheermal",
-                    "Murgh Tikka Angara with Smoked Charcoal Infusion",
-                    "Dahi Ke Kebab with Mint & Coriander Center",
-                    "Tandoori Malai Broccoli with Cardamom Glaze"
-                ]
-            },
-            {
-                title: "Regal Gravies & Curries",
-                items: [
-                    "Murgh Handi Lazeez in Silken Cashew Gravy",
-                    "Nalli Nihari (Slow-Simmered Lamb Shanks with Bone Marrow)",
-                    "Paneer Khas Mahal in Rich Saffron Cream",
-                    "Dal Bukhara (Black Lentils Simmered for 16 Hours with Butter)"
-                ]
-            },
-            {
-                title: "Royal Rice & Breads",
-                items: [
-                    "Awadhi Gosht Dum Biryani with Kashmiri Saffron",
-                    "Mirchi Ka Salan & Burani Garlic Raita",
-                    "Theatrical Roomali Roti (Spun and baked on inverted woks)",
-                    "Butter Garlic Naan & Amritsari Kulcha"
-                ]
-            },
-            {
-                title: "Imperial Sweet Confections",
-                items: [
-                    "Royal Shahi Tukda garnished with Silver Vark & Pistachio Rabri",
-                    "Zafrani Matka Phirni served in Chilled Earthen Clay Pots",
-                    "Rose Petal Ice Cream with Roasted Almonds"
-                ]
-            }
-        ],
-        chefSpecial: "All gravies are finished with genuine Kashmiri saffron, hand-ground mace, and pure silver foil for authentic royal presentation."
-    },
-    {
-        id: "coastal-arabian-seafood-extravaganza",
-        title: "Royal Coastal Arabian & Seafood Extravaganza",
-        category: "Reception Buffets",
-        servingCapacity: "Min 150 – 2,500+ Guests",
-        courseCount: "24 Ocean Catch Delicacies",
-        dietary: "Fresh Catch & Halal Specialties",
-        image: "/image/services/wedding-catering.webp",
         objectPosition: "center 30%",
-        shortDesc: "Celebrating Kerala's 580km coastline alongside Arabian Mandi traditions. Live tawa fish grills, jumbo prawns, and fragrant smoked lamb Mandi.",
-        fullStory: "Perfect for seafood aficionados and grand evening banquets. Our seafood is sourced before dawn directly from harbor auctions in Kochi and Munambam, ensuring unmatched freshness and ocean sweetness.",
+        shortDesc: "Classic Syrian Christian and coastal church wedding hospitality. Featuring traditional Appam & Mutton Stew, Duck Mappas, slow-roasted Kerala pepper beef, and festive cakes.",
+        fullStory: "Syrian Christian wedding hospitality is world-famous for its aromatic stews, rich coconut milk gravies, and slow-roasted meats. Curated specifically for church ceremony receptions and betrothal banquets, this menu brings generations of authentic Central Travancore and Coastal Christian culinary traditions to life.",
         highlights: [
-            "Fresh Catch Karimeen & Seer Fish Tawa",
-            "Arabian Mutton & Chicken Kuzhi Mandi",
-            "Spicy Kuttanadan Crab Masala",
-            "Live Arabian Kunafa Counter"
+            "Lace Kallappam with Rich Mutton Stew",
+            "Central Travancore Kuttanad Duck Mappas",
+            "Slow-Roasted Syrian Pepper Beef & Coconut Fry",
+            "Festive Plum Cake & Spiced Wine Station"
         ],
+        chefSpecial: "Traditional Kuttanadan Tharavu (Duck) Roast slow-cooked with fresh cracked black peppercorns, shallots, and thick first-extract coconut milk.",
         courseSections: [
             {
-                title: "Ocean Starters",
+                title: "Church Reception Welcome & Starters",
                 items: [
-                    "Butter Garlic Jumbo Prawns",
-                    "Crispy Calamari / Squid Pepper Rings",
-                    "Nadan Fish Cutlets with Mint Mayo",
-                    "Fish Tikka Char-Grilled with Ajwain"
+                    "Traditional Spiced Festive Grape Wine",
+                    "Heritage Rich Fruit & Plum Cake",
+                    "Golden Crumbed Chicken Cutlets with Mint Chutney",
+                    "Crispy Fish Cutlets with Homemade Tartar Sauce",
+                    "Fresh Green Apple & Mint Cooler"
                 ]
             },
             {
-                title: "Arabian & Coastal Mains",
+                title: "Heritage Appam & Stew Bar",
                 items: [
-                    "Smoked Mutton Kuzhi Mandi with Fragrant Basmati Rice",
-                    "Traditional Garlic Toum & Spicy Tomato Daqoos Sauce",
-                    "Whole Stuffed Sea Bream Roasted in Spices",
-                    "Kuttanadan Crab Roast with Roasted Coconut Spices",
-                    "Alleppey Seer Fish Curry with Raw Green Mango"
+                    "Live Fluffy Lace Kallappam",
+                    "Soft Steamed Vellayappam",
+                    "Velvety Syrian Mutton Stew with Coconut Milk & Cinnamon",
+                    "Creamy Potato & Green Pea Stew (Vegetarian)"
                 ]
             },
             {
-                title: "Breads & Rice",
+                title: "The Grand Christian Wedding Feast",
                 items: [
-                    "Fresh Fluffy Kerala Porotta",
-                    "Warm Arabian Kuboos & Soft Roomali Roti",
-                    "Fluffy Appam with Coconut Milk"
+                    "Kuttanadan Tharavu (Duck) Roast with Shallots & Pepper",
+                    "Slow-Roasted Syrian Beef Pepper Fry with Coconut Slivers",
+                    "Malabar Roast Chicken in Thick Brown Onion Gravy",
+                    "Fragrant Ghee Rice (Neychoru) with Fried Onions & Cashews",
+                    "Layered Kerala Parotta"
                 ]
             },
             {
-                title: "Arabian Desserts",
+                title: "Coastal Seafood Specials",
                 items: [
-                    "Hot Crispy Cheese Kunafa with Rose Sugar Syrup & Pistachios",
-                    "Assorted Honey Baklava Squares",
-                    "Chilled Watermelon & Mint Cooler"
+                    "Karimeen Pollichathu in Wilted Banana Leaf",
+                    "Alleppey Fish Curry with Raw Mango & Coconut Milk",
+                    "Fried Prawns with Crushed Garlic & Red Chillies"
+                ]
+            },
+            {
+                title: "Celebration Desserts",
+                items: [
+                    "Classic Caramel Bread Pudding",
+                    "Tender Coconut Soufflé with Pistachios",
+                    "Fresh Fruit Salad with Vanilla Bean Gelato"
                 ]
             }
-        ],
-        chefSpecial: "Every fish is cooked fresh to order on oversized cast-iron tawas with shallots, crushed green chillies, and curry leaves."
+        ]
     },
+
+    // 4. Nikah Wedding (soon)
     {
-        id: "artisanal-dessert-payasam-studio",
-        title: "Artisanal Dessert & Gourmet Payasam Studio",
-        category: "Gourmet Desserts",
-        servingCapacity: "Min 150 – 5,000+ Guests",
-        courseCount: "22 Sweet Masterpieces",
-        dietary: "Pure Veg & Eggless Options",
-        image: "/image/gallery/catering section/DSC02202.webp",
-        objectPosition: "center 40%",
-        shortDesc: "The ultimate sweet finale to any celebration. Bringing together traditional Kerala payasams, live Jalebi theatres, and European chocolate confectionery.",
-        fullStory: "The dessert counter is the lasting memory of every wedding banquet. Our dedicated pastry master chefs and traditional sweet halwais create an irresistible spectacle of steaming jalebis, slow-simmered payasams, and artisanal ice creams.",
+        id: "nikah-wedding",
+        title: "Nikah Wedding (soon)",
+        category: "Nikah Wedding",
+        filterCategory: "Weddings & Receptions",
+        isComingSoon: true,
+        servingCapacity: "Min 200 – 6,000+ Guests",
+        courseCount: "30 Royal Courses",
+        dietary: "100% Halal Certified",
+        image: "/image/services/catering.webp",
+        objectPosition: "center 30%",
+        shortDesc: "The quintessential Malabar Nikah hospitality. Authentic firewood dum Kaima biryani, Kozhi Nirachathu, Mutton Irachi Pathiri, and signature theatrical Sulaimani counters.",
+        fullStory: "A Malabar Nikah celebration is an epic showcase of hospitality and rich royal flavors. Our master Ustads slow-cook fragrant Kaima dum biryani in giant copper deghs sealed with dough over burning firewood embers, ensuring every grain of rice is infused with saffron, pure ghee, and succulent halal meat.",
         highlights: [
-            "4-Payasam Tasting Flight in Copper Cups",
-            "Live Jalebi & Chilled Rabri Theatre",
-            "PKC Signature Elaneer (Tender Coconut) Pudding",
-            "Nitro Belgian Chocolate Gelato Station"
+            "Thalassery Kaima Dum Biryani in Copper Deghs",
+            "Kozhi Nirachathu (Stuffed Whole Chicken Roast)",
+            "Irachi Pathiri & Soft Chatti Pathiri",
+            "Theatrical Samovar Sulaimani & Halwa Station"
         ],
+        chefSpecial: "Authentic Thalassery Mutton Dum Biryani cooked with fragrant small-grain Kaima rice, served with our aged Dates & Lime Pickle and crispy fried cashews.",
         courseSections: [
             {
-                title: "Traditional Kerala Payasam Flight",
+                title: "Nikah Welcome Drinks & Delicacies",
                 items: [
-                    "Classic Palada Pradhaman with Golden Cream Layer",
-                    "Authentic Ada Pradhaman in Dark Marayoor Jaggery",
-                    "Moong Dal Parippu Payasam with Coconut Chips",
-                    "Chakka (Jackfruit) Pradhaman with Fresh Cardamom"
+                    "Tender Coconut Elaneer Shake with Rich Pulp",
+                    "Nannari Sherbet with Basil Seeds",
+                    "Mutton Irachi Pathiri (Steamed Stuffed Rice Pastry)",
+                    "Crispy Unnakaya with Cashew & Raisin Filling",
+                    "Malabar Kozhi Porichathu (Crispy Fried Chicken)"
                 ]
             },
             {
-                title: "Live Indian Sweet Theatre",
+                title: "The Imperial Nikah Dum Feast",
                 items: [
-                    "Saffron Kesariya Jalebi fried fresh and dipped in syrup",
-                    "Chilled Laccha Rabri with Crushed Pistachios",
-                    "Warm Moong Dal Halwa with Ghee & Almond Slivers",
-                    "Mini Angoori Gulab Jamun with Rose Caviar"
+                    "Thalassery Mutton Dum Biryani with Roasted Nuts & Sultanas",
+                    "Malabar Chicken Dum Biryani in Sealed Copper Deghs",
+                    "Kozhi Nirachathu (Traditional Stuffed Whole Chicken Roast)",
+                    "Aromatic Neychoru (Jeerakasala Ghee Rice)",
+                    "Mutton Dalcha Gravy with Lentils & Spices"
                 ]
             },
             {
-                title: "Continental Puddings & Mousses",
+                title: "Traditional Breads & Gravies",
                 items: [
-                    "PKC Signature Tender Coconut Souffle",
-                    "Mango & Passionfruit Panna Cotta",
-                    "Belgian Dark Chocolate Ganache Cups",
-                    "Classic Baked Caramel Custard"
+                    "Paper-Thin Ari Pathiri",
+                    "Flaky Malabar Coin Parotta",
+                    "Slow-Cooked Malabar Mutton Korma",
+                    "Chicken Varutharachathu in Roasted Coconut Gravy"
                 ]
             },
             {
-                title: "Live Waffles & Ice Cream Parlour",
+                title: "Accompaniments & Relishes",
                 items: [
-                    "Fresh Belgian Waffles with Nutella, Maple Syrup & Strawberries",
-                    "Six Gourmet Ice Cream Flavors with Toppings Bar",
-                    "Chilled Falooda with Rose Jelly, Basil Seeds & Rabri"
+                    "Eenthapazham Achar (Sweet & Tangy Dates Pickle)",
+                    "Pineapple Mint Raitha",
+                    "Shallot & Green Chilli Salad",
+                    "Crispy Kerala Pappad"
+                ]
+            },
+            {
+                title: "Royal Halwa & Tea Counters",
+                items: [
+                    "Kozhikode Halwa Assortment (Black, Wheat & Badam)",
+                    "Tender Coconut Milk Pudding",
+                    "Authentic Hot Samovar Sulaimani Tea with Cardamom & Mint",
+                    "Traditional Mutta Mala & Pinjanathappam"
                 ]
             }
+        ]
+    },
+
+    // 5. Wedding Dinner (soon)
+    {
+        id: "wedding-dinner",
+        title: "Wedding Dinner (soon)",
+        category: "Wedding Dinner",
+        filterCategory: "Weddings & Receptions",
+        isComingSoon: true,
+        servingCapacity: "Min 100 – 2,500+ Guests",
+        courseCount: "25 Gourmet Delicacies",
+        dietary: "Gourmet Non-Veg & Veg",
+        image: "/image/services/wedding-catering.webp",
+        objectPosition: "center 40%",
+        shortDesc: "An intimate, candlelit post-wedding banquet designed for modern evening celebrations. Featuring live continental pasta counters, charcoal grills, and slow roasts.",
+        fullStory: "For contemporary couples looking for an upscale, relaxed evening dinner following their daytime wedding rituals. This menu combines the warmth of traditional charcoal grills with modern international live wok stations, handcrafted pasta counters, and plated gourmet desserts.",
+        highlights: [
+            "Live Handcrafted Pasta & Risotto Bar",
+            "Charcoal Grilled Kebabs & Satay Skewers",
+            "Herb-Crusted Roast Chicken with Rosemary Jus",
+            "Artisanal Belgian Chocolate Fountain"
         ],
-        chefSpecial: "Guests love our signature 'Payasam Flight' experience, letting them sample 4 distinct Kerala payasams in mini traditional copper cups."
+        chefSpecial: "Pan-seared Basa Fish in Lemon Butter Caper Sauce paired with creamy saffron garlic mash and grilled asparagus.",
+        courseSections: [
+            {
+                title: "Evening Starters & Soups",
+                items: [
+                    "Cream of Roasted Wild Mushroom Soup with Garlic Toast",
+                    "Chicken Tikka Tartlets with Mint Pearls",
+                    "Crispy Herb Bruschetta with Balsamic Glaze",
+                    "Fiery Sesame Chicken Strips",
+                    "Spiced Watermelon & Mint Cooler"
+                ]
+            },
+            {
+                title: "Live Interactive Cooking Theatres",
+                items: [
+                    "Live Pasta Theatre (Penne & Fusilli in Alfredo & Arrabbiata Sauces)",
+                    "Charcoal Tawa Kebab Grill (Chicken Malai Kebab, Paneer Tikka)",
+                    "Indo-Chinese Live Wok Station (Hakka Noodles & Fried Rice)"
+                ]
+            },
+            {
+                title: "The Evening Banquet",
+                items: [
+                    "Herb-Roasted Whole Chicken with Peppercorn Jus",
+                    "Awadhi Mutton Dum Biryani with Golden Fried Onions",
+                    "Paneer Tikka Butter Masala in Velvety Gravy",
+                    "Fresh Butter Garlic Naan & Rumali Roti",
+                    "Dal Makhani Slow-Simmered for 16 Hours"
+                ]
+            },
+            {
+                title: "Salads & Continental Accompaniments",
+                items: [
+                    "Classic Caesar Salad with Herbed Croutons",
+                    "Greek Salad with Crumbled Feta & Kalamata Olives",
+                    "Garlic Herbed Potato Wedges"
+                ]
+            },
+            {
+                title: "Gourmet Desserts",
+                items: [
+                    "Warm Chocolate Walnut Brownie with Bourbon Vanilla Gelato",
+                    "Blueberry Cheesecake Jars",
+                    "Live Churro Counter with Warm Nutella Dip",
+                    "Tender Coconut Soufflé"
+                ]
+            }
+        ]
+    },
+
+    // 6. Haldi Ceremony (soon)
+    {
+        id: "haldi-ceremony",
+        title: "Haldi Ceremony (soon)",
+        category: "Haldi Ceremony",
+        filterCategory: "Pre-Wedding Rituals",
+        isComingSoon: true,
+        servingCapacity: "Min 50 – 1,000+ Guests",
+        courseCount: "20 Vibrant Delicacies",
+        dietary: "Pure Vegetarian & Refreshments",
+        image: "/image/services/live-thattukada.webp",
+        objectPosition: "center 35%",
+        shortDesc: "Vibrant, playful, and sun-kissed flavors for energetic Haldi rituals. Fresh botanical mocktails, live chaat streets, street-style street foods, and colorful dessert bowls.",
+        fullStory: "The Haldi ceremony is brimming with laughter, yellow marigolds, and playful family moments. Our Haldi menu focuses on refreshing botanical coolers, live street chaats, finger foods, and bite-sized delights that keep guests energized without interrupting the festive fun.",
+        highlights: [
+            "Live Delhi & Banarasi Chaat Street",
+            "Botanical Citrus & Mango Mastani Counters",
+            "Crispy Rajasthani Kachori & Samosa Chaat",
+            "Live Kesari Matka Kulfi & Falooda Station"
+        ],
+        chefSpecial: "Signature Mango Mastani thick shake topped with chopped dry fruits, saffron strands, and artisanal vanilla scoops.",
+        courseSections: [
+            {
+                title: "Sun-Kissed Coolers & Mocktails",
+                items: [
+                    "Aam Panna with Roasted Cumin & Black Salt",
+                    "Fresh Watermelon & Holy Basil Fizz",
+                    "Sugarcane & Ginger Mint Refresher",
+                    "Kesari Thandai with Pistachio Dust"
+                ]
+            },
+            {
+                title: "Live Street Chaat Theatre",
+                items: [
+                    "Pani Puri with 3 Flavored Waters (Mint, Hing & Khatta-Meetha)",
+                    "Dahi Papdi Chaat with Pomegranate & Sev",
+                    "Crispy Aloo Tikki with Ragda & Chutneys",
+                    "Bhel Puri in Paper Cones"
+                ]
+            },
+            {
+                title: "Savory Finger Foods",
+                items: [
+                    "Golden Rajasthani Pyaaz Kachori with Mint Dip",
+                    "Mini Cocktail Samosas with Tamarind Chutney",
+                    "Corn & Jalapeno Cheese Croquettes",
+                    "Paneer Kathi Roll Bites"
+                ]
+            },
+            {
+                title: "Festive Light Mains",
+                items: [
+                    "Street-Style Butter Pav Bhaji with Toasted Pav",
+                    "Delhi Chole with Fluffy Kulchas & Pickled Chillies",
+                    "Fragrant Kashmiri Pulao with Boondi Raita"
+                ]
+            },
+            {
+                title: "Sweet Celebrations",
+                items: [
+                    "Live Hot Jalebi with Creamy Shahi Rabri",
+                    "Kesari Matka Kulfi with Falooda & Rose Syrup",
+                    "Mini Gulab Jamun Skewers"
+                ]
+            }
+        ]
+    },
+
+    // 7. Sangeet Ceremony (soon)
+    {
+        id: "sangeet-ceremony",
+        title: "Sangeet Ceremony (soon)",
+        category: "Sangeet Ceremony",
+        filterCategory: "Pre-Wedding Rituals",
+        isComingSoon: true,
+        servingCapacity: "Min 100 – 1,500+ Guests",
+        courseCount: "24 Party Delicacies",
+        dietary: "Finger Foods & Live Counters",
+        image: "/image/gallery/catering section/DSC02202.webp",
+        objectPosition: "center 30%",
+        shortDesc: "A high-energy culinary spectacle tailored for a night of music and dance. Sizzling slider stations, live dim sum steamers, tawa kebabs, and craft mocktail mixology.",
+        fullStory: "Sangeet nights are all about dynamic music, dancing, and non-stop celebration. Nobody wants to sit down for a heavy formal meal. Our Sangeet menu is built around roving finger food canapés, sizzling live tawa stations, and interactive party food counters designed to keep the dancefloor alive all night.",
+        highlights: [
+            "Sizzling Live Tawa Kebab Counter",
+            "Steaming Bamboo Dim Sum & Bao Station",
+            "Craft Mocktail Mixology Lounge",
+            "Loaded Fries & Artisanal Slider Theatre"
+        ],
+        chefSpecial: "Smoked Galouti Kebabs on miniature Sheermal breads that literally melt in your mouth between dance performances.",
+        courseSections: [
+            {
+                title: "Craft Mocktail Mixology Bar",
+                items: [
+                    "Smoked Orange & Rosemary Fizz",
+                    "Spicy Guava Chilli Spritzer",
+                    "Passion Fruit & Cranberry Punch",
+                    "Virgin Mojito with Crushed Mint & Lime"
+                ]
+            },
+            {
+                title: "Pass-Around Party Canapés",
+                items: [
+                    "Melt-In-Mouth Galouti Kebab on Mini Sheermal",
+                    "Crispy Peri Peri Chicken Poppers",
+                    "Jalapeno & 3-Cheese Balls with Garlic Dip",
+                    "Paneer Tikka Skewers with Mint Foam",
+                    "Golden Fish Fingers with Tartar Sauce"
+                ]
+            },
+            {
+                title: "Theatrical Live Street Stalls",
+                items: [
+                    "Live Steaming Dim Sum with Fiery Chilli Oil & Garlic Soy",
+                    "Pulled Chicken & Paneer Sliders on Brioche Buns",
+                    "Tawa Chicken & Paneer Kathi Rolls Wrapped to Order",
+                    "Loaded Truffle Parmesan Fries with Cheese Sauce"
+                ]
+            },
+            {
+                title: "Late-Night Munchies",
+                items: [
+                    "Mini Claypot Chicken Dum Biryani Pots",
+                    "Slow-Simmered Dal Makhani with Garlic Naan Bites",
+                    "Chilli Garlic Hakka Noodles"
+                ]
+            },
+            {
+                title: "Late-Night Sweet Indulgence",
+                items: [
+                    "Golden Churros with Warm Nutella Dip",
+                    "Belgian Waffles with Caramelized Bananas & Cream",
+                    "Mini Ice Cream Cones Assortment"
+                ]
+            }
+        ]
+    },
+
+    // 8. Birthday Celebration (soon)
+    {
+        id: "birthday-celebration",
+        title: "Birthday Celebration (soon)",
+        category: "Birthday Celebration",
+        filterCategory: "Social & Birthdays",
+        isComingSoon: true,
+        servingCapacity: "Min 50 – 1,000+ Guests",
+        courseCount: "18 Fun Delicacies",
+        dietary: "Kids & Family Special",
+        image: "/image/gallery/catering section/DSC01931.webp",
+        objectPosition: "center 35%",
+        shortDesc: "Joyful celebrations curated for milestone birthdays and family gatherings. Interactive live food stalls, gourmet pizza ovens, dessert fountains, and chef specials.",
+        fullStory: "Whether it's a grand 1st birthday, a vibrant sweet sixteen, or a milestone 50th jubilee, our Birthday Celebration menu combines crowd-pleasing favorites with thrilling live cooking stations that entertain guests of all ages.",
+        highlights: [
+            "Live Woodfired Neapolitan Pizza Bar",
+            "Interactive Belgian Chocolate Fountain with Dippers",
+            "Loaded Nachos & Crispy Fries Theatre",
+            "Customized Birthday Mocktail Station"
+        ],
+        chefSpecial: "Freshly spun live candy floss and chocolate fountain station paired with house-made churros and waffle pops.",
+        courseSections: [
+            {
+                title: "Birthday Welcome Drinks & Shakes",
+                items: [
+                    "Bubblegum Milkshake with Sprinkles",
+                    "Blue Lagoon Citrus Spritzer",
+                    "Virgin Strawberry Mojito",
+                    "Oreo & Chocolate Thick Shake"
+                ]
+            },
+            {
+                title: "Live Fun Food Theatres",
+                items: [
+                    "Live Woodfired Thin-Crust Pizzas (Margherita, BBQ Chicken, Veg Supreme)",
+                    "Loaded Cheesy Nachos Bar with Guacamole & Jalapeno Salsa",
+                    "Crispy French Fries Theatre (Peri-Peri, Cheese & Salted)"
+                ]
+            },
+            {
+                title: "Party Finger Foods",
+                items: [
+                    "Crispy Chicken Popcorn with Honey Mustard",
+                    "Paneer Finger Fries with Sweet Chilli Sauce",
+                    "Mini Chicken & Veg Sliders with Cheddar",
+                    "Golden Vegetable Spring Rolls"
+                ]
+            },
+            {
+                title: "Comfort Family Mains",
+                items: [
+                    "Wok-Tossed Fried Rice & Chilli Chicken",
+                    "Vegetable Hakka Noodles with Manchurian Balls",
+                    "Creamy Butter Chicken with Soft Baby Naans",
+                    "Jeera Rice with Yellow Dal Tadka"
+                ]
+            },
+            {
+                title: "The Birthday Dessert Carnival",
+                items: [
+                    "Flowing Belgian Chocolate Fountain (Marshmallows, Strawberries & Waffles)",
+                    "Live Waffle Pops with Chocolate Drizzle & Rainbow Sprinkles",
+                    "Red Velvet & Vanilla Cupcakes",
+                    "Ice Cream Sundae Bar with Choice of Toppings"
+                ]
+            }
+        ]
     }
 ];

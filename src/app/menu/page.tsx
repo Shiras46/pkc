@@ -32,35 +32,35 @@ export default function MenuPage() {
         "hasMenuSection": [
             {
                 "@type": "MenuSection",
-                "name": "The Royal Malabar Dum Biryani Feast"
+                "name": "Wedding Reception"
             },
             {
                 "@type": "MenuSection",
-                "name": "Grand Travancore 32-Course Royal Sadhya"
+                "name": "Hindu Wedding Sadhya (soon)"
             },
             {
                 "@type": "MenuSection",
-                "name": "The Majestic Grand Reception Buffet"
+                "name": "Christian Wedding (soon)"
             },
             {
                 "@type": "MenuSection",
-                "name": "Vibrant Thattu Kada & Kerala Live Street Food"
+                "name": "Nikah Wedding (soon)"
             },
             {
                 "@type": "MenuSection",
-                "name": "Contemporary Pan-Asian & Continental Spread"
+                "name": "Wedding Dinner (soon)"
             },
             {
                 "@type": "MenuSection",
-                "name": "Royal Mughlai & Nawabi Heritage Feast"
+                "name": "Haldi Ceremony (soon)"
             },
             {
                 "@type": "MenuSection",
-                "name": "Royal Coastal Arabian & Seafood Extravaganza"
+                "name": "Sangeet Ceremony (soon)"
             },
             {
                 "@type": "MenuSection",
-                "name": "Artisanal Dessert & Gourmet Payasam Studio"
+                "name": "Birthday Celebration (soon)"
             }
         ]
     };

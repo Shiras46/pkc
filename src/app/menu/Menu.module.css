@@ -363,6 +363,14 @@
     z-index: 2;
 }
 
+.comingSoonBadge {
+    background: #1a1a1a !important;
+    color: #fcb318 !important;
+    border: 1px solid rgba(252, 179, 24, 0.5) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+    font-weight: 800 !important;
+}
+
 .cardContent {
     padding: 24px;
     display: flex;
@@ -695,6 +703,28 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+}
+
+.modalNotice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fdfaf5;
+    border: 1px solid rgba(252, 179, 24, 0.4);
+    color: #444444;
+    padding: 16px 20px;
+    border-radius: 14px;
+    font-size: 0.94rem;
+    line-height: 1.5;
+}
+
+.modalNotice strong {
+    color: #fcb318;
+}
+
+.sparkleIcon {
+    color: #fcb318;
+    flex-shrink: 0;
 }
 
 @media (max-width: 600px) {

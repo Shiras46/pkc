@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
     Users, ChevronRight, X, CheckCircle2, 
-    UtensilsCrossed, ChefHat, MessageCircle, ArrowUpRight
+    UtensilsCrossed, ChefHat, MessageCircle, ArrowUpRight, Sparkles
 } from "lucide-react";
 import styles from "./Menu.module.css";
 import { 
@@ -19,14 +19,14 @@ import FinalCTA from "@/components/sections/FinalCTA";
 const WHATSAPP_NUMBER = "918138002333";
 
 export default function MenuClient() {
-    const [activeCategory, setActiveCategory] = useState<string>("All Collections");
+    const [activeCategory, setActiveCategory] = useState<string>("All Celebrations");
     const [selectedMenu, setSelectedMenu] = useState<MenuPortfolioItem | null>(null);
     const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
     // Filter menu collections based on active tab
-    const filteredMenus = activeCategory === "All Collections"
+    const filteredMenus = activeCategory === "All Celebrations"
         ? menuPortfolioItems
-        : menuPortfolioItems.filter(item => item.category === activeCategory);
+        : menuPortfolioItems.filter(item => item.filterCategory === activeCategory || item.category === activeCategory);
 
     // Close modal on Escape key
     useEffect(() => {
@@ -54,12 +54,13 @@ export default function MenuClient() {
     };
 
     const handleWhatsAppMenuInquiry = (menu: MenuPortfolioItem) => {
+        const actionType = menu.isComingSoon ? "pre-booking and customizing" : "booking";
         const text = encodeURIComponent(
             `*Catering Menu Consultation - PKC Events*\n\n` +
-            `Hello Pride Kitchen Caterers, I am interested in your signature menu collection:\n` +
+            `Hello Pride Kitchen Caterers, I am interested in ${actionType} your menu package:\n` +
             `*${menu.title}*\n` +
             `Category: ${menu.category}\n` +
-            `Courses: ${menu.courseCount}\n` +
+            `Serving Capacity: ${menu.servingCapacity}\n` +
             `Dietary: ${menu.dietary}\n\n` +
             `Please share customized pricing and availability for our celebration.`
         );
@@ -201,7 +202,9 @@ export default function MenuClient() {
                                             style={{ objectPosition: menu.objectPosition || "center 30%" }}
                                         />
                                         <span className={styles.categoryBadge}>{menu.category}</span>
-                                        <span className={styles.courseBadge}>{menu.courseCount}</span>
+                                        <span className={`${styles.courseBadge} ${menu.isComingSoon ? styles.comingSoonBadge : ""}`}>
+                                            {menu.isComingSoon ? "COMING SOON" : menu.courseCount}
+                                        </span>
                                     </div>
 
                                     <div className={styles.cardContent}>
@@ -227,7 +230,7 @@ export default function MenuClient() {
 
                                         <div className={styles.cardFooter}>
                                             <span className={styles.viewLink}>
-                                                Explore Complete Menu <ChevronRight size={16} />
+                                                {menu.isComingSoon ? "Preview Menu & Pre-Book" : "Explore Complete Menu"} <ChevronRight size={16} />
                                             </span>
                                         </div>
                                     </div>
@@ -334,6 +337,16 @@ export default function MenuClient() {
 
                             {/* Modal Body */}
                             <div className={styles.modalBody}>
+                                {/* Coming Soon Notice Banner */}
+                                {selectedMenu.isComingSoon && (
+                                    <div className={styles.modalNotice}>
+                                        <Sparkles size={18} className={styles.sparkleIcon} />
+                                        <span>
+                                            <strong>Menu in Final Curation:</strong> Early pre-reservations and custom tasting sessions are now open for upcoming wedding celebrations!
+                                        </span>
+                                    </div>
+                                )}
+
                                 {/* Culinary Story */}
                                 <div className={styles.modalSection}>
                                     <h3 className={styles.modalSectionHeading}>The Culinary Vision</h3>
@@ -396,7 +409,7 @@ export default function MenuClient() {
                                             handleOpenQuoteForMenu(menu);
                                         }}
                                     >
-                                        Request Quote For This Menu <ArrowUpRight size={18} />
+                                        {selectedMenu.isComingSoon ? "Pre-Book This Menu" : "Request Quote For This Menu"} <ArrowUpRight size={18} />
                                     </button>
 
                                     <button
