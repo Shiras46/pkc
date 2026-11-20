@@ -168,10 +168,6 @@ export default function MenuClient() {
                                             className={styles.cardImage}
                                             style={{ objectPosition: menu.objectPosition || "center 30%" }}
                                         />
-                                        <span className={styles.categoryBadge}>{menu.category}</span>
-                                        <span className={`${styles.courseBadge} ${menu.isComingSoon ? styles.comingSoonBadge : ""}`}>
-                                            {menu.isComingSoon ? "COMING SOON" : menu.courseCount}
-                                        </span>
                                     </div>
 
                                     <div className={styles.cardContent}>
