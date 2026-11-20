@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
     Users, ChevronRight, X, CheckCircle2, 
@@ -14,13 +16,21 @@ import {
 } from "@/lib/menuPortfolioData";
 import QuoteModal from "@/components/ui/QuoteModal";
 import FinalCTA from "@/components/sections/FinalCTA";
-import WeddingReceptionMenuBuilder from "@/components/menu/WeddingReceptionMenuBuilder";
 
 const WHATSAPP_NUMBER = "918138002333";
 
 export default function MenuClient() {
+    const router = useRouter();
     const [selectedMenu, setSelectedMenu] = useState<MenuPortfolioItem | null>(null);
     const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+
+    const handleMenuClick = (menu: MenuPortfolioItem) => {
+        if (menu.id === "wedding-reception") {
+            router.push("/menu/wedding-reception");
+        } else {
+            setSelectedMenu(menu);
+        }
+    };
 
     // Close modal on Escape key
     useEffect(() => {
@@ -159,13 +169,13 @@ export default function MenuClient() {
                                     exit={{ opacity: 0, scale: 0.95 }}
                                     transition={{ duration: 0.45, delay: index * 0.05 }}
                                     className={styles.card}
-                                    onClick={() => setSelectedMenu(menu)}
+                                    onClick={() => handleMenuClick(menu)}
                                     role="button"
                                     tabIndex={0}
                                     onKeyDown={(e) => {
                                         if (e.key === "Enter" || e.key === " ") {
                                             e.preventDefault();
-                                            setSelectedMenu(menu);
+                                            handleMenuClick(menu);
                                         }
                                     }}
                                     aria-label={`View menu details for ${menu.title}`}
@@ -264,17 +274,10 @@ export default function MenuClient() {
                 </div>
             </section>
 
-            {/* 5. INTERACTIVE MENU BUILDER (FOR WEDDING RECEPTION) OR PREVIEW MODAL */}
+            {/* 5. INTERACTIVE MENU DETAIL PREVIEW MODAL */}
             <AnimatePresence>
-                {selectedMenu?.id === "wedding-reception" ? (
-                    <WeddingReceptionMenuBuilder
-                        key="wedding-reception-builder"
-                        onClose={() => setSelectedMenu(null)}
-                        onOpenQuote={() => setIsQuoteOpen(true)}
-                    />
-                ) : selectedMenu ? (
+                {selectedMenu && (
                     <motion.div
-                        key="standard-preview-modal"
                         className={styles.modalBackdrop}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -411,7 +414,7 @@ export default function MenuClient() {
                             </div>
                         </motion.div>
                     </motion.div>
-                ) : null}
+                )}
             </AnimatePresence>
 
             {/* 6. FINAL GLOBAL CALL TO ACTION */}
