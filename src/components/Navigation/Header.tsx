@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Menu, X, Instagram, Facebook, Phone, ChevronDown, Youtube } from "lucide-react";
+import { Menu, X, Instagram, Facebook, Phone, ChevronDown, ChevronRight, Youtube, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Header.module.css";
 import Image from "next/image";
@@ -43,12 +43,32 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+    const [servicesExpanded, setServicesExpanded] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // Prevent body scroll when mobile menu is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen]);
+
+    // Automatically expand services if user is currently on a services page
+    useEffect(() => {
+        if (pathname?.startsWith("/services") || pathname === "/menu") {
+            setServicesExpanded(true);
+        }
+    }, [pathname]);
 
     if (isAdmin) return null;
 
@@ -111,94 +131,213 @@ export default function Header() {
                         >
                             GET A QUOTE
                         </button>
-                        <button
+
+                        {/* Standard-grade tactile mobile menu button */}
+                        <motion.button
                             className={styles.menuToggle}
                             onClick={() => setIsOpen(true)}
                             aria-label="Open Mobile Menu"
+                            whileTap={{ scale: 0.92 }}
+                            whileHover={{ scale: 1.05 }}
                         >
-                            <Menu size={24} />
-                        </button>
+                            <span className={styles.menuToggleText}>MENU</span>
+                            <div className={styles.menuToggleIconBox}>
+                                <Menu size={20} />
+                            </div>
+                        </motion.button>
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
+                {/* Mobile Menu Drawer + Backdrop */}
                 <AnimatePresence>
                     {isOpen && (
-                        <motion.div
-                            className={styles.mobileMenu}
-                            initial={{ opacity: 0, x: "100%" }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: "100%" }}
-                            transition={{ duration: 0.3 }}
-                            aria-modal="true"
-                            role="dialog"
-                        >
-                            <div className={styles.mobileMenuHeader}>
-                                <Link href="/" className={styles.logoGroup} onClick={() => setIsOpen(false)} aria-label="Go to Homepage">
-                                    <Image src="/logo.png" alt="Pride Kitchen Logo" width={45} height={45} className={styles.logoImg} />
-                                    <span className={styles.mobileBrandName}>PRIDE KITCHEN CATERERS & EVENTS</span>
-                                </Link>
-                                <button className={styles.closeBtn} onClick={() => setIsOpen(false)} aria-label="Close Mobile Menu">
-                                    <X size={30} />
-                                </button>
-                            </div>
-                            <div className={styles.mobileNav}>
-                                {navLinks.map((link) => (
-                                    <div key={link.name} className={styles.mobileNavItem}>
-                                        <Link
-                                            href={link.href}
-                                            className={`${styles.mobileNavLink} ${pathname === link.href ? styles.activeMobileLink : ""}`}
-                                            onClick={() => setIsOpen(false)}
-                                            aria-label={link.name}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                        {link.subLinks && (
-                                            <div className={styles.mobileDropdown}>
-                                                {link.subLinks.map(sub => (
-                                                    <Link
-                                                        key={sub.name}
-                                                        href={sub.href}
-                                                        className={styles.mobileDropdownLink}
-                                                        onClick={() => setIsOpen(false)}
-                                                        aria-label={sub.name}
-                                                    >
-                                                        - {sub.name}
-                                                    </Link>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                            <div className={styles.mobileActions}>
-                                <button
-                                    className={styles.mobileQuoteBtn}
-                                    onClick={() => {
-                                        trackContactClick('quote', 'mobile_menu');
-                                        setIsQuoteModalOpen(true);
-                                        setIsOpen(false);
-                                    }}
-                                    aria-label="Get a Quote"
-                                >
-                                    GET A QUOTE
-                                </button>
-                                <a
-                                    href="tel:+918138002333"
-                                    className={styles.mobilePhone}
-                                    onClick={() => trackContactClick('phone', 'mobile_menu')}
-                                    aria-label="Call +91 81380 02333"
-                                >
-                                    <Phone size={20} />
-                                    +91 81380 02333
-                                </a>
-                                <div className={styles.socials}>
-                                    <a href="https://www.facebook.com/share/1FxXKZkpex/?mibextid=wwXIfr" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook size={24} /></a>
-                                    <a href="https://www.instagram.com/pkceventscaterers?igsh=dmd3YW12c2dhOWxv" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={24} /></a>
-                                    <a href="https://youtube.com/@pridekitchencaterersevents?si=P4_8SBE1wVpFPPPk" target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube size={24} /></a>
+                        <>
+                            {/* Glassmorphic dark backdrop */}
+                            <motion.div
+                                className={styles.mobileBackdrop}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.25 }}
+                                onClick={() => setIsOpen(false)}
+                                aria-hidden="true"
+                            />
+
+                            {/* Tactile Mobile Menu Drawer */}
+                            <motion.div
+                                className={styles.mobileMenu}
+                                initial={{ opacity: 0, x: "100%" }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: "100%" }}
+                                transition={{ type: "spring", stiffness: 320, damping: 32 }}
+                                aria-modal="true"
+                                role="dialog"
+                            >
+                                <div className={styles.mobileMenuHeader}>
+                                    <Link href="/" className={styles.logoGroup} onClick={() => setIsOpen(false)} aria-label="Go to Homepage">
+                                        <Image src="/logo.png" alt="Pride Kitchen Logo" width={44} height={44} className={styles.logoImg} />
+                                        <div className={styles.mobileBrandTextCol}>
+                                            <span className={styles.drawerBrandTitle}>PRIDE KITCHEN</span>
+                                            <span className={styles.drawerBrandSubtitle}>Caterers &amp; Events</span>
+                                        </div>
+                                    </Link>
+                                    <motion.button
+                                        className={styles.closeBtn}
+                                        onClick={() => setIsOpen(false)}
+                                        aria-label="Close Mobile Menu"
+                                        whileTap={{ scale: 0.88, rotate: 90 }}
+                                        whileHover={{ scale: 1.05 }}
+                                    >
+                                        <X size={20} />
+                                    </motion.button>
                                 </div>
-                            </div>
-                        </motion.div>
+
+                                <div className={styles.mobileNav}>
+                                    {navLinks.map((link) => {
+                                        const isLinkActive = pathname === link.href;
+
+                                        // Sublinks (e.g. Services) rendered with interactive Accordion
+                                        if (link.subLinks) {
+                                            const isServicesActive = pathname?.startsWith("/services") || pathname === "/menu";
+
+                                            return (
+                                                <div key={link.name} className={styles.mobileNavItem}>
+                                                    <div
+                                                        className={`${styles.mobileNavLink} ${isServicesActive ? styles.activeMobileLink : ""}`}
+                                                        onClick={() => setServicesExpanded(!servicesExpanded)}
+                                                        role="button"
+                                                        tabIndex={0}
+                                                        aria-expanded={servicesExpanded}
+                                                    >
+                                                        <div className={styles.navLabelGroup}>
+                                                            <span>{link.name}</span>
+                                                            <span className={styles.servicesBadge}>10 Specialties</span>
+                                                        </div>
+                                                        <ChevronDown
+                                                            size={18}
+                                                            className={`${styles.accordionChevron} ${servicesExpanded ? styles.accordionChevronOpen : ""}`}
+                                                        />
+                                                    </div>
+
+                                                    <AnimatePresence>
+                                                        {servicesExpanded && (
+                                                            <motion.div
+                                                                className={styles.mobileDropdown}
+                                                                initial={{ opacity: 0, height: 0 }}
+                                                                animate={{ opacity: 1, height: "auto" }}
+                                                                exit={{ opacity: 0, height: 0 }}
+                                                                transition={{ duration: 0.25, ease: "easeInOut" }}
+                                                            >
+                                                                {link.subLinks.map((sub) => {
+                                                                    const isSubActive = pathname === sub.href;
+                                                                    return (
+                                                                        <Link
+                                                                            key={sub.name}
+                                                                            href={sub.href}
+                                                                            className={`${styles.mobileDropdownLink} ${isSubActive ? styles.activeSubLink : ""}`}
+                                                                            onClick={() => setIsOpen(false)}
+                                                                            aria-label={sub.name}
+                                                                        >
+                                                                            <div className={styles.subLinkContent}>
+                                                                                <span className={styles.subLinkDot} />
+                                                                                <span>{sub.name}</span>
+                                                                            </div>
+                                                                            <ChevronRight size={14} className={styles.subLinkChevron} />
+                                                                        </Link>
+                                                                    );
+                                                                })}
+                                                            </motion.div>
+                                                        )}
+                                                    </AnimatePresence>
+                                                </div>
+                                            );
+                                        }
+
+                                        // Normal Nav Link
+                                        return (
+                                            <div key={link.name} className={styles.mobileNavItem}>
+                                                <Link
+                                                    href={link.href}
+                                                    className={`${styles.mobileNavLink} ${isLinkActive ? styles.activeMobileLink : ""}`}
+                                                    onClick={() => setIsOpen(false)}
+                                                    aria-label={link.name}
+                                                >
+                                                    <span>{link.name}</span>
+                                                    <ChevronRight size={16} className={styles.linkChevron} />
+                                                </Link>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+
+                                <div className={styles.mobileActions}>
+                                    <motion.button
+                                        className={styles.mobileQuoteBtn}
+                                        onClick={() => {
+                                            trackContactClick('quote', 'mobile_menu');
+                                            setIsQuoteModalOpen(true);
+                                            setIsOpen(false);
+                                        }}
+                                        aria-label="Get a Quote"
+                                        whileTap={{ scale: 0.95 }}
+                                        whileHover={{ scale: 1.02 }}
+                                    >
+                                        <Sparkles size={18} />
+                                        <span>GET A FREE QUOTE</span>
+                                    </motion.button>
+
+                                    <motion.a
+                                        href="tel:+918138002333"
+                                        className={styles.mobilePhoneCard}
+                                        onClick={() => trackContactClick('phone', 'mobile_menu')}
+                                        aria-label="Call +91 81380 02333"
+                                        whileTap={{ scale: 0.97 }}
+                                    >
+                                        <div className={styles.phoneIconWrapper}>
+                                            <Phone size={18} />
+                                        </div>
+                                        <div className={styles.phoneTextGroup}>
+                                            <span className={styles.phoneLabel}>Direct Consultation</span>
+                                            <span className={styles.phoneNumber}>+91 81380 02333</span>
+                                        </div>
+                                        <span className={styles.phoneCallBadge}>Call Now</span>
+                                    </motion.a>
+
+                                    <div className={styles.socials}>
+                                        <motion.a
+                                            href="https://www.facebook.com/share/1FxXKZkpex/?mibextid=wwXIfr"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            aria-label="Facebook"
+                                            whileTap={{ scale: 0.88 }}
+                                            whileHover={{ scale: 1.1 }}
+                                        >
+                                            <Facebook size={20} />
+                                        </motion.a>
+                                        <motion.a
+                                            href="https://www.instagram.com/pkceventscaterers?igsh=dmd3YW12c2dhOWxv"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            aria-label="Instagram"
+                                            whileTap={{ scale: 0.88 }}
+                                            whileHover={{ scale: 1.1 }}
+                                        >
+                                            <Instagram size={20} />
+                                        </motion.a>
+                                        <motion.a
+                                            href="https://youtube.com/@pridekitchencaterersevents?si=P4_8SBE1wVpFPPPk"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            aria-label="YouTube"
+                                            whileTap={{ scale: 0.88 }}
+                                            whileHover={{ scale: 1.1 }}
+                                        >
+                                            <Youtube size={20} />
+                                        </motion.a>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </>
                     )}
                 </AnimatePresence>
             </header>
