@@ -171,14 +171,6 @@ export default function MenuClient() {
                                     </div>
 
                                     <div className={styles.cardContent}>
-                                        <div className={styles.metaRow}>
-                                            <span className={styles.metaItem}>
-                                                <Users size={14} className={styles.metaIcon} />
-                                                {menu.servingCapacity}
-                                            </span>
-                                            <span className={styles.dietaryTag}>{menu.dietary}</span>
-                                        </div>
-
                                         <h3 className={styles.cardTitle}>{menu.title}</h3>
                                         <p className={styles.cardDesc}>{menu.shortDesc}</p>
 
