@@ -329,6 +329,11 @@
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
+    font-family: var(--font-body, var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif)) !important;
+}
+
+.summarySidebar * {
+    font-family: var(--font-body, var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
 }
 
 @media (max-width: 960px) {
@@ -342,13 +347,16 @@
 
 .summarySidebar h3 {
     margin: 0 0 6px;
-    font-family: var(--font-heading, serif);
-    font-size: 1.35rem;
+    font-family: var(--font-body, var(--font-sans, sans-serif)) !important;
+    font-size: 1.28rem;
+    font-weight: 700;
     color: #111111;
     flex-shrink: 0;
+    letter-spacing: -0.01em;
 }
 
 .progressLabel {
+    font-family: var(--font-body, var(--font-sans, sans-serif)) !important;
     font-size: 0.86rem;
     font-weight: 600;
     color: #444444;
@@ -409,19 +417,23 @@
     margin-bottom: 14px;
 }
 
+.summaryCourseCategory,
 .summaryCourseTitle {
     display: block;
-    font-size: 0.84rem;
+    font-family: var(--font-body, var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif)) !important;
+    font-size: 0.82rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: #b27a00;
     margin-bottom: 5px;
+    line-height: 1.35;
 }
 
 .summaryCourseList {
     margin: 0;
     padding-left: 18px;
+    font-family: var(--font-body, var(--font-sans, sans-serif)) !important;
     font-size: 0.86rem;
     color: #333333;
     display: flex;
@@ -431,6 +443,7 @@
 }
 
 .emptySlotNotice {
+    font-family: var(--font-body, var(--font-sans, sans-serif)) !important;
     color: #999999;
     font-style: italic;
 }

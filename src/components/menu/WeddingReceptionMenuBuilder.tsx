@@ -495,7 +495,7 @@ export default function WeddingReceptionMenuBuilder({ onClose, onOpenQuote }: We
                                     return (
                                         <div key={idx} className={styles.summaryCourseSection}>
                                             {isNew && courseStats && (
-                                                <b className={styles.summaryCourseTitle}>
+                                                <b className={styles.summaryCourseCategory}>
                                                     {s.course} ({courseStats.chosenCount} of {courseStats.totalCount})
                                                 </b>
                                             )}

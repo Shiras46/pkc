@@ -91,10 +91,10 @@ h6,
 .heading-sm,
 .hero-heading,
 [class*="titleWrapper"],
-[class*="heading"],
-[class*="Heading"],
-[class*="title"]:not(p.subtitle):not(span.subtitle):not([class*="subtitle"]):not([class*="Subtitle"]):not([class*="eyebrow"]):not([class*="brand"]):not([class*="logo"]):not([class*="counter"]):not([class*="cardTitle"]),
-[class*="Title"]:not(p.subtitle):not(span.subtitle):not([class*="subtitle"]):not([class*="Subtitle"]):not([class*="eyebrow"]):not([class*="brand"]):not([class*="logo"]):not([class*="counter"]):not([class*="cardTitle"]) {
+[class*="heading"]:not([class*="summary"]):not([class*="Summary"]),
+[class*="Heading"]:not([class*="summary"]):not([class*="Summary"]),
+[class*="title"]:not(p.subtitle):not(span.subtitle):not([class*="subtitle"]):not([class*="Subtitle"]):not([class*="eyebrow"]):not([class*="brand"]):not([class*="logo"]):not([class*="counter"]):not([class*="cardTitle"]):not([class*="summary"]):not([class*="Summary"]),
+[class*="Title"]:not(p.subtitle):not(span.subtitle):not([class*="subtitle"]):not([class*="Subtitle"]):not([class*="eyebrow"]):not([class*="brand"]):not([class*="logo"]):not([class*="counter"]):not([class*="cardTitle"]):not([class*="summary"]):not([class*="Summary"]) {
   font-family: var(--font-heading), 'Playfair Display', serif !important;
   font-weight: 400 !important;
   line-height: 1.15;
