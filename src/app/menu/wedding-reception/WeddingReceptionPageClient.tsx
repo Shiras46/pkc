@@ -6,8 +6,7 @@ import { ChevronLeft, Check, Copy, MessageCircle, ArrowUpRight, RotateCcw } from
 import styles from "./WeddingReceptionPage.module.css";
 import { 
     DISH_POOLS, 
-    PACKAGES, 
-    OCCASIONS 
+    PACKAGES 
 } from "@/components/menu/WeddingReceptionMenuBuilder";
 import QuoteModal from "@/components/ui/QuoteModal";
 import FinalCTA from "@/components/sections/FinalCTA";
@@ -164,23 +163,8 @@ export default function WeddingReceptionPageClient() {
                 {/* 2-Column Main Layout */}
                 <div className={styles.builderMainGrid}>
 
-                    {/* Left Column: Occasion Tabs, Package Cards, Overview, Dish Slots */}
+                    {/* Left Column: Package Cards, Overview, Dish Slots */}
                     <div className={styles.leftColumn}>
-
-                        {/* Occasion Tabs */}
-                        <div className={styles.occasionRow} role="group" aria-label="Occasion">
-                            {OCCASIONS.map((occ, idx) => (
-                                <button
-                                    key={occ}
-                                    type="button"
-                                    className={`${styles.occasionTab} ${idx === 0 ? styles.occasionTabActive : styles.occasionTabDisabled}`}
-                                    disabled={idx !== 0}
-                                    title={idx !== 0 ? "Rules for this occasion are launching soon" : "Active Occasion"}
-                                >
-                                    {occ}{idx !== 0 ? " (soon)" : ""}
-                                </button>
-                            ))}
-                        </div>
 
                         {/* Package Selection Cards */}
                         <div className={styles.packageGrid} role="group" aria-label="Package">

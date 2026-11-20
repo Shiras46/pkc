@@ -352,23 +352,8 @@ export default function WeddingReceptionMenuBuilder({ onClose, onOpenQuote }: We
                 {/* Main 2-Column Builder Studio */}
                 <div className={styles.builderMain}>
 
-                    {/* Left Column: Occasions, Packages, Course Slots */}
+                    {/* Left Column: Packages, Course Slots */}
                     <div className={styles.leftCol}>
-
-                        {/* Occasion Tabs */}
-                        <div className={styles.occasionRow} role="group" aria-label="Occasion">
-                            {OCCASIONS.map((occ, idx) => (
-                                <button
-                                    key={occ}
-                                    type="button"
-                                    className={`${styles.occasionTab} ${idx === 0 ? styles.occasionTabActive : styles.occasionTabDisabled}`}
-                                    disabled={idx !== 0}
-                                    title={idx !== 0 ? "Menu rules for this occasion are launching soon" : "Active Occasion"}
-                                >
-                                    {occ}{idx !== 0 ? " (soon)" : ""}
-                                </button>
-                            ))}
-                        </div>
 
                         {/* Package Selection Cards */}
                         <div className={styles.packageGrid} role="group" aria-label="Package">
