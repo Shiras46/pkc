@@ -58,7 +58,7 @@ export default function GalleryClient() {
 
             <section className="section-padding">
                 <div className="container">
-                    <div className={styles.tabs}>
+                    <div className={styles.tabs} data-lenis-prevent="true">
                         {availableCategories.map(cat => (
                             <button
                                 key={cat}

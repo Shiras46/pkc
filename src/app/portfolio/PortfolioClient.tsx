@@ -123,7 +123,12 @@ export default function PortfolioClient() {
                     </div>
 
                     {/* Category Tabs */}
-                    <div className={styles.tabsContainer} role="tablist" aria-label="Portfolio Categories">
+                    <div 
+                        className={styles.tabsContainer} 
+                        role="tablist" 
+                        aria-label="Portfolio Categories"
+                        data-lenis-prevent="true"
+                    >
                         {portfolioCategories.map(cat => (
                             <button
                                 key={cat}

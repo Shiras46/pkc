@@ -241,6 +241,34 @@
     margin-bottom: 48px;
 }
 
+@media (max-width: 768px) {
+    .tabsContainer {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        gap: 8px;
+        margin-bottom: 32px;
+        padding: 4px 16px 12px;
+        margin-left: -16px;
+        margin-right: -16px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .tabsContainer::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filterTab {
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding: 8px 18px;
+        font-size: 0.84rem;
+    }
+}
+
 .filterTab {
     padding: 10px 22px;
     font-size: 0.88rem;
