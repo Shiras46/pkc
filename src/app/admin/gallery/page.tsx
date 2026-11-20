@@ -211,7 +211,7 @@ export default function AdminGallery() {
                                 className={styles.fileInput}
                             />
                             <p className={styles.hint}>
-                                <Sparkles size={14} style={{ display: "inline", marginRight: "4px" }} />
+                                <Check size={14} style={{ display: "inline", marginRight: "4px", color: "#fcb318" }} />
                                 Supports images of any size or resolution (JPG, PNG, GIF, WebP). Automatically resizes, compresses, and converts to WebP.
                             </p>
                         </div>

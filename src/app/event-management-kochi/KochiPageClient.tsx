@@ -19,7 +19,7 @@ import {
     Building2,
     Palette,
     Camera,
-    Sparkles
+    HeartHandshake
 } from 'lucide-react';
 import QuoteModal from '@/components/ui/QuoteModal';
 import styles from './KochiPage.module.css';
@@ -155,7 +155,7 @@ export default function KochiPageClient({
                         <div className={styles.serviceCard}>
                             <div>
                                 <div className={styles.cardIconBadge}>
-                                    <Sparkles size={24} />
+                                    <HeartHandshake size={24} />
                                 </div>
                                 <h3 className={styles.serviceTitle}>Wedding Planning in Kochi</h3>
                                 <p className={styles.serviceDesc}>

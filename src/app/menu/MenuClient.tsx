@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
     Users, ChevronRight, X, CheckCircle2, 
-    UtensilsCrossed, ChefHat, MessageCircle, ArrowUpRight, Sparkles
+    UtensilsCrossed, ChefHat, MessageCircle, ArrowUpRight
 } from "lucide-react";
 import styles from "./Menu.module.css";
 import { 
@@ -114,28 +114,6 @@ export default function MenuClient() {
                 </motion.div>
             </header>
 
-            {/* 2. FLOATING STATS BAR */}
-            <section className={styles.statsSection}>
-                <div className={styles.statsGrid}>
-                    <div className={styles.statCard}>
-                        <div className={styles.statValue}>50,000+</div>
-                        <div className={styles.statLabel}>Banquets Served</div>
-                    </div>
-                    <div className={styles.statCard}>
-                        <div className={styles.statValue}>32+</div>
-                        <div className={styles.statLabel}>Traditional Delicacies</div>
-                    </div>
-                    <div className={styles.statCard}>
-                        <div className={styles.statValue}>100%</div>
-                        <div className={styles.statLabel}>Halal &amp; Pure-Veg Certified</div>
-                    </div>
-                    <div className={styles.statCard}>
-                        <div className={styles.statValue}>15+</div>
-                        <div className={styles.statLabel}>Years Culinary Heritage</div>
-                    </div>
-                </div>
-            </section>
-
             {/* 3. MENU PORTFOLIO SHOWCASE */}
             <section className={styles.portfolioSection} id="menus">
                 <div className={styles.container}>
@@ -192,7 +170,7 @@ export default function MenuClient() {
                                         />
                                         <span className={styles.categoryBadge}>{menu.category}</span>
                                         <span className={`${styles.courseBadge} ${menu.isComingSoon ? styles.comingSoonBadge : ""}`}>
-                                            {menu.isComingSoon ? "COMING SOON" : (menu.id === "wedding-reception" ? "38 DISHES • BUILDER" : menu.courseCount)}
+                                            {menu.isComingSoon ? "COMING SOON" : menu.courseCount}
                                         </span>
                                     </div>
 
@@ -221,7 +199,7 @@ export default function MenuClient() {
                                             <span className={styles.viewLink}>
                                                 {menu.isComingSoon 
                                                     ? "Preview Menu & Pre-Book" 
-                                                    : (menu.id === "wedding-reception" ? "Open Interactive Menu Builder" : "Explore Complete Menu")} <ChevronRight size={16} />
+                                                    : "Explore Complete Menu"} <ChevronRight size={16} />
                                             </span>
                                         </div>
                                     </div>
@@ -331,7 +309,6 @@ export default function MenuClient() {
                                 {/* Coming Soon Notice Banner */}
                                 {selectedMenu.isComingSoon && (
                                     <div className={styles.modalNotice}>
-                                        <Sparkles size={18} className={styles.sparkleIcon} />
                                         <span>
                                             <strong>Menu in Final Curation:</strong> Early pre-reservations and custom tasting sessions are now open for upcoming wedding celebrations!
                                         </span>

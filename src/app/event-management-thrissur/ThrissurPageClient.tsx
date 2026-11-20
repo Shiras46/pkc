@@ -19,7 +19,7 @@ import {
     Building2,
     Palette,
     Camera,
-    Sparkles,
+    HeartHandshake,
     Heart
 } from 'lucide-react';
 import QuoteModal from '@/components/ui/QuoteModal';
@@ -155,7 +155,7 @@ export default function ThrissurPageClient({
                         <div className={styles.serviceCard}>
                             <div>
                                 <div className={styles.cardIconBadge}>
-                                    <Sparkles size={24} />
+                                    <HeartHandshake size={24} />
                                 </div>
                                 <h3 className={styles.serviceTitle}>Wedding Planning in Thrissur</h3>
                                 <p className={styles.serviceDesc}>

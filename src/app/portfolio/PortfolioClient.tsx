@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Users, ChevronRight, X, Sparkles, CheckCircle2 } from "lucide-react";
+import { MapPin, Users, ChevronRight, X, CheckCircle2 } from "lucide-react";
 import styles from "./Portfolio.module.css";
 import { portfolioCategories, portfolioProjects, PortfolioProject } from "@/lib/portfolioData";
 import QuoteModal from "@/components/ui/QuoteModal";
@@ -318,7 +318,7 @@ export default function PortfolioClient() {
                                 <div className={styles.modalChipsGrid}>
                                     {selectedProject.highlights.map((h, i) => (
                                         <span key={i} className={styles.modalChip}>
-                                            <Sparkles size={14} style={{ display: "inline", marginRight: "6px" }} />
+                                            <CheckCircle2 size={14} style={{ display: "inline", marginRight: "6px", color: "#fcb318" }} />
                                             {h}
                                         </span>
                                     ))}
