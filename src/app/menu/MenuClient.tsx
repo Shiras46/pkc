@@ -1,166 +1,79 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-    Search, X, Check, Share2, 
-    ChevronRight, Sparkles, Trash2, Copy, CheckCheck
+    Users, ChevronRight, X, CheckCircle2, 
+    UtensilsCrossed, ChefHat, MessageCircle, ArrowUpRight
 } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
 import styles from "./Menu.module.css";
-import { menuCatalog, totalMenuItemsCount } from "@/lib/menuData";
+import { 
+    menuCategories, 
+    menuPortfolioItems, 
+    MenuPortfolioItem 
+} from "@/lib/menuPortfolioData";
 import QuoteModal from "@/components/ui/QuoteModal";
-import BrandName from "@/components/ui/BrandName";
+import FinalCTA from "@/components/sections/FinalCTA";
 
 const WHATSAPP_NUMBER = "918138002333";
 
 export default function MenuClient() {
-    const [selectedDishes, setSelectedDishes] = useState<Map<string, { name: string; section: string; type: string }>>(new Map());
-    const [searchQuery, setSearchQuery] = useState("");
-    const [activeDietary, setActiveDietary] = useState<"all" | "veg" | "non-veg" | "beverage" | "dessert">("all");
-    const [activeCategoryPill, setActiveCategoryPill] = useState("all");
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [activeCategory, setActiveCategory] = useState<string>("All Collections");
+    const [selectedMenu, setSelectedMenu] = useState<MenuPortfolioItem | null>(null);
     const [isQuoteOpen, setIsQuoteOpen] = useState(false);
-    const [copied, setCopied] = useState(false);
 
-    // Load saved selection from localStorage on mount
+    // Filter menu collections based on active tab
+    const filteredMenus = activeCategory === "All Collections"
+        ? menuPortfolioItems
+        : menuPortfolioItems.filter(item => item.category === activeCategory);
+
+    // Close modal on Escape key
     useEffect(() => {
-        try {
-            const saved = localStorage.getItem("pkc_selected_menu");
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                if (Array.isArray(parsed)) {
-                    const newMap = new Map();
-                    parsed.forEach((item: any) => newMap.set(item.name, item));
-                    setSelectedDishes(newMap);
-                }
-            }
-        } catch (e) {
-            console.error("Failed to load saved menu", e);
-        }
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setSelectedMenu(null);
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
     }, []);
 
-    // Save selection to localStorage on changes
+    // Prevent body scroll when detail modal is open
     useEffect(() => {
-        try {
-            const arr = Array.from(selectedDishes.values());
-            localStorage.setItem("pkc_selected_menu", JSON.stringify(arr));
-        } catch (e) {
-            console.error("Failed to save menu", e);
+        if (selectedMenu) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
         }
-    }, [selectedDishes]);
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [selectedMenu]);
 
-    // Toggle dish selection
-    const toggleDish = (dishName: string, sectionTitle: string, type: string) => {
-        setSelectedDishes(prev => {
-            const next = new Map(prev);
-            if (next.has(dishName)) {
-                next.delete(dishName);
-            } else {
-                next.set(dishName, { name: dishName, section: sectionTitle, type });
-            }
-            return next;
-        });
+    const handleOpenQuoteForMenu = (_menu: MenuPortfolioItem) => {
+        setIsQuoteOpen(true);
     };
 
-    // Filter menu catalog based on search & dietary
-    const filteredCatalog = useMemo(() => {
-        const query = searchQuery.trim().toLowerCase();
-
-        return menuCatalog.map(section => {
-            const matchingSubSections = section.subSections.map(sub => {
-                const matchingItems = sub.items.filter(item => {
-                    const matchesSearch = query === "" || 
-                        item.name.toLowerCase().includes(query) ||
-                        sub.title.toLowerCase().includes(query) ||
-                        section.title.toLowerCase().includes(query);
-
-                    const matchesDietary = activeDietary === "all" || item.type === activeDietary;
-
-                    return matchesSearch && matchesDietary;
-                });
-
-                return {
-                    ...sub,
-                    items: matchingItems
-                };
-            }).filter(sub => sub.items.length > 0);
-
-            return {
-                ...section,
-                subSections: matchingSubSections
-            };
-        }).filter(section => {
-            const matchesCategory = activeCategoryPill === "all" || section.id === activeCategoryPill;
-            return matchesCategory && section.subSections.length > 0;
-        });
-    }, [searchQuery, activeDietary, activeCategoryPill]);
-
-    // Group selected dishes by category for the drawer & WhatsApp
-    const selectedGrouped = useMemo(() => {
-        const map: Record<string, string[]> = {};
-        selectedDishes.forEach(item => {
-            if (!map[item.section]) map[item.section] = [];
-            map[item.section].push(item.name);
-        });
-        return map;
-    }, [selectedDishes]);
-
-    // Format selection text for WhatsApp
-    const generateWhatsAppText = () => {
-        let text = `*Custom Catering Menu Selection - Pride Kitchen Caterers & Events*\n`;
-        text += `Total Delicacies Selected: ${selectedDishes.size}\n\n`;
-
-        Object.entries(selectedGrouped).forEach(([section, items]) => {
-            text += `*${section.toUpperCase()}*\n`;
-            items.forEach(dish => {
-                text += ` • ${dish}\n`;
-            });
-            text += `\n`;
-        });
-
-        text += `Please review this bespoke menu and provide a customized quote for our upcoming celebration.`;
-        return encodeURIComponent(text);
-    };
-
-    const handleWhatsAppShare = () => {
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${generateWhatsAppText()}`;
-        window.open(url, "_blank");
-    };
-
-    const copyMenuToClipboard = () => {
-        let text = `Pride Kitchen Caterers & Events - Custom Menu Selection\n\n`;
-        Object.entries(selectedGrouped).forEach(([section, items]) => {
-            text += `${section}:\n`;
-            items.forEach(dish => {
-                text += ` - ${dish}\n`;
-            });
-            text += `\n`;
-        });
-
-        navigator.clipboard.writeText(text).then(() => {
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2500);
-        });
-    };
-
-    const clearAllSelection = () => {
-        if (confirm("Are you sure you want to clear your selected menu?")) {
-            setSelectedDishes(new Map());
-            setIsDrawerOpen(false);
-        }
+    const handleWhatsAppMenuInquiry = (menu: MenuPortfolioItem) => {
+        const text = encodeURIComponent(
+            `*Catering Menu Consultation - PKC Events*\n\n` +
+            `Hello Pride Kitchen Caterers, I am interested in your signature menu collection:\n` +
+            `*${menu.title}*\n` +
+            `Category: ${menu.category}\n` +
+            `Courses: ${menu.courseCount}\n` +
+            `Dietary: ${menu.dietary}\n\n` +
+            `Please share customized pricing and availability for our celebration.`
+        );
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
     };
 
     return (
-        <main className={styles.wrapper}>
+        <div className={styles.wrapper}>
 
-            {/* 1. HERO BANNER */}
+            {/* 1. PORTFOLIO HERO SECTION */}
             <header className={styles.hero}>
                 <Image
                     src="/image/services/catering.webp"
-                    alt="Luxury wedding catering menu and grand feast selection by Pride Kitchen Caterers & Events in Kerala"
+                    alt="Luxury catering menus and royal banquet feasts curated by Pride Kitchen Caterers in Kerala"
                     fill
                     priority
                     className={styles.heroImage}
@@ -173,338 +86,325 @@ export default function MenuClient() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.85 }}
                 >
-                    <span className={styles.eyebrow}>Interactive Catering Menu</span>
+                    <span className={styles.eyebrow}>Signature Catering Portfolios</span>
                     <h1 className={styles.heroTitle}>
-                        Bespoke Menu Selection <br />
-                        <span style={{ color: "#fcb318" }}>Across 32 Curated Pages</span>
+                        Crafting Culinary Elegance <br />
+                        <span style={{ color: "#fcb318" }}>Across Kerala</span>
                     </h1>
                     <p className={styles.heroSubtitle}>
-                        Explore over {totalMenuItemsCount}+ authentic Kerala delicacies, live counters, Mughlai biryanis, and grand sadhyas. Select your favorite dishes to create your personalized event menu and get an instant quote.
+                        A curated portfolio of royal wedding feasts, authentic 32-course Travancore sadhyas, and vibrant live food counters curated with master-chef precision across Thrissur, Kochi, and beyond.
                     </p>
-
                     <div className={styles.heroActions}>
-                        <a href="#menu-explorer" className={styles.primaryBtn}>
-                            Start Menu Selection <ChevronRight size={16} />
+                        <button
+                            className={styles.primaryBtn}
+                            onClick={() => setIsQuoteOpen(true)}
+                            aria-label="Request a customized catering quote"
+                        >
+                            Get Customized Quote <ChevronRight size={16} />
+                        </button>
+                        <a href="#menus" className={styles.secondaryBtn}>
+                            Browse Menu Collections
                         </a>
                     </div>
                 </motion.div>
             </header>
 
-            {/* 2. STICKY FILTER TOOLBAR */}
-            <div className={styles.toolbarSection} id="menu-explorer">
+            {/* 2. FLOATING STATS BAR */}
+            <section className={styles.statsSection}>
+                <div className={styles.statsGrid}>
+                    <div className={styles.statCard}>
+                        <div className={styles.statValue}>50,000+</div>
+                        <div className={styles.statLabel}>Banquets Served</div>
+                    </div>
+                    <div className={styles.statCard}>
+                        <div className={styles.statValue}>32+</div>
+                        <div className={styles.statLabel}>Traditional Delicacies</div>
+                    </div>
+                    <div className={styles.statCard}>
+                        <div className={styles.statValue}>100%</div>
+                        <div className={styles.statLabel}>Halal &amp; Pure-Veg Certified</div>
+                    </div>
+                    <div className={styles.statCard}>
+                        <div className={styles.statValue}>15+</div>
+                        <div className={styles.statLabel}>Years Culinary Heritage</div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 3. MENU PORTFOLIO SHOWCASE */}
+            <section className={styles.portfolioSection} id="menus">
                 <div className={styles.container}>
-                    <div className={styles.toolbarRow}>
 
-                        {/* Search Input */}
-                        <div className={styles.searchBox}>
-                            <Search size={18} className={styles.searchIcon} />
-                            <input
-                                type="text"
-                                placeholder="Search dishes (e.g. Biryani, Mojito, Karimeen, Payasam)..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className={styles.searchInput}
-                                aria-label="Search dishes"
-                            />
-                            {searchQuery && (
-                                <button
-                                    onClick={() => setSearchQuery("")}
-                                    className={styles.clearSearchBtn}
-                                    aria-label="Clear search"
-                                >
-                                    <X size={16} />
-                                </button>
-                            )}
-                        </div>
-
-                        {/* Dietary Filter Buttons */}
-                        <div className={styles.dietaryFilters}>
-                            <button
-                                className={`${styles.dietaryBtn} ${activeDietary === "all" ? styles.dietaryBtnActive : ""}`}
-                                onClick={() => setActiveDietary("all")}
-                            >
-                                All Dishes
-                            </button>
-                            <button
-                                className={`${styles.dietaryBtn} ${activeDietary === "veg" ? styles.dietaryBtnActive : ""}`}
-                                onClick={() => setActiveDietary("veg")}
-                            >
-                                🌱 Pure Veg
-                            </button>
-                            <button
-                                className={`${styles.dietaryBtn} ${activeDietary === "non-veg" ? styles.dietaryBtnActive : ""}`}
-                                onClick={() => setActiveDietary("non-veg")}
-                            >
-                                🍗 Non-Veg
-                            </button>
-                            <button
-                                className={`${styles.dietaryBtn} ${activeDietary === "beverage" ? styles.dietaryBtnActive : ""}`}
-                                onClick={() => setActiveDietary("beverage")}
-                            >
-                                🍹 Beverages
-                            </button>
-                            <button
-                                className={`${styles.dietaryBtn} ${activeDietary === "dessert" ? styles.dietaryBtnActive : ""}`}
-                                onClick={() => setActiveDietary("dessert")}
-                            >
-                                🍨 Desserts
-                            </button>
-                        </div>
+                    {/* Section Header */}
+                    <div className={styles.sectionHeader}>
+                        <span className={styles.sectionEyebrow}>Signature Collections</span>
+                        <h2 className={styles.sectionTitle}>
+                            Every Banquet Has A <span style={{ color: "#fcb318" }}>Story</span>
+                        </h2>
+                        <p className={styles.sectionDesc}>
+                            From traditional seated plantain-leaf sadhyas to international live wok stations, discover our masterfully crafted catering collections for unforgettable celebrations.
+                        </p>
                     </div>
 
-                    {/* Quick Category Jump Pills */}
-                    <div className={styles.categoryPillsBar}>
-                        <button
-                            className={`${styles.categoryPill} ${activeCategoryPill === "all" ? styles.categoryPillActive : ""}`}
-                            onClick={() => setActiveCategoryPill("all")}
-                        >
-                            All Categories
-                        </button>
-                        {menuCatalog.map(sec => (
+                    {/* Category Filter Tabs */}
+                    <div className={styles.tabsContainer} role="tablist" aria-label="Menu Categories">
+                        {menuCategories.map(cat => (
                             <button
-                                key={sec.id}
-                                className={`${styles.categoryPill} ${activeCategoryPill === sec.id ? styles.categoryPillActive : ""}`}
-                                onClick={() => {
-                                    setActiveCategoryPill(sec.id);
-                                    const el = document.getElementById(sec.id);
-                                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                                }}
+                                key={cat}
+                                role="tab"
+                                aria-selected={activeCategory === cat}
+                                className={`${styles.filterTab} ${activeCategory === cat ? styles.filterTabActive : ""}`}
+                                onClick={() => setActiveCategory(cat)}
                             >
-                                {sec.title}
+                                {cat}
                             </button>
                         ))}
                     </div>
 
-                </div>
-            </div>
-
-            {/* 3. MENU CATALOG SECTIONS */}
-            <div className={styles.contentArea}>
-                <div className={styles.container}>
-
-                    {filteredCatalog.length === 0 ? (
-                        <div className={styles.emptyState}>
-                            <Sparkles size={40} color="#fcb318" />
-                            <h3 className={styles.emptyStateTitle}>No Delicacies Match Your Filter</h3>
-                            <p className={styles.emptyStateText}>
-                                Try clearing your search query or switching dietary filters to view our full catering selection.
-                            </p>
-                            <button
-                                className={styles.primaryBtn}
-                                onClick={() => {
-                                    setSearchQuery("");
-                                    setActiveDietary("all");
-                                    setActiveCategoryPill("all");
-                                }}
-                            >
-                                Reset All Filters
-                            </button>
-                        </div>
-                    ) : (
-                        filteredCatalog.map(section => (
-                            <section key={section.id} id={section.id} className={styles.sectionBlock}>
-
-                                {/* Section Banner */}
-                                <div className={styles.sectionBanner}>
-                                    <div className={styles.sectionHeaderLeft}>
-                                        <div className={styles.sectionIconWrapper}>
-                                            <Sparkles size={22} />
-                                        </div>
-                                        <div>
-                                            <h2 className={styles.sectionTitle}>{section.title}</h2>
-                                            <p className={styles.sectionSubtitle}>{section.subtitle}</p>
-                                        </div>
-                                    </div>
-                                    <span className={styles.pageBadge}>
-                                        Pages {section.pages[0]} {section.pages.length > 1 ? `- ${section.pages[section.pages.length - 1]}` : ""}
-                                    </span>
-                                </div>
-
-                                {/* Subsections & Items */}
-                                {section.subSections.map((sub, sIdx) => (
-                                    <div key={sIdx} className={styles.subSectionBlock}>
-                                        <div className={styles.subSectionTitle}>
-                                            <span>{sub.title}</span>
-                                            <span style={{ fontSize: "0.8rem", color: "#fcb318", fontWeight: 600 }}>
-                                                (Page {sub.page})
-                                            </span>
-                                            <div className={styles.subSectionTitleLine} />
-                                        </div>
-
-                                        <div className={styles.itemsGrid}>
-                                            {sub.items.map(item => {
-                                                const isSelected = selectedDishes.has(item.name);
-
-                                                return (
-                                                    <div
-                                                        key={item.name}
-                                                        className={`${styles.dishCard} ${isSelected ? styles.dishCardSelected : ""}`}
-                                                        onClick={() => toggleDish(item.name, section.title, item.type)}
-                                                        role="checkbox"
-                                                        aria-checked={isSelected}
-                                                        tabIndex={0}
-                                                        onKeyDown={(e) => {
-                                                            if (e.key === "Enter" || e.key === " ") {
-                                                                e.preventDefault();
-                                                                toggleDish(item.name, section.title, item.type);
-                                                            }
-                                                        }}
-                                                    >
-                                                        <div className={styles.dishCardLeft}>
-                                                            <span
-                                                                className={`
-                                                                    ${styles.dietDot} 
-                                                                    ${item.type === "veg" ? styles.dietDotVeg : ""}
-                                                                    ${item.type === "non-veg" ? styles.dietDotNonVeg : ""}
-                                                                    ${item.type === "beverage" ? styles.dietDotBeverage : ""}
-                                                                    ${item.type === "dessert" ? styles.dietDotDessert : ""}
-                                                                `}
-                                                                title={item.type.toUpperCase()}
-                                                            />
-                                                            <h3 className={styles.dishName}>{item.name}</h3>
-                                                        </div>
-
-                                                        <div className={styles.selectBtn}>
-                                                            <Check size={16} />
-                                                        </div>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                ))}
-
-                            </section>
-                        ))
-                    )}
-
-                </div>
-            </div>
-
-            {/* 4. FLOATING BOTTOM BAR (When >= 1 item is selected) */}
-            <AnimatePresence>
-                {selectedDishes.size > 0 && (
+                    {/* Menu Cards Grid */}
                     <motion.div
-                        className={styles.floatingBar}
-                        initial={{ y: 80, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: 80, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        className={styles.grid}
+                        layout
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
                     >
-                        <div className={styles.floatingBarLeft}>
-                            <span className={styles.counterBadge}>{selectedDishes.size}</span>
-                            <span className={styles.floatingBarText}>
-                                {selectedDishes.size === 1 ? "1 Dish Selected" : `${selectedDishes.size} Delicacies Selected`}
-                            </span>
-                        </div>
+                        <AnimatePresence>
+                            {filteredMenus.map((menu, index) => (
+                                <motion.div
+                                    key={menu.id}
+                                    layout
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    transition={{ duration: 0.45, delay: index * 0.05 }}
+                                    className={styles.card}
+                                    onClick={() => setSelectedMenu(menu)}
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter" || e.key === " ") {
+                                            e.preventDefault();
+                                            setSelectedMenu(menu);
+                                        }
+                                    }}
+                                    aria-label={`View menu details for ${menu.title}`}
+                                >
+                                    <div className={styles.cardImageWrapper}>
+                                        <Image
+                                            src={menu.image}
+                                            alt={`${menu.title} - ${menu.category} catering by Pride Kitchen Caterers in Kerala`}
+                                            fill
+                                            loading="lazy"
+                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                            className={styles.cardImage}
+                                            style={{ objectPosition: menu.objectPosition || "center 30%" }}
+                                        />
+                                        <span className={styles.categoryBadge}>{menu.category}</span>
+                                        <span className={styles.courseBadge}>{menu.courseCount}</span>
+                                    </div>
 
-                        <div className={styles.floatingBarActions}>
-                            <button
-                                className={styles.reviewBtn}
-                                onClick={() => setIsDrawerOpen(true)}
-                                aria-label="Review selected menu"
-                            >
-                                Review
-                            </button>
+                                    <div className={styles.cardContent}>
+                                        <div className={styles.metaRow}>
+                                            <span className={styles.metaItem}>
+                                                <Users size={14} className={styles.metaIcon} />
+                                                {menu.servingCapacity}
+                                            </span>
+                                            <span className={styles.dietaryTag}>{menu.dietary}</span>
+                                        </div>
 
-                            <button
-                                className={styles.whatsappBtn}
-                                onClick={handleWhatsAppShare}
-                                aria-label="Send menu via WhatsApp"
-                            >
-                                <FaWhatsapp size={16} /> WhatsApp
-                            </button>
+                                        <h3 className={styles.cardTitle}>{menu.title}</h3>
+                                        <p className={styles.cardDesc}>{menu.shortDesc}</p>
 
-                            <button
-                                className={styles.quoteTriggerBtn}
-                                onClick={() => setIsQuoteOpen(true)}
-                                aria-label="Request quote for this menu"
-                            >
-                                Get Quote <ChevronRight size={14} />
-                            </button>
-                        </div>
+                                        {/* Highlights Chips */}
+                                        <div className={styles.highlightsList}>
+                                            {menu.highlights.slice(0, 3).map((h, i) => (
+                                                <span key={i} className={styles.highlightChip}>
+                                                    • {h}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        <div className={styles.cardFooter}>
+                                            <span className={styles.viewLink}>
+                                                Explore Complete Menu <ChevronRight size={16} />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
                     </motion.div>
-                )}
-            </AnimatePresence>
+                </div>
+            </section>
 
-            {/* 5. SELECTION REVIEW MODAL */}
+            {/* 4. BESPOKE MENU CUSTOMIZATION BANNER */}
+            <section className={styles.customSection}>
+                <div className={styles.container}>
+                    <div className={styles.customCard}>
+                        <div className={styles.customContent}>
+                            <span className={styles.customEyebrow}>Bespoke Taste Customization</span>
+                            <h2 className={styles.customTitle}>
+                                Want To Design Your Own <span style={{ color: "#fcb318" }}>Dream Menu?</span>
+                            </h2>
+                            <p className={styles.customText}>
+                                Every family celebration is unique. Our executive master chefs work directly with you to mix and match dishes, introduce family recipes, or curate custom live counters tailored to your guests and budget.
+                            </p>
+                            <div className={styles.customActions}>
+                                <button
+                                    className={styles.primaryBtn}
+                                    onClick={() => setIsQuoteOpen(true)}
+                                >
+                                    Schedule Chef Tasting <ChevronRight size={16} />
+                                </button>
+                                <a
+                                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi PKC Events, I would like to consult with your master chef to customize a wedding catering menu.")}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.whatsappBtn}
+                                >
+                                    <MessageCircle size={18} /> Chat with Chef on WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                        <div className={styles.customImageWrapper}>
+                            <Image
+                                src="/image/services/sadhya.webp"
+                                alt="Master chefs preparing authentic Kerala wedding feast"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 500px"
+                                className={styles.customImg}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 5. INTERACTIVE MENU DETAIL MODAL */}
             <AnimatePresence>
-                {isDrawerOpen && (
+                {selectedMenu && (
                     <motion.div
-                        className={styles.modalOverlay}
+                        className={styles.modalBackdrop}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        onClick={() => setIsDrawerOpen(false)}
+                        onClick={() => setSelectedMenu(null)}
                         role="dialog"
                         aria-modal="true"
                     >
                         <motion.div
-                            className={styles.modalBox}
-                            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                            className={styles.modalContent}
+                            initial={{ scale: 0.92, opacity: 0, y: 30 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 28 }}
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className={styles.modalHeader}>
-                                <div>
-                                    <h3 className={styles.modalTitle}>Your Custom Event Menu</h3>
-                                    <span style={{ fontSize: "0.85rem", color: "#666" }}>
-                                        {selectedDishes.size} items curated for your celebration
-                                    </span>
+                            {/* Close Button */}
+                            <button
+                                className={styles.modalCloseBtn}
+                                onClick={() => setSelectedMenu(null)}
+                                aria-label="Close menu detail modal"
+                            >
+                                <X size={20} />
+                            </button>
+
+                            {/* Modal Header Image */}
+                            <div className={styles.modalHero}>
+                                <Image
+                                    src={selectedMenu.image}
+                                    alt={selectedMenu.title}
+                                    fill
+                                    className={styles.modalHeroImage}
+                                    style={{ objectPosition: selectedMenu.objectPosition || "center 30%" }}
+                                />
+                                <div className={styles.modalHeroOverlay} />
+                                <div className={styles.modalHeroText}>
+                                    <span className={styles.modalCategoryBadge}>{selectedMenu.category}</span>
+                                    <h2 className={styles.modalTitle}>{selectedMenu.title}</h2>
+                                    <div className={styles.modalMetaRow}>
+                                        <span><Users size={15} /> {selectedMenu.servingCapacity}</span>
+                                        <span>•</span>
+                                        <span><UtensilsCrossed size={15} /> {selectedMenu.courseCount}</span>
+                                        <span>•</span>
+                                        <span className={styles.dietaryPill}>{selectedMenu.dietary}</span>
+                                    </div>
                                 </div>
-                                <button
-                                    className={styles.modalCloseBtn}
-                                    onClick={() => setIsDrawerOpen(false)}
-                                    aria-label="Close menu drawer"
-                                >
-                                    <X size={18} />
-                                </button>
                             </div>
 
+                            {/* Modal Body */}
                             <div className={styles.modalBody}>
-                                {Object.entries(selectedGrouped).map(([sectionTitle, dishes]) => (
-                                    <div key={sectionTitle} className={styles.selectedGroup}>
-                                        <div className={styles.selectedGroupTitle}>{sectionTitle} ({dishes.length})</div>
-                                        {dishes.map(dish => (
-                                            <div key={dish} className={styles.selectedItemRow}>
-                                                <span>• {dish}</span>
-                                                <button
-                                                    onClick={() => toggleDish(dish, sectionTitle, "")}
-                                                    className={styles.removeDishBtn}
-                                                    aria-label={`Remove ${dish}`}
-                                                >
-                                                    <X size={15} />
-                                                </button>
+                                {/* Culinary Story */}
+                                <div className={styles.modalSection}>
+                                    <h3 className={styles.modalSectionHeading}>The Culinary Vision</h3>
+                                    <p className={styles.modalStory}>{selectedMenu.fullStory}</p>
+                                </div>
+
+                                {/* Key Highlights */}
+                                <div className={styles.modalHighlightsGrid}>
+                                    {selectedMenu.highlights.map((h, i) => (
+                                        <div key={i} className={styles.modalHighlightCard}>
+                                            <CheckCircle2 size={18} className={styles.checkIcon} />
+                                            <span>{h}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Chef Special Box */}
+                                {selectedMenu.chefSpecial && (
+                                    <div className={styles.chefBox}>
+                                        <div className={styles.chefIconCol}>
+                                            <ChefHat size={24} />
+                                        </div>
+                                        <div className={styles.chefTextCol}>
+                                            <strong>Master Chef's Signature Note:</strong>
+                                            <p>{selectedMenu.chefSpecial}</p>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Course Breakdown Sections */}
+                                <div className={styles.modalCoursesContainer}>
+                                    <h3 className={styles.modalSectionHeading}>Full Course-By-Course Menu</h3>
+                                    <div className={styles.courseSectionsGrid}>
+                                        {selectedMenu.courseSections.map((sec, secIdx) => (
+                                            <div key={secIdx} className={styles.courseCard}>
+                                                <h4 className={styles.courseCardTitle}>
+                                                    <span className={styles.courseCardNum}>{secIdx + 1}</span>
+                                                    {sec.title}
+                                                </h4>
+                                                <ul className={styles.courseItemList}>
+                                                    {sec.items.map((item, itemIdx) => (
+                                                        <li key={itemIdx} className={styles.courseItem}>
+                                                            <span className={styles.dishDot} />
+                                                            <span>{item}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
                                             </div>
                                         ))}
                                     </div>
-                                ))}
-                            </div>
-
-                            <div className={styles.modalFooter}>
-                                <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-                                    <button onClick={clearAllSelection} className={styles.clearAllBtn}>
-                                        <Trash2 size={14} style={{ display: "inline", marginRight: "4px" }} /> Clear All
-                                    </button>
-                                    <button onClick={copyMenuToClipboard} className={styles.clearAllBtn} style={{ color: copied ? "#2e7d32" : "#fcb318" }}>
-                                        {copied ? <CheckCheck size={14} style={{ display: "inline", marginRight: "4px" }} /> : <Copy size={14} style={{ display: "inline", marginRight: "4px" }} />}
-                                        {copied ? "Copied!" : "Copy Text"}
-                                    </button>
                                 </div>
 
-                                <div style={{ display: "flex", gap: "10px" }}>
-                                    <button onClick={handleWhatsAppShare} className={styles.whatsappBtn}>
-                                        <FaWhatsapp size={16} /> Send to WhatsApp
-                                    </button>
+                                {/* Modal Actions Footer */}
+                                <div className={styles.modalFooter}>
                                     <button
+                                        className={styles.modalPrimaryBtn}
                                         onClick={() => {
-                                            setIsDrawerOpen(false);
-                                            setIsQuoteOpen(true);
+                                            const menu = selectedMenu;
+                                            setSelectedMenu(null);
+                                            handleOpenQuoteForMenu(menu);
                                         }}
-                                        className={styles.quoteTriggerBtn}
                                     >
-                                        Request Quote
+                                        Request Quote For This Menu <ArrowUpRight size={18} />
+                                    </button>
+
+                                    <button
+                                        className={styles.modalWhatsAppBtn}
+                                        onClick={() => handleWhatsAppMenuInquiry(selectedMenu)}
+                                    >
+                                        <MessageCircle size={18} />
+                                        <span>Customize on WhatsApp</span>
                                     </button>
                                 </div>
                             </div>
@@ -513,9 +413,14 @@ export default function MenuClient() {
                 )}
             </AnimatePresence>
 
-            {/* Consultation Quote Modal */}
-            <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
+            {/* 6. FINAL GLOBAL CALL TO ACTION */}
+            <FinalCTA />
 
-        </main>
+            {/* 7. QUOTE MODAL */}
+            <QuoteModal
+                isOpen={isQuoteOpen}
+                onClose={() => setIsQuoteOpen(false)}
+            />
+        </div>
     );
 }

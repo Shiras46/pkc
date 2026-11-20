@@ -2,22 +2,22 @@ import { Metadata } from "next";
 import MenuClient from "./MenuClient";
 
 export const metadata: Metadata = {
-    title: "Catering Menu Selection | 32 Pages of Royal Delicacies | PKC Events Kerala",
-    description: "Explore and curate your custom event menu across 32 pages of authentic Kerala catering delicacies: welcome drinks, starters, dum biryani, live counters, grand sadhya, and desserts by Pride Kitchen Caterers & Events.",
+    title: "Catering Menu Portfolio | Signature Kerala Feasts & Banquets | PKC Events",
+    description: "Explore our curated catering menu portfolio: royal Malabar Dum Biryani, 32-course Travancore Sadhya, coastal Arabian seafood spreads, and artisanal live food stations by Pride Kitchen Caterers in Kerala.",
     alternates: {
         canonical: "https://pkcevents.com/menu"
     },
     openGraph: {
-        title: "Catering Menu Selection | 32 Pages of Royal Delicacies | PKC Events Kerala",
-        description: "Explore and curate your custom event menu across 32 pages of authentic Kerala catering delicacies: welcome drinks, starters, dum biryani, live counters, grand sadhya, and desserts by Pride Kitchen Caterers & Events.",
+        title: "Catering Menu Portfolio | Signature Kerala Feasts & Banquets | PKC Events",
+        description: "Explore our curated catering menu portfolio: royal Malabar Dum Biryani, 32-course Travancore Sadhya, coastal Arabian seafood spreads, and artisanal live food stations by Pride Kitchen Caterers in Kerala.",
         url: "https://pkcevents.com/menu",
-        images: [{ url: "https://pkcevents.com/image/services/catering.webp", width: 1200, height: 800, alt: "PKC Events Catering Menu" }],
+        images: [{ url: "https://pkcevents.com/image/services/catering.webp", width: 1200, height: 800, alt: "PKC Events Catering Menu Portfolio" }],
         type: "website"
     },
     twitter: {
         card: "summary_large_image",
-        title: "Catering Menu Selection | 32 Pages of Royal Delicacies | PKC Events Kerala",
-        description: "Explore and curate your custom event menu across 32 pages of authentic Kerala catering delicacies: welcome drinks, starters, dum biryani, live counters, grand sadhya, and desserts by Pride Kitchen Caterers & Events.",
+        title: "Catering Menu Portfolio | Signature Kerala Feasts & Banquets | PKC Events",
+        description: "Explore our curated catering menu portfolio: royal Malabar Dum Biryani, 32-course Travancore Sadhya, coastal Arabian seafood spreads, and artisanal live food stations by Pride Kitchen Caterers in Kerala.",
         images: ["https://pkcevents.com/image/services/catering.webp"]
     }
 };
@@ -26,33 +26,41 @@ export default function MenuPage() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Menu",
-        "name": "Pride Kitchen Caterers & Events Catering Menu",
-        "description": "Comprehensive 32-page event catering menu including live welcome drinks, starters, dum biryanis, seafood specialties, live food counters, and authentic Kerala Sadhya.",
+        "name": "Pride Kitchen Caterers & Events Signature Menu Portfolio",
+        "description": "Curated royal wedding feasts, authentic 32-course Travancore sadhyas, Malabar dum biryanis, and live food counters across Kerala.",
         "url": "https://pkcevents.com/menu",
         "hasMenuSection": [
             {
                 "@type": "MenuSection",
-                "name": "Welcome Drinks & Mocktails"
+                "name": "The Royal Malabar Dum Biryani Feast"
             },
             {
                 "@type": "MenuSection",
-                "name": "Starters & Appetizers"
+                "name": "Grand Travancore 32-Course Royal Sadhya"
             },
             {
                 "@type": "MenuSection",
-                "name": "Biryani & Fragrant Pulao"
+                "name": "The Majestic Grand Reception Buffet"
             },
             {
                 "@type": "MenuSection",
-                "name": "Coastal Seafood Specials"
+                "name": "Vibrant Thattu Kada & Kerala Live Street Food"
             },
             {
                 "@type": "MenuSection",
-                "name": "Live Food Counters & Thattu Kada"
+                "name": "Contemporary Pan-Asian & Continental Spread"
             },
             {
                 "@type": "MenuSection",
-                "name": "Grand Kerala Sadhya"
+                "name": "Royal Mughlai & Nawabi Heritage Feast"
+            },
+            {
+                "@type": "MenuSection",
+                "name": "Royal Coastal Arabian & Seafood Extravaganza"
+            },
+            {
+                "@type": "MenuSection",
+                "name": "Artisanal Dessert & Gourmet Payasam Studio"
             }
         ]
     };
