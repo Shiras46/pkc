@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import styles from "./Menu.module.css";
 import { 
-    menuCategories, 
     menuPortfolioItems, 
     MenuPortfolioItem 
 } from "@/lib/menuPortfolioData";
@@ -19,14 +18,8 @@ import FinalCTA from "@/components/sections/FinalCTA";
 const WHATSAPP_NUMBER = "918138002333";
 
 export default function MenuClient() {
-    const [activeCategory, setActiveCategory] = useState<string>("All Celebrations");
     const [selectedMenu, setSelectedMenu] = useState<MenuPortfolioItem | null>(null);
     const [isQuoteOpen, setIsQuoteOpen] = useState(false);
-
-    // Filter menu collections based on active tab
-    const filteredMenus = activeCategory === "All Celebrations"
-        ? menuPortfolioItems
-        : menuPortfolioItems.filter(item => item.filterCategory === activeCategory || item.category === activeCategory);
 
     // Close modal on Escape key
     useEffect(() => {
@@ -147,21 +140,6 @@ export default function MenuClient() {
                         </p>
                     </div>
 
-                    {/* Category Filter Tabs */}
-                    <div className={styles.tabsContainer} role="tablist" aria-label="Menu Categories">
-                        {menuCategories.map(cat => (
-                            <button
-                                key={cat}
-                                role="tab"
-                                aria-selected={activeCategory === cat}
-                                className={`${styles.filterTab} ${activeCategory === cat ? styles.filterTabActive : ""}`}
-                                onClick={() => setActiveCategory(cat)}
-                            >
-                                {cat}
-                            </button>
-                        ))}
-                    </div>
-
                     {/* Menu Cards Grid */}
                     <motion.div
                         className={styles.grid}
@@ -171,7 +149,7 @@ export default function MenuClient() {
                         transition={{ duration: 0.5 }}
                     >
                         <AnimatePresence>
-                            {filteredMenus.map((menu, index) => (
+                            {menuPortfolioItems.map((menu, index) => (
                                 <motion.div
                                     key={menu.id}
                                     layout
