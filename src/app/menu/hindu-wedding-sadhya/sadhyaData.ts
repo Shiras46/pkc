@@ -1,63 +1,74 @@
-export interface SadhyaCourse {
+export interface SadhyaColumnCourse {
     title: string;
-    items: string[];
+    leftColumn: string[];
+    rightColumn: string[];
 }
 
-export interface SadhyaPackage {
+export interface SadhyaPackageFlow {
     key: string;
     title: string;
+    badge: string;
     subtitle: string;
     description: string;
-    courses: SadhyaCourse[];
+    courses: SadhyaColumnCourse[];
 }
 
-export const SADHYA_PACKAGES: Record<string, SadhyaPackage> = {
+export const SADHYA_FLOW_PACKAGES: Record<string, SadhyaPackageFlow> = {
     executive: {
         key: "executive",
-        title: "Executive Sadhya",
-        subtitle: "Compact and authentic (23 Dishes)",
+        title: "EXECUTIVE SADHYA",
+        badge: "23 Dishes",
+        subtitle: "A TRADITIONAL AND THOUGHTFULLY CURATED WEDDING SADHYA",
         description: "An authentic selection of traditional Kerala wedding Sadhya favourites, served ceremonial-style on fresh plantain leaves.",
         courses: [
             {
-                title: "Rice & Main Curries",
-                items: [
+                title: "RICE & MAIN CURRIES",
+                leftColumn: [
                     "Chor",
                     "Ney Parippu",
-                    "Sambar",
+                    "Sambar"
+                ],
+                rightColumn: [
                     "Rasam",
                     "Moru"
                 ]
             },
             {
-                title: "Sadhya Items",
-                items: [
+                title: "SADHYA ITEMS",
+                leftColumn: [
                     "Pappadam",
                     "Kalan",
                     "Kovakka Thoran",
                     "Avial",
                     "Masala Curry",
                     "Thakali Curry",
-                    "Olan",
+                    "Olan"
+                ],
+                rightColumn: [
                     "Koottucurry",
                     "Pachadi",
                     "Kichadi",
                     "Achar",
-                    "Pul Inchi",
+                    "Pulinchi",
                     "Pazham"
                 ]
             },
             {
-                title: "Varavu, Kondattam & Varatti",
-                items: [
+                title: "VARAVU, KONDATTAM & VARATTI",
+                leftColumn: [
                     "Kondattam",
-                    "Sharkara Varatti",
                     "Kaya Varavu"
+                ],
+                rightColumn: [
+                    "Sharkara Varatti"
                 ]
             },
             {
-                title: "Payasam",
-                items: [
-                    "Palada Payasam",
+                title: "PAYASAM",
+                leftColumn: [
+                    "Palada Payasam"
+                ],
+                rightColumn: [
                     "Parippu Payasam"
                 ]
             }
@@ -66,23 +77,26 @@ export const SADHYA_PACKAGES: Record<string, SadhyaPackage> = {
 
     classic: {
         key: "classic",
-        title: "Classic Sadhya",
-        subtitle: "Balanced traditional spread (31 Dishes)",
+        title: "CLASSIC SADHYA",
+        badge: "31 Dishes",
+        subtitle: "A FULLER SELECTION OF TRADITIONAL KERALA WEDDING SADHYA FAVOURITES",
         description: "A fuller selection of traditional Kerala wedding Sadhya favourites featuring festive delicacies and time-honoured spices.",
         courses: [
             {
-                title: "Rice & Main Curries",
-                items: [
+                title: "RICE & MAIN CURRIES",
+                leftColumn: [
                     "Chor",
                     "Ney Parippu",
-                    "Sambar",
+                    "Sambar"
+                ],
+                rightColumn: [
                     "Rasam",
                     "Moru"
                 ]
             },
             {
-                title: "Sadhya Items",
-                items: [
+                title: "SADHYA ITEMS",
+                leftColumn: [
                     "Pappadam",
                     "Kalan",
                     "Kovakka Thoran",
@@ -92,7 +106,9 @@ export const SADHYA_PACKAGES: Record<string, SadhyaPackage> = {
                     "Olan",
                     "Koottucurry",
                     "Pachadi",
-                    "Kichadi",
+                    "Kichadi"
+                ],
+                rightColumn: [
                     "Vadugapuli Achar",
                     "Manga Achar",
                     "Pul Inchi",
@@ -106,18 +122,22 @@ export const SADHYA_PACKAGES: Record<string, SadhyaPackage> = {
                 ]
             },
             {
-                title: "Varavu, Kondattam & Varatti",
-                items: [
+                title: "VARAVU, KONDATTAM & VARATTI",
+                leftColumn: [
                     "Kaya Varavu",
-                    "Sharkara Varatti",
+                    "Sharkara Varatti"
+                ],
+                rightColumn: [
                     "Kondattam",
                     "Chena Varavu"
                 ]
             },
             {
-                title: "Payasam",
-                items: [
-                    "Palada Payasam",
+                title: "PAYASAM",
+                leftColumn: [
+                    "Palada Payasam"
+                ],
+                rightColumn: [
                     "Parippu Payasam"
                 ]
             }
@@ -126,23 +146,26 @@ export const SADHYA_PACKAGES: Record<string, SadhyaPackage> = {
 
     premium: {
         key: "premium",
-        title: "Premium Sadhya",
-        subtitle: "Elaborate feast & rich flavours (39 Dishes)",
+        title: "PREMIUM SADHYA",
+        badge: "39 Dishes",
+        subtitle: "AN ELABORATE KERALA WEDDING FEAST FEATURING AN EXTENSIVE SELECTION OF TRADITIONAL DELICACIES, FESTIVE FAVOURITES AND RICH FLAVOURS",
         description: "An elaborate Kerala wedding feast featuring an extensive selection of traditional delicacies, festive favourites and rich flavours.",
         courses: [
             {
-                title: "Rice & Main Curries",
-                items: [
+                title: "RICE & MAIN CURRIES",
+                leftColumn: [
                     "Chor",
                     "Ney Parippu",
-                    "Sambar",
+                    "Sambar"
+                ],
+                rightColumn: [
                     "Rasam",
                     "Moru"
                 ]
             },
             {
-                title: "Sadhya Items",
-                items: [
+                title: "SADHYA ITEMS",
+                leftColumn: [
                     "Pappadam",
                     "Erissery",
                     "Gobi Fry",
@@ -155,7 +178,9 @@ export const SADHYA_PACKAGES: Record<string, SadhyaPackage> = {
                     "Thakali Curry",
                     "Olan",
                     "Koottucurry",
-                    "Pachadi",
+                    "Pachadi"
+                ],
+                rightColumn: [
                     "Kichadi",
                     "Vadugapuli Achar",
                     "Manga Achar",
@@ -172,20 +197,24 @@ export const SADHYA_PACKAGES: Record<string, SadhyaPackage> = {
                 ]
             },
             {
-                title: "Varavu, Kondattam & Varatti",
-                items: [
+                title: "VARAVU, KONDATTAM & VARATTI",
+                leftColumn: [
                     "Kaya Varavu",
                     "Sharkara Varatti",
-                    "Kondattam",
+                    "Kondattam"
+                ],
+                rightColumn: [
                     "Chena Varavu",
                     "Kayapaka Kondattam"
                 ]
             },
             {
-                title: "Payasam",
-                items: [
+                title: "PAYASAM",
+                leftColumn: [
                     "Palada Payasam",
-                    "Parippu Payasam",
+                    "Parippu Payasam"
+                ],
+                rightColumn: [
                     "Pazham Payasam"
                 ]
             }
@@ -194,75 +223,84 @@ export const SADHYA_PACKAGES: Record<string, SadhyaPackage> = {
 
     grand: {
         key: "grand",
-        title: "Grand Sadhya",
-        subtitle: "Imperial royal spread (48 Dishes)",
+        title: "GRAND SADHYA",
+        badge: "48 Dishes",
+        subtitle: "AN IMPERIAL ROYAL FEAST WITH THE GRANDEST SPREAD OF HERITAGE RECIPES AND CELEBRATORY SWEETS",
         description: "The ultimate imperial royal celebratory Sadhya with the grandest spread of heritage specialties, delicacies, and festival sweets.",
         courses: [
             {
-                title: "Rice & Main Curries",
-                items: [
+                title: "RICE & MAIN CURRIES",
+                leftColumn: [
                     "Chor",
                     "Ney Parippu",
-                    "Sambar",
+                    "Sambar"
+                ],
+                rightColumn: [
                     "Rasam",
                     "Moru"
                 ]
             },
             {
-                title: "Sadhya Items",
-                items: [
+                title: "SADHYA ITEMS",
+                leftColumn: [
                     "Pappadam",
-                    "Pul Inchi",
                     "Erissery",
-                    "Inji Thayir",
                     "Gobi Fry",
-                    "Ishtew",
                     "Potato Fry",
-                    "Cabbage Thoran",
                     "Ulli Thiyal",
-                    "Mezhukkupuratti",
                     "Kalan",
-                    "Pazham",
                     "Kovakka Thoran",
-                    "Parippuvada",
                     "Avial",
-                    "Jilebi",
                     "Masala Curry",
-                    "Boli",
                     "Thakali Curry",
-                    "Vendakka Kichadi",
                     "Olan",
-                    "Thoran",
                     "Koottucurry",
-                    "Koorka Mezhukkupuratti",
                     "Pachadi",
-                    "Paneer Bhurji",
                     "Kichadi",
-                    "Soya Perattu",
                     "Vadugapuli Achar",
-                    "Ari Noorukku",
                     "Manga Achar",
+                    "Nellikka Achar"
+                ],
+                rightColumn: [
+                    "Pul Inchi",
+                    "Inji Thayir",
+                    "Ishtew",
+                    "Cabbage Thoran",
+                    "Mezhukkupuratti",
+                    "Pazham",
+                    "Parippuvada",
+                    "Jilebi",
+                    "Boli",
+                    "Vendakka Kichadi",
+                    "Thoran",
+                    "Koorka Mezhukkupuratti",
+                    "Paneer Bhurji",
+                    "Soya Perattu",
+                    "Ari Noorukku",
                     "Kesari",
-                    "Nellikka Achar",
                     "Unniyappam"
                 ]
             },
             {
-                title: "Varavu, Kondattam & Varatti",
-                items: [
+                title: "VARAVU, KONDATTAM & VARATTI",
+                leftColumn: [
                     "Kaya Varavu",
-                    "Chena Varavu",
                     "Sharkara Varatti",
-                    "Kayapaka Kondattam",
                     "Kondattam"
+                ],
+                rightColumn: [
+                    "Chena Varavu",
+                    "Kayapaka Kondattam"
                 ]
             },
             {
-                title: "Payasam",
-                items: [
+                title: "PAYASAM",
+                leftColumn: [
                     "Palada Payasam",
+                    "Parippu Payasam"
+                ],
+                rightColumn: [
                     "Pazham Payasam",
-                    "Parippu Payasam",
                     "Mathanga Payasam"
                 ]
             }
