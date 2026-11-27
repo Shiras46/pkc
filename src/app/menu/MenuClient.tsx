@@ -172,6 +172,11 @@ export default function MenuClient() {
 
                                     <div className={styles.cardContent}>
                                         <h3 className={styles.cardTitle}>{menu.title}</h3>
+                                        {menu.packageName && (
+                                            <span className={styles.cardPackageTag}>
+                                                {menu.packageName}
+                                            </span>
+                                        )}
                                         <p className={styles.cardDesc}>{menu.shortDesc}</p>
 
                                         {/* Highlights Chips */}
@@ -282,6 +287,11 @@ export default function MenuClient() {
                                 <div className={styles.modalHeroText}>
                                     <span className={styles.modalCategoryBadge}>{selectedMenu.category}</span>
                                     <h2 className={styles.modalTitle}>{selectedMenu.title}</h2>
+                                    {selectedMenu.packageName && (
+                                        <div className={styles.modalPackageSubtitle}>
+                                            {selectedMenu.packageName}
+                                        </div>
+                                    )}
                                     <div className={styles.modalMetaRow}>
                                         <span><Users size={15} /> {selectedMenu.servingCapacity}</span>
                                         <span>•</span>
@@ -334,7 +344,16 @@ export default function MenuClient() {
 
                                 {/* Course Breakdown Sections */}
                                 <div className={styles.modalCoursesContainer}>
-                                    <h3 className={styles.modalSectionHeading}>Full Course-By-Course Menu</h3>
+                                    <div className={styles.coursesHeaderWrapper}>
+                                        <h3 className={styles.modalSectionHeading}>
+                                            {selectedMenu.packageName ? `${selectedMenu.packageName} Menu Breakdown` : "Full Course-By-Course Menu"}
+                                        </h3>
+                                        {selectedMenu.packageName && (
+                                            <span className={styles.modalPackagePill}>
+                                                {selectedMenu.packageName}
+                                            </span>
+                                        )}
+                                    </div>
                                     <div className={styles.courseSectionsGrid}>
                                         {selectedMenu.courseSections.map((sec, secIdx) => (
                                             <div key={secIdx} className={styles.courseCard}>

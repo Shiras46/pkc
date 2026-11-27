@@ -6,6 +6,7 @@ export interface MenuCourseSection {
 export interface MenuPortfolioItem {
     id: string;
     title: string;
+    packageName?: string;
     category: string;
     filterCategory: string;
     isComingSoon?: boolean;
@@ -107,71 +108,66 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
     {
         id: "hindu-wedding-sadhya",
         title: "Hindu Wedding Sadhya (soon)",
+        packageName: "Executive Sadhya",
         category: "Hindu Wedding",
         filterCategory: "Traditional Sadhya",
         isComingSoon: true,
         servingCapacity: "Min 100 – 4,000+ Guests",
-        courseCount: "32 Traditional Courses",
+        courseCount: "23 Traditional Delicacies",
         dietary: "100% Pure Vegetarian",
         image: "/image/services/sadhya.webp",
         objectPosition: "center 30%",
-        shortDesc: "An imperial seated banquet served traditionally on fresh green plantain leaves, curated with cold-pressed coconut oil, fresh garden vegetables, and 4 artisanal payasams.",
-        fullStory: "The Kerala Hindu Wedding Sadhya is an architectural symphony of the 6 sacred tastes (Shadruchi). Served strictly according to ceremonial seating etiquette on freshly harvested plantain leaves, our master sadhya chefs prepare every dish using authentic heritage brass urlis, cold-pressed virgin coconut oil, and hand-ground spices.",
+        shortDesc: "An authentic seated Kerala wedding banquet served on fresh green plantain leaves, featuring our traditional 23-dish Executive Sadhya, cold-pressed coconut oil curries, and twin royal payasams.",
+        fullStory: "The Kerala Hindu Wedding Sadhya is an architectural symphony of the 6 sacred tastes (Shadruchi). Served strictly according to ceremonial seating etiquette on freshly harvested plantain leaves, our master sadhya chefs prepare our signature Executive Sadhya with 23 authentic heritage dishes, cold-pressed virgin coconut oil, and hand-ground spices.",
         highlights: [
-            "32 Auspicious Plantain Leaf Dishes",
-            "4 Artisanal Traditional Payasams",
-            "Cold-Pressed Kerala Coconut Oil",
-            "Live Hot Boli & Paal Payasam Pairing"
+            "Executive Sadhya (23 Traditional Dishes)",
+            "Twin Royal Payasams (Palada & Parippu)",
+            "Traditional Seated Plantain Leaf Feast",
+            "100% Pure Vegetarian & Cold-Pressed Coconut Oil"
         ],
-        chefSpecial: "Our slow-boiled Palada Pradhaman made with pure buffalo milk and caramelized sugar, served alongside hot, melt-in-the-mouth golden Boli.",
+        chefSpecial: "Our signature slow-simmered Palada Payasam and roasted coconut Parippu Payasam served hot over fragrant Chor, golden Ney Parippu, and crispy Pappadam on fresh plantain leaves.",
         courseSections: [
             {
-                title: "Traditional Plantain Leaf Starters",
+                title: "RICE & MAIN CURRIES",
                 items: [
-                    "Crispy Banana Upperi (Salted Plantain Chips)",
-                    "Sharkara Upperi (Jaggery Glazed Plantain Bites)",
-                    "Inji Puli (Tangy Tamarind & Ginger Relish)",
-                    "Kadumanga Achar (Tender Green Mango Pickle)",
-                    "Small Sweet Yellow Banana & Crystal Salt"
+                    "Chor",
+                    "Ney Parippu",
+                    "Sambar",
+                    "Rasam",
+                    "Moru"
                 ]
             },
             {
-                title: "Sacred Thali Mains & Rice",
+                title: "SADHYA ITEMS",
                 items: [
-                    "Steamed Royal Kerala Red Matta Rice",
-                    "Golden Parippu with Pure Desi Cow Ghee",
-                    "Traditional Kerala Drumstick & Yam Sambar",
-                    "Pulissery with Ash Gourd & Curd",
-                    "Zesty Spiced Pepper Rasam"
+                    "Pappadam",
+                    "Kalan",
+                    "Kovakka Thoran",
+                    "Avial",
+                    "Masala Curry",
+                    "Thakali Curry",
+                    "Olan",
+                    "Koottucurry",
+                    "Pachadi",
+                    "Kichadi",
+                    "Achar",
+                    "Pul Inchi",
+                    "Pazham"
                 ]
             },
             {
-                title: "Heritage Side Dishes (Thoran & Koottu)",
+                title: "VARAVU, KONDATTAM & VARATTI",
                 items: [
-                    "Traditional Avial with Cold-Pressed Coconut Oil & Curry Leaves",
-                    "Vallaripakka Thoran (Crisp Vegetable Stir-Fry with Grated Coconut)",
-                    "Olan with White Pumpkin, Red Lobia & Sweet Coconut Milk",
-                    "Pineapple Pachadi (Sweet & Sour Pineapple in Yogurt & Mustard)",
-                    "Beetroot Kichadi with Ground Coconut Paste",
-                    "Koottukari with Roasted Coconut & Bengal Gram",
-                    "Erissery with Pumpkin & Toasted Coconut"
+                    "Kondattam",
+                    "Sharkara Varatti",
+                    "Kaya Varavu"
                 ]
             },
             {
-                title: "Accompaniments & Crunch",
+                title: "PAYASAM",
                 items: [
-                    "Crispy Fried Kerala Pappadam",
-                    "Sun-Dried Moru Milagu (Salted Curd Chillies)",
-                    "Fresh Spiced Sambharam (Herb Buttermilk)"
-                ]
-            },
-            {
-                title: "The Auspicious Payasam Quartet",
-                items: [
-                    "Rich Palada Pradhaman",
-                    "Ada Pradhaman with Dark Jaggery & Coconut Milk",
-                    "Parippu Payasam with Fried Coconut Slivers & Cashews",
-                    "Melt-In-Mouth Golden Travancore Boli"
+                    "Palada Payasam",
+                    "Parippu Payasam"
                 ]
             }
         ]
