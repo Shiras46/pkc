@@ -27,6 +27,8 @@ export default function MenuClient() {
     const handleMenuClick = (menu: MenuPortfolioItem) => {
         if (menu.id === "wedding-reception") {
             router.push("/menu/wedding-reception");
+        } else if (menu.id === "hindu-wedding-sadhya") {
+            router.push("/menu/hindu-wedding-sadhya");
         } else {
             setSelectedMenu(menu);
         }
@@ -190,9 +192,11 @@ export default function MenuClient() {
 
                                         <div className={styles.cardFooter}>
                                             <span className={styles.viewLink}>
-                                                {menu.isComingSoon 
-                                                    ? "Preview Menu & Pre-Book" 
-                                                    : "Explore Complete Menu"} <ChevronRight size={16} />
+                                                {menu.id === "wedding-reception" || menu.id === "hindu-wedding-sadhya"
+                                                    ? "Explore Complete Menu" 
+                                                    : menu.isComingSoon 
+                                                        ? "Preview Menu & Pre-Book" 
+                                                        : "Explore Complete Menu"} <ChevronRight size={16} />
                                             </span>
                                         </div>
                                     </div>
