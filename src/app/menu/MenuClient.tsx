@@ -24,11 +24,19 @@ export default function MenuClient() {
     const [selectedMenu, setSelectedMenu] = useState<MenuPortfolioItem | null>(null);
     const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
+    const builderRoutes: Record<string, string> = {
+        "wedding-reception": "/menu/wedding-reception",
+        "hindu-wedding-sadhya": "/menu/hindu-wedding-sadhya",
+        "wedding-dinner": "/menu/wedding-dinner",
+        "birthday-celebration": "/menu/birthday-celebration",
+        "sangeet-ceremony": "/menu/sangeet-ceremony",
+        "haldi-ceremony": "/menu/haldi-ceremony",
+        "christian-wedding": "/menu/christian-wedding",
+    };
+
     const handleMenuClick = (menu: MenuPortfolioItem) => {
-        if (menu.id === "wedding-reception") {
-            router.push("/menu/wedding-reception");
-        } else if (menu.id === "hindu-wedding-sadhya") {
-            router.push("/menu/hindu-wedding-sadhya");
+        if (builderRoutes[menu.id]) {
+            router.push(builderRoutes[menu.id]);
         } else {
             setSelectedMenu(menu);
         }
@@ -192,7 +200,7 @@ export default function MenuClient() {
 
                                         <div className={styles.cardFooter}>
                                             <span className={styles.viewLink}>
-                                                {menu.id === "wedding-reception" || menu.id === "hindu-wedding-sadhya"
+                                                {builderRoutes[menu.id]
                                                     ? "Explore Complete Menu" 
                                                     : menu.isComingSoon 
                                                         ? "Preview Menu & Pre-Book" 

@@ -104,10 +104,10 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
         ]
     },
 
-    // 2. Hindu Wedding Sadhya (soon)
+    // 2. Hindu Wedding Sadhya
     {
         id: "hindu-wedding-sadhya",
-        title: "Hindu Wedding Sadhya (soon)",
+        title: "Hindu Wedding Sadhya",
         packageName: "4 Curated Packages",
         category: "Hindu Wedding",
         filterCategory: "Traditional Sadhya",
@@ -173,15 +173,16 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
         ]
     },
 
-    // 3. Christian Wedding (soon)
+    // 3. Christian Wedding
     {
         id: "christian-wedding",
-        title: "Christian Wedding (soon)",
+        title: "Christian Wedding",
+        packageName: "3 Curated Packages",
         category: "Christian Wedding",
         filterCategory: "Weddings & Receptions",
-        isComingSoon: true,
+        isComingSoon: false,
         servingCapacity: "Min 150 – 3,500+ Guests",
-        courseCount: "28 Heritage Courses",
+        courseCount: "38 Signature Dishes",
         dietary: "Non-Veg & Veg Specialties",
         image: "/image/services/Wedding Catering.webp",
         objectPosition: "center 30%",
@@ -315,15 +316,16 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
         ]
     },
 
-    // 5. Wedding Dinner (soon)
+    // 5. Wedding Dinner
     {
         id: "wedding-dinner",
-        title: "Wedding Dinner (soon)",
+        title: "Wedding Dinner",
+        packageName: "3 Curated Packages",
         category: "Wedding Dinner",
         filterCategory: "Weddings & Receptions",
-        isComingSoon: true,
+        isComingSoon: false,
         servingCapacity: "Min 100 – 2,500+ Guests",
-        courseCount: "25 Gourmet Delicacies",
+        courseCount: "38 Signature Dishes",
         dietary: "Gourmet Non-Veg & Veg",
         image: "/image/services/wedding-catering.webp",
         objectPosition: "center 40%",
@@ -385,15 +387,16 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
         ]
     },
 
-    // 6. Haldi Ceremony (soon)
+    // 6. Haldi Ceremony
     {
         id: "haldi-ceremony",
-        title: "Haldi Ceremony (soon)",
+        title: "Haldi Ceremony",
+        packageName: "3 Curated Packages",
         category: "Haldi Ceremony",
         filterCategory: "Pre-Wedding Rituals",
-        isComingSoon: true,
+        isComingSoon: false,
         servingCapacity: "Min 50 – 1,000+ Guests",
-        courseCount: "20 Vibrant Delicacies",
+        courseCount: "38 Signature Dishes",
         dietary: "Pure Vegetarian & Refreshments",
         image: "/image/services/live-thattukada.webp",
         objectPosition: "center 35%",
@@ -453,15 +456,16 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
         ]
     },
 
-    // 7. Sangeet Ceremony (soon)
+    // 7. Sangeet Ceremony
     {
         id: "sangeet-ceremony",
-        title: "Sangeet Ceremony (soon)",
+        title: "Sangeet Ceremony",
+        packageName: "3 Curated Packages",
         category: "Sangeet Ceremony",
         filterCategory: "Pre-Wedding Rituals",
-        isComingSoon: true,
+        isComingSoon: false,
         servingCapacity: "Min 100 – 1,500+ Guests",
-        courseCount: "24 Party Delicacies",
+        courseCount: "38 Signature Dishes",
         dietary: "Finger Foods & Live Counters",
         image: "/image/gallery/catering section/DSC02202.webp",
         objectPosition: "center 30%",
@@ -522,15 +526,16 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
         ]
     },
 
-    // 8. Birthday Celebration (soon)
+    // 8. Birthday Celebration
     {
         id: "birthday-celebration",
-        title: "Birthday Celebration (soon)",
+        title: "Birthday Celebration",
+        packageName: "3 Curated Packages",
         category: "Birthday Celebration",
         filterCategory: "Social & Birthdays",
-        isComingSoon: true,
+        isComingSoon: false,
         servingCapacity: "Min 50 – 1,000+ Guests",
-        courseCount: "18 Fun Delicacies",
+        courseCount: "38 Signature Dishes",
         dietary: "Kids & Family Special",
         image: "/image/gallery/catering section/DSC01931.webp",
         objectPosition: "center 35%",

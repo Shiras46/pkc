@@ -13,7 +13,15 @@ import FinalCTA from "@/components/sections/FinalCTA";
 
 const WHATSAPP_NUMBER = "918138002333";
 
-export default function WeddingReceptionPageClient() {
+export interface WeddingReceptionPageClientProps {
+    occasionTitle?: string;
+    occasionSlug?: string;
+}
+
+export default function WeddingReceptionPageClient({
+    occasionTitle = "Wedding Reception",
+    occasionSlug = "wedding-reception"
+}: WeddingReceptionPageClientProps = {}) {
     const [selectedPkgKey, setSelectedPkgKey] = useState<string>("prem");
     const [selections, setSelections] = useState<Record<string, string[]>>({});
     const [copyStatus, setCopyStatus] = useState<string>("Copy Menu");
@@ -93,7 +101,7 @@ export default function WeddingReceptionPageClient() {
 
     // Build formatted text for copy / WhatsApp
     const generateMenuText = () => {
-        let text = `*PKC Wedding Reception – ${activePkg.title} Menu*\n`;
+        let text = `*PKC ${occasionTitle} – ${activePkg.title} Menu*\n`;
         let lastCourse = "";
 
         slots.forEach((s, idx) => {
@@ -111,7 +119,7 @@ export default function WeddingReceptionPageClient() {
         });
 
         text += `\n*Total dishes selected:* ${totalChosen} of ${totalSelectable}\n`;
-        text += `\nCurated via PKC Events Menu Builder (https://pkcevents.com/menu/wedding-reception)`;
+        text += `\nCurated via PKC Events Menu Builder (https://pkcevents.com/menu/${occasionSlug})`;
         return text;
     };
 
@@ -178,7 +186,7 @@ export default function WeddingReceptionPageClient() {
 
                         {/* What is included overview */}
                         <div className={styles.overviewBox}>
-                            <b>What is included in the {activePkg.title} menu:</b>
+                            <b>What is included in the {activePkg.title} {occasionTitle} menu:</b>
                             <ul>
                                 {Object.entries(overviewGroupings).map(([course, itemsList]) => (
                                     <li key={course}>
@@ -270,9 +278,9 @@ export default function WeddingReceptionPageClient() {
 
                     {/* Right Column: Sticky Summary & Actions */}
                     <aside className={styles.summarySidebar} data-lenis-prevent="true">
-                        <h3>Your Menu</h3>
+                        <h3>Your {occasionTitle} Menu</h3>
                         <div className={styles.progressLabel}>
-                            {activePkg.title} menu: {totalChosen} of {totalSelectable} dishes chosen
+                            {activePkg.title} {occasionTitle} menu: {totalChosen} of {totalSelectable} dishes chosen
                         </div>
                         <div className={styles.progressBarTrack}>
                             <i className={styles.progressBarFill} style={{ width: `${progressPercent}%` }} />
