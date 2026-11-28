@@ -7,6 +7,7 @@ import styles from "./HinduWeddingSadhya.module.css";
 import { SADHYA_FLOW_PACKAGES, SadhyaPackageFlow } from "./sadhyaData";
 import QuoteModal from "@/components/ui/QuoteModal";
 import FinalCTA from "@/components/sections/FinalCTA";
+import MenuDetailBookingForm from "@/components/menu/MenuDetailBookingForm";
 
 const WHATSAPP_NUMBER = "918138002333";
 
@@ -145,6 +146,14 @@ export default function HinduWeddingSadhyaClient() {
                         <MessageCircle size={18} /> Inquire on WhatsApp
                     </button>
                 </div>
+
+                {/* Direct Catering Booking Form (Pax, Workdate, Auditorium) */}
+                <MenuDetailBookingForm
+                    occasionTitle="Hindu Wedding Sadhya"
+                    occasionSlug="hindu-wedding-sadhya"
+                    packageTitle={activePkg.title}
+                    getMenuSummary={generateMenuText}
+                />
             </div>
 
             {/* Global Final CTA */}

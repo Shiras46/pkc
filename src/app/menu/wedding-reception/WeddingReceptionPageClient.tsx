@@ -10,6 +10,7 @@ import {
 } from "@/components/menu/WeddingReceptionMenuBuilder";
 import QuoteModal from "@/components/ui/QuoteModal";
 import FinalCTA from "@/components/sections/FinalCTA";
+import MenuDetailBookingForm from "@/components/menu/MenuDetailBookingForm";
 
 const WHATSAPP_NUMBER = "918138002333";
 
@@ -366,6 +367,16 @@ export default function WeddingReceptionPageClient({
                         </div>
                     </aside>
                 </div>
+
+                {/* Direct Catering Booking Form (Pax, Workdate, Auditorium) */}
+                <MenuDetailBookingForm
+                    occasionTitle={occasionTitle}
+                    occasionSlug={occasionSlug}
+                    packageTitle={activePkg.title}
+                    selectedCount={totalChosen}
+                    totalCount={totalSelectable}
+                    getMenuSummary={generateMenuText}
+                />
             </div>
 
             {/* Global Final CTA */}

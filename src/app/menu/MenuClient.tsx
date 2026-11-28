@@ -16,6 +16,7 @@ import {
 } from "@/lib/menuPortfolioData";
 import QuoteModal from "@/components/ui/QuoteModal";
 import FinalCTA from "@/components/sections/FinalCTA";
+import MenuDetailBookingForm from "@/components/menu/MenuDetailBookingForm";
 
 const WHATSAPP_NUMBER = "918138002333";
 
@@ -371,6 +372,20 @@ export default function MenuClient() {
                                         ))}
                                     </div>
                                 </div>
+
+                                {/* Direct Catering Booking Form (Pax, Workdate, Auditorium) */}
+                                <MenuDetailBookingForm
+                                    occasionTitle={selectedMenu.title}
+                                    occasionSlug={selectedMenu.id}
+                                    packageTitle={selectedMenu.courseCount}
+                                    getMenuSummary={() => {
+                                        let text = `*${selectedMenu.title} (${selectedMenu.category})*\n`;
+                                        text += `Capacity: ${selectedMenu.servingCapacity}\n`;
+                                        text += `Courses: ${selectedMenu.courseCount}\n`;
+                                        text += `Dietary: ${selectedMenu.dietary}\n`;
+                                        return text;
+                                    }}
+                                />
 
                                 {/* Modal Actions Footer */}
                                 <div className={styles.modalFooter}>

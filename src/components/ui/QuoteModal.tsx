@@ -12,7 +12,14 @@ interface QuoteModalProps {
 }
 
 export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
-    const [formData, setFormData] = useState({ name: "", phone: "", eventType: "Wedding Catering" });
+    const [formData, setFormData] = useState({ 
+        name: "", 
+        phone: "", 
+        pax: "", 
+        workDate: "", 
+        auditorium: "", 
+        eventType: "Wedding Catering" 
+    });
     const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
 
     const handleFormSubmit = async (e: React.FormEvent) => {
@@ -22,7 +29,12 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
         try {
             // 1. Open WhatsApp immediately to avoid popup blockers
             const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918138002333";
-            const message = `*New Consultation Request*\n\nName: ${formData.name}\nPhone: ${formData.phone}\nService Required: ${formData.eventType}\n\nSubmitted from Website`;
+            let message = `*New Catering Consultation Request*\n\nName: ${formData.name}\nPhone: ${formData.phone}\nService Required: ${formData.eventType}`;
+            if (formData.pax) message += `\nPax (Guests): ${formData.pax}`;
+            if (formData.workDate) message += `\nWorkdate (Event Date): ${formData.workDate}`;
+            if (formData.auditorium) message += `\nAuditorium / Venue: ${formData.auditorium}`;
+            message += `\n\nSubmitted from Website Quote Modal`;
+
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
             
@@ -36,8 +48,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     body: JSON.stringify({
                         name: formData.name,
                         phone: formData.phone,
-                        service: formData.eventType,
-                        message: "Submitted from Website Quote Modal"
+                        service: `${formData.eventType}${formData.pax ? ` (${formData.pax} Pax)` : ''}${formData.auditorium ? ` - ${formData.auditorium}` : ''}`,
+                        eventType: formData.eventType,
+                        eventDate: formData.workDate,
+                        guestCount: formData.pax ? Number(formData.pax) : undefined,
+                        message: `Pax: ${formData.pax || 'N/A'} | Workdate: ${formData.workDate || 'N/A'} | Auditorium: ${formData.auditorium || 'N/A'}\nSubmitted from Website Quote Modal`
                     }),
                     keepalive: true
                 });
@@ -52,7 +67,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             setStatus("success");
             setTimeout(() => {
                 setStatus("idle");
-                setFormData({ name: "", phone: "", eventType: "Wedding Catering" });
+                setFormData({ name: "", phone: "", pax: "", workDate: "", auditorium: "", eventType: "Wedding Catering" });
                 onClose();
             }, 3000);
         } catch (error) {
@@ -105,6 +120,37 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                                             value={formData.phone}
                                             onChange={e => setFormData({...formData, phone: e.target.value})}
                                             aria-label="Phone Number"
+                                        />
+                                    </div>
+                                    <div className={styles.inputGroup}>
+                                        <input 
+                                            type="number" 
+                                            min="25"
+                                            placeholder="Pax (Guest Count, e.g. 500)" 
+                                            required
+                                            value={formData.pax}
+                                            onChange={e => setFormData({...formData, pax: e.target.value})}
+                                            aria-label="Pax (Guest Count)"
+                                        />
+                                    </div>
+                                    <div className={styles.inputGroup}>
+                                        <input 
+                                            type="date" 
+                                            placeholder="Workdate (Event Date)" 
+                                            required
+                                            value={formData.workDate}
+                                            onChange={e => setFormData({...formData, workDate: e.target.value})}
+                                            aria-label="Workdate (Event Date)"
+                                        />
+                                    </div>
+                                    <div className={styles.inputGroup}>
+                                        <input 
+                                            type="text" 
+                                            placeholder="Auditorium / Venue (e.g. Lulu Ballroom)" 
+                                            required
+                                            value={formData.auditorium}
+                                            onChange={e => setFormData({...formData, auditorium: e.target.value})}
+                                            aria-label="Auditorium / Venue"
                                         />
                                     </div>
                                     <div className={styles.inputGroup}>
