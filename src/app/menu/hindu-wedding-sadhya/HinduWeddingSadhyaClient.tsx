@@ -71,7 +71,11 @@ export default function HinduWeddingSadhyaClient() {
                 </header>
 
                 {/* Package Switcher Tabs */}
-                <nav className={styles.packageSwitcher} aria-label="Sadhya Packages">
+                <nav 
+                    className={styles.packageSwitcher} 
+                    aria-label="Sadhya Packages"
+                    data-lenis-prevent="true"
+                >
                     {Object.values(SADHYA_FLOW_PACKAGES).map(pkg => {
                         const isActive = pkg.key === selectedPkgKey;
                         return (
