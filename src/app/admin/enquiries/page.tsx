@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { RefreshCw, Trash2, Phone, MessageCircle } from "lucide-react";
+import { RefreshCw, Trash2, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import styles from "../blog/BlogManagement.module.css";
 
 interface Enquiry {
@@ -166,7 +167,7 @@ export default function EnquiriesPage() {
                                                         title="Chat on WhatsApp"
                                                         style={{ color: '#25D366', display: 'inline-flex' }}
                                                     >
-                                                        <MessageCircle size={14} />
+                                                        <FaWhatsapp size={14} />
                                                     </a>
                                                 )}
                                             </div>

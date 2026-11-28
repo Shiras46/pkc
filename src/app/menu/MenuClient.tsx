@@ -7,8 +7,9 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
     Users, ChevronRight, X, CheckCircle2, 
-    UtensilsCrossed, ChefHat, MessageCircle, ArrowUpRight
+    UtensilsCrossed, ChefHat, ArrowUpRight
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import styles from "./Menu.module.css";
 import { 
     menuPortfolioItems, 
@@ -236,7 +237,7 @@ export default function MenuClient() {
                                     rel="noopener noreferrer"
                                     className={styles.whatsappBtn}
                                 >
-                                    <MessageCircle size={18} /> Chat with Chef on WhatsApp
+                                    <FaWhatsapp size={19} /> Chat with Chef on WhatsApp
                                 </a>
                             </div>
                         </div>
@@ -389,7 +390,7 @@ export default function MenuClient() {
                                         className={styles.modalWhatsAppBtn}
                                         onClick={() => handleWhatsAppMenuInquiry(selectedMenu)}
                                     >
-                                        <MessageCircle size={18} />
+                                        <FaWhatsapp size={19} />
                                         <span>Customize on WhatsApp</span>
                                     </button>
                                 </div>

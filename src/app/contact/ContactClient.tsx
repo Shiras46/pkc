@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, MessageCircle, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import BrandName from "@/components/ui/BrandName";
 import styles from "./Contact.module.css";
 import { trackContactClick, trackEvent } from "@/lib/tracking";
@@ -132,7 +133,7 @@ export default function ContactClient() {
                             </div>
 
                             <div className={styles.whatsappBox}>
-                                <MessageCircle size={30} aria-hidden="true" />
+                                <FaWhatsapp size={32} aria-hidden="true" />
                                 <div>
                                     <h3>Quick Support</h3>
                                     <p>Chat with our event experts on WhatsApp for instant replies.</p>

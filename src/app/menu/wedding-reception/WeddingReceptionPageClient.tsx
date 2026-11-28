@@ -2,7 +2,8 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { ChevronLeft, Check, Copy, MessageCircle, RotateCcw, Users, Calendar, MapPin } from "lucide-react";
+import { ChevronLeft, Check, Copy, RotateCcw, Users, Calendar, MapPin } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import styles from "./WeddingReceptionPage.module.css";
 import { 
     DISH_POOLS, 
@@ -431,7 +432,7 @@ export default function WeddingReceptionPageClient({
                             </button>
 
                             <button type="button" className={styles.whatsappActionBtn} onClick={handleWhatsApp}>
-                                <MessageCircle size={18} /> Send on WhatsApp
+                                <FaWhatsapp size={19} /> Send on WhatsApp
                             </button>
 
                             <button type="button" className={styles.resetActionBtn} onClick={handleReset}>

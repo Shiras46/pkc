@@ -14,7 +14,6 @@ import {
     MapPin,
     Calendar,
     Phone,
-    MessageCircle,
     Utensils,
     Building2,
     Palette,
@@ -22,6 +21,7 @@ import {
     HeartHandshake,
     Heart
 } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import QuoteModal from '@/components/ui/QuoteModal';
 import styles from './ThrissurPage.module.css';
 
@@ -94,7 +94,7 @@ export default function ThrissurPageClient({
                                 className="btn btn-outline"
                                 style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.85)' }}
                             >
-                                <MessageCircle size={18} />
+                                <FaWhatsapp size={18} />
                                 WhatsApp Us
                             </a>
                             <a
@@ -291,7 +291,7 @@ export default function ThrissurPageClient({
                             className="btn btn-outline"
                             style={{ color: '#fff', borderColor: '#fff' }}
                         >
-                            <MessageCircle size={18} />
+                            <FaWhatsapp size={18} />
                             WhatsApp Us
                         </a>
                     </div>
@@ -442,7 +442,7 @@ export default function ThrissurPageClient({
                             className="btn btn-outline"
                             style={{ color: '#fff', borderColor: '#fcb318' }}
                         >
-                            <MessageCircle size={18} />
+                            <FaWhatsapp size={18} />
                             WhatsApp Us
                         </a>
                         <a

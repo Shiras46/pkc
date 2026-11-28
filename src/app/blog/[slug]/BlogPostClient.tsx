@@ -9,12 +9,12 @@ import {
     Clock,
     Check,
     Copy,
-    MessageCircle,
     Phone,
     Mail,
     BookOpen,
     ChevronRight
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { Blog as BlogType } from "@/lib/types";
 import { getValidImageUrl } from "@/lib/image";
 import styles from "./BlogPost.module.css";
@@ -218,7 +218,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                                 title="Share on WhatsApp"
                                 aria-label="Share on WhatsApp"
                             >
-                                <MessageCircle size={16} />
+                                <FaWhatsapp size={16} />
                                 <span className={styles.shareBtnText}>Share</span>
                             </button>
                             <button
@@ -344,7 +344,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }: BlogPostClie
                                                     rel="noopener noreferrer"
                                                     className={styles.ctaSecondaryBtn}
                                                 >
-                                                    <MessageCircle size={16} />
+                                                    <FaWhatsapp size={16} />
                                                     <span>{secondaryText}</span>
                                                 </a>
                                             );

@@ -40,8 +40,9 @@ export default function Footer() {
                     <div className={styles.linksCol}>
                         <h3>Our Services</h3>
                         <ul>
-                            <li><Link href="/services/cars">Luxury Cars</Link></li>
                             <li><Link href="/services/catering">Premium Catering</Link></li>
+                            <li><Link href="/menu">Catering Menus</Link></li>
+                            <li><Link href="/services/cars">Luxury Cars</Link></li>
                             <li><Link href="/services/decoration">Venue Decoration</Link></li>
                             <li><Link href="/services/entertainment">Entertainment</Link></li>
                             <li><Link href="/services/makeup">Bridal Makeup</Link></li>
@@ -56,8 +57,7 @@ export default function Footer() {
                         <h3>Company</h3>
                         <ul>
                             <li><Link href="/about">About Us</Link></li>
-                            {/* <li><Link href="/menu">Menu Selection</Link></li>
-                            <li><Link href="/portfolio">Portfolio</Link></li> */}
+                            <li><Link href="/menu">Menu Selection</Link></li>
                             <li><Link href="/gallery">Gallery</Link></li>
                             <li><Link href="/blog">Blog</Link></li>
                             <li><Link href="/contact">Contact</Link></li>

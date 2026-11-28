@@ -2,7 +2,8 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check, Copy, MessageCircle, RotateCcw } from "lucide-react";
+import { X, Check, Copy, RotateCcw } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import styles from "./WeddingReceptionMenuBuilder.module.css";
 
 const WHATSAPP_NUMBER = "918138002333";
@@ -519,7 +520,7 @@ export default function WeddingReceptionMenuBuilder({ onClose, onOpenQuote }: We
                             </button>
 
                             <button type="button" className={styles.whatsappActionBtn} onClick={handleWhatsApp}>
-                                <MessageCircle size={18} /> Send on WhatsApp
+                                <FaWhatsapp size={20} /> Send on WhatsApp
                             </button>
 
                             <button type="button" className={styles.resetActionBtn} onClick={handleReset}>

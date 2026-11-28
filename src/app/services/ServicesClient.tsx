@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ChevronRight } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import styles from "./Services.module.css";
 import QuoteModal from "@/components/ui/QuoteModal";
 import ServiceCards from "@/components/sections/ServiceCards";
@@ -179,8 +180,8 @@ export default function ServicesClient() {
                         <button className={styles.ctaPrimaryLink} onClick={() => setIsQuoteOpen(true)}>
                             Schedule Consultation <ChevronRight size={18} />
                         </button>
-                        <a href="https://wa.me/918138002333" target="_blank" rel="noreferrer" className={styles.ctaSecondaryLink}>
-                            WhatsApp Enquiry
+                        <a href="https://wa.me/918138002333" target="_blank" rel="noreferrer" className={styles.ctaSecondaryLink} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                            <FaWhatsapp size={19} /> WhatsApp Enquiry
                         </a>
                     </div>
                 </div>

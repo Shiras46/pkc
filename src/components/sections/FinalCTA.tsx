@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import styles from "./FinalCTA.module.css";
 import QuoteModal from "@/components/ui/QuoteModal";
 import { trackContactClick } from "@/lib/tracking";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function FinalCTA() {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -49,10 +50,10 @@ export default function FinalCTA() {
                                 target="_blank" 
                                 rel="noreferrer" 
                                 className="btn btn-outline" 
-                                style={{ color: 'white', borderColor: 'white' }}
+                                style={{ color: 'white', borderColor: 'white', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                                 onClick={() => trackContactClick('whatsapp', 'final_cta')}
                             >
-                                WhatsApp Enquiry
+                                <FaWhatsapp size={19} /> WhatsApp Enquiry
                             </a>
                         </div>
                     </motion.div>

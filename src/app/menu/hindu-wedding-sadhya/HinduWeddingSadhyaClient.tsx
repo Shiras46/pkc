@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, Copy, MessageCircle, Users, Calendar, MapPin } from "lucide-react";
+import { ChevronLeft, Copy, Users, Calendar, MapPin } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import styles from "./HinduWeddingSadhya.module.css";
 import { SADHYA_FLOW_PACKAGES, SadhyaPackageFlow } from "./sadhyaData";
 import QuoteModal from "@/components/ui/QuoteModal";
@@ -215,7 +216,7 @@ export default function HinduWeddingSadhyaClient() {
                     </button>
 
                     <button type="button" className={styles.whatsappBtn} onClick={handleWhatsApp}>
-                        <MessageCircle size={18} /> Inquire on WhatsApp
+                        <FaWhatsapp size={20} /> Inquire on WhatsApp
                     </button>
                 </div>
             </div>
