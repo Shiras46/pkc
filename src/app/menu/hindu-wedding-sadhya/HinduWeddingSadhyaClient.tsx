@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronLeft, Copy, MessageCircle } from "lucide-react";
+import { ChevronLeft, Copy, MessageCircle, Users, Calendar, MapPin } from "lucide-react";
 import styles from "./HinduWeddingSadhya.module.css";
 import { SADHYA_FLOW_PACKAGES, SadhyaPackageFlow } from "./sadhyaData";
 import QuoteModal from "@/components/ui/QuoteModal";
 import FinalCTA from "@/components/sections/FinalCTA";
-import MenuDetailBookingForm from "@/components/menu/MenuDetailBookingForm";
 
 const WHATSAPP_NUMBER = "918138002333";
 
@@ -15,6 +14,9 @@ export default function HinduWeddingSadhyaClient() {
     const [selectedPkgKey, setSelectedPkgKey] = useState<string>("executive");
     const [copyStatus, setCopyStatus] = useState<string>("Copy Menu Text");
     const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+    const [pax, setPax] = useState("");
+    const [workDate, setWorkDate] = useState("");
+    const [auditorium, setAuditorium] = useState("");
 
     const activePkg: SadhyaPackageFlow = SADHYA_FLOW_PACKAGES[selectedPkgKey] || SADHYA_FLOW_PACKAGES.executive;
 
@@ -22,6 +24,13 @@ export default function HinduWeddingSadhyaClient() {
     const generateMenuText = () => {
         let text = `*PKC Events – ${activePkg.title}*\n`;
         text += `${activePkg.subtitle}\n\n`;
+
+        if (pax || workDate || auditorium) {
+            text += `*Event Details:*\n`;
+            if (pax) text += `• Pax: ${pax}\n`;
+            if (workDate) text += `• Workdate: ${workDate}\n`;
+            if (auditorium) text += `• Auditorium: ${auditorium}\n\n`;
+        }
 
         activePkg.courses.forEach(course => {
             text += `*${course.title}:*\n`;
@@ -49,9 +58,30 @@ export default function HinduWeddingSadhyaClient() {
         setTimeout(() => setCopyStatus("Copy Menu Text"), 2500);
     };
 
-    const handleWhatsApp = () => {
+    const handleWhatsApp = async () => {
         const text = encodeURIComponent(generateMenuText());
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
+
+        if (pax || workDate || auditorium) {
+            try {
+                await fetch("/api/enquiries", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: "Website Sadhya Inquiry",
+                        phone: "",
+                        service: `Hindu Wedding Sadhya - ${activePkg.title} (${pax || "N/A"} Pax - ${auditorium || "N/A"})`,
+                        eventType: "Hindu Wedding Sadhya",
+                        eventDate: workDate,
+                        guestCount: pax ? Number(pax) : undefined,
+                        message: `Pax: ${pax || "N/A"} | Workdate: ${workDate || "N/A"} | Auditorium: ${auditorium || "N/A"}\n\n${generateMenuText()}`
+                    }),
+                    keepalive: true
+                });
+            } catch (e) {
+                console.error("Enquiry log error:", e);
+            }
+        }
     };
 
     return (
@@ -136,6 +166,48 @@ export default function HinduWeddingSadhyaClient() {
                     ))}
                 </main>
 
+                {/* Event Details: Pax, Workdate, Auditorium */}
+                <div className={styles.sadhyaEventDetailsBar}>
+                    <div className={styles.sadhyaField}>
+                        <label htmlFor="sd-pax">Pax (Guest Count)</label>
+                        <div className={styles.inputWrap}>
+                            <Users size={15} className={styles.inputIcon} />
+                            <input 
+                                id="sd-pax"
+                                type="number" 
+                                placeholder="e.g. 500 Pax" 
+                                value={pax} 
+                                onChange={e => setPax(e.target.value)} 
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.sadhyaField}>
+                        <label htmlFor="sd-workdate">Workdate (Event Date)</label>
+                        <div className={styles.inputWrap}>
+                            <Calendar size={15} className={styles.inputIcon} />
+                            <input 
+                                id="sd-workdate"
+                                type="date" 
+                                value={workDate} 
+                                onChange={e => setWorkDate(e.target.value)} 
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.sadhyaField}>
+                        <label htmlFor="sd-auditorium">Auditorium / Venue</label>
+                        <div className={styles.inputWrap}>
+                            <MapPin size={15} className={styles.inputIcon} />
+                            <input 
+                                id="sd-auditorium"
+                                type="text" 
+                                placeholder="Auditorium / Hall name" 
+                                value={auditorium} 
+                                onChange={e => setAuditorium(e.target.value)} 
+                            />
+                        </div>
+                    </div>
+                </div>
+
                 {/* Bottom Actions Bar */}
                 <div className={styles.bottomActionBar}>
                     <button type="button" className={styles.copyBtn} onClick={handleCopy}>
@@ -146,14 +218,6 @@ export default function HinduWeddingSadhyaClient() {
                         <MessageCircle size={18} /> Inquire on WhatsApp
                     </button>
                 </div>
-
-                {/* Direct Catering Booking Form (Pax, Workdate, Auditorium) */}
-                <MenuDetailBookingForm
-                    occasionTitle="Hindu Wedding Sadhya"
-                    occasionSlug="hindu-wedding-sadhya"
-                    packageTitle={activePkg.title}
-                    getMenuSummary={generateMenuText}
-                />
             </div>
 
             {/* Global Final CTA */}

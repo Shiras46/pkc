@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { ChevronLeft, Check, Copy, MessageCircle, RotateCcw } from "lucide-react";
+import { ChevronLeft, Check, Copy, MessageCircle, RotateCcw, Users, Calendar, MapPin } from "lucide-react";
 import styles from "./WeddingReceptionPage.module.css";
 import { 
     DISH_POOLS, 
@@ -10,7 +10,6 @@ import {
 } from "@/components/menu/WeddingReceptionMenuBuilder";
 import QuoteModal from "@/components/ui/QuoteModal";
 import FinalCTA from "@/components/sections/FinalCTA";
-import MenuDetailBookingForm from "@/components/menu/MenuDetailBookingForm";
 
 const WHATSAPP_NUMBER = "918138002333";
 
@@ -33,6 +32,9 @@ export default function WeddingReceptionPageClient({
     const [selections, setSelections] = useState<Record<string, string[]>>({});
     const [copyStatus, setCopyStatus] = useState<string>("Copy Menu");
     const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+    const [pax, setPax] = useState("");
+    const [workDate, setWorkDate] = useState("");
+    const [auditorium, setAuditorium] = useState("");
 
     const activePkg = PACKAGES[selectedPkgKey];
     const slots = activePkg.slots;
@@ -125,6 +127,14 @@ export default function WeddingReceptionPageClient({
     // Build formatted text for copy / WhatsApp
     const generateMenuText = () => {
         let text = `*PKC ${occasionTitle} – ${activePkg.title} Menu*\n`;
+
+        if (pax || workDate || auditorium) {
+            text += `\n*Event Details:*\n`;
+            if (pax) text += `• Pax: ${pax}\n`;
+            if (workDate) text += `• Workdate: ${workDate}\n`;
+            if (auditorium) text += `• Auditorium: ${auditorium}\n`;
+        }
+
         let lastCourse = "";
 
         slots.forEach((s, idx) => {
@@ -156,9 +166,30 @@ export default function WeddingReceptionPageClient({
         setTimeout(() => setCopyStatus("Copy Menu"), 2500);
     };
 
-    const handleWhatsApp = () => {
+    const handleWhatsApp = async () => {
         const text = encodeURIComponent(generateMenuText());
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
+
+        if (pax || workDate || auditorium) {
+            try {
+                await fetch("/api/enquiries", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: "Website Menu Inquiry",
+                        phone: "",
+                        service: `${occasionTitle} (${pax || "N/A"} Pax - ${auditorium || "N/A"})`,
+                        eventType: occasionTitle,
+                        eventDate: workDate,
+                        guestCount: pax ? Number(pax) : undefined,
+                        message: `Pax: ${pax || "N/A"} | Workdate: ${workDate || "N/A"} | Auditorium: ${auditorium || "N/A"}\n\n${generateMenuText()}`
+                    }),
+                    keepalive: true
+                });
+            } catch (e) {
+                console.error("Enquiry log error:", e);
+            }
+        }
     };
 
     const handleReset = () => {
@@ -351,6 +382,48 @@ export default function WeddingReceptionPageClient({
                             })()}
                         </div>
 
+                        {/* Event Details: Pax, Workdate, Auditorium */}
+                        <div className={styles.sidebarEventDetails}>
+                            <div className={styles.sidebarField}>
+                                <label htmlFor="sb-pax">Pax (Guest Count)</label>
+                                <div className={styles.sidebarInputWrap}>
+                                    <Users size={14} className={styles.sidebarInputIcon} />
+                                    <input 
+                                        id="sb-pax"
+                                        type="number" 
+                                        placeholder="e.g. 500 Pax" 
+                                        value={pax} 
+                                        onChange={e => setPax(e.target.value)} 
+                                    />
+                                </div>
+                            </div>
+                            <div className={styles.sidebarField}>
+                                <label htmlFor="sb-workdate">Workdate (Event Date)</label>
+                                <div className={styles.sidebarInputWrap}>
+                                    <Calendar size={14} className={styles.sidebarInputIcon} />
+                                    <input 
+                                        id="sb-workdate"
+                                        type="date" 
+                                        value={workDate} 
+                                        onChange={e => setWorkDate(e.target.value)} 
+                                    />
+                                </div>
+                            </div>
+                            <div className={styles.sidebarField}>
+                                <label htmlFor="sb-auditorium">Auditorium / Venue</label>
+                                <div className={styles.sidebarInputWrap}>
+                                    <MapPin size={14} className={styles.sidebarInputIcon} />
+                                    <input 
+                                        id="sb-auditorium"
+                                        type="text" 
+                                        placeholder="Auditorium / Hall name" 
+                                        value={auditorium} 
+                                        onChange={e => setAuditorium(e.target.value)} 
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
                         {/* Actions */}
                         <div className={styles.actionBtnsContainer}>
                             <button type="button" className={styles.copyActionBtn} onClick={handleCopy}>
@@ -367,16 +440,6 @@ export default function WeddingReceptionPageClient({
                         </div>
                     </aside>
                 </div>
-
-                {/* Direct Catering Booking Form (Pax, Workdate, Auditorium) */}
-                <MenuDetailBookingForm
-                    occasionTitle={occasionTitle}
-                    occasionSlug={occasionSlug}
-                    packageTitle={activePkg.title}
-                    selectedCount={totalChosen}
-                    totalCount={totalSelectable}
-                    getMenuSummary={generateMenuText}
-                />
             </div>
 
             {/* Global Final CTA */}
