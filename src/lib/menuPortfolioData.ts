@@ -108,7 +108,6 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
     {
         id: "hindu-wedding-sadhya",
         title: "Hindu Wedding Sadhya",
-        packageName: "4 Curated Packages",
         category: "Hindu Wedding",
         filterCategory: "Traditional Sadhya",
         isComingSoon: false,
@@ -177,7 +176,6 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
     {
         id: "christian-wedding",
         title: "Christian Wedding",
-        packageName: "3 Curated Packages",
         category: "Christian Wedding",
         filterCategory: "Weddings & Receptions",
         isComingSoon: false,
@@ -320,7 +318,6 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
     {
         id: "wedding-dinner",
         title: "Wedding Dinner",
-        packageName: "3 Curated Packages",
         category: "Wedding Dinner",
         filterCategory: "Weddings & Receptions",
         isComingSoon: false,
@@ -391,7 +388,6 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
     {
         id: "haldi-ceremony",
         title: "Haldi Ceremony",
-        packageName: "3 Curated Packages",
         category: "Haldi Ceremony",
         filterCategory: "Pre-Wedding Rituals",
         isComingSoon: false,
@@ -460,7 +456,6 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
     {
         id: "sangeet-ceremony",
         title: "Sangeet Ceremony",
-        packageName: "3 Curated Packages",
         category: "Sangeet Ceremony",
         filterCategory: "Pre-Wedding Rituals",
         isComingSoon: false,
@@ -530,7 +525,6 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
     {
         id: "birthday-celebration",
         title: "Birthday Celebration",
-        packageName: "3 Curated Packages",
         category: "Birthday Celebration",
         filterCategory: "Social & Birthdays",
         isComingSoon: false,
