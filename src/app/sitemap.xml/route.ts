@@ -31,6 +31,7 @@ export async function GET() {
         '/menu/sangeet-ceremony',
         '/menu/haldi-ceremony',
         '/menu/christian-wedding',
+        '/menu/nikah-wedding',
         '/gallery',
         '/locations',
         '/locations/kochi',

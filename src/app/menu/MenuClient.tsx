@@ -32,6 +32,7 @@ export default function MenuClient() {
         "sangeet-ceremony": "/menu/sangeet-ceremony",
         "haldi-ceremony": "/menu/haldi-ceremony",
         "christian-wedding": "/menu/christian-wedding",
+        "nikah-wedding": "/menu/nikah-wedding",
     };
 
     const handleMenuClick = (menu: MenuPortfolioItem) => {

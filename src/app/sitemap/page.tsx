@@ -43,6 +43,7 @@ export default function SitemapPage() {
         { name: "Sangeet Ceremony Menu", href: "/menu/sangeet-ceremony" },
         { name: "Haldi Ceremony Menu", href: "/menu/haldi-ceremony" },
         { name: "Christian Wedding Menu", href: "/menu/christian-wedding" },
+        { name: "Nikah Wedding Menu", href: "/menu/nikah-wedding" },
         { name: "Signature Portfolio", href: "/portfolio" },
         { name: "Our Gallery", href: "/gallery" },
         { name: "Our Locations", href: "/locations" },

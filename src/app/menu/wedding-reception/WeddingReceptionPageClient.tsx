@@ -16,11 +16,17 @@ const WHATSAPP_NUMBER = "918138002333";
 export interface WeddingReceptionPageClientProps {
     occasionTitle?: string;
     occasionSlug?: string;
+    isHalal?: boolean;
+    excludedSubgroups?: string[];
+    excludedDishes?: string[];
 }
 
 export default function WeddingReceptionPageClient({
     occasionTitle = "Wedding Reception",
-    occasionSlug = "wedding-reception"
+    occasionSlug = "wedding-reception",
+    isHalal = false,
+    excludedSubgroups = [],
+    excludedDishes = []
 }: WeddingReceptionPageClientProps = {}) {
     const [selectedPkgKey, setSelectedPkgKey] = useState<string>("prem");
     const [selections, setSelections] = useState<Record<string, string[]>>({});
@@ -31,6 +37,22 @@ export default function WeddingReceptionPageClient({
     const slots = activePkg.slots;
 
     const makeKey = (slotIdx: number) => `${selectedPkgKey}_${slotIdx}`;
+
+    const excludedGroupsSet = useMemo(() => {
+        const set = new Set(excludedSubgroups.map(s => s.toLowerCase()));
+        if (isHalal) {
+            set.add("pork");
+        }
+        return set;
+    }, [excludedSubgroups, isHalal]);
+
+    const excludedDishesSet = useMemo(() => {
+        const set = new Set(excludedDishes.map(d => d.toLowerCase()));
+        if (isHalal) {
+            set.add("kallappam");
+        }
+        return set;
+    }, [excludedDishes, isHalal]);
 
     // Toggle dish selection for a given slot
     const handleToggleDish = (slotIdx: number, dishName: string) => {
@@ -243,32 +265,38 @@ export default function WeddingReceptionPageClient({
                                             )}
 
                                             {/* Dish Chips */}
-                                            {poolData && Object.entries(poolData).map(([groupTitle, dishArray]) => (
-                                                <div key={groupTitle}>
-                                                    {groupTitle && <div className={styles.subgroupLabel}>{groupTitle}</div>}
-                                                    <div className={styles.chipsContainer}>
-                                                        {dishArray.map(dish => {
-                                                            const isSelected = selectedDishes.includes(dish);
-                                                            const isSlotFull = selectedDishes.length >= slot.count;
-                                                            const isDisabled = !isSelected && isSlotFull;
+                                            {poolData && Object.entries(poolData).map(([groupTitle, dishArray]) => {
+                                                if (excludedGroupsSet.has(groupTitle.toLowerCase())) return null;
+                                                const availableDishes = dishArray.filter(d => !excludedDishesSet.has(d.toLowerCase()));
+                                                if (availableDishes.length === 0) return null;
 
-                                                            return (
-                                                                <button
-                                                                    key={dish}
-                                                                    type="button"
-                                                                    className={`${styles.dishChip} ${isSelected ? styles.dishChipActive : ""} ${isDisabled ? styles.dishChipDisabled : ""}`}
-                                                                    onClick={() => handleToggleDish(slotIdx, dish)}
-                                                                    disabled={isDisabled}
-                                                                    aria-pressed={isSelected}
-                                                                >
-                                                                    {isSelected && <Check size={13} style={{ marginRight: 4, display: "inline" }} />}
-                                                                    {dish}
-                                                                </button>
-                                                            );
-                                                        })}
+                                                return (
+                                                    <div key={groupTitle}>
+                                                        {groupTitle && <div className={styles.subgroupLabel}>{groupTitle}</div>}
+                                                        <div className={styles.chipsContainer}>
+                                                            {availableDishes.map(dish => {
+                                                                const isSelected = selectedDishes.includes(dish);
+                                                                const isSlotFull = selectedDishes.length >= slot.count;
+                                                                const isDisabled = !isSelected && isSlotFull;
+
+                                                                return (
+                                                                    <button
+                                                                        key={dish}
+                                                                        type="button"
+                                                                        className={`${styles.dishChip} ${isSelected ? styles.dishChipActive : ""} ${isDisabled ? styles.dishChipDisabled : ""}`}
+                                                                        onClick={() => handleToggleDish(slotIdx, dish)}
+                                                                        disabled={isDisabled}
+                                                                        aria-pressed={isSelected}
+                                                                    >
+                                                                        {isSelected && <Check size={13} style={{ marginRight: 4, display: "inline" }} />}
+                                                                        {dish}
+                                                                    </button>
+                                                                );
+                                                            })}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            ))}
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                 );

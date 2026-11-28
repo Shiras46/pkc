@@ -242,15 +242,15 @@ export const menuPortfolioItems: MenuPortfolioItem[] = [
         ]
     },
 
-    // 4. Nikah Wedding (soon)
+    // 4. Nikah Wedding
     {
         id: "nikah-wedding",
-        title: "Nikah Wedding (soon)",
+        title: "Nikah Wedding",
         category: "Nikah Wedding",
         filterCategory: "Weddings & Receptions",
-        isComingSoon: true,
+        isComingSoon: false,
         servingCapacity: "Min 200 – 6,000+ Guests",
-        courseCount: "30 Royal Courses",
+        courseCount: "38 Signature Dishes",
         dietary: "100% Halal Certified",
         image: "/image/services/catering.webp",
         objectPosition: "center 30%",
